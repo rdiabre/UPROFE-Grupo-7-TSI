@@ -100,7 +100,7 @@ git push origin feature/<persona>-<modelo>
 
 Los issues y el Project son dos objetos distintos que hay que conectar explícitamente — no van unidos por defecto.
 
-- **Issues** (dentro del repo): **un issue por modelo** (`Modelo: uprofe.<modelo>`), asignado a la persona responsable. Cubre modelo **y** vistas; no se crean issues separados para la vista ni sub-issues. Son la capa de gestión (qué falta, quién lo hace); las ramas y PRs son la capa de trabajo (el código en sí).
+- **Issues** (dentro del repo): **un issue por modelo** (`uprofe.<modelo>`), asignado a la persona responsable. Cubre modelo **y** vistas; no se crean issues separados para la vista ni sub-issues. Son la capa de gestión (qué falta, quién lo hace); las ramas y PRs son la capa de trabajo (el código en sí).
 
   Cada issue lleva este checklist para llevar el detalle sin multiplicar elementos:
 
