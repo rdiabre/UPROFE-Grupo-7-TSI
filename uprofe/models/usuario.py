@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from odoo.Exception import ValidationError
+from odoo.exceptions import ValidationError
 import re
 
 class Usuario(models.Model):
@@ -22,13 +22,13 @@ class Usuario(models.Model):
     def _check_name_unique(self):
         # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
         for record in self:
-            if self.search_count([("id", "!=", record.id.strip()), ("name", "=ilike", record.name.strip())]):
+            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name.strip())]):
                 raise ValidationError("Ya existe un usuario con este nombre de usuario.");
 
     @api.constrains('correo')
     def _check_correo_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id.strip()), ("correo", "=ilike", record.correo.strip())]):
+            if self.search_count([("id", "!=", record.id), ("correo", "=ilike", record.correo.strip())]):
                 raise ValidationError("Ya se registró un usuario con este correo electrónico.");
 
     # Validaciones de valores
@@ -70,3 +70,19 @@ class Usuario(models.Model):
     def write(self, vals):
         self._strip_string_values(vals)
         return super().write(vals)
+    
+    # Lo hago en el método create también para que aplique también al exportar datos (aunque yo solo vaya a usar write)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._strip_string_values(vals)
+        return super().create(vals_list)
+    
+    # Función auxiliar para limpiar espacios en todos los campos
+    def _strip_string_values(vals):
+        for field_name, val in vals.items():
+            if isinstance(val, str):
+                field = self._fields.get(field_name)
+                if field and field.type in ('char', 'text'):
+                    vals[field_name] = val.strip()
+        return vals
