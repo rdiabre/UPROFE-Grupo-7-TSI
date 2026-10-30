@@ -14,15 +14,17 @@ class Usuario(models.Model):
     ultimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
     foto = fields.Binary(string="Foto de perfil")
 
-    _sql_constraints = [
-        (
-            'usuario_name_unique',
-            'unique(name)',
-            'Ya existe un usuario con este nombre de usuario. Debe ser único'
-        ),
-        (
-            'usuario_correo_unique',
-            'unique(correo)',
-            'El correo ya está utilizado. Debe ser único.'
-        )
-    ]
+
+    # Hago la validación de unicidad con api.constrains porque si se hace con _sql_constraints, es case sensitive
+    @api.constrains('name')
+    def _check_name_unique(self):
+        # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
+        for record in self:
+            if self.search_count([("id", "!=", record.id), ("name", "=", record.name)]):
+                raise models.ValidationError("Ya existe un usuario con este nombre de usuario");
+
+    @api.constrains('correo')
+    def _check_name_unique(self):
+        for record in self:
+            if self.search_count([("id", "!=", record.id), ("correo", "=", record.correo)]):
+                raise models.ValidationError("Ya se registró un usuario con este correo electrónico.");
