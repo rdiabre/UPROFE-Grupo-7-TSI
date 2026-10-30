@@ -7,6 +7,7 @@ import re
 class Usuario(models.Model):
     _name = 'uprofe.usuario'
     _description = 'Usuarios de la app'
+    _order = 'name asc'
 
     name = fields.Char(string="Nombre de usuario", size=50, required=True)
     correo = fields.Char(string="Correo electrónico", required=True)
