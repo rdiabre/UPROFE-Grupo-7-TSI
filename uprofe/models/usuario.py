@@ -22,26 +22,26 @@ class Usuario(models.Model):
     def _check_name_unique(self):
         # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name)]):
+            if self.search_count([("id", "!=", record.id.strip()), ("name", "=ilike", record.name.strip())]):
                 raise ValidationError("Ya existe un usuario con este nombre de usuario.");
 
     @api.constrains('correo')
     def _check_correo_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("correo", "=ilike", record.correo)]):
+            if self.search_count([("id", "!=", record.id.strip()), ("correo", "=ilike", record.correo.strip())]):
                 raise ValidationError("Ya se registró un usuario con este correo electrónico.");
 
     # Validaciones de valores
     @api.constrains('name')
     def _check_name_not_empty(self):
         for record in self:
-            if len(record.name) == 0:
+            if len(record.name.strip()) == 0:
                 raise ValidationError("El nombre de usuario no puede estar vacío.");
 
     @api.constrains('correo')
     def _check_correo_not_empty(self):
         for record in self:
-            if len(record.correo) == 0:
+            if len(record.correo.strip()) == 0:
                 raise ValidationError("El correo electrónico no puede estar vacío.");
             
     @api.constrains('correo')
@@ -49,7 +49,7 @@ class Usuario(models.Model):
         regex_correo = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         
         for record in self:
-            if not re.match(regex_correo, record.correo):
+            if not re.match(regex_correo, record.correo.strip()):
                 raise ValidationError("El correo electrónico no es válido.");
             
     @api.constrains('contrasena')
@@ -57,11 +57,16 @@ class Usuario(models.Model):
         regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
         
         for record in self:
-            if not re.match(regex_robustez, record.contrasena):
+            if not re.match(regex_robustez, record.contrasena.strip()):
                 raise ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
             
     @api.constrains('contrasena', 'name')
     def _check_contrasena_identidad(self):
         for record in self:
-            if record.contrasena == record.name:
+            if record.contrasena.strip() == record.name.strip():
                 raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
+            
+    # Limpiar espacios sobrantes
+    def write(self, vals):
+        self._strip_string_values(vals)
+        return super().write(vals)
