@@ -6,7 +6,7 @@ class Usuario(models.Model):
     _name = 'uprofe.usuario'
     _description = 'Usuarios de la app'
 
-    name = fields.Char(string="Nombre de usuario", required=True)
+    name = fields.Char(string="Nombre de usuario", size=50, required=True)
     correo = fields.Char(string="Correo electrónico", required=True)
     contrasena = fields.Char(string="Contraseña", required=True)
     # True si está activa False si no
@@ -28,3 +28,10 @@ class Usuario(models.Model):
         for record in self:
             if self.search_count([("id", "!=", record.id), ("correo", "=", record.correo)]):
                 raise models.ValidationError("Ya se registró un usuario con este correo electrónico.");
+
+    # Validaciones de valores
+    @api.constrains('name')
+    def _check_name_not_empty(self):
+        for record in self:
+            if len(record.name) == 0:
+                raise models.ValidationError("El nombre de usuario no puede estar vacío");
