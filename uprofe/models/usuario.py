@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+import re
 
 class Usuario(models.Model):
     _name = 'uprofe.usuario'
@@ -21,7 +22,7 @@ class Usuario(models.Model):
         # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
         for record in self:
             if self.search_count([("id", "!=", record.id), ("name", "=", record.name)]):
-                raise models.ValidationError("Ya existe un usuario con este nombre de usuario");
+                raise models.ValidationError("Ya existe un usuario con este nombre de usuario.");
 
     @api.constrains('correo')
     def _check_name_unique(self):
@@ -34,4 +35,18 @@ class Usuario(models.Model):
     def _check_name_not_empty(self):
         for record in self:
             if len(record.name) == 0:
-                raise models.ValidationError("El nombre de usuario no puede estar vacío");
+                raise models.ValidationError("El nombre de usuario no puede estar vacío.");
+
+    @api.constrains('correo')
+    def _check_correo_not_empty(self):
+        for record in self:
+            if len(record.correo) == 0:
+                raise models.ValidationError("El correo electrónico no puede estar vacío.");
+            
+    @api.constrains('correo')
+    def _check_correo_format(self):
+        regex_correo = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        
+        for record in self:
+            if not re.match(regex_correo, record.correo):
+                raise models.ValidationError("El correo electrónico no es válido.");
