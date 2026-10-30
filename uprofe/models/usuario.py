@@ -79,7 +79,7 @@ class Usuario(models.Model):
         return super().create(vals_list)
     
     # Función auxiliar para limpiar espacios en todos los campos
-    def _strip_string_values(vals):
+    def _strip_string_values(self, vals):
         for field_name, val in vals.items():
             if isinstance(val, str):
                 field = self._fields.get(field_name)
