@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.Exception import ValidationError
 import re
 
 class Usuario(models.Model):
@@ -21,27 +22,27 @@ class Usuario(models.Model):
     def _check_name_unique(self):
         # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("name", "=", record.name)]):
-                raise models.ValidationError("Ya existe un usuario con este nombre de usuario.");
+            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name)]):
+                raise ValidationError("Ya existe un usuario con este nombre de usuario.");
 
     @api.constrains('correo')
-    def _check_name_unique(self):
+    def _check_correo_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("correo", "=", record.correo)]):
-                raise models.ValidationError("Ya se registró un usuario con este correo electrónico.");
+            if self.search_count([("id", "!=", record.id), ("correo", "=ilike", record.correo)]):
+                raise ValidationError("Ya se registró un usuario con este correo electrónico.");
 
     # Validaciones de valores
     @api.constrains('name')
     def _check_name_not_empty(self):
         for record in self:
             if len(record.name) == 0:
-                raise models.ValidationError("El nombre de usuario no puede estar vacío.");
+                raise ValidationError("El nombre de usuario no puede estar vacío.");
 
     @api.constrains('correo')
     def _check_correo_not_empty(self):
         for record in self:
             if len(record.correo) == 0:
-                raise models.ValidationError("El correo electrónico no puede estar vacío.");
+                raise ValidationError("El correo electrónico no puede estar vacío.");
             
     @api.constrains('correo')
     def _check_correo_format(self):
@@ -49,7 +50,7 @@ class Usuario(models.Model):
         
         for record in self:
             if not re.match(regex_correo, record.correo):
-                raise models.ValidationError("El correo electrónico no es válido.");
+                raise ValidationError("El correo electrónico no es válido.");
             
     @api.constrains('contrasena')
     def _check_contrasena_robustez(self):
@@ -57,10 +58,10 @@ class Usuario(models.Model):
         
         for record in self:
             if not re.match(regex_robustez, record.contrasena):
-                raise models.ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
+                raise ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
             
     @api.constrains('contrasena', 'name')
     def _check_contrasena_identidad(self):
         for record in self:
             if record.contrasena == record.name:
-                raise models.ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
+                raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
