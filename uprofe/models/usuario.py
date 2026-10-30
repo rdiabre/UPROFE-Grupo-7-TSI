@@ -16,6 +16,11 @@ class Usuario(models.Model):
 
     _sql_constraints = [
         (
+            'usuario_name_unique',
+            'unique(name)',
+            'Ya existe un usuario con este nombre de usuario. Debe ser único'
+        ),
+        (
             'usuario_correo_unique',
             'unique(correo)',
             'El correo ya está utilizado. Debe ser único.'
