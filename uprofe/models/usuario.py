@@ -50,3 +50,17 @@ class Usuario(models.Model):
         for record in self:
             if not re.match(regex_correo, record.correo):
                 raise models.ValidationError("El correo electrónico no es válido.");
+            
+    @api.constrains('contrasena')
+    def _check_contrasena_robustez(self):
+        regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
+        
+        for record in self:
+            if not re.match(regex_robustez, record.contrasena):
+                raise models.ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
+            
+    @api.constrains('contrasena', 'name')
+    def _check_contrasena_identidad(self):
+        for record in self:
+            if record.contrasena == record.name:
+                raise models.ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
