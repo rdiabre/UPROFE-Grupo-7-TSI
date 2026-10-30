@@ -129,7 +129,9 @@ Los issues y el Project son dos objetos distintos que hay que conectar explícit
 
 ### 2.6 Cuando otros modelos dependen del tuyo
 
-**Regla por defecto:** una rama y un PR por modelo, con modelo y vistas juntos. Solo cuando otra persona necesita tu modelo (por ejemplo, tiene un `Many2one` hacia él) y tus vistas van a tardar, se divide el trabajo en **dos ramas y dos PRs**. Esta división se decide en el issue: la persona que depende lo pide con un comentario, y se marca el issue con la etiqueta `dependencia`.
+**Regla por defecto:** una rama y un PR por modelo, con modelo y vistas juntos. Solo cuando otra persona necesita tu modelo (por ejemplo, tiene un `Many2one` hacia él) y tus vistas van a tardar, se divide el trabajo en **dos ramas y dos PRs**. Esta división se decide en el issue: la persona que depende lo pide con un comentario, y se marca el issue con la etiqueta `dependencia`. 
+
+**En resumen:** si tu modelo es necesitado por otro, crea una rama solo para el modelo para terminarlo primero y otra rama para las vistas. Esto pasará en gran cantidad de ocasiones.
 
 **Orden de fusión:** siempre primero el modelo del que se depende, luego el que depende.
 
