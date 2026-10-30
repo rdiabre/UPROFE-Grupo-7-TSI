@@ -13,3 +13,11 @@ class Usuario(models.Model):
     estado_cuenta = fields.Boolean(string="Activo", default=False)
     ultimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
     foto = fields.Binary(string="Foto de perfil")
+
+    _sql_constraints = [
+        (
+            'usuario_correo_unique',
+            'unique(correo)',
+            'El correo ya está utilizado. Debe ser único.'
+        )
+    ]
