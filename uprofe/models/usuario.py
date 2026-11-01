@@ -2,8 +2,10 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from odoo.tools.crypt import pwd_context
+from passlib.context import CryptContext
 import re
+
+crypt = CryptContext(schemes=['pbkdf2_sha512'])
 
 class Usuario(models.Model):
     _name = 'uprofe.usuario'
@@ -18,7 +20,6 @@ class Usuario(models.Model):
     estado_cuenta = fields.Boolean(string="Activo", default=False)
     ultimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
     foto = fields.Binary(string="Foto de perfil")
-
 
     # Hago la validación de unicidad con api.constrains porque si se hace con _sql_constraints, es case sensitive
     @api.constrains('name')
@@ -99,7 +100,7 @@ class Usuario(models.Model):
     # Limpiar espacios sobrantes
     def write(self, vals):
         if vals.get('contrasena'):
-            vals['contrasena'] = pwd_context.hash('contrasena')
+            vals['contrasena'] = crypt.hash('contrasena')
         self._strip_string_values(vals)
         return super().write(vals)
     
@@ -108,7 +109,7 @@ class Usuario(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get('contrasena'):
-                vals['contrasena'] = pwd_context.hash(vals['contrasena'])
+                vals['contrasena'] = crypt.hash(vals['contrasena'])
             self._strip_string_values(vals)
         return super().create(vals_list)
     
