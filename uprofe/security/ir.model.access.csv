@@ -1,1 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+linea_investigacion_manager,linea_investigacion_manager,model_uprofe_linea_investigacion,group_uprofe_manager,1,1,1,1
