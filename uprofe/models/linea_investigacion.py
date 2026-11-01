@@ -24,3 +24,9 @@ class linea_investigacion(models.Model):
         for record in self:
             if len(record.name.strip() == 0):
                 raise ValidationError("El código de la línea de investigación no puede estar vacío.")
+    
+    @api.constrains('nombre')
+    def _check_nombre_valido(self):
+        for record in self:
+            if len(record.nombre.strip() == 0):
+                raise ValidationError("El nombre de la línea de investigación no puede estar vacío.")
