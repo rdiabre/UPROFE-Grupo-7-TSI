@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem name="Uprofe" id="main_uprofe_menu" groups="group_uprofe_manager"/>
+
+    <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
+</odoo>
