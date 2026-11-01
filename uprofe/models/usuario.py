@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from odoo.tools.crypt import pwd_context
 import re
 
 class Usuario(models.Model):
@@ -97,6 +98,8 @@ class Usuario(models.Model):
             
     # Limpiar espacios sobrantes
     def write(self, vals):
+        if vals.get('contrasena'):
+            vals['contrasena'] = pwd_context.hash('contrasena')
         self._strip_string_values(vals)
         return super().write(vals)
     
@@ -104,6 +107,8 @@ class Usuario(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
+            if vals.get('contrasena'):
+                vals['contrasena'] = pwd_context.hash(vals['contrasena'])
             self._strip_string_values(vals)
         return super().create(vals_list)
     
