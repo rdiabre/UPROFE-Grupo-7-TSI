@@ -67,6 +67,17 @@ class Usuario(models.Model):
             if record.contrasena.strip() == record.name.strip():
                 raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
             
+    @api.onchange('contrasena')
+    def onchange_constrasena(self):
+        regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
+        if not re.match(regex_robustez, self.contrasena.strip()):
+            return {
+                'warning': {
+                    'title': 'Contraseña insegura',
+                    'message': 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.'
+                }
+            }
+            
     # Limpiar espacios sobrantes
     def write(self, vals):
         self._strip_string_values(vals)
