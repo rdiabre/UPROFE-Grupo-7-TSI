@@ -12,6 +12,7 @@ class Usuario(models.Model):
     name = fields.Char(string="Nombre de usuario", size=50, required=True)
     correo = fields.Char(string="Correo electrónico", required=True)
     contrasena = fields.Char(string="Contraseña", required=True)
+    repetir_contrasena = fields.Char(string="Repetir contraseña", required=True, store=False)
     # True si está activa False si no
     estado_cuenta = fields.Boolean(string="Activo", default=False)
     ultimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
@@ -67,14 +68,30 @@ class Usuario(models.Model):
             if record.contrasena.strip() == record.name.strip():
                 raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
             
+    @api.constrains('contrasena', 'repetir_contrasena')
+    def _check_contrasena_coincide(self):
+        for record in self:
+            if record.contrasena.strip() != record.repetir_contrasena.strip():
+                raise ValidationError("Ambas contraseñas deben coincidir")
+            
     @api.onchange('contrasena')
-    def onchange_constrasena(self):
+    def _onchange_contrasena(self):
         regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
         if not re.match(regex_robustez, self.contrasena.strip()):
             return {
                 'warning': {
                     'title': 'Contraseña insegura',
                     'message': 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.'
+                }
+            }
+            
+    @api.onchange('contrasena', 'repetir_contrasena')
+    def _onchange_contrasena_coincide(self):
+        if self.contrasena.strip() != self.repetir_contrasena.strip():
+            return {
+                'warning': {
+                    'title': 'Contraseñas no coinciden',
+                    'message': 'Ambas contraseñas deben coincidir.'
                 }
             }
             
