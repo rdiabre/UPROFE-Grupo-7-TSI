@@ -31,3 +31,10 @@ class grupo_inv(models.Model):
         for record in self:
             if len(record.nombre) == 0:
                 raise ValidationError("El nombre del grupo no puede estar vacío.")
+            
+    # Valida que haya al menos una línea de investigación asociada
+    @api.constrains('linea')
+    def _check_linea_1N(self):
+        for record in self:
+            if not record.linea_investigacion_ids:
+                raise ValidationError("Debe haber al menos una línea de investigación asociada al grupo.")
