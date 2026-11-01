@@ -25,3 +25,9 @@ class grupo_inv(models.Model):
         for record in self:
             if len(record.name) == 0:
                 raise ValidationError("El código no puede estar vacío.")
+            
+    @api.constrains('nombre')
+    def _check_nombre_valido(self):
+        for record in self:
+            if len(record.nombre) == 0:
+                raise ValidationError("El nombre del grupo no puede estar vacío.")
