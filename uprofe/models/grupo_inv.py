@@ -11,8 +11,8 @@ class grupo_inv(models.Model):
     
     departamento_id = fields.Many2one('uprofe.departamento', string="Departamento", required=True)
     laboratorio_id = fields.Many2one('uprofe.laboratorio', string="Laboratorio", required=True)
-    proyecto_investigacion_ids = fields.One2many('gym.proyecto_investigacion', 'grupo_inv_id', 'Proyectos')
-    linea_investigacion_ids = fields.One2many('gym.linea_investigacion', 'grupo_inv_id', 'Líneas de investigación')
+    proyecto_investigacion_ids = fields.One2many('uprofe.proyecto_investigacion', 'grupo_inv_id', 'Proyectos')
+    linea_investigacion_ids = fields.One2many('uprofe.linea_investigacion', 'grupo_inv_id', 'Líneas de investigación')
     
     @api.constrains('name')
     def _check_codigo_unico(self):
