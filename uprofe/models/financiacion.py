@@ -32,3 +32,8 @@ class financiacion(models.Model):
             if len(record.entidad_financiadora.strip()) == 0:
                 raise ValidationError("La entidad financiadora no puede estar vacía.")
             
+    @api.constrains('importe')
+    def _check_importe_valido(self):
+        for record in self:
+            if record.importe <= 0:
+                raise ValidationError("El importe no puede ser 0 o negativo")
