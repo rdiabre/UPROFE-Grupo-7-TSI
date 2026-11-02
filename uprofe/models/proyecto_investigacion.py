@@ -33,3 +33,9 @@ class proyecto_investigacion(models.Model):
         for record in self:
             if len(record.title.strip()) == 0:
                 raise ValidationError("El título no puede estar vacío.")
+            
+    @api.constrains('presupuesto')
+    def _check_titulo_valido(self):
+        for record in self:
+            if record.presupuesto <= 0:
+                raise ValidationError("El presupuesto debe ser mayor a 0.")
