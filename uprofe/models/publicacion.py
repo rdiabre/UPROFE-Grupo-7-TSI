@@ -24,3 +24,9 @@ class publicacion(models.Model):
         for record in self:
             if len(record.name.strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
+            
+    @api.constrains('titulo')
+    def _check_titulo_valido(self):
+        for record in self:
+            if len(record.titulo.strip()) == 0:
+                raise ValidationError("El título no puede estar vacío.")
