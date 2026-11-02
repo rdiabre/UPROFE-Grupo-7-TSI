@@ -13,6 +13,8 @@ class Pais(models.Model):
 
     pais_id = fields.Many2one('uprofe.pais', string="País", required=True, ondelete='cascade')
 
+    ciudad_ids = fields.One2many('uprofe.ciudad', 'pais_id', string="Ciudades")
+
     _sql_constraints = [
         ('ciudad_unica_por_pais', 'UNIQUE(name, pais_id)',
         'Ya existe una ciudad con ese nombre en ese país.'),
