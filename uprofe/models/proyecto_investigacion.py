@@ -46,3 +46,20 @@ class proyecto_investigacion(models.Model):
             if record.fecha_fin and record.fecha_inicio:
                 if record.fecha_fin <= record.fecha_inicio:
                     raise ValidationError("La fecha de fin debe ser posterior a la fecha de inicio.")
+                
+    @api.onchange('fecha_inicio', 'fecha_fin')
+    def _onchange_fechas_validas(self):
+        if self.fecha_fin and self.fecha_inicio:
+            if self.fecha_fin <= self.fecha_inicio:
+                ahora = fields.Datetime.now()
+                un_dia_despues = ahora + timedelta(days=1)
+                return {
+                    'values': {
+                        'fecha_inicio': ahora,
+                        'fecha_fin': un_dia_despues                     
+                    },
+                    'warning': {
+                        'title': 'Fechas no válidas',
+                        'message': 'La fecha de fin debe ser posterior a la fecha de inicio.'
+                    }
+                }
