@@ -25,3 +25,10 @@ class financiacion(models.Model):
         for record in self:
             if len(record.name.strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
+            
+    @api.constrains('entidad_financiadora')
+    def _check_entidad_valida(self):
+        for record in self:
+            if len(record.entidad_financiadora.strip()) == 0:
+                raise ValidationError("La entidad financiadora no puede estar vacía.")
+            
