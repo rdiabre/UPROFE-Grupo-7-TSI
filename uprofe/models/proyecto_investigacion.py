@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class proyecto_investigacion(models.Model):
     _name = 'uprofe.proyecto_investigacion'
@@ -14,3 +15,15 @@ class proyecto_investigacion(models.Model):
     grupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
     financiacion_ids = fields.One2many('uprofe.financiacion', 'proyecto_investigacion_id', "Financiaciones")
     publicacion_ids = fields.One2many('uprofe.publicacion', 'proyecto_investigacion_id', "Publicaciones")
+    
+    @api.constrains('name')
+    def _check_codigo_unico(self):
+        for record in self:
+            if self.search_count([(record.id, '!=', 'id'), (record.name.strip(), '=', 'name')]):
+                raise ValidationError("Este código ya está utilizado, debe ser único.")
+
+    @api.constrains('name')
+    def _check_codigo_valido(self):
+        for record in self:
+            if len(record.name.strip()) == 0:
+                raise ValidationError("El código no puede estar vacío.")
