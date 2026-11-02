@@ -39,3 +39,10 @@ class proyecto_investigacion(models.Model):
         for record in self:
             if record.presupuesto <= 0:
                 raise ValidationError("El presupuesto debe ser mayor a 0.")
+            
+    @api.constrains('fecha_inicio', 'fecha_fin')
+    def _check_fechas_validas(self):
+        for record in self:
+            if record.fecha_fin and record.fecha_inicio:
+                if record.fecha_fin <= record.fecha_inicio:
+                    raise ValidationError("La fecha de fin debe ser posterior a la fecha de inicio.")
