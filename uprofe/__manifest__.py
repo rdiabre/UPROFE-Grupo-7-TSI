@@ -30,5 +30,6 @@ Descripción del módulo
     'demo': [
 
     ],
+    'application': True,
 }
 
