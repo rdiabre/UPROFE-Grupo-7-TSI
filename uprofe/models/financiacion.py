@@ -12,7 +12,7 @@ class financiacion(models.Model):
     fecha_concesion = fields.Datetime(string="Fecha de concesión", autodate=True, required=True)
     
     proyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigación", required=True)
-    investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
+    persona_ids = fields.Many2many('uprofe.persona', string="Personas financiadas")
     
     @api.constrains('name')
     def _check_codigo_unico(self):
