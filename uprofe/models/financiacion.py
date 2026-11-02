@@ -37,3 +37,14 @@ class financiacion(models.Model):
         for record in self:
             if record.importe <= 0:
                 raise ValidationError("El importe no puede ser 0 o negativo")
+            
+    @api.onchange('importe')
+    def _onchange_importe_valido(self):
+        if self.importe <= 0:
+            return {
+                'value': {'importe': 1000},
+                'warning': {
+                    'title': "Importe no válido",
+                    'message': "El importe no puede ser menor o igual a 0."
+                }
+            }
