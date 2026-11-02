@@ -10,3 +10,7 @@ class proyecto_investigacion(models.Model):
     presupuesto = fields.Float(string="Presupuesto", digits="Account", required=True)
     fecha_inicio = fields.Datetime(string="Fecha de inicio", autodate=True, required=True)
     fecha_fin = fields.Datetime(string="Fecha de fin", required=True)
+    
+    grupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
+    financiacion_ids = fields.One2many('uprofe.financiacion', 'proyecto_investigacion_id', "Financiaciones")
+    publicacion_ids = fields.One2many('uprofe.publicacion', 'proyecto_investigacion_id', "Publicaciones")
