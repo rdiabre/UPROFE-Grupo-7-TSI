@@ -18,6 +18,20 @@
         </field>
     </record>
 
+    <record id="uprofe_usuario_list_view" model="ir.ui.view">
+        <field name="name">uprofe.usuario.list</field>
+        <field name="model">uprofe.usuario</field>
+        <field name="arch" type="xml">
+            <list string="Lista de usuarios">
+                <field name="foto" widget="image" />
+                <field name="name" />
+                <field name="correo" />
+                <field name="estado_cuenta" />
+                <field name="ultimo_acceso" />
+            </list>
+        </field>
+    </record>
+
     <record id="usuario_list_action" model="ir.actions.act_window">
         <field name="name">Usuarios</field>
         <field name="res_model">uprofe.usuario</field>
