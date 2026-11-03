@@ -7,6 +7,9 @@ class articulo(models.Model):
     
     publicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete='cascade')
     
+    revista = fields.Char(string="Revista", required=True)
+    doi = fields.Char(string="DOI", required=True)
+    
     _sql_constraints = [
         (
             'publicacion_unique',
