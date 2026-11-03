@@ -19,7 +19,7 @@ class proyecto_investigacion(models.Model):
     @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name.strip(), '=', 'name')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.name.strip(), '=ilike', 'name')]):
                 raise ValidationError("Este código ya está utilizado, debe ser único.")
 
     @api.constrains('name')
