@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class articulo(models.Model):
     _name = 'uprofe.articulo'
@@ -9,6 +10,12 @@ class articulo(models.Model):
     
     revista = fields.Char(string="Revista", required=True)
     doi = fields.Char(string="DOI", required=True)
+    
+    @api.constrains('revista')
+    def _check_revista_valido(self):
+        for record in self:
+            if len(record.revista.strip()) == 0:
+                raise ValidationError("El nombre de la revista no puede estar vacío.")
     
     _sql_constraints = [
         (
