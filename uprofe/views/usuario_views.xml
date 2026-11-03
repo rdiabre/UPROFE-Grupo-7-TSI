@@ -23,7 +23,7 @@
         <field name="model">uprofe.usuario</field>
         <field name="arch" type="xml">
             <list string="Lista de usuarios">
-                <field name="foto" widget="image" />
+                <field name="foto" widget="image" options="{'size': [30, 30]}" />
                 <field name="name" />
                 <field name="correo" />
                 <field name="estado_cuenta" />
