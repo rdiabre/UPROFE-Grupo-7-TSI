@@ -17,7 +17,7 @@ class grupo_inv(models.Model):
     @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name.strip(), '=', 'name')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.name.strip(), '=ilike', 'name')]):
                 raise ValidationError("Ya existe un grupo con este código, debe ser único")
     
     @api.constrains('name')
