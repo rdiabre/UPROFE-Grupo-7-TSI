@@ -78,6 +78,8 @@ class Usuario(models.Model):
             
     @api.onchange('contrasena')
     def _onchange_contrasena(self):
+        if not self.contrasena:
+            return
         regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
         if not re.match(regex_robustez, self.contrasena.strip()):
             return {
@@ -89,6 +91,8 @@ class Usuario(models.Model):
             
     @api.onchange('contrasena', 'repetir_contrasena')
     def _onchange_contrasena_coincide(self):
+        if not self.contrasena or not self.repetir_contrasena:
+            return
         if self.contrasena.strip() != self.repetir_contrasena.strip():
             return {
                 'warning': {
