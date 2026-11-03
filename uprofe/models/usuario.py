@@ -70,12 +70,6 @@ class Usuario(models.Model):
             if record.contrasena.strip() == record.name.strip():
                 raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
             
-    @api.constrains('contrasena', 'repetir_contrasena')
-    def _check_contrasena_coincide(self):
-        for record in self:
-            if record.contrasena.strip() != record.repetir_contrasena.strip():
-                raise ValidationError("Ambas contraseñas deben coincidir")
-            
     @api.onchange('contrasena')
     def _onchange_contrasena(self):
         if not self.contrasena:
@@ -103,9 +97,16 @@ class Usuario(models.Model):
             
     # Limpiar espacios sobrantes
     def write(self, vals):
-        vals.pop('repetir_contrasena', None)
-        if vals.get('contrasena'):
-            vals['contrasena'] = crypt.hash(vals['contrasena'])
+        if 'contrasena' in vals or 'repetir_contrasena' in vals:
+            pwd = vals.get('contrasena')
+            rep = vals.pop('repetir_contrasena', None)
+            
+            # Si se está actualizando la contraseña, comprobamos que coincidan
+            if pwd and rep and pwd.strip() != rep.strip():
+                raise ValidationError("Ambas contraseñas deben coincidir.")
+            if pwd:
+                vals['contrasena'] = crypt.hash(pwd)
+        
         self._strip_string_values(vals)
         return super().write(vals)
     
@@ -113,10 +114,17 @@ class Usuario(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            vals.pop('repetir_contrasena', None)
-            if vals.get('contrasena'):
-                vals['contrasena'] = crypt.hash(vals['contrasena'])
+            pwd = vals.get('contrasena')
+            rep = vals.pop('repetir_contrasena', None)
+            
+            if pwd and rep and pwd.strip() != rep.strip():
+                raise ValidationError("Ambas contraseñas deben coincidir.")
+            
+            if pwd:
+                vals['contrasena'] = crypt.hash(pwd)
+                
             self._strip_string_values(vals)
+            
         return super().create(vals_list)
     
     # Función auxiliar para limpiar espacios en todos los campos
