@@ -16,7 +16,7 @@ class publicacion(models.Model):
     @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name, '=', 'name')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.name, '=ilike', 'name')]):
                 raise ValidationError("El código de la publicación ya está utilizado, debe ser único.")
     
     @api.constrains('name')
