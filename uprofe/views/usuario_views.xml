@@ -1,4 +1,23 @@
 <odoo>
+    <record id="uprofe_usuario_form_view" model="ir.ui.view">
+        <field name="name">uprofe.usuario.form</field>
+        <field name="model">uprofe.usuario</field>
+        <field name="arch" type="xml">
+            <form string="Usuarios">
+                <sheet layout="auto">
+                    <field name="foto" widget="image" class="oe_avatar"/>
+                    <group>
+                        <field name="name" />
+                        <field name="correo" />
+                        <field name="contrasena" />
+                        <field name="repetir_contrasena" />
+                        <field name="estado_cuenta" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="usuario_list_action" model="ir.actions.act_window">
         <field name="name">Usuarios</field>
         <field name="res_model">uprofe.usuario</field>
