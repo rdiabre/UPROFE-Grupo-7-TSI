@@ -17,7 +17,7 @@ class financiacion(models.Model):
     @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name, '=', 'name')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.name, '=ilike', 'name')]):
                 raise ValidationError("Ya existe una financiación con este código, debe ser único.")
     
     @api.constrains('name')
