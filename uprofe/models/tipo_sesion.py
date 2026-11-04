@@ -15,7 +15,7 @@ class TipoSesion(models.Model):
     name = fields.Char(string="Tipo de sesión", required=True, help="Por ejemplo: Enseñanzas Básicas, Enseñanzas Prácticas y de Desarrollo")
 
     # La relación con las sesiones (sesion_ids) se añadirá en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
-
+    
     # Unicidad de la clave primaria con índice en la base de datos 
     _sql_constraints = [
         ('name_unique', 'unique(name)', 'Ya existe este tipo de sesión.'),

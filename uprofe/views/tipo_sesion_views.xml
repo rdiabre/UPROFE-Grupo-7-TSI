@@ -1,5 +1,5 @@
 <odoo>
-    <!-- Vista de lista -->
+    <!-- List -->
     <record id="view_tipo_sesion_tree" model="ir.ui.view">
         <field name="name">uprofe.tipo_sesion.list</field>
         <field name="model">uprofe.tipo_sesion</field>
@@ -10,7 +10,7 @@
         </field>
     </record>
 
-    <!-- Vista de formulario -->
+    <!-- Form -->
     <record id="view_tipo_sesion_form" model="ir.ui.view">
         <field name="name">uprofe.tipo_sesion.form</field>
         <field name="model">uprofe.tipo_sesion</field>
@@ -25,7 +25,7 @@
         </field>
     </record>
 
-    <!-- Vista de búsqueda -->
+    <!-- Search -->
     <record id="view_tipo_sesion_search" model="ir.ui.view">
         <field name="name">uprofe.tipo_sesion.search</field>
         <field name="model">uprofe.tipo_sesion</field>
@@ -36,7 +36,7 @@
         </field>
     </record>
 
-    <!-- Acción -->
+    <!-- Action -->
     <record id="tipo_sesion_list_action" model="ir.actions.act_window">
         <field name="name">Tipos de sesión</field>
         <field name="res_model">uprofe.tipo_sesion</field>
@@ -46,7 +46,7 @@
         </field>
     </record>
 
-    <!-- Menú: cuelga del menú común "uprofe_menu" -->
+    <!-- Menu -->
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu"
               groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
 </odoo>
