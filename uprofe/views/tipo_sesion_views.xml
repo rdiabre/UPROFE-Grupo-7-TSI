@@ -49,7 +49,4 @@
         </field>
     </record>
 
-    <!-- Menu -->
-    <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu"
-              groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
 </odoo>
