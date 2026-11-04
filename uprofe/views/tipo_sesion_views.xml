@@ -18,7 +18,10 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="tipo"/>
+                        <!-- Si le damos a Otro -->
+                        <field name="name" string="Otro tipo"
+                               invisible="tipo != 'otro'" required="tipo == 'otro'"/>
                     </group>
                 </sheet>
             </form>
