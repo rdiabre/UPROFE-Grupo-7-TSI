@@ -7,7 +7,7 @@ from stdnum.es import nif  # Librería que ya viene instalada con Odoo, usada po
 # Límites y formatos MAX_NOMBRE = 50
 MAX_NOMBRE = 50
 MAX_APELLIDOS = 100
-# Letras (con tildes, ñ y ü), espacios, guiones y apóstrofoe Ej: "MJosé Ignacio, "Pérez-LCastejón, "O'Neill"
+# Letras (con tildes, ñ y ü), espacios, guiones y apóstrofoe Ej: "José Ignacio, "Pérez-Castejón, "O'Neill"
 REGEX_TEXTO = r"^[A-Za-zÁÉÍÓÚáéíóúÑñÜü' -]+$"
 REGEX_CORREO = r'^[\w\.-]+@[\w\.-]+\.\w+$'  # El mismo que en USUARIO
 # 9 cifras empezando por 6, 7, 8 o 9, con +34 delante opcional. Ej: 612345678, +34954123456
@@ -24,7 +24,7 @@ class Persona(models.Model):
     name (nombre), email, phone (teléfono), ..."""
     _inherits = {'res.partner': 'partner_id'}
 
-    partner_id = fields.Many2one('res.partner', string="Contacto", equired=True, ondelete='cascade')
+    partner_id = fields.Many2one('res.partner', string="Contacto", required=True, ondelete='cascade')
 
     # Campos propios de Persona
     apellidos = fields.Char(string="Apellidos", required=True)
