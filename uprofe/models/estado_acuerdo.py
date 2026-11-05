@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 class estado_acuerdo(models.Model):
@@ -27,11 +27,9 @@ class estado_acuerdo(models.Model):
         self._strip_string_values(vals)
         return super().write(vals)
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            self._strip_string_values(vals)
-        return super().create(vals_list)
+    def write(self, vals):
+        self._strip_string_values(vals)
+        return super().write(vals)
 
     def _strip_string_values(self, vals):
         for field_name, val in vals.items():
