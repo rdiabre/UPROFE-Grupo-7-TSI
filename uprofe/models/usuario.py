@@ -101,7 +101,6 @@ class Usuario(models.Model):
             pwd = vals.get('contrasena')
             rep = vals.pop('repetir_contrasena', None)
             
-            # Si se está actualizando la contraseña, comprobamos que coincidan
             if pwd and rep and pwd.strip() != rep.strip():
                 raise ValidationError("Ambas contraseñas deben coincidir.")
             if pwd:
