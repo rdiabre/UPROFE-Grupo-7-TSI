@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
-from models import ValidationError
 import base64
 import re
 
@@ -58,9 +57,9 @@ class GuiaDocente(models.Model):
         for record in self:
             coincidencia = re.match(REGEX_CURSO, (record.curso_academico or '').strip())
             if not coincidencia:
-                raise ValidationError("El curso académico debe tener el formato 2026/2027.")
+                raise models.ValidationError("El curso académico debe tener el formato 2026/2027.")
             if int(coincidencia.group(2)) != int(coincidencia.group(1)) + 1:
-                raise ValidationError("Los dos años del curso académico deben ser consecutivos (por ejemplo: 2026/2027).")
+                raise models.ValidationError("Los dos años del curso académico deben ser consecutivos (por ejemplo: 2026/2027).")
 
     # Curso académico dentro de un rango razonable: desde 2000/2001 hasta el curso que viene
     @api.constrains('curso_academico')
@@ -72,9 +71,9 @@ class GuiaDocente(models.Model):
                 continue  # el formato ya lo comprueba _check_formato_curso
             inicio = int(coincidencia.group(1))
             if inicio < PRIMER_ANIO:
-                raise ValidationError(f"El curso académico no puede ser anterior a {PRIMER_ANIO}/{PRIMER_ANIO + 1}.")
+                raise models.ValidationError(f"El curso académico no puede ser anterior a {PRIMER_ANIO}/{PRIMER_ANIO + 1}.")
             if inicio > siguiente:
-                raise ValidationError(f"Solo se pueden crear guías hasta el curso {siguiente}/{siguiente + 1}.")
+                raise models.ValidationError(f"Solo se pueden crear guías hasta el curso {siguiente}/{siguiente + 1}.")
 
     # Fichero obligatorio.
     # Se añade 'asignatura_id' para que la validación salte también al crear la guía
@@ -83,7 +82,7 @@ class GuiaDocente(models.Model):
     def _check_fichero_obligatorio(self):
         for record in self:
             if not record.fichero:
-                raise ValidationError("Hay que adjuntar el fichero de la guía docente.")
+                raise models.ValidationError("Hay que adjuntar el fichero de la guía docente.")
 
     # El fichero tiene que ser un PDF: por la extensión y por el contenido
     @api.constrains('fichero', 'nombre_fichero')
@@ -93,17 +92,17 @@ class GuiaDocente(models.Model):
             if not record.fichero:
                 continue  # que esté lo comprueba _check_fichero_obligatorio
             if record.nombre_fichero and not record.nombre_fichero.lower().endswith('.pdf'):
-                raise ValidationError("La guía docente debe ser un fichero PDF.")
+                raise models.ValidationError("La guía docente debe ser un fichero PDF.")
             # Un PDF siempre empieza por "%PDF": así se detecta aunque le hayan cambiado la extensión
             if base64.b64decode(record.fichero)[:4] != b'%PDF':
-                raise ValidationError("El fichero no es un PDF válido.")
+                raise models.ValidationError("El fichero no es un PDF válido.")
 
     # Tamaño máximo del fichero
     @api.constrains('fichero')
     def _check_tamano_fichero(self):
         for record in self.with_context(bin_size=False):
             if record.fichero and len(base64.b64decode(record.fichero)) > MAX_MB * 1024 * 1024:
-                raise ValidationError(f"El fichero no puede ocupar más de {MAX_MB} MB.")
+                raise models.ValidationError(f"El fichero no puede ocupar más de {MAX_MB} MB.")
 
     # Corrige el formato del curso académico: "2026-27", "2026/27" o "2026-2027" -> "2026/2027"
     @api.onchange('curso_academico')
