@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 usuario_manager,usuario_manager,model_uprofe_usuario,group_uprofe_manager,1,1,1,1
+tipo_convocatoria_manager,tipo_convocatoria_manager,model_uprofe_tipo_convocatoria,group_uprofe_manager,1,1,1,1
