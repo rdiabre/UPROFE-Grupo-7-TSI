@@ -34,4 +34,81 @@ class Asignatura(models.Model):
     horas_trabajo = fields.Float(string="Horas de trabajo del alumno", compute='_compute_horas_trabajo',
                                  help=f"Créditos ECTS x {HORAS_POR_CREDITO} horas")
 
-    
+    # Unicidad de la clave con índice en la base de datos
+    _sql_constraints = [
+        ('cod_asig_unique', 'unique(cod_asig)', 'Ya existe una asignatura con este código.'),
+    ]
+
+    # Nombre que se muestra en los desplegables de otros modelos: "[702023] Tecnologías de Sistemas de Información"
+    @api.depends('cod_asig', 'name')
+    def _compute_display_name(self):
+        for record in self:
+            if record.cod_asig:
+                record.display_name = f"[{record.cod_asig}] {record.name or ''}"
+            else:
+                record.display_name = record.name
+
+    @api.depends('creditos')
+    def _compute_horas_trabajo(self):
+        for record in self:
+            record.horas_trabajo = record.creditos * HORAS_POR_CREDITO
+
+    # Sin vacíos, máximo de caracteres y solo letras mayúsculas y números
+    @api.constrains('cod_asig')
+    def _check_codigo(self):
+        for record in self:
+            codigo = (record.cod_asig or '').strip()
+            if not codigo:
+                raise models.ValidationError("El código de la asignatura no puede estar vacío.")
+            if len(codigo) > MAX_CODIGO:
+                raise models.ValidationError(f"El código no puede tener más de {MAX_CODIGO} caracteres.")
+            if not re.match(REGEX_CODIGO, codigo):
+                raise models.ValidationError("El código solo puede contener letras mayúsculas y números, sin espacios.")
+
+    # Sin vacíos y con máximo de caracteres
+    @api.constrains('name')
+    def _check_nombre(self):
+        for record in self:
+            nombre = (record.name or '').strip()
+            if not nombre:
+                raise models.ValidationError("El nombre de la asignatura no puede estar vacío.")
+            if len(nombre) > MAX_NOMBRE:
+                raise models.ValidationError(f"El nombre no puede tener más de {MAX_NOMBRE} caracteres.")
+
+    # Entre 1 y el máximo de cursos de una titulación
+    @api.constrains('curso')
+    def _check_curso(self):
+        for record in self:
+            if not 1 <= record.curso <= MAX_CURSO:
+                raise models.ValidationError(f"El curso debe estar entre 1 y {MAX_CURSO}.")
+
+    # Mayores que 0, con un máximo y en múltiplos de 0,5 (3, 4,5, 6...)
+    @api.constrains('creditos')
+    def _check_creditos(self):
+        for record in self:
+            if record.creditos <= 0:
+                raise models.ValidationError("Los créditos deben ser mayores que 0.")
+            if record.creditos > MAX_CREDITOS:
+                raise models.ValidationError(f"Una asignatura no puede tener más de {MAX_CREDITOS} créditos.")
+            if (record.creditos * 2) % 1 != 0:
+                raise models.ValidationError("Los créditos deben ser un múltiplo de 0,5 (por ejemplo: 4,5 o 6).")
+
+    # No puede ser negativo
+    @api.constrains('limite_faltas')
+    def _check_limite_faltas(self):
+        for record in self:
+            if record.limite_faltas < 0:
+                raise models.ValidationError("El límite de faltas no puede ser negativo.")
+
+    # Mayúsculas y sin espacios
+    @api.onchange('cod_asig')
+    def _onchange_codigo(self):
+        if self.cod_asig:
+            self.cod_asig = self.cod_asig.replace(' ', '').upper()
+
+    # Sin espacios sobrantes y con la primera letra en mayúscula
+    @api.onchange('name')
+    def _onchange_nombre(self):
+        if self.name:
+            nombre = self.name.strip()
+            self.name = nombre[:1].upper() + nombre[1:]
