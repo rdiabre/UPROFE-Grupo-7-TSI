@@ -28,7 +28,7 @@ class UniversidadDestino(models.Model):
     # Deben existir estos modelos
     # convenio_ids = fields.One2many('uprofe.convenio', 'universidad_id', string="Convenios")
     # plaza_ids = fields.One2many('uprofe.plaza_erasmus', 'universidad_id', string="Plazas")
-    # asignatura_ids = fields.One2many('uprofe.asignatura_destino', 'universidad_id', string="Asignaturas")
+    asignatura_ids = fields.One2many('uprofe.asignatura_destino', 'universidad_id', string="Asignaturas")
 
     _sql_constraints = [
         ('cod_erasmus_unico', 'UNIQUE(cod_erasmus)',
