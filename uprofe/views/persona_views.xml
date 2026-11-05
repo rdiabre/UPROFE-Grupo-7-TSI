@@ -59,8 +59,4 @@
             <p class="o_view_nocontent_smiling_face">Crea la primera persona</p>
         </field>
     </record>
-
-    <!-- Menú: cuelga del menú uprofe_menu -->
-    <menuitem name="Personas" id="persona_menu" parent="uprofe_menu"
-              groups="group_uprofe_manager" action="persona_list_action"/>
 </odoo>
