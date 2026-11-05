@@ -8,4 +8,5 @@ class estado_convenio(models.Model):
     _description = 'Estados de convenio'
     _order = 'name asc'
     
-     
+    name= fields.Char(string='Nombre',size=50, required=True)
+    descripcion=fields.Text(string="Descripción")
