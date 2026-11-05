@@ -15,7 +15,7 @@ class estado_convenio(models.Model):
     @api.constrains('name')
     def _check_name_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("name", "ilike", record.name.strip())]):
+            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name.strip())]):
                 raise ValidationError("El nombre del estado de convenio debe ser único.")
     
     #El nombre del estado de convenio no puede estar vacío
