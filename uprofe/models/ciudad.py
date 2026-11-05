@@ -12,17 +12,17 @@ class Ciudad(models.Model):
     sName = fields.Char(string="Nombre de la ciudad", size=50, required=True)
     sDescription = fields.Char(string="Descripción de la ciudad", size=150)
     
-    pais_id = fields.Many2one(
-        'uprofe.pais',
-        string="País",
-        required=True,
-        ondelete='cascade',
-    )
+    # pais_id = fields.Many2one(
+    #    'uprofe.pais',
+    #    string="País",
+    #    required=True,
+    #    ondelete='cascade',
+    #)
 
-    _sql_constraints = [
-        ('ciudad_unica_por_pais', 'UNIQUE(sName, pais_id)',
-         'Ya existe una ciudad con ese nombre en ese país.'),
-    ]
+    #_sql_constraints = [
+    #    ('ciudad_unica_por_pais', 'UNIQUE(sName, pais_id)',
+    #     'Ya existe una ciudad con ese nombre en ese país.'),
+    #]
 
     @api.constrains('sName')
     def _check_nombre_format(self):
