@@ -11,8 +11,8 @@ class Idioma(models.Model):
 
     sName = fields.Char(string="Nombre del idioma", size=50, required=True)
 
-    # Descomentad cuando existan estos modelos
-    asignatura_destino_ids = fields.One2many('uprofe.asignatura_destino', 'idioma_id', string="Asignaturas")
+    # Descomentar cuando existan estos modelos
+    # asignatura_destino_ids = fields.One2many('uprofe.asignatura_destino', 'idioma_id', string="Asignaturas")
     # plaza_erasmus_ids = fields.One2many('uprofe.plaza_erasmus', 'idioma_id', string="Plazas")
 
     _sql_constraints = [
