@@ -12,20 +12,21 @@ class AsignaturaDestino(models.Model):
     sName = fields.Char(string="Nombre", size=150, required=True)
     fCreditos_ects = fields.Float(string="Créditos ECTS", required=True)
 
-    universidad_id = fields.Many2one(
-        'uprofe.universidad_destino',
-        string="Universidad de destino",
-        required=True,
-        ondelete='restrict',
-    )
-    idioma_id = fields.Many2one(
-        'uprofe.idioma',
-        string="Idioma de impartición",
-        required=True,
-        ondelete='restrict',
-    )
+    #universidad_id = fields.Many2one(
+    #    'uprofe.universidad_destino',
+    #    string="Universidad de destino",
+    #    required=True,
+    #    ondelete='restrict',
+    #)
+    
+    #idioma_id = fields.Many2one(
+    #    'uprofe.idioma',
+    #    string="Idioma de impartición",
+    #    required=True,
+    #    ondelete='restrict',
+    #)
 
-    # Descomentar cuando exista LaLinea
+    # Descomentar cuando exista
     # linea_ids = fields.One2many('uprofe.la_linea', 'asignatura_destino_id', string="Líneas de acuerdo")
 
     _sql_constraints = [
