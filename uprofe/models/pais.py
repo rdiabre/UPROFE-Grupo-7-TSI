@@ -12,7 +12,7 @@ class Pais(models.Model):
     sName = fields.Char(string="Nombre del país", size=50, required=True)
     sDescription = fields.Char(string="Descripción del país", size=150)
 
-    ciudad_ids = fields.One2many('uprofe.ciudad', 'pais_id', string="Ciudades")
+    # ciudad_ids = fields.One2many('uprofe.ciudad', 'pais_id', string="Ciudades")
 
     _sql_constraints = [
         ('pais_unico', 'UNIQUE(sName)',
