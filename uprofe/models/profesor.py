@@ -61,3 +61,19 @@ class Profesor(models.Model):
     def _onchange_despacho(self):
         if self.despacho:
             self.despacho = self.despacho.strip()
+            
+    # Si el DNI ya es de una persona registrada, se usa esa persona en lugar de crear otra (solo al crear un profesor nuevo: self._origin.id está vacío)
+    @api.onchange('dni')
+    def _onchange_dni_persona_existente(self):
+        if self.dni and not self._origin.id:
+            persona = self.env['uprofe.persona'].search([('dni', '=ilike', self.dni.strip())], limit=1)
+            if persona:
+                self.persona_id = persona
+                # Aviso si esa persona ya es profesor
+                if self.search([('persona_id', '=', persona.id)], limit=1):
+                    return {
+                        'warning': {
+                            'title': 'Profesor ya registrado',
+                            'message': 'Ya existe un profesor con este DNI.',
+                        }
+                    }
