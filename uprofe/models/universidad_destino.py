@@ -10,13 +10,15 @@ class UniversidadDestino(models.Model):
     _description = 'Universidad de destino'
 
     cod_erasmus = fields.Char(string="Código Erasmus", size=20, required=True)
-    name = fields.Char(string="Nombre", size=100, required=True)
+    sName = fields.Char(string="Nombre", size=100, required=True)
+    
     ciudad_id = fields.Many2one(
         'uprofe.ciudad',
         string="Ciudad",
         required=True,
         ondelete='restrict',
     )
+    
     pais_id = fields.Many2one(
         related='ciudad_id.pais_id',
         string="País",
