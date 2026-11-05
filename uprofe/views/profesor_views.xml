@@ -27,9 +27,11 @@
                     <group>
                         <!-- Herencia de Persona -->
                         <group string="Datos personales">
+                            <!-- Oculto. Si el DNI existe ya porque está registrada la persona, se rellena  -->
+                            <field name="dni"/>
+                            <field name="persona_id" invisible="1"/>
                             <field name="name" string="Nombre"/>
                             <field name="apellidos"/>
-                            <field name="dni"/>
                             <field name="email" string="Correo electrónico" required="1"/>
                             <field name="phone" string="Teléfono" required="1"/>
                         </group>
