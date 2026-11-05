@@ -23,9 +23,6 @@ class estado_acuerdo(models.Model):
             if len(record.name.strip()) == 0:
                 raise ValidationError("El nombre del estado de acuerdo no puede estar vacío.")
 
-    def write(self, vals):
-        self._strip_string_values(vals)
-        return super().write(vals)
 
     def write(self, vals):
         self._strip_string_values(vals)
