@@ -65,10 +65,10 @@ class Profesor(models.Model):
     # Si el DNI ya es de una persona registrada, se usa esa persona en lugar de crear otra (solo al crear un profesor nuevo: self._origin.id está vacío)
     @api.onchange('dni')
     def _onchange_dni_persona_existente(self):
-        if self.dni and not self._origin.id:
-            persona = self.env['uprofe.persona'].search([('dni', '=ilike', self.dni.strip())], limit=1)
+        if self.dni and not self._origin.id: # self._origin.id es False si todavía no existe en la base de datos. Solo se entra al bloque del if cuando estamos creando un profesor nuevo.
+            persona = self.env['uprofe.persona'].search([('dni', '=ilike', self.dni.strip())], limit=1) # env es el environment
             if persona:
-                self.persona_id = persona
+                self.persona_id = persona # Se rellenan todos los datos de persona en profesor si ya existe como persona.
                 # Aviso si esa persona ya es profesor
                 if self.search([('persona_id', '=', persona.id)], limit=1):
                     return {
