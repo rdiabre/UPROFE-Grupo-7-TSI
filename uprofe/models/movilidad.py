@@ -7,18 +7,18 @@ from odoo.exceptions import ValidationError
 class Movilidad(models.Model):
     _name = 'uprofe.movilidad'
     _description = 'Movilidad'
-    _rec_name = 'num_movilidad'
+    _rec_name = 'sNum_movilidad'
 
     sNum_movilidad = fields.Char(string="Nº de movilidad", size=30, required=True)
     dFecha_inicio = fields.Date(string="Fecha de inicio", required=True)
     dFecha_fin = fields.Date(string="Fecha de fin", required=True)
 
-    estado_id = fields.Many2one(
-        'uprofe.estado_movilidad',
-        string="Estado",
-        required=True,
-        ondelete='restrict',
-    )
+    #estado_id = fields.Many2one(
+    #    'uprofe.estado_movilidad',
+    #    string="Estado",
+    #    required=True,
+    #    ondelete='restrict',
+    #)
 
     # Descomentar cuando exista Solicitud (modelo de otro compañero).
     # El UNIQUE de abajo refleja el (0,1) de "origina": una solicitud origina como mucho una movilidad.
