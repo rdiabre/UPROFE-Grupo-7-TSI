@@ -105,12 +105,16 @@ class LineaActa(models.Model):
             if otras and record.convocatoria_id not in otras.mapped('convocatoria_id'):
                 raise models.ValidationError("Todas las líneas de un acta deben ser de la misma convocatoria.")
 
-    # Un acta publicada (firmada) ya no se puede modificar
+    # Un acta publicada (firmada) ya no se puede modificar. Cambiado en PR de Reclamación: la única excepción es corregir una nota desde una reclamación aceptada de esa acta
     @api.constrains('fNota', 'expediente_id', 'convocatoria_id', 'profesor_id', 'acta_id')
     def _check_acta_publicada(self):
+        reclamacion = self.env['uprofe.reclamacion'].browse(self.env.context.get('reclamacion_id'))
         for record in self:
-            if record.acta_id.bPublicada:
-                raise models.ValidationError("El acta ya está publicada: no se pueden añadir ni modificar sus notas.")
+            if not record.acta_id.bPublicada:
+                continue
+            if reclamacion.exists() and reclamacion.selEstado == 'aceptada' and reclamacion.acta_id == record.acta_id:
+                continue
+            raise models.ValidationError("El acta ya está publicada: no se pueden añadir ni modificar sus notas.")
 
     # Un alumno que ya aprobó la asignatura en un acta publicada no puede volver a tener nota en otra
     @api.constrains('expediente_id', 'convocatoria_id')
