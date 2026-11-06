@@ -28,8 +28,10 @@ class TipoSesion(models.Model):
     la base de datos rechaza el registro porque llega vacío."""
     name = fields.Char(string="Tipo de sesión", required=True, compute='_compute_name', store=True, readonly=False, precompute=True)
 
-    # La relación con las sesiones (sesion_ids) se añadirá en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
-
+    # La relación con las sesiones (sesion_ids) se añade en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
+    # Un tipo de sesión tiene varias sesiones (1,N). Como Sesión tiene tipo_sesion_id con ondelete='restrict', un tipo con sesiones no se puede borrar.
+    sesion_ids = fields.One2many('uprofe.sesion', 'tipo_sesion_id', string="Sesiones")
+    
     # Unicidad de la clave primaria con índice en la base de datos
     _sql_constraints = [
         ('name_unique', 'unique(name)', 'Ya existe este tipo de sesión.'),
