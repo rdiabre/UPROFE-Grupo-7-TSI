@@ -10,8 +10,8 @@ class linea_investigacion(models.Model):
     sDescripcion = fields.Text(string="Descripción", required=True)
     
     iGrupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
-    lProfesor_ids = fields.One2many('uprofe.profesor', 'iLinea_investigacion_id', 'Profesor')
-    lInvestigador_ids = fields.One2many('uprofe.investigador', 'iLinea_investigacion_id', 'Investigador')
+    lProfesor_ids = fields.Many2many('uprofe.profesor', string="PDIs")
+    lInvestigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
     
     @api.constrains('sName')
     def _check_name_unico(self):
