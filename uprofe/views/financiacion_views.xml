@@ -23,4 +23,19 @@
             </form>
         </field>
     </record>
+
+    <record id="uprofe_financiacion_list_view" model="ir.ui.view">
+        <field name="name">uprofe.financiacion.list</field>
+        <field name="model">uprofe.financiacion</field>
+        <field name="arch" type="xml">
+            <list string="Lista de financiaciones">
+                <field name="sName" />
+                <field name="fImporte" />
+                <field name="dFecha_concesion" />
+                <field name="iProyecto_investigacion_id" widget="many2one" />
+                <field name="iGrupo_inv_id" widget="many2one" />
+                <field name="lPersona_ids" widget="many2many" />
+            </list>
+        </field>
+    </record>
 </odoo>
