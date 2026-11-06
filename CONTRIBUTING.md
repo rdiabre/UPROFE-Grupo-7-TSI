@@ -9,7 +9,7 @@ Este documento resume cómo trabajamos los 8 integrantes del grupo sobre el mism
 - **Modelo técnico**: `uprofe.<entidad_en_minusculas>`, ej. `uprofe.profesor`, `uprofe.detalle_matricula`. Nunca camelCase. En español pero sin acentos ni caracteres especiales.
 - **Archivo Python**: un archivo por modelo en `models/<entidad>.py`, registrado en `models/__init__.py` con `from . import <entidad>`.
 - **Campos relacionales**: sufijo `_id` para M2O (`grupo_id`), sufijo `_ids` para O2M/M2M (`asistencia_ids`, `tema_ids`).
-- **IDs de vistas**: `view_<modelo>_<tipo>` (`view_profesor_tree`, `view_profesor_form`, `view_profesor_calendar`).
+- **IDs de vistas**: `view_<modelo>_<tipo>` (`view_profesor_list`, `view_profesor_form`, `view_profesor_calendar`).
 - **Archivo de vistas**: `views/<modelo>_views.xml`, uno por modelo — no mezclar varios modelos en el mismo archivo.
 - **Commits**: mensaje con el modelo entre corchetes, ej. `[sesion] añade validación de horas y vista calendar`.
 - **Ramas**: `feature/<persona>-<modelo>`, ej. `feature/aurelio-sesion`. Una rama corta por modelo (incluye modelo **y** vistas), no una rama única por persona. Por defecto no se separan ramas para modelo y vista; solo se hace en el caso de dependencias descrito en la sección 2.6.
@@ -82,7 +82,7 @@ git push origin feature/<persona>-<modelo>
 
    ## Qué incluye
    - Modelo uprofe.<modelo> ...
-   - Vistas tree, form, [calendar/graph/...] ...
+   - Vistas list, form, [calendar/graph/...] ...
    - Validaciones
    - Etc.
 
