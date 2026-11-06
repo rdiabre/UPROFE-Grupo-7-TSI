@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Vista List (Sustituye a la antigua <tree>) -->
-    <record id="view_uprofe_pregunta_tree" model="ir.ui.view">
+    <record id="view_uprofe_pregunta_list" model="ir.ui.view">
         <field name="name">uprofe.pregunta.list</field>
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <list string="Preguntas">
                 <field name="num_pregunta"/>
                 <field name="name"/>
-                <field name="tipo_respuesta_id"/>
-                <field name="encuesta_id"/>
+                <field name="tipo_respuesta"/>
             </list>
         </field>
     </record>
 
-    <!-- Vista Formulario -->
     <record id="view_uprofe_pregunta_form" model="ir.ui.view">
         <field name="name">uprofe.pregunta.form</field>
         <field name="model">uprofe.pregunta</field>
@@ -22,31 +19,46 @@
             <form string="Pregunta">
                 <sheet>
                     <group>
-                        <group>
-                            <field name="num_pregunta"/>
-                            <field name="name"/>
-                        </group>
-                        <group>
-                            <field name="tipo_respuesta_id"/>
-                            <field name="encuesta_id"/>
-                        </group>
+                        <field name="num_pregunta"/>
+                        <field name="name"/>
+                        <field name="tipo_respuesta"/>
+                        <field name="opciones" invisible="tipo_respuesta != 'multiple'"
+                               required="tipo_respuesta == 'multiple'"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Acción de Ventana (Cambia tree por list) -->
+    <!-- Vista avanzada gráfico y busqueda por filtro -->
+    <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.graph</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <graph string="Preguntas por tipo" type="pie">
+                <field name="tipo_respuesta"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_pregunta_search" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.search</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tipo" string="Tipo de respuesta"
+                            context="{'group_by': 'tipo_respuesta'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="action_uprofe_pregunta" model="ir.actions.act_window">
         <field name="name">Preguntas</field>
         <field name="res_model">uprofe.pregunta</field>
-        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_uprofe_pregunta_search"/>
+        <field name="view_mode">list,form,graph</field>
     </record>
-
-    <!-- Entrada del Menú para Preguntas -->
-    <menuitem id="menu_uprofe_pregunta_item" 
-              name="Preguntas" 
-              parent="uprofe_menu_pregunta" 
-              action="action_uprofe_pregunta" 
-              sequence="10"/>
 </odoo>
