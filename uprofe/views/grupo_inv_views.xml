@@ -1,4 +1,22 @@
 <odoo>
+    <record id="uprofe_grupo_inv_kanban_view" model="ir.ui.view">
+        <field name="name">uprofe.grupo_inv.kanban</field>
+        <field name="model">uprofe.grupo_inv</field>
+        <field name="arch" type="xml">
+            <kanban string="Grupos de investigación por departamentos" default_group_by="iDepartamento_id">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="nombre"/></strong>
+                            <div>Código: <field name="name"/></div>
+                            <div>Laboratorio: <field name="laboratorio_id"/></div>
+                        </div>
+                    </t>
+                </templates>
+            <kanban>
+        </field>
+    </record>
+
     <record id="uprofe_grupo_inv_form_view" model="ir.ui.view">
         <field name="name">uprofe.grupo_inv.form</field>
         <field name="model">uprofe.grupo_inv</field>
@@ -40,7 +58,7 @@
     <record id="grupo_inv_list_action" model="ir.actions.act_window">
         <field name="name">Grupos de investigación</field>
         <field name="res_model">uprofe.grupo_inv</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Crea el primer grupo de investigación</p>
         </field>
