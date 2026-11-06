@@ -14,10 +14,16 @@ class Pais(models.Model):
 
     # ciudad_ids = fields.One2many('uprofe.ciudad', 'pais_id', string="Ciudades")
 
-    _sql_constraints = [
-        ('pais_unico', 'UNIQUE(sName)',
-         'Ya existe un país con ese nombre.'),
-    ]
+    @api.constrains('sName')
+    def _check_nombre_unico(self):
+        for record in self:
+            if record.sName:
+                existe = self.search_count([
+                    ('sName', '=ilike', record.sName.strip()),
+                    ('id', '!=', record.id)
+                ])
+                if existe > 0:
+                    raise ValidationError("Ya existe un país con ese nombre.")
 
     @api.constrains('sName')
     def _check_nombre_format(self):
