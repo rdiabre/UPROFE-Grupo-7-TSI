@@ -5,14 +5,14 @@
         <field name="model">uprofe.profesor</field>
         <field name="arch" type="xml">
             <list>
-                <field name="dni"/>
+                <field name="sDni"/>
                 <field name="name" string="Nombre"/>
-                <field name="apellidos"/>
+                <field name="sApellidos"/>
                 <field name="email" string="Correo electrónico"/>
-                <field name="despacho"/>
+                <field name="sDespacho"/>
                 <!-- <field name="tipo_sesion_ids" widget="many2many_tags"/> VA EN EL PR DE SESION -->
-                <field name="doctor"/>
-                <field name="tutor_interno"/>
+                <field name="bDoctor"/>
+                <field name="bTutor_interno"/>
             </list>
         </field>
     </record>
@@ -28,19 +28,19 @@
                         <!-- Herencia de Persona -->
                         <group string="Datos personales">
                             <!-- Oculto. Si el DNI existe ya porque está registrada la persona, se rellena  -->
-                            <field name="dni"/>
+                            <field name="sDni"/>
                             <field name="persona_id" invisible="1"/>
                             <field name="name" string="Nombre"/>
-                            <field name="apellidos"/>
+                            <field name="sApellidos"/>
                             <field name="email" string="Correo electrónico" required="1"/>
                             <field name="phone" string="Teléfono" required="1"/>
                         </group>
                         <!-- Campos propios -->
                         <group string="Datos del profesor">
                             <!-- <field name="tipo_sesion_ids" widget="many2many_tags"/> VA EN EL PR DE SESION -->
-                            <field name="despacho"/>
-                            <field name="doctor"/>
-                            <field name="tutor_interno"/>
+                            <field name="sDespacho"/>
+                            <field name="bDoctor"/>
+                            <field name="bTutor_interno"/>
                         </group>
                     </group>
                 </sheet>
@@ -55,11 +55,11 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" string="Nombre"/>
-                <field name="apellidos"/>
-                <field name="dni"/>
-                <field name="despacho"/>
-                <filter name="filtro_doctor" string="Doctores" domain="[('doctor', '=', True)]"/>
-                <filter name="filtro_tutor_interno" string="Tutores internos" domain="[('tutor_interno', '=', True)]"/>
+                <field name="sApellidos"/>
+                <field name="sDni"/>
+                <field name="sDespacho"/>
+                <filter name="filtro_doctor" string="Doctores" domain="[('bDoctor', '=', True)]"/>
+                <filter name="filtro_tutor_interno" string="Tutores internos" domain="[('bTutor_interno', '=', True)]"/>
             </search>
         </field>
     </record>

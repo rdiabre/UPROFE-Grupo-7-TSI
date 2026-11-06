@@ -8,7 +8,7 @@ MAX_DESPACHO = 30
 class Profesor(models.Model):
     _name = 'uprofe.profesor'
     _description = 'UPROFE Profesor'
-    _order = 'apellidos asc, name asc'
+    _order = 'sApellidos asc, name asc'
 
     # Herencia por delegación: cada profesor es una persona
     _inherits = {'uprofe.persona': 'persona_id'}
@@ -17,10 +17,10 @@ class Profesor(models.Model):
                                  required=True, ondelete='cascade')
 
     # Campos propios de Profesor
-    despacho = fields.Char(string="Despacho", help="Despacho del profesor. Por ejemplo: 11.2.14")
-    doctor = fields.Boolean(string="Doctor", default=False, help="Marcar si el profesor es doctor")
-    tutor_interno = fields.Boolean(string="Tutor interno", default=False,
-                                   help="Marcar si el profesor puede tutorizar alumnos internos")
+    sDespacho = fields.Char(string="Despacho", help="Despacho del profesor. Por ejemplo: 11.2.14")
+    bDoctor = fields.Boolean(string="Doctor", default=False, help="Marcar si el profesor es doctor")
+    bTutor_interno = fields.Boolean(string="Tutor interno", default=False,
+                                    help="Marcar si el profesor puede tutorizar alumnos internos")
 
     """Las relaciones con otros modelos (asignaturas, sesiones, tutorías...) se añadirán
     en el PR de cada uno de esos modelos
@@ -46,27 +46,27 @@ class Profesor(models.Model):
     ]
 
     # Ni 0 ni mayor que 30
-    @api.constrains('despacho')
+    @api.constrains('sDespacho')
     def _check_despacho(self):
         for record in self:
-            if record.despacho:
-                despacho = record.despacho.strip()
+            if record.sDespacho:
+                despacho = record.sDespacho.strip()
                 if not despacho:
                     raise models.ValidationError("El despacho no puede estar vacío.")
                 if len(despacho) > MAX_DESPACHO:
                     raise models.ValidationError(f"El despacho no puede tener más de {MAX_DESPACHO} caracteres.")
 
     # Despacho sin espacios a los extremos
-    @api.onchange('despacho')
+    @api.onchange('sDespacho')
     def _onchange_despacho(self):
-        if self.despacho:
-            self.despacho = self.despacho.strip()
+        if self.sDespacho:
+            self.sDespacho = self.sDespacho.strip()
             
     # Si el DNI ya es de una persona registrada, se usa esa persona en lugar de crear otra (solo al crear un profesor nuevo: self._origin.id está vacío)
-    @api.onchange('dni')
+    @api.onchange('sDni')
     def _onchange_dni_persona_existente(self):
-        if self.dni and not self._origin.id: # self._origin.id es False si todavía no existe en la base de datos. Solo se entra al bloque del if cuando estamos creando un profesor nuevo.
-            persona = self.env['uprofe.persona'].search([('dni', '=ilike', self.dni.strip())], limit=1) # env es el environment
+        if self.sDni and not self._origin.id: # self._origin.id es False si todavía no existe en la base de datos. Solo se entra al bloque del if cuando estamos creando un profesor nuevo.
+            persona = self.env['uprofe.persona'].search([('sDni', '=ilike', self.sDni.strip())], limit=1) # env es el environment
             if persona:
                 self.persona_id = persona # Se rellenan todos los datos de persona en profesor si ya existe como persona.
                 # Aviso si esa persona ya es profesor
