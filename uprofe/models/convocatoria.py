@@ -6,39 +6,39 @@ from odoo.exceptions import ValidationError
 class convocatoria(models.Model):
     _name = 'uprofe.convocatoria'
     _description = 'Convocatoria'
-    _order= 'fecha_apertura desc'
-    
-    name = fields.Char(string="Código de la convocatoria", size=50, required=True)
-    curso_academico = fields.Char(string="Curso académico", size=9, required=True)
-    fecha_apertura = fields.Date(string="Fecha de apertura", required=True)
-    fecha_cierre = fields.Date(string="Fecha de cierre", required=True)
+    _order = 'dtFechaApertura desc'
+    _rec_name = 'sName'
 
-    tipo_convocatoria_id = fields.Many2one('uprofe.tipo_convocatoria', string="Tipo de convocatoria", required=True)
-    estado_convocatoria_id = fields.Many2one('uprofe.estado_convocatoria', string="Estado", required=True)
+    sName = fields.Char(string="Código de la convocatoria", size=50, required=True)
+    sCursoAcademico = fields.Char(string="Curso académico", size=9, required=True)
+    dtFechaApertura = fields.Date(string="Fecha de apertura", required=True)
+    dtFechaCierre = fields.Date(string="Fecha de cierre", required=True)
 
+    oTipoConvocatoriaId = fields.Many2one('uprofe.tipo_convocatoria', string="Tipo de convocatoria", required=True)
+    oEstadoConvocatoriaId = fields.Many2one('uprofe.estado_convocatoria', string="Estado", required=True)
     
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_name_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name.strip())]):
+            if self.search_count([("id", "!=", record.id), ("sName", "=ilike", record.sName.strip())]):
                 raise ValidationError("Ya existe una convocatoria con este código.")
 
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_name_not_empty(self):
         for record in self:
-            if len(record.name.strip()) == 0:
+            if len(record.sName.strip()) == 0:
                 raise ValidationError("El código de la convocatoria no puede estar vacío.")
 
-    @api.constrains('curso_academico')
+    @api.constrains('sCursoAcademico')
     def _check_curso_not_empty(self):
         for record in self:
-            if len(record.curso_academico.strip()) == 0:
+            if len(record.sCursoAcademico.strip()) == 0:
                 raise ValidationError("El curso académico no puede estar vacío.")
 
-    @api.constrains('fecha_apertura', 'fecha_cierre')
+    @api.constrains('dtFechaApertura', 'dtFechaCierre')
     def _check_fechas(self):
         for record in self:
-            if record.fecha_cierre < record.fecha_apertura:
+            if record.dtFechaCierre < record.dtFechaApertura    :
                 raise ValidationError("La fecha de cierre no puede ser anterior a la de apertura.")
 
     def write(self, vals):
