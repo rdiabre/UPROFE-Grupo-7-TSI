@@ -7,9 +7,9 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
-                            <strong><field name="nombre"/></strong>
-                            <div>Código: <field name="name"/></div>
-                            <div>Laboratorio: <field name="laboratorio_id"/></div>
+                            <strong><field name="sNombre"/></strong>
+                            <div>Código: <field name="sName"/></div>
+                            <div>Laboratorio: <field name="iLaboratorio_id"/></div>
                         </div>
                     </t>
                 </templates>
