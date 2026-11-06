@@ -9,3 +9,5 @@ profesor_manager,profesor_manager,model_uprofe_profesor,group_uprofe_manager,1,1
 sesion_manager,sesion_manager,model_uprofe_sesion,group_uprofe_manager,1,1,1,1
 tipo_sesion_manager,tipo_sesion_manager,model_uprofe_tipo_sesion,group_uprofe_manager,1,1,1,1
 expediente_manager,expediente_manager,model_uprofe_expediente,group_uprofe_manager,1,1,1,1
+acta_manager,acta_manager,model_uprofe_acta,group_uprofe_manager,1,1,1,1
+linea_acta_manager,linea_acta_manager,model_uprofe_linea_acta,group_uprofe_manager,1,1,1,1
