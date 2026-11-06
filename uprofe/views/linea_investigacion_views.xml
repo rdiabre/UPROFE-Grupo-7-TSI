@@ -1,0 +1,18 @@
+<odoo>
+    <record id="uprofe_linea_investigacion_form_view" model="ir.ui.view">
+        <field name="name">uprofe.linea_investigacion.form</field>
+        <field name="model">uprofe.linea_investigacion</field>
+        <field name="arch" type="xml">
+            <form string="Líneas de investigación">
+                <sheet layout="auto">
+                    <group>
+                        <field name="sName" />
+                        <field name="sNombre" />
+                        <field name="sDescripcion" />
+                        <field name="iGrupo_inv_id" widget="many2one" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
