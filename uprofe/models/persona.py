@@ -27,14 +27,14 @@ class Persona(models.Model):
     partner_id = fields.Many2one('res.partner', string="Contacto", required=True, ondelete='cascade')
 
     # Campos propios de Persona
-    s_apellidos = fields.Char(string="Apellidos", required=True)
-    s_dni = fields.Char(string="DNI", size=9, required=True, help="Inserte el DNI o NIE de la persona")
+    sApellidos = fields.Char(string="Apellidos", required=True)
+    sDni = fields.Char(string="DNI", size=9, required=True, help="Inserte el DNI o NIE de la persona")
 
     """Unicidad del DNI: crea un índice sobre la columna, así Postgre no lee
     la tabla entera para comprobarlo. (El correo y el teléfono no se pueden
     hacer así porque se guardan en la tabla de res.partner, no en la de persona)"""
     _sql_constraints = [
-        ('dni_unique', 'unique(s_dni)', 'Ya existe una persona con este DNI.'),
+        ('dni_unique', 'unique(sDni)', 'Ya existe una persona con este DNI.'),
     ]
 
     """VALIDACIONES (@api.constrains): impiden guardar si algo está mal
@@ -42,10 +42,10 @@ class Persona(models.Model):
     para que la validación salte también al crear la persona."""
 
     # Formato y letra del DNI
-    @api.constrains('s_dni')
+    @api.constrains('sDni')
     def _check_dni(self):
         for record in self:  # cada persona que se está creando o modificando (en caché => no hay acceso a BD)
-            if not nif.is_valid(record.s_dni):
+            if not nif.is_valid(record.sDni):
                 raise models.ValidationError("El DNI/NIE no es válido.")
 
     # Nombre: no vacío, máximo de caracteres y solo letras
@@ -61,15 +61,15 @@ class Persona(models.Model):
                 raise models.ValidationError("El nombre solo puede contener letras, espacios y guiones.")
 
     # Apellidos: no vacíos, máximo de caracteres y solo letras
-    @api.constrains('apellidos')
+    @api.constrains('sApellidos')
     def _check_apellidos(self):
         for record in self:
-            apellidos = (record.apellidos or '').strip()
-            if not apellidos:
+            sApellidos = (record.sApellidos or '').strip()
+            if not sApellidos:
                 raise models.ValidationError("Los apellidos no pueden estar vacíos.")
-            if len(apellidos) > MAX_APELLIDOS:
+            if len(sApellidos) > MAX_APELLIDOS:
                 raise models.ValidationError(f"Los apellidos no pueden tener más de {MAX_APELLIDOS} caracteres.")
-            if not re.match(REGEX_TEXTO, apellidos):
+            if not re.match(REGEX_TEXTO, sApellidos):
                 raise models.ValidationError("Los apellidos solo pueden contener letras, espacios y guiones.")
 
     # Correo: obligatorio, con formato de correo y único
@@ -102,10 +102,10 @@ class Persona(models.Model):
     Siempre con if: el onchange también se ejecuta con el campo vacío. Si no se pone, da false y False.strip(), por ejemplo, no existe """
 
     # DNI en mayúsculas, sin espacios ni guiones
-    @api.onchange('s_dni')
+    @api.onchange('sDni')
     def _onchange_dni(self):
-        if self.s_dni:
-            self.s_dni = nif.compact(self.s_dni)
+        if self.sDni:
+            self.sDni = nif.compact(self.sDni)
 
     # Nombre y apellidos sin espacios sobrantes y con la inicial en mayúscula
     @api.onchange('name')
@@ -113,10 +113,10 @@ class Persona(models.Model):
         if self.name:
             self.name = self.name.strip().title()
 
-    @api.onchange('apellidos')
+    @api.onchange('sApellidos')
     def _onchange_apellidos(self):
-        if self.s_apellidos:
-            self.s_apellidos = self.s_apellidos.strip().title()
+        if self.sApellidos:
+            self.sApellidos = self.sApellidos.strip().title()
 
     # Correo en minúsculas y sin espacios
     @api.onchange('email')
