@@ -18,7 +18,7 @@ class Pregunta(models.Model):
                                         required=True, ondelete='restrict')
     bconopciones = fields.Boolean(related='tipo_respuesta_id.bconopciones')
 
-    # Descomento cuando uprofe.encuesta esté en main 
+    # Descomento cuando uprofe.encuesta esté en main
     # encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta',
     #                               required=True, ondelete='cascade')
     # _sql_constraints = [
@@ -26,21 +26,23 @@ class Pregunta(models.Model):
     #      'Ya existe una pregunta con ese número en esta encuesta.'),
     # ]
 
-    # constrains 
+    # constrains
     @api.constrains('inumpregunta')
     def _check_inumpregunta(self):
-        if self.inumpregunta < 1:
-            raise ValidationError("El número de pregunta debe ser mayor que 0.")
+        for record in self:
+            if record.inumpregunta < 1:
+                raise ValidationError("El número de pregunta debe ser mayor que 0.")
 
     @api.constrains('tipo_respuesta_id', 'sopciones')
     def _check_opciones(self):
-        lineas = [l for l in (self.sopciones or '').splitlines() if l.strip()]
-        if self.bconopciones and len(lineas) < 2:
-            raise ValidationError("Este tipo de pregunta necesita al menos dos opciones.")
-        if not self.bconopciones and lineas:
-            raise ValidationError("Solo los tipos que requieren opciones las admiten.")
+        for record in self:
+            lineas = [l for l in (record.sopciones or '').splitlines() if l.strip()]
+            if record.bconopciones and len(lineas) < 2:
+                raise ValidationError("Este tipo de pregunta necesita al menos dos opciones.")
+            if not record.bconopciones and lineas:
+                raise ValidationError("Solo los tipos que requieren opciones las admiten.")
 
-    # onchange 
+    # onchange
     @api.onchange('inumpregunta')
     def _onchange_inumpregunta(self):
         if self.inumpregunta < 1:
