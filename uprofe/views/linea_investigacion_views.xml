@@ -15,4 +15,17 @@
             </form>
         </field>
     </record>
+
+    <record id="uprofe_linea_investigacion_list_view" model="ir.ui.view">
+        <field name="name">uprofe.linea_investigacion.list</field>
+        <field name="model">uprofe.linea_investigacion</field>
+        <field name="arch" type="xml">
+            <list string="Lista de líneas de investigación">
+                <field name="sName" />
+                <field name="sNombre" />
+                <field name="sDescripcion" />
+                <field name="iGrupo_inv_id" widget="many2one" />
+            </list>
+        </field>
+    </record>
 </odoo>
