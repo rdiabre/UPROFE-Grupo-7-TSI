@@ -34,7 +34,7 @@ class Persona(models.Model):
     la tabla entera para comprobarlo. (El correo y el teléfono no se pueden
     hacer así porque se guardan en la tabla de res.partner, no en la de persona)"""
     _sql_constraints = [
-        ('dni_unique', 'unique(dni)', 'Ya existe una persona con este DNI.'),
+        ('dni_unique', 'unique(s_dni)', 'Ya existe una persona con este DNI.'),
     ]
 
     """VALIDACIONES (@api.constrains): impiden guardar si algo está mal
@@ -93,7 +93,7 @@ class Persona(models.Model):
             if not telefono:
                 raise models.ValidationError("El teléfono no puede estar vacío.")
             if not re.match(REGEX_TELEFONO, telefono):
-                raise models.ValidationError("El teléfono debe tener 9 cifras (puede empezar por +34).")
+                raise models.ValidationError("El teléfono debe tener 9 cifras y empezar por 6, 7, 8 o 9 (también puede empezar por +34).")
             if self.search_count([('id', '!=', record.id), ('phone', '=', record.phone)]):
                 raise models.ValidationError("Ya existe una persona con este teléfono.")
 
@@ -104,7 +104,7 @@ class Persona(models.Model):
     # DNI en mayúsculas, sin espacios ni guiones
     @api.onchange('s_dni')
     def _onchange_dni(self):
-        if self.dni:
+        if self.s_dni:
             self.s_dni = nif.compact(self.s_dni)
 
     # Nombre y apellidos sin espacios sobrantes y con la inicial en mayúscula
