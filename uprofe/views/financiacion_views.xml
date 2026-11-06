@@ -1,4 +1,16 @@
 <odoo>
+    <record id="uprofe_financiacion_pivot_view" model="ir.ui.view">
+        <field name="name">uprofe.financiacion.pivot</field>
+        <field name="model">uprofe.financiacion</field>
+        <field name="arch" type="xml">
+            <pivot string="Financiación">
+                <field name="iEmpresa_id" type="row"/>
+                <field name="dFecha_concesion" interval="year" type="col"/>
+                <field name="fImporte" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
     <record id="uprofe_financiacion_form_view" model="ir.ui.view">
         <field name="name">uprofe.financiacion.form</field>
         <field name="model">uprofe.financiacion</field>
