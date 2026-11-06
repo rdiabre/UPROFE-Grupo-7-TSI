@@ -26,13 +26,13 @@ class Usuario(models.Model):
     def _check_name_unique(self):
         # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("sName", "=ilike", record.name.strip())]):
+            if self.search_count([("id", "!=", record.id), ("sName", "=ilike", record.sName.strip())]):
                 raise ValidationError("Ya existe un usuario con este nombre de usuario.");
 
     @api.constrains('sCorreo')
     def _check_correo_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("sCorreo", "=ilike", record.correo.strip())]):
+            if self.search_count([("id", "!=", record.id), ("sCorreo", "=ilike", record.sCorreo.strip())]):
                 raise ValidationError("Ya se registró un usuario con este correo electrónico.");
 
     # Validaciones de valores
@@ -85,7 +85,7 @@ class Usuario(models.Model):
             
     @api.onchange('sContrasena', 'sRepetir_contrasena')
     def _onchange_contrasena_coincide(self):
-        if not self.sContrasena or not self.repetir_sContrasena:
+        if not self.sContrasena or not self.sRepetir_contrasena:
             return
         if self.sContrasena.strip() != self.sRepetir_contrasena.strip():
             return {
