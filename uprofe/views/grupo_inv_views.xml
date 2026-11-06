@@ -30,8 +30,6 @@
                         <field name="iDepartamento_id" widget="many2one" />
                         <field name="iDepartamento_id" widget="many2one" />
                         <field name="iLaboratorio_id" widget="many2one" />
-                        <field name="lProyecto_investigacion_ids" widget="one2many" />
-                        <field name="lLinea_investigacion_ids" widget="one2many" />
                     </group>
                 </sheet>
             </form>
@@ -49,8 +47,6 @@
                 <field name="iDepartamento_id" widget="many2one" />
                 <field name="iDepartamento_id" widget="many2one" />
                 <field name="iLaboratorio_id" widget="many2one" />
-                <field name="lProyecto_investigacion_ids" widget="one2many" />
-                <field name="lLinea_investigacion_ids" widget="one2many" />
             </list>
         </field>
     </record>
