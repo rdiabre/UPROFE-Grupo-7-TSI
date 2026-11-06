@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-class Convenio(models.Model):
+class convenio(models.Model):
     _name = 'uprofe.convenio'
     _description = 'Convenios Erasmus'
     _order = 'dFechaFirma desc'
