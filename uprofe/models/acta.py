@@ -120,3 +120,16 @@ class Acta(models.Model):
                 linea.convocatoria_id = primera.convocatoria_id
             if not linea.profesor_id:
                 linea.profesor_id = primera.profesor_id
+
+    # PR de Reclamacion
+
+    # Un acta tiene reclamaciones (0,N)
+    reclamacion_ids = fields.One2many('uprofe.reclamacion', 'acta_id', string="Reclamaciones")
+
+    # Reclamaciones que faltan por resolver (campo calculado, no se guarda)
+    iNum_reclamaciones_pendientes = fields.Integer(string="Reclamaciones pendientes", compute='_compute_num_reclamaciones_pendientes')
+
+    @api.depends('reclamacion_ids.selEstado')
+    def _compute_num_reclamaciones_pendientes(self):
+        for record in self:
+            record.iNum_reclamaciones_pendientes = len(record.reclamacion_ids.filtered(lambda reclamacion: reclamacion.selEstado == 'pendiente'))
