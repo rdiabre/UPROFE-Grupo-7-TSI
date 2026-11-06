@@ -1,0 +1,52 @@
+<odoo>
+    <!-- List -->
+    <record id="view_tipo_sesion_list" model="ir.ui.view">
+        <field name="name">uprofe.tipo_sesion.list</field>
+        <field name="model">uprofe.tipo_sesion</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_tipo_sesion_form" model="ir.ui.view">
+        <field name="name">uprofe.tipo_sesion.form</field>
+        <field name="model">uprofe.tipo_sesion</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="selTipo"/>
+                        <!-- Si le damos a Otro -->
+                        <field name="name" string="Otro tipo"
+                               invisible="selTipo != 'otro'" required="selTipo == 'otro'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_tipo_sesion_search" model="ir.ui.view">
+        <field name="name">uprofe.tipo_sesion.search</field>
+        <field name="model">uprofe.tipo_sesion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="tipo_sesion_list_action" model="ir.actions.act_window">
+        <field name="name">Tipos de sesión</field>
+        <field name="res_model">uprofe.tipo_sesion</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea el primer tipo de sesión</p>
+        </field>
+    </record>
+
+</odoo>
