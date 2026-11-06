@@ -5,7 +5,7 @@
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <list string="Preguntas">
-                <field name="stexto"/>
+                <field name="name"/>
                 <field name="inumpregunta"/>
                 <field name="tipo_respuesta_id"/>
             </list>
@@ -20,7 +20,7 @@
                 <sheet>
                     <group>
                         <field name="inumpregunta"/>
-                        <field name="stexto"/>
+                        <field name="name"/>
                         <field name="tipo_respuesta_id"/>
                         <field name="bconopciones" invisible="1"/>
                         <field name="sopciones" invisible="not bconopciones"
@@ -47,7 +47,7 @@
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <search>
-                <field name="stexto"/>
+                <field name="name"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_tipo" string="Tipo de respuesta"
                             context="{'group_by': 'tipo_respuesta_id'}"/>
