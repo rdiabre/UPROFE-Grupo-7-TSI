@@ -18,16 +18,15 @@ class TipoSesion(models.Model):
     _order = 'name asc'
 
     # Desplegable para elegir el tipo. Si se elige "Otro", el tipo se escribe a mano en "name".
-    tipo = fields.Selection(TIPOS, string="Tipo", required=True, default='eb')
+    selTipo = fields.Selection(TIPOS, string="Tipo", required=True, default='eb')
 
-    # Clave primaria del diagrama E-R (atributo tipo_sesion). Se llama "name"
-    # porque es el campo que Odoo muestra al seleccionar un tipo en otros modelos.
-    # Se calcula a partir del desplegable (compute), pero sigue siendo editable
-    # (readonly=False) para poder escribirlo a mano cuando se elige "Otro".
-    # precompute=True: se calcula antes de guardar; sin él, al ser obligatorio,
-    # la base de datos rechaza el registro porque llega vacío.
-    name = fields.Char(string="Tipo de sesión", required=True, compute='_compute_name',
-                       store=True, readonly=False, precompute=True)
+    """Clave primaria del diagrama E-R (atributo tipo_sesion). Se llama "name"
+    porque es el campo que Odoo muestra al seleccionar un tipo en otros modelos.
+    Se calcula a partir del desplegable (compute), pero sigue siendo editable
+    (readonly=False) para poder escribirlo a mano cuando se elige "Otro".
+    precompute=True: se calcula antes de guardar; sin él, al ser obligatorio,
+    la base de datos rechaza el registro porque llega vacío."""
+    name = fields.Char(string="Tipo de sesión", required=True, compute='_compute_name', store=True, readonly=False, precompute=True)
 
     # La relación con las sesiones (sesion_ids) se añadirá en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
 
@@ -37,15 +36,15 @@ class TipoSesion(models.Model):
     ]
 
     # Rellena el tipo de sesión con la opción elegida en el desplegable. Con "Otro" se vacía para que se escriba a mano.
-    @api.depends('tipo')
+    @api.depends('selTipo')
     def _compute_name(self):
         opciones = dict(TIPOS)
         for record in self:
-            if record.tipo == 'otro':
+            if record.selTipo == 'otro':
                 if record.name in opciones.values():
                     record.name = False
             else:
-                record.name = opciones.get(record.tipo)
+                record.name = opciones.get(record.selTipo)
 
     # Tipo de sesión: no vacío, con máximo de caracteres y único sin distinguir mayúsculas (_sql_constraints sí distingue: "Enseñanzas básicas" y "Enseñanzas Básicas" serían distintos)
     @api.constrains('name')

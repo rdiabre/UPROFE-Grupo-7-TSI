@@ -1,6 +1,6 @@
 <odoo>
     <!-- List -->
-    <record id="view_tipo_sesion_tree" model="ir.ui.view">
+    <record id="view_tipo_sesion_list" model="ir.ui.view">
         <field name="name">uprofe.tipo_sesion.list</field>
         <field name="model">uprofe.tipo_sesion</field>
         <field name="arch" type="xml">
@@ -18,10 +18,10 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="tipo"/>
+                        <field name="selTipo"/>
                         <!-- Si le damos a Otro -->
                         <field name="name" string="Otro tipo"
-                               invisible="tipo != 'otro'" required="tipo == 'otro'"/>
+                               invisible="selTipo != 'otro'" required="selTipo == 'otro'"/>
                     </group>
                 </sheet>
             </form>
