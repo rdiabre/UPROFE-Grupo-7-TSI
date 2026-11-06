@@ -1,0 +1,26 @@
+<odoo>
+    <record id="uprofe_financiacion_form_view" model="ir.ui.view">
+        <field name="name">uprofe.financiacion.form</field>
+        <field name="model">uprofe.financiacion</field>
+        <field name="arch" type="xml">
+            <form string="Financiaciones">
+                <sheet layout="auto">
+                    <group>
+                        <field name="sName" />
+                        <field name="fImporte" />
+                        <field name="dFecha_concesion" />
+                        <field name="iProyecto_investigacion_id" widget="many2one" />
+                        <field name="iGrupo_inv_id" widget="many2one" />
+                        <field name="lPersona_ids" widget="many2many">
+                            <list>
+                                <field name="sName" />
+                                <field name="sNombre" />
+                                <field name="sApellidos" />
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
