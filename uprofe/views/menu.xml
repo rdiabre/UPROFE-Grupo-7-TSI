@@ -1,5 +1,9 @@
 <odoo>
     <menuitem name="Uprofe" id="main_uprofe_menu" groups="group_uprofe_manager"/>
+  
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
+ 
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+
+    <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="10"/>
 </odoo>
