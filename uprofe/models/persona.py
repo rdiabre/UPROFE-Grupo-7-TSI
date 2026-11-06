@@ -27,8 +27,8 @@ class Persona(models.Model):
     partner_id = fields.Many2one('res.partner', string="Contacto", required=True, ondelete='cascade')
 
     # Campos propios de Persona
-    apellidos = fields.Char(string="Apellidos", required=True)
-    dni = fields.Char(string="DNI", size=9, required=True, help="Inserte el DNI o NIE de la persona")
+    s_apellidos = fields.Char(string="Apellidos", required=True)
+    s_dni = fields.Char(string="DNI", size=9, required=True, help="Inserte el DNI o NIE de la persona")
 
     """Unicidad del DNI: crea un índice sobre la columna, así Postgre no lee
     la tabla entera para comprobarlo. (El correo y el teléfono no se pueden
@@ -42,10 +42,10 @@ class Persona(models.Model):
     para que la validación salte también al crear la persona."""
 
     # Formato y letra del DNI
-    @api.constrains('dni')
+    @api.constrains('s_dni')
     def _check_dni(self):
         for record in self:  # cada persona que se está creando o modificando (en caché => no hay acceso a BD)
-            if not nif.is_valid(record.dni):
+            if not nif.is_valid(record.s_dni):
                 raise models.ValidationError("El DNI/NIE no es válido.")
 
     # Nombre: no vacío, máximo de caracteres y solo letras
@@ -102,10 +102,10 @@ class Persona(models.Model):
     Siempre con if: el onchange también se ejecuta con el campo vacío. Si no se pone, da false y False.strip(), por ejemplo, no existe """
 
     # DNI en mayúsculas, sin espacios ni guiones
-    @api.onchange('dni')
+    @api.onchange('s_dni')
     def _onchange_dni(self):
         if self.dni:
-            self.dni = nif.compact(self.dni)
+            self.s_dni = nif.compact(self.s_dni)
 
     # Nombre y apellidos sin espacios sobrantes y con la inicial en mayúscula
     @api.onchange('name')
@@ -115,8 +115,8 @@ class Persona(models.Model):
 
     @api.onchange('apellidos')
     def _onchange_apellidos(self):
-        if self.apellidos:
-            self.apellidos = self.apellidos.strip().title()
+        if self.s_apellidos:
+            self.s_apellidos = self.s_apellidos.strip().title()
 
     # Correo en minúsculas y sin espacios
     @api.onchange('email')

@@ -5,9 +5,9 @@
         <field name="model">uprofe.persona</field>
         <field name="arch" type="xml">
             <list>
-                <field name="dni"/>
+                <field name="s_dni"/>
                 <field name="name"/>
-                <field name="apellidos"/>
+                <field name="s_apellidos"/>
                 <field name="email"/>
                 <field name="phone"/>
             </list>
@@ -24,8 +24,8 @@
                     <group>
                         <group>
                             <field name="name" string="Nombre"/>
-                            <field name="apellidos"/>
-                            <field name="dni"/>
+                            <field name="s_apellidos"/>
+                            <field name="s_dni"/>
                         </group>
                         <group>
                             <field name="email" string="Correo electrónico"/>
@@ -44,8 +44,8 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" string="Nombre"/>
-                <field name="apellidos"/>
-                <field name="dni"/>
+                <field name="s_apellidos"/>
+                <field name="s_dni"/>
             </search>
         </field>
     </record>
