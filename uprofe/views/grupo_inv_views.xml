@@ -1,0 +1,22 @@
+<odoo>
+    <record id="uprofe_grupo_inv_form_view" model="ir.ui.view">
+        <field name="name">uprofe.grupo_inv.form</field>
+        <field name="model">uprofe.grupo_inv</field>
+        <field name="arch" type="xml">
+            <form string="Grupos de investigación">
+                <sheet layout="auto">
+                    <group>
+                        <field name="sName" />
+                        <field name="sNombre" />
+                        <field name="dFecha_creacion" />
+                        <field name="iDepartamento_id" widget="many2one" />
+                        <field name="iDepartamento_id" widget="many2one" />
+                        <field name="iLaboratorio_id" widget="many2one" />
+                        <field name="lProyecto_investigacion_ids" widget="one2many" />
+                        <field name="lLinea_investigacion_ids" widget="one2many" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
