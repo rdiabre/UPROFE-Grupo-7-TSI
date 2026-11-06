@@ -2,3 +2,5 @@
 from . import usuario
 
 from . import asignatura
+
+from . import guia_docente
