@@ -8,3 +8,4 @@ from . import persona
 from . import profesor
 from . import sesion
 from . import tipo_sesion
+from . import expediente
