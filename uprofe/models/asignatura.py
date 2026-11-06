@@ -121,5 +121,5 @@ class Asignatura(models.Model):
     @api.depends('guia_ids', 'guia_ids.sCurso_academico')
     def _compute_guia_actual(self):
         for record in self:
-            # ordenar y quedarnos con la primera si hay
+            # sorted() ordena las guías; [:1] se queda con la primera (o con ninguna si no hay)
             record.guia_actual_id = record.guia_ids.sorted('sCurso_academico', reverse=True)[:1]
