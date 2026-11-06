@@ -5,9 +5,9 @@
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <list string="Preguntas">
-                <field name="num_pregunta"/>
-                <field name="name"/>
-                <field name="tipo_respuesta"/>
+                <field name="stexto"/>
+                <field name="inumpregunta"/>
+                <field name="tipo_respuesta_id"/>
             </list>
         </field>
     </record>
@@ -19,24 +19,25 @@
             <form string="Pregunta">
                 <sheet>
                     <group>
-                        <field name="num_pregunta"/>
-                        <field name="name"/>
-                        <field name="tipo_respuesta"/>
-                        <field name="opciones" invisible="tipo_respuesta != 'multiple'"
-                               required="tipo_respuesta == 'multiple'"/>
+                        <field name="inumpregunta"/>
+                        <field name="stexto"/>
+                        <field name="tipo_respuesta_id"/>
+                        <field name="bconopciones" invisible="1"/>
+                        <field name="sopciones" invisible="not bconopciones"
+                               required="bconopciones"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Vista avanzada gráfico y busqueda por filtro -->
+    <!-- Vista avanzada: preguntas por tipo de respuesta -->
     <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
         <field name="name">uprofe.pregunta.graph</field>
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <graph string="Preguntas por tipo" type="pie">
-                <field name="tipo_respuesta"/>
+                <field name="tipo_respuesta_id"/>
             </graph>
         </field>
     </record>
@@ -46,10 +47,10 @@
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
+                <field name="stexto"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_tipo" string="Tipo de respuesta"
-                            context="{'group_by': 'tipo_respuesta'}"/>
+                            context="{'group_by': 'tipo_respuesta_id'}"/>
                 </group>
             </search>
         </field>
