@@ -5,13 +5,13 @@
         <field name="arch" type="xml">
             <form string="Usuarios">
                 <sheet layout="auto">
-                    <field name="foto" widget="image" class="oe_avatar"/>
+                    <field name="binFoto" widget="image" class="oe_avatar"/>
                     <group>
-                        <field name="name" />
-                        <field name="correo" />
-                        <field name="contrasena" password="True" />
-                        <field name="repetir_contrasena" password="True" />
-                        <field name="estado_cuenta" />
+                        <field name="sName" />
+                        <field name="sCorreo" />
+                        <field name="sContrasena" password="True" />
+                        <field name="sRepetir_contrasena" password="True" />
+                        <field name="bEstado_cuenta" />
                     </group>
                 </sheet>
             </form>
@@ -23,11 +23,11 @@
         <field name="model">uprofe.usuario</field>
         <field name="arch" type="xml">
             <list string="Lista de usuarios">
-                <field name="foto" widget="image" options="{'size': [30, 30]}" />
-                <field name="name" />
-                <field name="correo" />
-                <field name="estado_cuenta" />
-                <field name="ultimo_acceso" />
+                <field name="binFoto" widget="image" options="{'size': [30, 30]}" />
+                <field name="sName" />
+                <field name="sCorreo" />
+                <field name="bEstado_cuenta" />
+                <field name="dUltimo_acceso" />
             </list>
         </field>
     </record>

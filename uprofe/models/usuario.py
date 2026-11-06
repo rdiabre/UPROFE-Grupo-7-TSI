@@ -10,72 +10,72 @@ crypt = CryptContext(schemes=['pbkdf2_sha512'])
 class Usuario(models.Model):
     _name = 'uprofe.usuario'
     _description = 'Usuarios de la app'
-    _order = 'name asc'
+    _order = 'sName asc'
 
-    name = fields.Char(string="Nombre de usuario", size=50, required=True)
-    correo = fields.Char(string="Correo electrónico", required=True)
-    contrasena = fields.Char(string="Contraseña", required=True)
-    repetir_contrasena = fields.Char(string="Repetir contraseña", required=True, store=False)
+    sName = fields.Char(string="Nombre de usuario", size=50, required=True)
+    sCorreo = fields.Char(string="Correo electrónico", required=True)
+    sContrasena = fields.Char(string="Contraseña", required=True)
+    sCepetir_contrasena = fields.Char(string="Repetir contraseña", required=True, store=False)
     # True si está activa False si no
-    estado_cuenta = fields.Boolean(string="Activo", default=False)
-    ultimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
-    foto = fields.Binary(string="Foto de perfil")
+    bEstado_cuenta = fields.Boolean(string="Activo", default=False)
+    dUltimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
+    binFoto = fields.Binary(string="Foto de perfil")
 
     # Hago la validación de unicidad con api.constrains porque si se hace con _sql_constraints, es case sensitive
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_name_unique(self):
         # IMPORTANTE el for porque constrains aplica al hacer importaciones (Ej: demos.csv)
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name.strip())]):
+            if self.search_count([("id", "!=", record.id), ("sName", "=ilike", record.name.strip())]):
                 raise ValidationError("Ya existe un usuario con este nombre de usuario.");
 
-    @api.constrains('correo')
+    @api.constrains('sCorreo')
     def _check_correo_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("correo", "=ilike", record.correo.strip())]):
+            if self.search_count([("id", "!=", record.id), ("sCorreo", "=ilike", record.correo.strip())]):
                 raise ValidationError("Ya se registró un usuario con este correo electrónico.");
 
     # Validaciones de valores
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_name_not_empty(self):
         for record in self:
-            if len(record.name.strip()) == 0:
+            if len(record.sName.strip()) == 0:
                 raise ValidationError("El nombre de usuario no puede estar vacío.");
 
-    @api.constrains('correo')
+    @api.constrains('sCorreo')
     def _check_correo_not_empty(self):
         for record in self:
-            if len(record.correo.strip()) == 0:
+            if len(record.sCorreo.strip()) == 0:
                 raise ValidationError("El correo electrónico no puede estar vacío.");
             
-    @api.constrains('correo')
+    @api.constrains('sCorreo')
     def _check_correo_format(self):
         regex_correo = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         
         for record in self:
-            if not re.match(regex_correo, record.correo.strip()):
+            if not re.match(regex_correo, record.sCorreo.strip()):
                 raise ValidationError("El correo electrónico no es válido.");
             
-    @api.constrains('contrasena')
+    @api.constrains('sContrasena')
     def _check_contrasena_robustez(self):
         regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
         
         for record in self:
-            if not re.match(regex_robustez, record.contrasena.strip()):
+            if not re.match(regex_robustez, record.sContrasena.strip()):
                 raise ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
             
-    @api.constrains('contrasena', 'name')
+    @api.constrains('sContrasena', 'sName')
     def _check_contrasena_identidad(self):
         for record in self:
-            if record.contrasena.strip() == record.name.strip():
+            if record.sContrasena.strip() == record.sName.strip():
                 raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
             
-    @api.onchange('contrasena')
+    @api.onchange('sContrasena')
     def _onchange_contrasena(self):
-        if not self.contrasena:
+        if not self.sContrasena:
             return
         regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
-        if not re.match(regex_robustez, self.contrasena.strip()):
+        if not re.match(regex_robustez, self.sContrasena.strip()):
             return {
                 'warning': {
                     'title': 'Contraseña insegura',
@@ -83,11 +83,11 @@ class Usuario(models.Model):
                 }
             }
             
-    @api.onchange('contrasena', 'repetir_contrasena')
+    @api.onchange('sContrasena', 'sRepetir_contrasena')
     def _onchange_contrasena_coincide(self):
-        if not self.contrasena or not self.repetir_contrasena:
+        if not self.sContrasena or not self.repetir_sContrasena:
             return
-        if self.contrasena.strip() != self.repetir_contrasena.strip():
+        if self.sContrasena.strip() != self.sRepetir_contrasena.strip():
             return {
                 'warning': {
                     'title': 'Contraseñas no coinciden',
@@ -97,14 +97,14 @@ class Usuario(models.Model):
             
     # Limpiar espacios sobrantes
     def write(self, vals):
-        if 'contrasena' in vals or 'repetir_contrasena' in vals:
-            pwd = vals.get('contrasena')
-            rep = vals.pop('repetir_contrasena', None)
+        if 'sContrasena' in vals or 'sRepetir_contrasena' in vals:
+            pwd = vals.get('sContrasena')
+            rep = vals.pop('sRepetir_contrasena', None)
             
             if pwd and rep and pwd.strip() != rep.strip():
                 raise ValidationError("Ambas contraseñas deben coincidir.")
             if pwd:
-                vals['contrasena'] = crypt.hash(pwd)
+                vals['sContrasena'] = crypt.hash(pwd)
         
         self._strip_string_values(vals)
         return super().write(vals)
@@ -113,14 +113,14 @@ class Usuario(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            pwd = vals.get('contrasena')
-            rep = vals.pop('repetir_contrasena', None)
+            pwd = vals.get('sContrasena')
+            rep = vals.pop('sRepetir_contrasena', None)
             
             if pwd and rep and pwd.strip() != rep.strip():
                 raise ValidationError("Ambas contraseñas deben coincidir.")
             
             if pwd:
-                vals['contrasena'] = crypt.hash(pwd)
+                vals['sContrasena'] = crypt.hash(pwd)
                 
             self._strip_string_values(vals)
             
