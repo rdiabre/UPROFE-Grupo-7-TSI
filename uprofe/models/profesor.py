@@ -27,18 +27,26 @@ class Profesor(models.Model):
     Los tipos de sesión que imparte (EB, EPD...) no se guardan aquí: se calcularán
     a partir de sus sesiones en el PR de Sesión (sesion_ids -> tipo_sesion_id)."""
     
-    """ AÑADIR EN EL PR DE SESION:
-    # Sesiones que imparte el profesor (la otra cara del profesor_id de Sesión)
-    sesion_ids = fields.One2many('uprofe.sesion', 'profesor_id', string="Sesiones")
+    """ Un profesor imparte varias sesiones (0,N) y una sesión
+    la pueden impartir varios profesores (1,N): Many2many.
+    Usa la misma tabla que el profesor_ids de Sesión ('uprofe_profesor_sesion_rel')."""
+    sesion_ids = fields.Many2many('uprofe.sesion', 'uprofe_profesor_sesion_rel', 'profesor_id', 'sesion_id', string="Sesiones")
 
-    # Tipos de sesión que imparte de verdad: se calculan a partir de sus sesiones
-    tipo_sesion_ids = fields.Many2many('uprofe.tipo_sesion', string="Tipos de sesión que imparte",
-                                       compute='_compute_tipo_sesion_ids')
+    # Tipos de sesión que imparte de verdad, calculado a partir de sus sesiones
+    tipo_sesion_ids = fields.Many2many('uprofe.tipo_sesion', string="Tipos de sesión que imparte", compute='_compute_tipo_sesion_ids')
+
+    # Horas de clase que imparte en total
+    fHoras_impartidas = fields.Float(string="Horas impartidas", compute='_compute_horas_impartidas')
 
     @api.depends('sesion_ids.tipo_sesion_id')
     def _compute_tipo_sesion_ids(self):
         for record in self:
-            record.tipo_sesion_ids = record.sesion_ids.mapped('tipo_sesion_id')"""
+            record.tipo_sesion_ids = record.sesion_ids.mapped('tipo_sesion_id')
+
+    @api.depends('sesion_ids.fDuracion')
+    def _compute_horas_impartidas(self):
+        for record in self:
+            record.fHoras_impartidas = sum(record.sesion_ids.mapped('fDuracion'))
 
     # Una persona solo puede ser un profesor una vez
     _sql_constraints = [
