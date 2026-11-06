@@ -141,3 +141,17 @@ class Asignatura(models.Model):
         for record in self:
             record.iNum_sesiones = len(record.sesion_ids)
             record.fHoras_programadas = sum(record.sesion_ids.mapped('fDuracion'))
+            
+    # PR Expediente: 
+    
+    # Una asignatura está registrada en muchos expedientes (0,N)
+    # Usa la misma tabla que el asignatura_ids de Expediente
+    expediente_ids = fields.Many2many('uprofe.expediente', 'uprofe_asignatura_expediente_rel', 'asignatura_id', 'expediente_id', string="Expedientes")
+
+    # Alumnos que la han superado. Campo calculado
+    iNum_superada = fields.Integer(string="Alumnos que la han superado", compute='_compute_num_superada')
+
+    @api.depends('expediente_ids')
+    def _compute_num_superada(self):
+        for record in self:
+            record.iNum_superada = len(record.expediente_ids)
