@@ -5,43 +5,37 @@ class financiacion(models.Model):
     _name = 'uprofe.financiacion'
     _descripcion = 'Financiación de los proyectos de investigación'
     
-    name = fields.Char(string="Código de la financiación", required=True)
-    importe = fields.Float(string="Importe", digits="Account", required=True)
-    fecha_concesion = fields.Datetime(string="Fecha de concesión", autodate=True, required=True)
+    sName = fields.Char(string="Código de la financiación", required=True)
+    fImporte = fields.Float(string="Importe", digits="Account", required=True)
+    dFecha_concesion = fields.Datetime(string="Fecha de concesión", autodate=True, required=True)
     
-    proyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigación", required=True)
+    iProyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigación", required=True)
     iEmpresa_id = fields.Many2one('uprofe.empresa', string="Empresa financiadora", required=True)
-    persona_ids = fields.Many2many('uprofe.persona', string="Personas financiadas")
+    lPersona_ids = fields.Many2many('uprofe.persona', string="Personas financiadas")
     
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name, '=ilike', 'name')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.sName, '=ilike', 'sName')]):
                 raise ValidationError("Ya existe una financiación con este código, debe ser único.")
     
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_codigo_valido(self):
         for record in self:
-            if len(record.name.strip()) == 0:
+            if len(record.sName.strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
-    @api.constrains('entidad_financiadora')
-    def _check_entidad_valida(self):
-        for record in self:
-            if len(record.entidad_financiadora.strip()) == 0:
-                raise ValidationError("La entidad financiadora no puede estar vacía.")
-            
-    @api.constrains('importe')
+    @api.constrains('fImporte')
     def _check_importe_valido(self):
         for record in self:
-            if record.importe <= 0:
+            if record.fImporte <= 0:
                 raise ValidationError("El importe no puede ser 0 o negativo")
             
-    @api.onchange('importe')
+    @api.onchange('fImporte')
     def _onchange_importe_valido(self):
-        if self.importe <= 0:
+        if self.fImporte <= 0:
             return {
-                'value': {'importe': 1000},
+                'value': {'fImporte': 1000},
                 'warning': {
                     'title': "Importe no válido",
                     'message': "El importe no puede ser menor o igual a 0."
