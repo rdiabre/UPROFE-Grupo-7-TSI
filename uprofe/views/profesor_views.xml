@@ -1,6 +1,6 @@
 <odoo>
     <!-- List -->
-    <record id="view_profesor_tree" model="ir.ui.view">
+    <record id="view_profesor_list" model="ir.ui.view">
         <field name="name">uprofe.profesor.list</field>
         <field name="model">uprofe.profesor</field>
         <field name="arch" type="xml">
