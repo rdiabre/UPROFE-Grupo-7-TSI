@@ -9,3 +9,6 @@ from . import profesor
 from . import sesion
 from . import tipo_sesion
 from . import expediente
+from . import acta
+from . import linea_acta
+    
