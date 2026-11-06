@@ -1,4 +1,23 @@
 <odoo>
+    <record id="uprofe_linea_investigacion_kanban_view" model="ir.ui.view">
+        <field name="name">uprofe.linea_investigacion.kanban</field>
+        <field name="model">uprofe.linea_investigacion</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="iGrupo_inv_id">
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="sNombre"/></strong>
+                            <div>Código: <field name="sName"/></div>
+                            <div>PDIs: <field name="lProfesor_ids" widget="many2many_tags"/></div>
+                            <div>Investigadores: <field name="lInvestigador_ids" widget="many2many_tags"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="uprofe_linea_investigacion_form_view" model="ir.ui.view">
         <field name="name">uprofe.linea_investigacion.form</field>
         <field name="model">uprofe.linea_investigacion</field>
@@ -32,7 +51,7 @@
     <record id="linea_investigacion_list_action" model="ir.actions.act_window">
         <field name="name">Líneas de investigación</field>
         <field name="res_model">uprofe.linea_investigacion</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Añade la primera línea de investigación</p>
         </field>
