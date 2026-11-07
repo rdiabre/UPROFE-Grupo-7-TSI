@@ -31,4 +31,18 @@
             </form>
         </field>
     </record>
+
+    <record id="uprofe_libro_inv_list_view" model="ir.ui.view">
+        <field name="name">uprofe.libro_inv.list</field>
+        <field name="model">uprofe.libro_inv</field>
+        <field name="arch" type="xml">
+            <list string="Libros de investigación">
+                <field name="sName"/>
+                <field name="sTitulo"/>
+                <field name="dFecha_publicacion"/>
+                <field name="sIsbn"/>
+                <field name="sEditorial"/>
+            </list>
+        </field>
+    </record>
 </odoo>
