@@ -10,3 +10,9 @@ class congreso(models.Model):
     
     sNombre_congreso = fields.Char('uprofe.congreso', required=True)
     sLugar = fields.Char(string="Lugar del congreso", required=True)
+    
+    @api.constrains('sNombre_congreso')
+    def _check_nombre_congreso_valido(self):
+        for record in self:
+            if record.sNombre_congreso.strip() == "":
+                raise ValidationError("El nombre del congreso no puede estar vacío.")
