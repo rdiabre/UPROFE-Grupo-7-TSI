@@ -11,7 +11,7 @@ TIPOS_PUBLICACION = [
 class articulo(models.Model):
     _name = 'uprofe.articulo'
     _description = "Artículo científicos"
-    _inherits = {'uprofe.publicacion': 'publicacion_id'}
+    _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
     
     iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete='cascade')
     
