@@ -31,4 +31,18 @@
             </form>
         </field>
     </record>
+
+    <record id="uprofe_congreso_list_view" model="ir.ui.view">
+        <field name="name">uprofe.congreso.list</field>
+        <field name="model">uprofe.congreso</field>
+        <field name="arch" type="xml">
+            <list string="Aportaciones a congreso">
+                <field name="sName"/>
+                <field name="sTitulo"/>
+                <field name="dFecha_publicacion"/>
+                <field name="sNombre_congreso"/>
+                <field name="sLugar"/>
+            </list>
+        </field>
+    </record>
 </odoo>
