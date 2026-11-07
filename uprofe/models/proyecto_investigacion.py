@@ -8,7 +8,7 @@ class proyecto_investigacion(models.Model):
     sName = fields.Char(string="Código", required=True)
     sTitulo = fields.Char(string="Título", required=True)
     # Pasar más adelante a valor autocalculado por la suma de la financiación asociada
-    fPresupuesto = fields.Float(string="Presupuesto" compute='_compute_presupuesto')
+    fPresupuesto = fields.Float(string="Presupuesto", compute='_compute_presupuesto')
     dFecha_inicio = fields.Datetime(string="Fecha de inicio", autodate=True, required=True)
     dFecha_fin = fields.Datetime(string="Fecha de fin", required=True)
     
