@@ -40,7 +40,7 @@
                 <field name="sName"/>
                 <field name="sTitulo"/>
                 <field name="sRevista"/>
-                <field name="fecha_publicacion"/>
+                <field name="dFecha_publicacion"/>
                 <field name="sDoi"/>
             </list>
         </field>
