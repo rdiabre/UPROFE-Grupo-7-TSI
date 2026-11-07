@@ -77,3 +77,12 @@ class Profesor(models.Model):
                             'message': 'Ya existe un profesor con este DNI.',
                         }
                     }
+    
+    selDoctor = fields.Selection([('no', 'No doctor'), ('si', 'Doctor')], string="¿Doctor?", compute='_compute_pivot', store=True)
+    selTutor_interno = fields.Selection([('no', 'No es tutor interno'), ('si', 'Tutor interno')], string="¿Tutor interno?", compute='_compute_pivot', store=True)
+
+    @api.depends('bDoctor', 'bTutor_interno')
+    def _compute_pivot(self):
+        for record in self:
+            record.selDoctor = 'si' if record.bDoctor else 'no'
+            record.selTutor_interno = 'si' if record.bTutor_interno else 'no'
