@@ -15,7 +15,7 @@ class Usuario(models.Model):
     sName = fields.Char(string="Nombre de usuario", size=50, required=True)
     sCorreo = fields.Char(string="Correo electrónico", required=True)
     sContrasena = fields.Char(string="Contraseña", required=True)
-    sCepetir_contrasena = fields.Char(string="Repetir contraseña", required=True, store=False)
+    sRepetir_contrasena = fields.Char(string="Repetir contraseña", required=True, store=False)
     # True si está activa False si no
     bEstado_cuenta = fields.Boolean(string="Activo", default=False)
     dUltimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
