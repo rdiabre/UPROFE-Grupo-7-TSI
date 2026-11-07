@@ -1,0 +1,74 @@
+<odoo>
+    <!-- Vista de lista -->
+    <record id="view_convenio_list" model="ir.ui.view">
+        <field name="name">uprofe.convenio.list</field>
+        <field name="model">uprofe.convenio</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sName"/>
+                <field name="dFechaFirma"/>
+                <field name="dFechaFin"/>
+                <field name="oEstadoConvenio_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+    <record id="view_convenio_form" model="ir.ui.view">
+        <field name="name">uprofe.convenio.form</field>
+        <field name="model">uprofe.convenio</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sName"/>
+                            <field name="oEstadoConvenio_id"/>
+                        </group>
+                        <group>
+                            <field name="dFechaFirma"/>
+                            <field name="dFechaFin"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista calendar (avanzada) -->
+    <record id="view_convenio_calendar" model="ir.ui.view">
+        <field name="name">uprofe.convenio.calendar</field>
+        <field name="model">uprofe.convenio</field>
+        <field name="arch" type="xml">
+            <calendar string="Convenios" date_start="dFechaFirma" date_stop="dFechaFin" mode="month" color="oEstadoConvenio_id">
+                <field name="sName"/>
+                <field name="oEstadoConvenio_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Búsqueda -->
+    <record id="view_convenio_search" model="ir.ui.view">
+        <field name="name">uprofe.convenio.search</field>
+        <field name="model">uprofe.convenio</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sName"/>
+                <field name="oEstadoConvenio_id"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'oEstadoConvenio_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="convenio_list_action" model="ir.actions.act_window">
+        <field name="name">Convenios</field>
+        <field name="res_model">uprofe.convenio</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea el primer convenio</p>
+        </field>
+    </record>
+</odoo>
