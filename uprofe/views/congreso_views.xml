@@ -1,0 +1,34 @@
+<odoo>
+    <record id="uprofe_congreso_form_view" model="ir.ui.view">
+        <field name="name">uprofe.congreso.form</field>
+        <field name="model">uprofe.congreso</field>
+        <field name="arch" type="xml">
+            <form string="Congreso">
+                <sheet>
+                    <group>
+                        <group string="Datos de la publicación">
+                            <field name="sName"/>
+                            <field name="sTitulo"/>
+                            <field name="dFecha_publicacion"/>
+                        </group>
+                        <group string="Datos del congreso">
+                            <field name="sNombre_congreso"/>
+                            <field name="sLugar"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Autores">
+                            <group>
+                                <field name="lProfesor_ids" widget="many2many_tags"/>
+                                <field name="lInvestigador_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Proyecto">
+                            <field name="iProyecto_id"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
