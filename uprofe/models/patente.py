@@ -2,6 +2,13 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 import re
 
+TIPOS_PUBLICACION = [
+    'uprofe.articulo',
+    'uprofe.libro_inv',
+    'uprofe.patente',
+    'uprofe.congreso',
+]
+
 class patente(models.Model):
     _name = 'uprofe.patente'
     _description = "Patente"
@@ -25,3 +32,13 @@ class patente(models.Model):
         for record in self:
             if not re.match(regex_ompi, record.sNumero_patente):
                 raise ValidationError("Formato no válido. El número de patente debe seguir el formato OMPI")
+            
+    @api.constrains('iPublicacion_id')
+    def _check_publicacion_valida(self):
+        for record in self:
+            for modelo in TIPOS_PUBLICACION:
+                dominio = [('iPublicacion_id', '=', record.iPublicacion_id.id)]
+                if modelo == record._name:
+                    dominio.append(('id', '!=', record.id))
+                if self.env[modelo].sudo().search_count(dominio):
+                    raise ValidationError(f"La publicación {record.iPublicacion_id.name} ya está asociada a un registro de {modelo}.")
