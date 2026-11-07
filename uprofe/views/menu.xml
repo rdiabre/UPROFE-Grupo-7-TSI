@@ -5,4 +5,5 @@
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
     <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
+    <menuitem name="Sesiones" id="sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sesion_list_action"/>
 </odoo>

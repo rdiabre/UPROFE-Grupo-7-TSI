@@ -27,6 +27,7 @@ Descripción del módulo
         'views/persona_views.xml',
         'views/profesor_views.xml',
         'views/tipo_sesion_views.xml',
+        'views/sesion_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
