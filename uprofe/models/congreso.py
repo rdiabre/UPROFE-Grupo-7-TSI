@@ -7,3 +7,6 @@ class congreso(models.Model):
     _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
     
     iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete="cascade")
+    
+    sNombre_congreso = fields.Char('uprofe.congreso', required=True)
+    sLugar = fields.Char(string="Lugar del congreso", required=True)
