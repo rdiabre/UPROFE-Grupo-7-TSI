@@ -16,7 +16,7 @@ class linea_investigacion(models.Model):
     @api.constrains('sName')
     def _check_name_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name.strip(), '=ilike', 'sName')]):
+            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', record.sName.strip())]):
                 raise ValidationError("Ya existe una línea con ese código, debe ser único.")
             
     @api.constrains('sName')
