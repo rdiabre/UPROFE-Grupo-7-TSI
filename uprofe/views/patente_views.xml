@@ -31,4 +31,18 @@
             </form>
         </field>
     </record>
+
+    <record id="uprofe_patente_list_view" model="ir.ui.view">
+        <field name="name">uprofe.patente.list</field>
+        <field name="model">uprofe.patente</field>
+        <field name="arch" type="xml">
+            <list string="Patentes">
+                <field name="sName"/>
+                <field name="sTitulo"/>
+                <field name="dFecha_publicacion"/>
+                <field name="sNumero_patente"/>
+                <field name="dFecha_concesion"/>
+            </list>
+        </field>
+    </record>
 </odoo>
