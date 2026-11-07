@@ -36,21 +36,3 @@ class articulo(models.Model):
             'Esta publicación ya es un artículo.'
         )
     ]
-    
-    def write(self, vals):
-        self._strip_string_values(vals)
-        return super().write(vals)
-    
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            self._strip_string_values(vals)
-        return super().create(vals_list)
-
-    def _strip_string_values(self, vals):
-        for field_name, val in vals.items():
-            if isinstance(val, str):
-                field = self._fields.get(field_name)
-                if field and field.type in ('char', 'text'):
-                    vals[field_name] = val.strip()
-        return vals
