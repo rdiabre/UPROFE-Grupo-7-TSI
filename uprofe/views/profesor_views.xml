@@ -72,8 +72,8 @@
         <field name="model">uprofe.profesor</field>
         <field name="arch" type="xml">
             <pivot string="Profesores">
-                <field name="bDoctor" type="row"/>
-                <field name="bTutor_interno" type="col"/>
+                <field name="selDoctor" type="row"/>
+                <field name="selTutor_interno" type="col"/>
             </pivot>
         </field>
     </record>
