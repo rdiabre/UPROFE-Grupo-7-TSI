@@ -27,7 +27,7 @@ class articulo(models.Model):
     @api.constrains('sDoi')
     def _check_doi_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.sDoi.strip(), '=ilike', 'sDoi')]):
+            if self.search_count([('id', '!=', record.id), ('sDoi', '=ilike', record.sDoi.strip())]):
                 raise ValidationError("Ya existe un artículo con este doi, debe ser único.")
     
     @api.constrains('sDoi')
