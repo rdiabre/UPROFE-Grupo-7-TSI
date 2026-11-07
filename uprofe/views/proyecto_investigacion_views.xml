@@ -1,0 +1,22 @@
+<odoo>
+    <record id="uprofe_proyecto_investigacion_form_view" model="ir.ui.view">
+        <field name="name">uprofe.proyecto_investigacion.form</field>
+        <field name="model">uprofe.proyecto_investigacion</field>
+        <field name="arch" type="xml">
+            <form string="Proyectos de investigación">
+                <sheet layout="auto">
+                    <group>
+                        <field name="sName" />
+                        <field name="sTitulo" />
+                        <field name="fPresupuesto" />
+                        <field name="dFecha_inicio" />
+                        <field name="dFecha_fin" />
+                        <field name="iGrupo_inv_id" widget="many2one" />
+                        <field name="lFinanciacion_ids" widget="one2many" />
+                        <field name="lPublicacion_ids" widget="one2many" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
