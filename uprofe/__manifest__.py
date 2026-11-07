@@ -24,7 +24,12 @@ Descripción del módulo
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+<<<<<<< Updated upstream
         'views/menu.xml'
+=======
+        'views/menu.xml',
+        'views/libro_views.xml'
+>>>>>>> Stashed changes
     ],
     # only loaded in demonstration mode
     'demo': [
