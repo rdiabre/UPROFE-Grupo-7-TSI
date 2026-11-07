@@ -4,3 +4,4 @@ pais_manager,pais_manager,model_uprofe_pais,group_uprofe_manager,1,1,1,1
 estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_convocatoria,group_uprofe_manager,1,1,1,1
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
+articulo_manager,articulo_manager,model_uprofe_articulo,group_uprofe_manager,1,1,1,1
