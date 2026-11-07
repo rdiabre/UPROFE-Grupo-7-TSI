@@ -25,6 +25,7 @@ Descripción del módulo
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/persona_views.xml',
+        'views/doc_adjunta_views.xml'
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
