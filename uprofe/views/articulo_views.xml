@@ -31,4 +31,18 @@
             </form>
         </field>
     </record>
+
+    <record id="uprofe_articulo_list_view" model="ir.ui.view">
+        <field name="name">uprofe.articulo.list</field>
+        <field name="model">uprofe.articulo</field>
+        <field name="arch" type="xml">
+            <list string="Artículos">
+                <field name="sName"/>
+                <field name="sTitulo"/>
+                <field name="sRevista"/>
+                <field name="fecha_publicacion"/>
+                <field name="sDoi"/>
+            </list>
+        </field>
+    </record>
 </odoo>
