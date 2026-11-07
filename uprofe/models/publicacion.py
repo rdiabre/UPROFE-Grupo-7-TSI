@@ -5,30 +5,30 @@ class publicacion(models.Model):
     _name = 'uprofe.publicacion'
     _description = "Publicación científica"
     
-    name = fields.Char(string="Código", required=True)
-    titulo = fields.Char(string="Título", required=True)
-    fecha_publicacion = fields.Datetime(string="Fecha de publicación", autodate=True, required=True)
+    sName = fields.Char(string="Código", required=True)
+    sTitulo = fields.Char(string="Título", required=True)
+    dFecha_publicacion = fields.Datetime(string="Fecha de publicación", autodate=True, required=True)
     
-    proyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigacion")
-    profesor_ids = fields.Many2many('uprofe.profesor', string="Profesores")
-    investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
+    iProyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigacion")
+    lProfesor_ids = fields.Many2many('uprofe.profesor', string="Profesores")
+    lInvestigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
     
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.name, '=ilike', 'name')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.sName, '=ilike', 'sName')]):
                 raise ValidationError("El código de la publicación ya está utilizado, debe ser único.")
     
-    @api.constrains('name')
+    @api.constrains('sName')
     def _check_codigo_valido(self):
         for record in self:
-            if len(record.name.strip()) == 0:
+            if len(record.sName.strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
-    @api.constrains('titulo')
+    @api.constrains('sTitulo')
     def _check_titulo_valido(self):
         for record in self:
-            if len(record.titulo.strip()) == 0:
+            if len(record.sTitulo.strip()) == 0:
                 raise ValidationError("El título no puede estar vacío.")
 
     def write(self, vals):
