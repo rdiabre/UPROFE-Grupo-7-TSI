@@ -6,27 +6,27 @@ class articulo(models.Model):
     _description = "Artículo científicos"
     _inherits = {'uprofe.publicacion': 'publicacion_id'}
     
-    publicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete='cascade')
+    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete='cascade')
     
-    revista = fields.Char(string="Revista", required=True)
-    doi = fields.Char(string="DOI", required=True)
+    sRevista = fields.Char(string="Revista", required=True)
+    sDoi = fields.Char(string="DOI", required=True)
     
-    @api.constrains('revista')
+    @api.constrains('sRevista')
     def _check_revista_valido(self):
         for record in self:
-            if len(record.revista.strip()) == 0:
+            if len(record.sRevista.strip()) == 0:
                 raise ValidationError("El nombre del artículo no puede estar vacío.")
             
-    @api.constrains('doi')
+    @api.constrains('sDoi')
     def _check_doi_unico(self):
         for record in self:
-            if self.search_count([(record.id, '!=', 'id'), (record.doi.strip(), '=ilike', 'doi')]):
+            if self.search_count([(record.id, '!=', 'id'), (record.sDoi.strip(), '=ilike', 'sDoi')]):
                 raise ValidationError("Ya existe un artículo con este doi, debe ser único.")
     
-    @api.constrains('doi')
+    @api.constrains('sDoi')
     def _check_doi_valido(self):
         for record in self:
-            if len(record.doi.strip()) == 0:
+            if len(record.sDoi.strip()) == 0:
                 raise ValidationError("El DOI no puede estar vacío.")
     
     _sql_constraints = [
