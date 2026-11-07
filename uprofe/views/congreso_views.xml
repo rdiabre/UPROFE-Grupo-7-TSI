@@ -3,7 +3,7 @@
         <field name="name">uprofe.congreso.form</field>
         <field name="model">uprofe.congreso</field>
         <field name="arch" type="xml">
-            <form string="Congreso">
+            <form string="Aportación a congreso">
                 <sheet>
                     <group>
                         <group string="Datos de la publicación">
@@ -43,6 +43,15 @@
                 <field name="sNombre_congreso"/>
                 <field name="sLugar"/>
             </list>
+        </field>
+    </record>
+
+    <record id="congreso_list_action" model="ir.actions.act_window">
+        <field name="name">Aportaciones a congreso</field>
+        <field name="res_model">uprofe.congreso</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Añade la primera aportación a congreso</p>
         </field>
     </record>
 </odoo>
