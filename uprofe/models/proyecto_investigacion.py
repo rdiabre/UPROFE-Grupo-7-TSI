@@ -8,7 +8,7 @@ class proyecto_investigacion(models.Model):
     sName = fields.Char(string="Código", required=True)
     sTitulo = fields.Char(string="Título", required=True)
     # Pasar más adelante a valor autocalculado por la suma de la financiación asociada
-    fPresupuesto = fields.Float(string="Presupuesto", digits="Account", required=True)
+    fPresupuesto = fields.Float(string="Presupuesto" compute='_compute_presupuesto')
     dFecha_inicio = fields.Datetime(string="Fecha de inicio", autodate=True, required=True)
     dFecha_fin = fields.Datetime(string="Fecha de fin", required=True)
     
@@ -63,6 +63,11 @@ class proyecto_investigacion(models.Model):
                         'message': 'La fecha de fin debe ser posterior a la fecha de inicio.'
                     }
                 }
+                
+    @api.depends('lFinanciacion_ids')
+    def _compute_presupuesto(self):
+        for record in self:
+            record.presupuesto = sum(record.lFinanciacion_ids.mapped('fImporte'))
     
     def write(self, vals):
         self._strip_string_values(vals)
