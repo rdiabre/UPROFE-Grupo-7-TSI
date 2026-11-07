@@ -3,4 +3,5 @@
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    <menuitem name="Estados de acuerdo" id="estado_acuerdo_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_acuerdo_list_action"/>
 </odoo>
