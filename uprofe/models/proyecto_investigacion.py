@@ -13,8 +13,8 @@ class proyecto_investigacion(models.Model):
     dFecha_fin = fields.Datetime(string="Fecha de fin", required=True)
     
     iGrupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
-    lFinanciacion_ids = fields.One2many('uprofe.financiacion', 'proyecto_investigacion_id', "Financiaciones")
-    lPublicacion_ids = fields.One2many('uprofe.publicacion', 'proyecto_investigacion_id', "Publicaciones")
+    lFinanciacion_ids = fields.One2many('uprofe.financiacion', 'iProyecto_investigacion_id', "Financiaciones")
+    lPublicacion_ids = fields.One2many('uprofe.publicacion', 'iProyecto_investigacion_id', "Publicaciones")
     
     @api.constrains('sName')
     def _check_codigo_unico(self):
