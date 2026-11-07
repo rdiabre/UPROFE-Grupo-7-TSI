@@ -1,5 +1,0 @@
-<odoo>
-    <record id="group_uprofe_manager" model="res.groups">
-        <field name="name">UPROFE / Manager</field>
-    </record>
-</odoo>
