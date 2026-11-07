@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from . import financiacion
 from . import usuario
 from . import pais
 from . import estado_convocatoria
