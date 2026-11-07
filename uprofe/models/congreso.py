@@ -16,3 +16,9 @@ class congreso(models.Model):
         for record in self:
             if record.sNombre_congreso.strip() == "":
                 raise ValidationError("El nombre del congreso no puede estar vacío.")
+            
+    @api.constrains('sLugar')
+    def _check_lugar_valido(self):
+        for record in self:
+            if record.sLugar.strip() == "":
+                raise ValidationError("El lugar no puede estar vacío.")
