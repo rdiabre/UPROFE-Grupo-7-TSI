@@ -1,0 +1,84 @@
+<odoo>
+    <!-- Vista de lista -->
+    <record id="view_solicitud_list" model="ir.ui.view">
+        <field name="name">uprofe.solicitud.list</field>
+        <field name="model">uprofe.solicitud</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sName"/>
+                <field name="dFechaSolicitud"/>
+                <field name="oTipoSolicitud_id"/>
+                <field name="oEstadoSolicitud_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+    <record id="view_solicitud_form" model="ir.ui.view">
+        <field name="name">uprofe.solicitud.form</field>
+        <field name="model">uprofe.solicitud</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sName"/>
+                            <field name="dFechaSolicitud"/>
+                        </group>
+                        <group>
+                            <field name="oTipoSolicitud_id"/>
+                            <field name="oEstadoSolicitud_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="sObservaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista kanban agrupada por estado (avanzada) -->
+    <record id="view_solicitud_kanban" model="ir.ui.view">
+        <field name="name">uprofe.solicitud.kanban</field>
+        <field name="model">uprofe.solicitud</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="oEstadoSolicitud_id">
+                <templates>
+                    <t t-name="card">
+                        <field name="sName" class="fw-bold fs-5"/>
+                        <field name="oTipoSolicitud_id"/>
+                        <field name="dFechaSolicitud"/>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Búsqueda -->
+    <record id="view_solicitud_search" model="ir.ui.view">
+        <field name="name">uprofe.solicitud.search</field>
+        <field name="model">uprofe.solicitud</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sName"/>
+                <field name="oTipoSolicitud_id"/>
+                <field name="oEstadoSolicitud_id"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tipo" string="Tipo" context="{'group_by': 'oTipoSolicitud_id'}"/>
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'oEstadoSolicitud_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="solicitud_list_action" model="ir.actions.act_window">
+        <field name="name">Solicitudes</field>
+        <field name="res_model">uprofe.solicitud</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea la primera solicitud</p>
+        </field>
+    </record>
+</odoo>
