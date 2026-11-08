@@ -1,0 +1,62 @@
+
+<odoo>
+
+
+    <record id="view_edificio_list" model="ir.ui.view">
+        <field name="name">uprofe.edificio.list</field>
+        <field name="model">uprofe.edificio</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sNumero_edificio" />
+                <field name="sNombre" />
+                <!-- <field name="ubicacion_id" />-->
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_edificio_form" model="ir.ui.view">
+        <field name="name">uprofe.edificio.form</field>
+        <field name="model">uprofe.edificio</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sNumero_edificio" />
+                            <field name="sNombre" />
+                        </group>
+                        <!-- <group>
+                            <field name="ubicacion_id" />
+                        </group> --> 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_edificio_search" model="ir.ui.view">
+        <field name="name">uprofe.edificio.search</field>
+        <field name="model">uprofe.edificio</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sNumero_edificio" />
+                <field name="sNombre" />
+                <!--<field name="ubicacion_id" /> -->
+            </search>
+        </field>
+    </record>
+
+    <record id="edificio_list_action" model="ir.actions.act_window">
+        <field name="name">Edificios</field>
+        <field name="res_model">uprofe.edificio</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea el primer edificio
+            </p>
+        </field>
+    </record>
+
+</odoo>
