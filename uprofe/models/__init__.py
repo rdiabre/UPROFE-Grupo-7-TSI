@@ -6,3 +6,4 @@ from . import estado_convenio
 from . import persona
 from . import tutor_externo
 from . import seguimiento_practica
+from . import acuerdo
