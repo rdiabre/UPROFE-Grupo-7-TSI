@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Vistas de lista -->
     <record id="view_uprofe_pregunta_list" model="ir.ui.view">
         <field name="name">uprofe.pregunta.list</field>
         <field name="model">uprofe.pregunta</field>
@@ -13,6 +14,7 @@
         </field>
     </record>
 
+    <!-- Vista de formulario -->
     <record id="view_uprofe_pregunta_form" model="ir.ui.view">
         <field name="name">uprofe.pregunta.form</field>
         <field name="model">uprofe.pregunta</field>
@@ -44,6 +46,7 @@
         </field>
     </record>
 
+    <!-- busqueda -->
     <record id="view_uprofe_pregunta_search" model="ir.ui.view">
         <field name="name">uprofe.pregunta.search</field>
         <field name="model">uprofe.pregunta</field>
@@ -61,6 +64,7 @@
         </field>
     </record>
 
+    <!-- accion -->
     <record id="action_uprofe_pregunta" model="ir.actions.act_window">
         <field name="name">Preguntas</field>
         <field name="res_model">uprofe.pregunta</field>

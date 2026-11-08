@@ -13,7 +13,6 @@ class Pregunta(models.Model):
     name = fields.Char(string='Texto de la pregunta', required=True)
     sopciones = fields.Text(string='Opciones (una por línea)')
 
-    # TIPO_RESPUESTA del ER: modelo propio, para poder añadir tipos desde la interfaz
     tipo_respuesta_id = fields.Many2one('uprofe.tipo_respuesta', string='Tipo de respuesta',
                                         required=True, ondelete='restrict')
     bconopciones = fields.Boolean(related='tipo_respuesta_id.bconopciones')

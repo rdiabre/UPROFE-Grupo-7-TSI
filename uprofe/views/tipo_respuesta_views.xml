@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Vistas de listas -->
     <record id="view_uprofe_tipo_respuesta_list" model="ir.ui.view">
         <field name="name">uprofe.tipo_respuesta.list</field>
         <field name="model">uprofe.tipo_respuesta</field>
@@ -11,6 +12,7 @@
         </field>
     </record>
 
+    <!-- Vistas de formulario -->
     <record id="view_uprofe_tipo_respuesta_form" model="ir.ui.view">
         <field name="name">uprofe.tipo_respuesta.form</field>
         <field name="model">uprofe.tipo_respuesta</field>
@@ -26,7 +28,7 @@
         </field>
     </record>
 
-    <!-- Vista avanzada-->
+    <!-- Vista avanzada -->
     <record id="view_uprofe_tipo_respuesta_graph" model="ir.ui.view">
         <field name="name">uprofe.tipo_respuesta.graph</field>
         <field name="model">uprofe.tipo_respuesta</field>
@@ -37,6 +39,7 @@
         </field>
     </record>
 
+    <!-- accion -->
     <record id="action_uprofe_tipo_respuesta" model="ir.actions.act_window">
         <field name="name">Tipos de respuesta</field>
         <field name="res_model">uprofe.tipo_respuesta</field>

@@ -26,12 +26,10 @@ class Encuesta(models.Model):
     pregunta_ids = fields.One2many('uprofe.pregunta', 'encuesta_id', string='Preguntas')
 
     # Descomento cuando uprofe.asignatura esté en main
-    # trata sobre (0,1): una encuesta trata sobre como mucho una asignatura
     # asignatura_id = fields.Many2one('uprofe.asignatura', string='Asignatura',
     #                                 ondelete='set null')
 
     # Descomento cuando uprofe.profesor esté en main
-    # revisa (1,1): cada encuesta la revisa exactamente un profesor
     # profesor_id = fields.Many2one('uprofe.profesor', string='Profesor revisor',
     #                               required=True, ondelete='restrict')
 
