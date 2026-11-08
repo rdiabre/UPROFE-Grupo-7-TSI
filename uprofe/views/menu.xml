@@ -7,4 +7,5 @@
     <menuitem name="Acuerdos de prácticas" id="menu_uprofe_acuerdo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_acuerdo" sequence="70"/>
     <menuitem name="Seguimientos de práctica" id="menu_uprofe_seguimiento_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_seguimiento_practica" sequence="80"/>
     <menuitem name="Convenios de prácticas" id="menu_uprofe_convenio_empresa" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_convenio_empresa" sequence="50"/>
+    <menuitem name="Empresas" id="menu_uprofe_empresa" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_empresa" sequence="40"/>
 </odoo>
