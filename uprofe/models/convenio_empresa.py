@@ -18,9 +18,8 @@ class ConvenioEmpresa(models.Model):
     estado_convenio_id = fields.Many2one('uprofe.estado_convenio', string='Estado',
                                          required=True, ondelete='restrict')
 
-    # Descomento cuando uprofe.oferta_practica esté en main (regulada. Depende de #37)
-    # oferta_ids = fields.One2many('uprofe.oferta_practica', 'convenio_id',
-    #                              string='Ofertas de práctica')
+    oferta_ids = fields.One2many('uprofe.oferta_practica', 'convenio_id',
+                                  string='Ofertas de práctica')
 
     # constrains 
     @api.constrains('snum_convenio_practicas')
