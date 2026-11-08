@@ -24,7 +24,9 @@ Descripción del módulo
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/menu.xml'
+        'views/persona_views.xml',
+        'views/menu.xml',
+        'views/catalogos_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
