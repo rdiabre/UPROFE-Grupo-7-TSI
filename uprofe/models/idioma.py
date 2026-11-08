@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class Idioma(models.Model):
     _name = 'uprofe.idioma'
     _description = 'Idioma'
+    _rec_name = 'sName'
 
     sName = fields.Char(string="Nombre del idioma", size=50, required=True)
 
@@ -27,3 +28,13 @@ class Idioma(models.Model):
                 raise ValidationError(
                     "El nombre del idioma solo puede contener letras, espacios y guiones."
                 )
+
+    @api.constrains('sName')
+    def _check_nombre_unico_ci(self):
+        for record in self:
+            repetido = self.search_count([
+                ('sName', '=ilike', (record.sName or '').strip()),
+                ('id', '!=', record.id),
+            ])
+            if repetido:
+                raise ValidationError("Ya existe un idioma con ese nombre.")
