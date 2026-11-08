@@ -23,8 +23,7 @@ class Tasa(models.Model):
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno',
     #                             required=True, ondelete='restrict')
 
-    # TASA se abona RECIBO. Descomento cuando exista uprofe.recibo
-    # recibo_ids = fields.One2many('uprofe.recibo', 'tasa_id', string='Recibos')
+    recibo_ids = fields.One2many('uprofe.recibo', 'tasa_id', string='Recibos')
 
     # constrains
     @api.constrains('snum_liquidacion')
