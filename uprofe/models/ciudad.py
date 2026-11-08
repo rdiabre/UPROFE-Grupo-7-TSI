@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class Ciudad(models.Model):
     _name = 'uprofe.ciudad'
     _description = 'Ciudad'
+    _rec_name = 'sName'
 
     sName = fields.Char(string="Nombre de la ciudad", size=50, required=True)
     sDescription = fields.Char(string="Descripción de la ciudad", size=150)
