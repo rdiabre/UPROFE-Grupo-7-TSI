@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VISTA FORM -->
+    <record id="view_prestamo_form" model="ir.ui.view">
+        <field name="name">uprofe.prestamo.form</field>
+        <field name="model">uprofe.prestamo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="num_prestamo"/>
+                            <field name="alumno_id"/>
+                            <field name="libro_id"/>
+                        </group>
+                        <group>
+                            <field name="fecha_prestamo"/>
+                            <field name="fecha_devolucion"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- VISTA LIST -->
+    <record id="view_prestamo_list" model="ir.ui.view">
+        <field name="name">uprofe.prestamo.list</field>
+        <field name="model">uprofe.prestamo</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="num_prestamo"/>
+                <field name="alumno_id"/>
+                <field name="libro_id"/>
+                <field name="fecha_prestamo"/>
+                <field name="fecha_devolucion"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- VISTA KANBAN -->
+    <record id="view_prestamo_kanban" model="ir.ui.view">
+        <field name="name">uprofe.prestamo.kanban</field>
+        <field name="model">uprofe.prestamo</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="num_prestamo"/>
+                <field name="alumno_id"/>
+                <field name="libro_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong>Préstamo: <field name="num_prestamo"/></strong>
+                            <div>Alumno: <field name="alumno_id"/></div>
+                            <div>Libro: <field name="libro_id"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ACCIÓN -->
+    <record id="action_uprofe_prestamo" model="ir.actions.act_window">
+        <field name="name">Préstamos</field>
+        <field name="res_model">uprofe.prestamo</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+
+    <!-- MENÚ -->
+    <menuitem id="menu_uprofe_prestamo" 
+              name="Préstamos" 
+              parent="uprofe_menu" 
+              action="action_uprofe_prestamo" 
+              sequence="30"/>
+</odoo>
