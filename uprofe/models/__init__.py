@@ -12,3 +12,4 @@ from . import estado_la_linea
 from . import tutor_externo
 from . import seguimiento_practica
 from . import acuerdo
+from . import seguimiento_alu_int
