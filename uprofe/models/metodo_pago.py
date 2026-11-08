@@ -9,8 +9,7 @@ class MetodoPago(models.Model):
     
     name = fields.Char(string='Método de pago', required=True)  # PK
 
-    # Descomento cuando exista uprofe.recibo
-    # recibo_ids = fields.One2many('uprofe.recibo', 'metodo_pago_id', string='Recibos')
+    recibo_ids = fields.One2many('uprofe.recibo', 'metodo_pago_id', string='Recibos')
 
     @api.constrains('name')
     def _check_metodo(self):
