@@ -6,3 +6,4 @@ estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,gro
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
 tasa_manager,tasa_manager,model_uprofe_tasa,group_uprofe_manager,1,1,1,1
 tipo_tasa_manager,tipo_tasa_manager,model_uprofe_tipo_tasa,group_uprofe_manager,1,1,1,1
+metodo_pago_manager,metodo_pago_manager,model_uprofe_metodo_pago,group_uprofe_manager,1,1,1,1

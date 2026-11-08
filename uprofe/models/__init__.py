@@ -6,3 +6,4 @@ from . import estado_convenio
 from . import persona
 from . import tasa
 from . import tipo_tasa
+from . import metodo_pago
