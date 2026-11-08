@@ -38,7 +38,7 @@
                         <page string="Preguntas">
                             <field name="pregunta_ids">
                                 <list editable="bottom">
-                                    <field name="inumpregunta"/>
+                                    <field name="inum_pregunta"/>
                                     <field name="name"/>
                                     <field name="tipo_respuesta_id" options="{'no_quick_create': True}"/>
                                     <field name="bconopciones" column_invisible="1"/>
