@@ -18,14 +18,14 @@ class PlazaErasmus(models.Model):
        required=True,
        ondelete='restrict',
     )
-    
+
     nivel_estudios_id = fields.Many2one(
        'uprofe.nivel_estudios',
        string="Nivel de estudios",
        required=True,
        ondelete='restrict',
     )
-    
+
     idioma_id = fields.Many2one(
        'uprofe.idioma',
        string="Idioma requerido",
@@ -33,12 +33,12 @@ class PlazaErasmus(models.Model):
        ondelete='restrict',
     )
 
-    convocatoria_id = fields.Many2one(
-        'uprofe.convocatoria',
-        string="Convocatoria",
-        required=True,
-        ondelete='restrict',
-    )
+    # convocatoria_id = fields.Many2one(
+    #     'uprofe.convocatoria',
+    #     string="Convocatoria",
+    #     required=True,
+    #     ondelete='restrict',
+    # )
 
     _sql_constraints = [
         ('cod_plaza_unico', 'UNIQUE(cod_plaza)',
