@@ -59,5 +59,5 @@ class LaLinea(models.Model):
     @api.constrains('estado_id', 'fNota')
     def _check_nota_si_convalidada(self):
         for record in self:
-            if record.estado_id.name == 'convalidada' and not record.fNota:
+            if record.estado_id.sName == 'convalidada' and not record.fNota:
                 raise ValidationError("Una línea convalidada necesita tener nota.")

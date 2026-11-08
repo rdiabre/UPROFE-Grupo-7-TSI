@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lista: se usa cuando se abre la_linea desde la pestaña de otro modelo -->
+    <record id="view_uprofe_la_linea_list" model="ir.ui.view">
+        <field name="name">uprofe.la_linea.list</field>
+        <field name="model">uprofe.la_linea</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="learning_agreement_id"/>
+                <field name="iNum_linea"/>
+                <field name="asignatura_destino_id"/>
+                <field name="estado_id"/>
+                <field name="fNota"/>
+                <field name="fCreditos_reconocidos"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Formulario: ventana emergente al abrir una línea -->
+    <record id="view_uprofe_la_linea_form" model="ir.ui.view">
+        <field name="name">uprofe.la_linea.form</field>
+        <field name="model">uprofe.la_linea</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Línea">
+                            <field name="learning_agreement_id"/>
+                            <field name="iNum_linea"/>
+                            <field name="estado_id"/>
+                        </group>
+                        <group string="Asignatura y resultado">
+                            <field name="asignatura_destino_id"/>
+                            <field name="fNota"/>
+                            <field name="fCreditos_reconocidos"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Sin acción ni menú propios: las líneas se editan dentro del
+         formulario del learning agreement (ver la pestaña "Líneas"). -->
+
+</odoo>
