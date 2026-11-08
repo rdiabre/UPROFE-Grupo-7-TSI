@@ -10,3 +10,4 @@ estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,gro
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
 estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
 empresa_manager,empresa_manager,model_uprofe_empresa,group_uprofe_manager,1,1,1,1
+direccion_manager,direccion_manager,model_uprofe_direccion,group_uprofe_manager,1,1,1,1
