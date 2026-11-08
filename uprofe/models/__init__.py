@@ -7,3 +7,4 @@ from . import persona
 from . import tutor_externo
 from . import seguimiento_practica
 from . import acuerdo
+from . import convenio_empresa

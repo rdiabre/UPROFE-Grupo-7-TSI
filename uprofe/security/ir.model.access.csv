@@ -7,3 +7,4 @@ persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,
 tutor_externo_manager,tutor_externo_manager,model_uprofe_tutor_externo,group_uprofe_manager,1,1,1,1
 acuerdo_manager,acuerdo_manager,model_uprofe_acuerdo,group_uprofe_manager,1,1,1,1
 seguimiento_practica_manager,seguimiento_practica_manager,model_uprofe_seguimiento_practica,group_uprofe_manager,1,1,1,1
+convenio_empresa_manager,convenio_empresa_manager,model_uprofe_convenio_empresa,group_uprofe_manager,1,1,1,1
