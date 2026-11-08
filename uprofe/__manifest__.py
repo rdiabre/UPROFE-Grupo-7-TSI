@@ -30,6 +30,7 @@ Descripción del módulo
         'views/metodo_pago_views.xml',
         'views/recibo_views.xml',
         'views/menu.xml',
+        'views/catalogos_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
