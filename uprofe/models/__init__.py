@@ -9,3 +9,4 @@ from . import seguimiento_practica
 from . import acuerdo
 from . import convenio_empresa
 from . import empresa
+from . import oferta_practica
