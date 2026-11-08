@@ -33,6 +33,11 @@
                             <field name="sestado"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Recibos">
+                            <field name="recibo_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
