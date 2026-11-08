@@ -10,8 +10,15 @@ class RespuestaAlumno(models.Model):
 
     pregunta_id = fields.Many2one('uprofe.pregunta', string='Pregunta',
                                   required=True, ondelete='cascade')
-    sTexto_respuesta = fields.Text(string='Respuesta', required=True)
+    stexto_respuesta = fields.Text(string='Respuesta', required=True)
 
+    # Campos de solo lectura de la pregunta para verlos en el formulario
+    # (es stored para poder agrupar y filtrar por encuesta)
+    encuesta_id = fields.Many2one(related='pregunta_id.encuesta_id', string='Encuesta',
+                                  store=True)
+    sopciones = fields.Text(related='pregunta_id.sopciones', string='Opciones disponibles')
+    bconopciones = fields.Boolean(related='pregunta_id.bconopciones')
+    
     # Descomento cuando uprofe.alumno esté en main
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno',
     #                             required=True, ondelete='cascade')
@@ -20,10 +27,10 @@ class RespuestaAlumno(models.Model):
     #      'Este alumno ya ha respondido a esta pregunta.'),
     # ]
 
-    @api.constrains('pregunta_id', 'sTexto_respuesta')
+    @api.constrains('pregunta_id', 'stexto_respuesta')
     def _check_respuesta_valida(self):
         for record in self:
-            respuesta = (record.sTexto_respuesta or '').strip()
+            respuesta = (record.stexto_respuesta or '').strip()
             if not respuesta:
                 raise ValidationError("La respuesta no puede estar vacía.")
             if record.pregunta_id.bconopciones:
@@ -32,3 +39,16 @@ class RespuestaAlumno(models.Model):
                 if respuesta not in opciones:
                     raise ValidationError(
                         "La respuesta debe ser una de las opciones de la pregunta.")
+                    
+    @api.onchange('stexto_respuesta')
+    def _onchange_stexto_respuesta(self):
+        if self.bconopciones and self.stexto_respuesta:
+            opciones = [l.strip() for l in (self.sopciones or '').splitlines() if l.strip()]
+            if self.stexto_respuesta.strip() not in opciones:
+                return {
+                    'value': {'stexto_respuesta': False},
+                    'warning': {
+                        'title': 'Respuesta no válida',
+                        'message': 'Escribe exactamente una de las opciones disponibles.'
+                    }
+                }                
