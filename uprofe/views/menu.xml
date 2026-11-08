@@ -3,4 +3,6 @@
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    <menuitem name="Tasas y recibos" id="menu_uprofe_tasas_root" parent="uprofe_menu" groups="group_uprofe_manager" sequence="50"/>
+    <menuitem name="Tipos de tasa" id="menu_uprofe_tipo_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tipo_tasa" sequence="3"/>
 </odoo>
