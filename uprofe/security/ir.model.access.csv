@@ -6,3 +6,4 @@ estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,gro
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
 empresa_manager,empresa_manager,model_uprofe_empresa,group_uprofe_manager,1,1,1,1
 convenio_empresa_manager,convenio_empresa_manager,model_uprofe_convenio_empresa,group_uprofe_manager,1,1,1,1
+oferta_practica_manager,oferta_practica_manager,model_uprofe_oferta_practica,group_uprofe_manager,1,1,1,1

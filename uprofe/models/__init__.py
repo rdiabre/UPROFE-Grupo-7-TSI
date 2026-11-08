@@ -6,3 +6,4 @@ from . import estado_convenio
 from . import persona
 from . import empresa
 from . import convenio_empresa
+from . import oferta_practica
