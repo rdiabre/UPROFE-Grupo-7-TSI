@@ -35,7 +35,22 @@
         <field name="arch" type="xml">
             <pivot string="Respuestas por pregunta">
                 <field name="pregunta_id" type="row"/>
+                <field name="sTexto_respuesta" type="col"/>
             </pivot>
+        </field>
+    </record>
+
+    <!-- busqueda -->
+    <record id="view_uprofe_respuesta_alumno_search" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.search</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="pregunta_id"/>
+                <field name="sTexto_respuesta"/>
+                <filter name="con_opciones" string="Preguntas con opciones"
+                        domain="[('pregunta_id.bconopciones', '=', True)]"/>
+            </search>
         </field>
     </record>
 
@@ -43,6 +58,7 @@
     <record id="action_uprofe_respuesta_alumno" model="ir.actions.act_window">
         <field name="name">Respuestas de alumnos</field>
         <field name="res_model">uprofe.respuesta_alumno</field>
+        <field name="search_view_id" ref="view_uprofe_respuesta_alumno_search"/>
         <field name="view_mode">list,form,pivot</field>
     </record>
 </odoo>
