@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from . import usuario
+from . import idioma
 from . import nivel_estudios
 from . import estado_movilidad
 from . import estado_learning_agreement
