@@ -10,7 +10,7 @@ class LearningAgreement(models.Model):
     _rec_name = 'sNum_la'
 
     sNum_la = fields.Char(string="Nº de learning agreement", size=30, required=True)
-    sVersion = fields.Integer(string="Versión", required=True, default=1)
+    iVersion = fields.Integer(string="Versión", required=True, default=1)
     dFecha_firma = fields.Date(string="Fecha de firma")
 
     movilidad_id = fields.Many2one(
@@ -19,7 +19,7 @@ class LearningAgreement(models.Model):
        required=True,
        ondelete='restrict',
     )
-    
+
     estado_id = fields.Many2one(
        'uprofe.estado_learning_agreement',
        string="Estado",
@@ -32,12 +32,12 @@ class LearningAgreement(models.Model):
     _sql_constraints = [
         ('num_la_unico', 'UNIQUE(sNum_la)',
          'Ya existe un learning agreement con ese número.'),
-        ('version_unica_por_movilidad', 'UNIQUE(movilidad_id, sVersion)',
+        ('version_unica_por_movilidad', 'UNIQUE(movilidad_id, iVersion)',
          'Esa movilidad ya tiene un learning agreement con esa versión.'),
     ]
 
-    @api.constrains('sVersion')
+    @api.constrains('iVersion')
     def _check_version(self):
         for record in self:
-            if record.sVersion < 1:
+            if record.iVersion < 1:
                 raise ValidationError("La versión debe ser 1 o superior.")
