@@ -12,7 +12,7 @@ class Empresa(models.Model):
 
     scif = fields.Char(string='CIF', size=9, required=True)
     name = fields.Char(string='Nombre', required=True)
-    snombresector = fields.Char(string='Sector')
+    snombre_sector = fields.Char(string='Sector')
     semail = fields.Char(string='Correo electrónico')
 
     # Descomento cuando uprofe.financiacion esté en main
