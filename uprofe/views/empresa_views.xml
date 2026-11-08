@@ -8,7 +8,7 @@
             <list string="Empresas">
                 <field name="name"/>
                 <field name="scif"/>
-                <field name="snombresector"/>
+                <field name="snombre_sector"/>
                 <field name="semail"/>
             </list>
         </field>
@@ -27,7 +27,7 @@
                             <field name="scif"/>
                         </group>
                         <group>
-                            <field name="snombresector"/>
+                            <field name="snombre_sector"/>
                             <field name="semail"/>
                         </group>
                     </group>
@@ -49,7 +49,7 @@
         <field name="model">uprofe.empresa</field>
         <field name="arch" type="xml">
             <graph string="Empresas por sector" type="bar">
-                <field name="snombresector"/>
+                <field name="snombre_sector"/>
             </graph>
         </field>
     </record>
@@ -62,10 +62,10 @@
             <search>
                 <field name="name"/>
                 <field name="scif"/>
-                <field name="snombresector"/>
+                <field name="snombre_sector"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_sector" string="Sector"
-                            context="{'group_by': 'snombresector'}"/>
+                            context="{'group_by': 'snombre_sector'}"/>
                 </group>
             </search>
         </field>
