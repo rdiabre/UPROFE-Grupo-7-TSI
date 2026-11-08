@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class AsignaturaDestino(models.Model):
     _name = 'uprofe.asignatura_destino'
     _description = 'Asignatura de la universidad de destino'
+    _rec_name = 'sName'
 
     cod_asig_destino = fields.Char(string="Código de la asignatura", size=30, required=True)
     sName = fields.Char(string="Nombre", size=150, required=True)
