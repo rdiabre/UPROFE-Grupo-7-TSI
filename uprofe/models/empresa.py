@@ -15,11 +15,11 @@ class Empresa(models.Model):
     snombresector = fields.Char(string='Sector')
     semail = fields.Char(string='Correo electrónico')
 
-    # Una empresa puede financiar muchas financiaciones (el Many2one está en uprofe.financiacion)
-    financiacion_ids = fields.One2many('uprofe.financiacion', 'entidad_financiadora_id',
-                                       string='Financiaciones')
+    # Descomento cuando uprofe.financiacion esté en main
+    #financiacion_ids = fields.One2many('uprofe.financiacion', 'entidad_financiadora_id',
+    #                                   string='Financiaciones')
 
-    # lo decomento cuando existan los modelos relacionados:
+    # lo descomento cuando existan los modelos relacionados:
     # oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
     #                              string='Ofertas de práctica')   # formaliza. Depende de #37
     # direccion_id = fields.Many2one('uprofe.direccion', string='Dirección',
