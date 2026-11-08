@@ -13,12 +13,12 @@ class Movilidad(models.Model):
     dFecha_inicio = fields.Date(string="Fecha de inicio", required=True)
     dFecha_fin = fields.Date(string="Fecha de fin", required=True)
 
-    #estado_id = fields.Many2one(
-    #    'uprofe.estado_movilidad',
-    #    string="Estado",
-    #    required=True,
-    #    ondelete='restrict',
-    #)
+    estado_id = fields.Many2one(
+       'uprofe.estado_movilidad',
+       string="Estado",
+       required=True,
+       ondelete='restrict',
+    )
 
     # Descomentar cuando exista Solicitud (modelo de otro compañero).
     # El UNIQUE de abajo refleja el (0,1) de "origina": una solicitud origina como mucho una movilidad.
@@ -29,9 +29,8 @@ class Movilidad(models.Model):
     #     ondelete='restrict',
     # )
 
-    # Descomentar cuando exista LearningAgreement
-    # learning_agreement_ids = fields.One2many(
-    #     'uprofe.learning_agreement', 'movilidad_id', string="Learning agreements")
+    learning_agreement_ids = fields.One2many(
+        'uprofe.learning_agreement', 'movilidad_id', string="Learning agreements")
 
     _sql_constraints = [
         ('num_movilidad_unico', 'UNIQUE(sNum_movilidad)',
