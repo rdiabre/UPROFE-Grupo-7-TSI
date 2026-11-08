@@ -18,13 +18,12 @@ class Pregunta(models.Model):
                                         required=True, ondelete='restrict')
     bconopciones = fields.Boolean(related='tipo_respuesta_id.bconopciones')
 
-    # Descomento cuando uprofe.encuesta esté en main
-    # encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta',
-    #                               required=True, ondelete='cascade')
-    # _sql_constraints = [
-    #     ('inumpregunta_encuesta_uniq', 'unique(encuesta_id, inumpregunta)',
-    #      'Ya existe una pregunta con ese número en esta encuesta.'),
-    # ]
+    encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta',
+                                required=True, ondelete='cascade')
+    _sql_constraints = [
+        ('inumpregunta_encuesta_uniq', 'unique(encuesta_id, inumpregunta)',
+        'Ya existe una pregunta con ese número en esta encuesta.'),
+    ]
 
     # constrains
     @api.constrains('inumpregunta')

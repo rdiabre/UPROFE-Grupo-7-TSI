@@ -6,3 +6,4 @@ estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,gro
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
 pregunta_manager,pregunta_manager,model_uprofe_pregunta,group_uprofe_manager,1,1,1,1
 tipo_respuesta_manager,tipo_respuesta_manager,model_uprofe_tipo_respuesta,group_uprofe_manager,1,1,1,1
+encuesta_manager,encuesta_manager,model_uprofe_encuesta,group_uprofe_manager,1,1,1,1

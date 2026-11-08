@@ -6,3 +6,4 @@ from . import estado_convenio
 from . import persona
 from . import pregunta
 from . import tipo_respuesta
+from . import encuesta
