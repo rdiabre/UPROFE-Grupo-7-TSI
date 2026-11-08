@@ -66,5 +66,5 @@ class Pregunta(models.Model):
     @api.depends('name', 'inum_pregunta', 'encuesta_id.name') #muesta a que encuesta pertenece cada pregunta
     def _compute_display_name(self):
         for record in self:
-            record.display_name = "%s · %s. %s" % (
+            record.display_name = "Encuesta: %s, Num Pregunta: %s, Pregunta: %s" % (
                 record.encuesta_id.name or '', record.inum_pregunta, record.name or '')
