@@ -14,8 +14,7 @@ class TipoTasa(models.Model):
         ('pruebas', 'Tasa por pruebas o exámenes'),
     ], string='Tipo', required=True)  # PK
 
-    # Descomento cuando exista uprofe.tasa
-    # tasa_ids = fields.One2many('uprofe.tasa', 'tipo_tasa_id', string='Tasas')
+    tasa_ids = fields.One2many('uprofe.tasa', 'tipo_tasa_id', string='Tasas')
 
     @api.depends('stipo')
     def _compute_display_name(self):
