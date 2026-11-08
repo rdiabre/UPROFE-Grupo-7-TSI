@@ -9,3 +9,6 @@ from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
 from . import estado_la_linea
+from . import tutor_externo
+from . import seguimiento_practica
+from . import acuerdo

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de listas -->
+    <record id="view_uprofe_seguimiento_practica_list" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.list</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <list string="Seguimientos">
+                <field name="inum_seguimiento_practica"/>
+                <field name="dfecha_emision"/>
+                <field name="fcalificacion_parcial"/>
+                <field name="acuerdo_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+    <record id="view_uprofe_seguimiento_practica_form" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.form</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <form string="Seguimiento de práctica">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="inum_seguimiento_practica"/>
+                            <field name="acuerdo_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="dfecha_emision"/>
+                            <field name="fcalificacion_parcial"/>
+                        </group>
+                    </group>
+                    <group string="Comentarios">
+                        <field name="scomentarios" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- vista avanzada -->
+    <record id="view_uprofe_seguimiento_practica_graph" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.graph</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <graph string="Seguimientos por acuerdo" type="bar">
+                <field name="acuerdo_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- busqueda -->
+    <record id="view_uprofe_seguimiento_practica_search" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.search</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="acuerdo_id"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_acuerdo" string="Acuerdo"
+                            context="{'group_by': 'acuerdo_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- accion -->
+    <record id="action_uprofe_seguimiento_practica" model="ir.actions.act_window">
+        <field name="name">Seguimientos de práctica</field>
+        <field name="res_model">uprofe.seguimiento_practica</field>
+        <field name="search_view_id" ref="view_uprofe_seguimiento_practica_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>
