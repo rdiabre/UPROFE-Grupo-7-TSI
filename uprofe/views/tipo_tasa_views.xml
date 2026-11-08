@@ -6,7 +6,7 @@
         <field name="model">uprofe.tipo_tasa</field>
         <field name="arch" type="xml">
             <list string="Tipos de tasa">
-                <field name="stipo"/>
+                <field name="name"/>
             </list>
         </field>
     </record>
@@ -19,7 +19,7 @@
             <form string="Tipo de tasa">
                 <sheet>
                     <group>
-                        <field name="stipo"/>
+                        <field name="name"/>
                     </group>
                 </sheet>
             </form>
@@ -34,7 +34,7 @@
             <kanban>
                 <templates>
                     <t t-name="card">
-                        <field name="stipo" class="fw-bold fs-5"/>
+                        <field name="name" class="fw-bold fs-5"/>
                     </t>
                 </templates>
             </kanban>
