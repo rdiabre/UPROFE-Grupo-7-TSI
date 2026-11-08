@@ -3,4 +3,5 @@
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    <menuitem name="Tutores externos" id="menu_uprofe_tutor_externo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tutor_externo" sequence="40"/>
 </odoo>
