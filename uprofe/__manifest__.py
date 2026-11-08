@@ -32,6 +32,7 @@ Descripción del módulo
         'views/oferta_practica_views.xml',
         'views/tutor_externo_views.xml',
         'views/menu.xml',
+        'views/catalogos_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

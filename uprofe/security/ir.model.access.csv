@@ -1,5 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 usuario_manager,usuario_manager,model_uprofe_usuario,group_uprofe_manager,1,1,1,1
+idioma_manager,idioma_manager,model_uprofe_idioma,group_uprofe_manager,1,1,1,1
+nivel_estudios_manager,nivel_estudios_manager,model_uprofe_nivel_estudios,group_uprofe_manager,1,1,1,1
+estado_movilidad_manager,estado_movilidad_manager,model_uprofe_estado_movilidad,group_uprofe_manager,1,1,1,1
+estado_learning_agreement_manager,estado_learning_agreement_manager,model_uprofe_estado_learning_agreement,group_uprofe_manager,1,1,1,1
 pais_manager,pais_manager,model_uprofe_pais,group_uprofe_manager,1,1,1,1
 estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_convocatoria,group_uprofe_manager,1,1,1,1
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
@@ -10,3 +14,4 @@ seguimiento_practica_manager,seguimiento_practica_manager,model_uprofe_seguimien
 empresa_manager,empresa_manager,model_uprofe_empresa,group_uprofe_manager,1,1,1,1
 convenio_empresa_manager,convenio_empresa_manager,model_uprofe_convenio_empresa,group_uprofe_manager,1,1,1,1
 oferta_practica_manager,oferta_practica_manager,model_uprofe_oferta_practica,group_uprofe_manager,1,1,1,1
+estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
