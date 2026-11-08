@@ -1,6 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 usuario_manager,usuario_manager,model_uprofe_usuario,group_uprofe_manager,1,1,1,1
 asignatura_destino_manager,asignatura_destino_manager,model_uprofe_asignatura_destino,group_uprofe_manager,1,1,1,1
+idioma_manager,idioma_manager,model_uprofe_idioma,group_uprofe_manager,1,1,1,1
+nivel_estudios_manager,nivel_estudios_manager,model_uprofe_nivel_estudios,group_uprofe_manager,1,1,1,1
+estado_movilidad_manager,estado_movilidad_manager,model_uprofe_estado_movilidad,group_uprofe_manager,1,1,1,1
+estado_learning_agreement_manager,estado_learning_agreement_manager,model_uprofe_estado_learning_agreement,group_uprofe_manager,1,1,1,1
+pais_manager,pais_manager,model_uprofe_pais,group_uprofe_manager,1,1,1,1
 estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_convocatoria,group_uprofe_manager,1,1,1,1
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
+estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
