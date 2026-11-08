@@ -40,7 +40,7 @@
                                 <list editable="bottom">
                                     <field name="inumpregunta"/>
                                     <field name="name"/>
-                                    <field name="tipo_respuesta_id"/>
+                                    <field name="tipo_respuesta_id" options="{'no_quick_create': True}"/>
                                     <field name="bconopciones" column_invisible="1"/>
                                     <field name="sopciones" readonly="not bconopciones"
                                            required="bconopciones"/>
