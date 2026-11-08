@@ -6,10 +6,9 @@ from odoo.exceptions import ValidationError
 class Tasa(models.Model):
     _name = 'uprofe.tasa'
     _description = 'Tasa universitaria'
-    _rec_name = 'snum_liquidacion'
     _order = 'id desc'
 
-    snum_liquidacion = fields.Char(string='Nº de liquidación', required=True)
+    name = fields.Char(string='Nº de liquidación', required=True)
     fimporte = fields.Float(string='Importe (€)', required=True, default=0.0)
     sestado = fields.Selection([('pendiente', 'Pendiente'),
                                 ('pagada', 'Pagada')],
@@ -26,13 +25,13 @@ class Tasa(models.Model):
     recibo_ids = fields.One2many('uprofe.recibo', 'tasa_id', string='Recibos')
 
     # constrains
-    @api.constrains('snum_liquidacion')
+    @api.constrains('name')
     def _check_num_liquidacion(self):
-        num = (self.snum_liquidacion or '').strip()
+        num = (self.name or '').strip()
         if not num:
             raise ValidationError("El número de liquidación no puede estar vacío.")
         if self.search_count([('id', '!=', self.id),
-                              ('snum_liquidacion', '=ilike', num)]):
+                              ('name', '=ilike', num)]):
             raise ValidationError("Ya existe una tasa con este número de liquidación.")
 
     @api.constrains('fimporte')
