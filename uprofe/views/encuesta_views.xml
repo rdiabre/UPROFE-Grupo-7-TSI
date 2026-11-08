@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--vista de lista-->
+    <record id="view_uprofe_encuesta_list" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.list</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <list string="Encuestas">
+                <field name="sCod_encuesta"/>
+                <field name="name"/>
+                <field name="sCurso_academico"/>
+                <field name="dtFecha_inicio"/>
+                <field name="dtFecha_fin"/>
+            </list>
+        </field>
+    </record>
+
+    <!--vista de formulario-->
+    <record id="view_uprofe_encuesta_form" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.form</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <form string="Encuesta de satisfacción docente">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sCod_encuesta"/>
+                            <field name="name"/>
+                            <field name="sCurso_academico"/>
+                        </group>
+                        <group>
+                            <field name="dtFecha_inicio"/>
+                            <field name="dtFecha_fin"/>
+                        </group>
+                    </group>
+                    <field name="sDescripcion" placeholder="Descripción de la encuesta..."/>
+                    <notebook>
+                        <page string="Preguntas">
+                            <field name="pregunta_ids">
+                                <list editable="bottom">
+                                    <field name="inumpregunta"/>
+                                    <field name="name"/>
+                                    <field name="tipo_respuesta_id"/>
+                                    <field name="bconopciones" column_invisible="1"/>
+                                    <field name="sopciones" readonly="not bconopciones"
+                                           required="bconopciones"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista avanzada -->
+    <record id="view_uprofe_encuesta_graph" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.graph</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <graph string="Encuestas por curso" type="bar">
+                <field name="sCurso_academico"/>
+            </graph>
+        </field>
+    </record>
+
+    <!--busqueda-->
+    <record id="view_uprofe_encuesta_search" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.search</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCod_encuesta"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_curso" string="Curso académico"
+                            context="{'group_by': 'sCurso_academico'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--accion-->
+    <record id="action_uprofe_encuesta" model="ir.actions.act_window">
+        <field name="name">Encuestas</field>
+        <field name="res_model">uprofe.encuesta</field>
+        <field name="search_view_id" ref="view_uprofe_encuesta_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>
