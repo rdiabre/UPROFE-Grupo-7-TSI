@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lista -->
+    <record id="view_uprofe_universidad_destino_list" model="ir.ui.view">
+        <field name="name">uprofe.universidad_destino.list</field>
+        <field name="model">uprofe.universidad_destino</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="cod_erasmus"/>
+                <field name="sName"/>
+                <field name="ciudad_id"/>
+                <field name="pais_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Formulario -->
+    <record id="view_uprofe_universidad_destino_form" model="ir.ui.view">
+        <field name="name">uprofe.universidad_destino.form</field>
+        <field name="model">uprofe.universidad_destino</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos generales">
+                            <field name="sName"/>
+                            <field name="cod_erasmus"/>
+                        </group>
+                        <group string="Ubicación">
+                            <field name="ciudad_id"/>
+                            <field name="pais_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Convenios">
+                            <field name="convenio_ids"/>
+                        </page>
+                        <page string="Plazas">
+                            <field name="plaza_ids"/>
+                        </page>
+                        <page string="Asignaturas">
+                            <field name="asignatura_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Búsqueda y filtros -->
+    <record id="view_uprofe_universidad_destino_search" model="ir.ui.view">
+        <field name="name">uprofe.universidad_destino.search</field>
+        <field name="model">uprofe.universidad_destino</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sName"/>
+                <field name="cod_erasmus"/>
+                <field name="ciudad_id"/>
+                <field name="pais_id"/>
+                <group string="Agrupar por">
+                    <filter string="País" name="group_pais" context="{'group_by': 'pais_id'}"/>
+                    <filter string="Ciudad" name="group_ciudad" context="{'group_by': 'ciudad_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_uprofe_universidad_destino" model="ir.actions.act_window">
+        <field name="name">Universidades de destino</field>
+        <field name="res_model">uprofe.universidad_destino</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
+    <menuitem id="menu_uprofe_universidad_destino"
+              name="Universidades"
+              parent="menu_uprofe_movilidad"
+              action="action_uprofe_universidad_destino"
+              sequence="10"/>
+
+</odoo>
