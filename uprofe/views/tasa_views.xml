@@ -6,7 +6,7 @@
         <field name="model">uprofe.tasa</field>
         <field name="arch" type="xml">
             <list string="Tasas">
-                <field name="snum_liquidacion"/>
+                <field name="name"/>
                 <field name="tipo_tasa_id"/>
                 <field name="fimporte"/>
                 <field name="icantidad_plazas"/>
@@ -24,7 +24,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="snum_liquidacion"/>
+                            <field name="name"/>
                             <field name="tipo_tasa_id"/>
                         </group>
                         <group>
@@ -70,7 +70,7 @@
         <field name="model">uprofe.tasa</field>
         <field name="arch" type="xml">
             <search>
-                <field name="snum_liquidacion"/>
+                <field name="name"/>
                 <field name="tipo_tasa_id"/>
                 <filter name="pendientes" string="Pendientes"
                         domain="[('sestado', '=', 'pendiente')]"/>
