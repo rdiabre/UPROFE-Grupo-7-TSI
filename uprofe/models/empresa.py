@@ -19,11 +19,11 @@ class Empresa(models.Model):
     #financiacion_ids = fields.One2many('uprofe.financiacion', 'entidad_financiadora_id',
     #                                   string='Financiaciones')
 
-    # lo descomento cuando existan los modelos relacionados:
-    # oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
-    #                              string='Ofertas de práctica')   # formaliza. Depende de #37
+
+    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
+                                 string='Ofertas de práctica')   
     # direccion_id = fields.Many2one('uprofe.direccion', string='Dirección',
-    #                                required=True)               # tiene. Depende del issue de DIRECCION
+    #                                required=True)               
 
     # Validaciones
     @api.constrains('scif')
