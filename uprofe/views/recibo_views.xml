@@ -6,7 +6,7 @@
         <field name="model">uprofe.recibo</field>
         <field name="arch" type="xml">
             <list string="Recibos">
-                <field name="snum_recibo"/>
+                <field name="name"/>
                 <field name="tasa_id"/>
                 <field name="inumero_plazo"/>
                 <field name="fimporte"/>
@@ -26,7 +26,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="snum_recibo"/>
+                            <field name="name"/>
                             <field name="tasa_id"/>
                             <field name="inumero_plazo"/>
                             <field name="metodo_pago_id"/>
@@ -49,7 +49,7 @@
         <field name="arch" type="xml">
             <calendar string="Recibos" date_start="dfecha" color="tasa_id"
                       mode="month" quick_create="0">
-                <field name="snum_recibo"/>
+                <field name="name"/>
                 <field name="tasa_id"/>
             </calendar>
         </field>
@@ -61,7 +61,7 @@
         <field name="model">uprofe.recibo</field>
         <field name="arch" type="xml">
             <search>
-                <field name="snum_recibo"/>
+                <field name="name"/>
                 <field name="tasa_id"/>
                 <field name="metodo_pago_id"/>
                 <group expand="0" string="Agrupar por">
