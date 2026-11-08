@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de listas -->
+    <record id="view_uprofe_seguimiento_alu_int_list" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.list</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <list string="Seguimientos">
+                <field name="inum_seguimiento_alu"/>
+                <field name="dfecha"/>
+                <field name="fcalificacion"/>
+                <field name="sobservaciones"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+    <record id="view_uprofe_seguimiento_alu_int_form" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.form</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <form string="Seguimiento">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="inum_seguimiento_alu"/>
+                            <field name="dfecha"/>
+                        </group>
+                        <group>
+                            <field name="fcalificacion"/>
+                        </group>
+                    </group>
+                    <field name="sobservaciones" placeholder="Observaciones..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista avanzada -->
+    <record id="view_uprofe_seguimiento_alu_int_calendar" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.calendar</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <calendar string="Seguimientos" date_start="dfecha" mode="month" quick_create="0">
+                <field name="inum_seguimiento_alu"/>
+                <field name="fcalificacion"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- busqueda -->
+    <record id="view_uprofe_seguimiento_alu_int_search" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.search</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="inum_seguimiento_alu"/>
+                <field name="sobservaciones"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_fecha" string="Mes"
+                            context="{'group_by': 'dfecha:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- accion -->
+    <record id="action_uprofe_seguimiento_alu_int" model="ir.actions.act_window">
+        <field name="name">Seguimiento alumno interno</field>
+        <field name="res_model">uprofe.seguimiento_alu_int</field>
+        <field name="search_view_id" ref="view_uprofe_seguimiento_alu_int_search"/>
+        <field name="view_mode">list,form,calendar</field>
+    </record>
+</odoo>

@@ -6,4 +6,5 @@
     <menuitem name="Tutores externos" id="menu_uprofe_tutor_externo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tutor_externo" sequence="40"/>
     <menuitem name="Acuerdos de prácticas" id="menu_uprofe_acuerdo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_acuerdo" sequence="70"/>
     <menuitem name="Seguimientos de práctica" id="menu_uprofe_seguimiento_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_seguimiento_practica" sequence="80"/>
+    <menuitem name="Seguimiento alumno interno" id="menu_uprofe_seguimiento_alu_int" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_seguimiento_alu_int" sequence="80"/>
 </odoo>
