@@ -6,10 +6,9 @@ from odoo.exceptions import ValidationError
 class Recibo(models.Model):
     _name = 'uprofe.recibo'
     _description = 'Recibo de una tasa'
-    _rec_name = 'snum_recibo'
     _order = 'dfecha desc'
 
-    snum_recibo = fields.Char(string='Nº de recibo', required=True)  # PK
+    name = fields.Char(string='Nº de recibo', required=True)  # PK
     fimporte = fields.Float(string='Importe (€)', required=True, default=0.0)
     dfecha = fields.Date(string='Fecha', required=True, default=fields.Date.context_today)
     dfecha_limite = fields.Date(string='Fecha límite')
@@ -23,13 +22,13 @@ class Recibo(models.Model):
                                      required=True, ondelete='restrict')
 
     # constrains
-    @api.constrains('snum_recibo')
+    @api.constrains('name')
     def _check_num_recibo(self):
         for record in self:
-            num = (record.snum_recibo or '').strip()
+            num = (record.name or '').strip()
             if not num:
                 raise ValidationError("El número de recibo no puede estar vacío.")
-            if self.search_count([('id', '!=', record.id), ('snum_recibo', '=ilike', num)]):
+            if self.search_count([('id', '!=', record.id), ('name', '=ilike', num)]):
                 raise ValidationError("Ya existe un recibo con ese número.")
 
     @api.constrains('fimporte')
