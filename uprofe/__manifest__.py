@@ -30,6 +30,7 @@ Descripción del módulo
         'views/empresa_views.xml',
         'views/convenio_empresa_views.xml',
         'views/oferta_practica_views.xml',
+        'views/tutor_externo_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
