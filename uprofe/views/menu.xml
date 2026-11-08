@@ -5,11 +5,13 @@
 
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
 
-    <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="10"/>
+    <menuitem name="Encuestas" id="menu_uprofe_encuestas_root" parent="uprofe_menu" groups="group_uprofe_manager" sequence="5"/>
 
-    <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="20"/>
+    <menuitem name="Encuestas" id="menu_uprofe_encuesta" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_encuesta" sequence="1"/>
 
-    <menuitem name="Encuestas" id="menu_uprofe_encuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_encuesta" sequence="5"/>
+    <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="2"/>
 
-    <menuitem name="Respuestas de alumnos" id="menu_uprofe_respuesta_alumno" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_respuesta_alumno" sequence="40"/>
+    <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="3"/>
+
+    <menuitem name="Respuestas de alumnos" id="menu_uprofe_respuesta_alumno" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_respuesta_alumno" sequence="4"/>
 </odoo>
