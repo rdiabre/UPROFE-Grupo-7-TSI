@@ -28,6 +28,7 @@ Descripción del módulo
         'views/tasa_views.xml',
         'views/tipo_tasa_views.xml',
         'views/metodo_pago_views.xml',
+        'views/recibo_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

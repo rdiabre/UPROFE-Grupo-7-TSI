@@ -7,4 +7,5 @@
     <menuitem name="Tasas" id="menu_uprofe_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tasa" sequence="1"/>    
     <menuitem name="Tipos de tasa" id="menu_uprofe_tipo_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tipo_tasa" sequence="3"/>
     <menuitem name="Métodos de pago" id="menu_uprofe_metodo_pago" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_metodo_pago" sequence="4"/>
+    <menuitem name="Recibos" id="menu_uprofe_recibo" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_recibo" sequence="2"/>
 </odoo>
