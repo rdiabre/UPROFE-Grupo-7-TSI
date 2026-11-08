@@ -3,4 +3,5 @@
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    <menuitem name="Métodos de pago" id="menu_uprofe_metodo_pago" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_metodo_pago" sequence="4"/>
 </odoo>
