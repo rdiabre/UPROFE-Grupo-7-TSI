@@ -5,3 +5,4 @@ from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
 from . import tasa
+from . import tipo_tasa

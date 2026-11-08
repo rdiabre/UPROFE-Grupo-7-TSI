@@ -5,3 +5,4 @@ estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_conv
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
 tasa_manager,tasa_manager,model_uprofe_tasa,group_uprofe_manager,1,1,1,1
+tipo_tasa_manager,tipo_tasa_manager,model_uprofe_tipo_tasa,group_uprofe_manager,1,1,1,1
