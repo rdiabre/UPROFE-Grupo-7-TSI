@@ -7,8 +7,9 @@
         <field name="arch" type="xml">
             <list string="Preguntas">
                 <field name="encuesta_id"/>
-                <field name="inumpregunta"/>
+                <field name="inum_pregunta"/>
                 <field name="name"/>
+
                 <field name="tipo_respuesta_id"/>
             </list>
         </field>
@@ -23,7 +24,7 @@
                 <sheet>
                     <group>
                         <field name="encuesta_id"/>
-                        <field name="inumpregunta"/>
+                        <field name="inum_pregunta"/>
                         <field name="name"/>
                         <field name="tipo_respuesta_id" options="{'no_quick_create': True}"/>
                         <field name="bconopciones" invisible="1"/>
