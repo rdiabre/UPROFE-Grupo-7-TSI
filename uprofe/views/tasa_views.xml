@@ -37,7 +37,7 @@
                         <page string="Recibos">
                             <field name="recibo_ids">
                                 <list editable="bottom">
-                                    <field name="snum_recibo"/>
+                                    <field name="name"/>
                                     <field name="inumero_plazo"/>
                                     <field name="fimporte"/>
                                     <field name="dfecha"/>
