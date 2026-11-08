@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vistas de lista  -->
+    <record id="view_uprofe_respuesta_alumno_list" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.list</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <list string="Respuestas de alumnos">
+                <field name="pregunta_id"/>
+                <field name="sTexto_respuesta"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vistas de formulario  -->
+    <record id="view_uprofe_respuesta_alumno_form" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.form</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <form string="Respuesta de alumno">
+                <sheet>
+                    <group>
+                        <field name="pregunta_id"/>
+                        <field name="sTexto_respuesta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista avanzada -->
+    <record id="view_uprofe_respuesta_alumno_pivot" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.pivot</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <pivot string="Respuestas por pregunta">
+                <field name="pregunta_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- accion -->
+    <record id="action_uprofe_respuesta_alumno" model="ir.actions.act_window">
+        <field name="name">Respuestas de alumnos</field>
+        <field name="res_model">uprofe.respuesta_alumno</field>
+        <field name="view_mode">list,form,pivot</field>
+    </record>
+</odoo>

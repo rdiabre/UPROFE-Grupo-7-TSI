@@ -28,6 +28,7 @@ Descripción del módulo
         'views/persona_views.xml',
         'views/tipo_respuesta_views.xml',
         'views/encuesta_views.xml',
+        'views/respuesta_alumno_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

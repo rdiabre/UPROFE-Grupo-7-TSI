@@ -10,4 +10,6 @@
     <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="20"/>
 
     <menuitem name="Encuestas" id="menu_uprofe_encuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_encuesta" sequence="5"/>
+
+    <menuitem name="Respuestas de alumnos" id="menu_uprofe_respuesta_alumno" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_respuesta_alumno" sequence="40"/>
 </odoo>
