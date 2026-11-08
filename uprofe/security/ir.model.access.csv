@@ -7,3 +7,4 @@ persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,
 pregunta_manager,pregunta_manager,model_uprofe_pregunta,group_uprofe_manager,1,1,1,1
 tipo_respuesta_manager,tipo_respuesta_manager,model_uprofe_tipo_respuesta,group_uprofe_manager,1,1,1,1
 encuesta_manager,encuesta_manager,model_uprofe_encuesta,group_uprofe_manager,1,1,1,1
+respuesta_alumno_manager,respuesta_alumno_manager,model_uprofe_respuesta_alumno,group_uprofe_manager,1,1,1,1

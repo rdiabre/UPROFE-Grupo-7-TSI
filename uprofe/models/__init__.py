@@ -7,3 +7,4 @@ from . import persona
 from . import pregunta
 from . import tipo_respuesta
 from . import encuesta
+from . import respuesta_alumno
