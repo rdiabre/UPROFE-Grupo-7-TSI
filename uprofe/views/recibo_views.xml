@@ -27,7 +27,7 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="tasa_id"/>
+                            <field name="tasa_id" options="{'no_create': True}"/>
                             <field name="inumero_plazo"/>
                             <field name="metodo_pago_id"/>
                         </group>
