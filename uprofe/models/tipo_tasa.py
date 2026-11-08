@@ -7,7 +7,7 @@ class TipoTasa(models.Model):
     _name = 'uprofe.tipo_tasa'
     _description = 'Tipo de tasa'
 
-    stipo = fields.Selection([
+    name = fields.Selection([
         ('matriculacion', 'Tasa de matriculación'),
         ('expedicion', 'Tasa de expedición de títulos o certificados'),
         ('servicios', 'Tasa por servicios complementarios'),
@@ -16,14 +16,14 @@ class TipoTasa(models.Model):
 
     tasa_ids = fields.One2many('uprofe.tasa', 'tipo_tasa_id', string='Tasas')
 
-    @api.depends('stipo')
+    @api.depends('name')
     def _compute_display_name(self):
-        etiquetas = dict(self._fields['stipo'].selection)
+        etiquetas = dict(self._fields['name'].selection)
         for record in self:
-            record.display_name = etiquetas.get(record.stipo, '')
+            record.display_name = etiquetas.get(record.name, '')
 
-    @api.constrains('stipo')
+    @api.constrains('name')
     def _check_tipo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('stipo', '=', record.stipo)]):
+            if self.search_count([('id', '!=', record.id), ('name', '=', record.name)]):
                 raise ValidationError("Ya existe ese tipo de tasa.")
