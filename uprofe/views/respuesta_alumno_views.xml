@@ -6,8 +6,9 @@
         <field name="model">uprofe.respuesta_alumno</field>
         <field name="arch" type="xml">
             <list string="Respuestas de alumnos">
+                <field name="encuesta_id"/>
                 <field name="pregunta_id"/>
-                <field name="sTexto_respuesta"/>
+                <field name="stexto_respuesta"/>
             </list>
         </field>
     </record>
@@ -21,7 +22,10 @@
                 <sheet>
                     <group>
                         <field name="pregunta_id"/>
-                        <field name="sTexto_respuesta"/>
+                        <field name="encuesta_id" readonly="1"/>
+                        <field name="bconopciones" invisible="1"/>
+                        <field name="sopciones" readonly="1" invisible="not bconopciones"/>
+                        <field name="stexto_respuesta"/>
                     </group>
                 </sheet>
             </form>
@@ -35,7 +39,7 @@
         <field name="arch" type="xml">
             <pivot string="Respuestas por pregunta">
                 <field name="pregunta_id" type="row"/>
-                <field name="sTexto_respuesta" type="col"/>
+                <field name="stexto_respuesta" type="col"/>
             </pivot>
         </field>
     </record>
@@ -47,9 +51,15 @@
         <field name="arch" type="xml">
             <search>
                 <field name="pregunta_id"/>
-                <field name="sTexto_respuesta"/>
+                <field name="stexto_respuesta"/>
                 <filter name="con_opciones" string="Preguntas con opciones"
                         domain="[('pregunta_id.bconopciones', '=', True)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_encuesta" string="Encuesta"
+                            context="{'group_by': 'encuesta_id'}"/>
+                    <filter name="group_pregunta" string="Pregunta"
+                            context="{'group_by': 'pregunta_id'}"/>
+                </group>
             </search>
         </field>
     </record>
