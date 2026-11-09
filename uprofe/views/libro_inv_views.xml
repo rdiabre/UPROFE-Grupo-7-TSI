@@ -19,12 +19,12 @@
                     <notebook>
                         <page string="Autores">
                             <group>
-                                <field name="lProfesor_ids" widget="many2many_tags"/>
-                                <field name="lInvestigador_ids" widget="many2many_tags"/>
+                                <field name="profesor_ids" widget="many2many_tags"/>
+                                <!--<field name="investigador_ids" widget="many2many_tags"/>-->
                             </group>
                         </page>
                         <page string="Proyecto">
-                            <field name="iProyecto_id"/>
+                            <field name="proyecto_investigacion_id"/>
                         </page>
                     </notebook>
                 </sheet>

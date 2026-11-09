@@ -11,7 +11,7 @@ TIPOS_PUBLICACION = [
 class libro_inv(models.Model):
     _name = 'uprofe.libro_inv'
     _description = "Libro de investigación"
-    _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
+    _inherits = {'uprofe.publicacion': 'publicacion_id'}
     
     publicacion_id = fields.Many2one('uprofe.publicacion', required=True)
     
@@ -40,7 +40,7 @@ class libro_inv(models.Model):
     def _check_publicacion_valida(self):
         for record in self:
             for sModelo in TIPOS_PUBLICACION:
-                lDominio = [('iPublicacion_id', '=', record.publicacion_id.id)]
+                lDominio = [('publicacion_id', '=', record.publicacion_id.id)]
                 if sModelo == record._name:
                     lDominio.append(('id', '!=', record.id))
                 if self.env[sModelo].search_count(lDominio):
