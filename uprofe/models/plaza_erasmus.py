@@ -12,12 +12,13 @@ class PlazaErasmus(models.Model):
     cod_plaza = fields.Char(string="Código de la plaza", size=30, required=True)
     iDuracion_meses = fields.Integer(string="Duración (meses)", required=True)
 
-    universidad_id = fields.Many2one(
-       'uprofe.universidad_destino',
-       string="Universidad de destino",
-       required=True,
-       ondelete='restrict',
-    )
+    # Descomentar cuando exista UniversidadDestino
+    # universidad_id = fields.Many2one(
+    #    'uprofe.universidad_destino',
+    #    string="Universidad de destino",
+    #    required=True,
+    #    ondelete='restrict',
+    # )
 
     nivel_estudios_id = fields.Many2one(
        'uprofe.nivel_estudios',
@@ -33,6 +34,7 @@ class PlazaErasmus(models.Model):
        ondelete='restrict',
     )
 
+    # Descomentar cuando exista Convocatoria (modelo de otro compañero)
     # convocatoria_id = fields.Many2one(
     #     'uprofe.convocatoria',
     #     string="Convocatoria",
