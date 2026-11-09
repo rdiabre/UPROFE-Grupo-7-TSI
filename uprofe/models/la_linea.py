@@ -12,18 +12,18 @@ class LaLinea(models.Model):
     fNota = fields.Float(string="Nota (0-10)")
     fCreditos_reconocidos = fields.Float(string="Créditos reconocidos")
 
-    learning_agreement_id = fields.Many2one(
-        'uprofe.learning_agreement',
-        string="Learning agreement",
-        required=True,
-        ondelete='cascade',
-    )
-    asignatura_destino_id = fields.Many2one(
-        'uprofe.asignatura_destino',
-        string="Asignatura de destino",
-        required=True,
-        ondelete='restrict',
-    )
+    # learning_agreement_id = fields.Many2one(
+    #     'uprofe.learning_agreement',
+    #     string="Learning agreement",
+    #     required=True,
+    #     ondelete='cascade',
+    # )
+    # asignatura_destino_id = fields.Many2one(
+    #     'uprofe.asignatura_destino',
+    #     string="Asignatura de destino",
+    #     required=True,
+    #     ondelete='restrict',
+    # )
     estado_id = fields.Many2one(
         'uprofe.estado_la_linea',
         string="Estado",
@@ -39,10 +39,10 @@ class LaLinea(models.Model):
     #     ondelete='restrict',
     # )
 
-    _sql_constraints = [
-        ('linea_unica_por_la', 'UNIQUE(learning_agreement_id, iNum_linea)',
-         'Ya existe una línea con ese número en este learning agreement.'),
-    ]
+    # _sql_constraints = [
+    #     ('linea_unica_por_la', 'UNIQUE(learning_agreement_id, iNum_linea)',
+    #      'Ya existe una línea con ese número en este learning agreement.'),
+    # ]
 
     @api.constrains('fNota')
     def _check_nota(self):
