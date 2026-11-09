@@ -8,6 +8,9 @@ from . import profesor
 from . import sesion
 from . import tipo_sesion
 from . import expediente
+from . import acta
+from . import linea_acta
+from . import reclamacion
 from . import idioma
 from . import nivel_estudios
 from . import estado_movilidad
