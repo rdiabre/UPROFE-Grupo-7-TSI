@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from . import usuario
 from . import asignatura
-from . import guia_docente
 from . import idioma
 from . import nivel_estudios
 from . import estado_movilidad
