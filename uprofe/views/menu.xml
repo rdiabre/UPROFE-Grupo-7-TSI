@@ -2,7 +2,18 @@
     <menuitem name="Uprofe" id="main_uprofe_menu" groups="group_uprofe_manager"/>
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
+
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    
     <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
+    
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
+    
+    <menuitem name="Grupos de investigación" id="grupo_inv_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="grupo_inv_list_action"/>
+    
+    <menuitem name="Financiaciones" id="financiacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="financiacion_list_action"/>
+
+    <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="10"/>
+
+    <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="20"/>
 </odoo>
