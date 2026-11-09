@@ -30,9 +30,9 @@ class LearningAgreement(models.Model):
     # linea_ids = fields.One2many('uprofe.la_linea', 'learning_agreement_id', string="Líneas")
 
     _sql_constraints = [
-        ('num_la_unico', 'UNIQUE(sNum_la)',
+        ('num_la_unico', 'UNIQUE("sNum_la")',
          'Ya existe un learning agreement con ese número.'),
-        #('version_unica_por_movilidad', 'UNIQUE(movilidad_id, iVersion)',
+        #('version_unica_por_movilidad', 'UNIQUE(movilidad_id, "iVersion")',
         # 'Esa movilidad ya tiene un learning agreement con esa versión.'),
     ]
 
