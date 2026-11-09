@@ -141,3 +141,32 @@ class Asignatura(models.Model):
         for record in self:
             record.iNum_sesiones = len(record.sesion_ids)
             record.fHoras_programadas = sum(record.sesion_ids.mapped('fDuracion'))
+            
+    # PR Expediente: 
+    
+    # Una asignatura está registrada en muchos expedientes (0,N)
+    # Usa la misma tabla que el asignatura_ids de Expediente
+    expediente_ids = fields.Many2many('uprofe.expediente', 'uprofe_asignatura_expediente_rel', 'asignatura_id', 'expediente_id', string="Expedientes")
+
+    # Alumnos que la han superado. Campo calculado
+    iNum_superada = fields.Integer(string="Alumnos que la han superado", compute='_compute_num_superada')
+
+    @api.depends('expediente_ids')
+    def _compute_num_superada(self):
+        for record in self:
+            record.iNum_superada = len(record.expediente_ids)
+            
+    # PR de Acta y Linea_Acta: 
+            
+    # Número máximo de matrículas de honor que se pueden dar en cada acta de la asignatura
+    iMatriculas_honor = fields.Integer(string="Nº máximo de matrículas de honor", default=1, help="Las mejores notas de cada acta, a partir de un 9, reciben matrícula de honor hasta este número.")
+
+    # No puede ser negativo, y no se cambia si la asignatura ya tiene actas publicadas (cambiaría la calificación de notas ya publicadas)
+    @api.constrains('iMatriculas_honor')
+    def _check_matriculas_honor(self):
+        for record in self:
+            if record.iMatriculas_honor < 0:
+                raise models.ValidationError("El número de matrículas de honor no puede ser negativo.")
+            publicada = self.env['uprofe.acta'].search([('asignatura_id', '=', record.id), ('bPublicada', '=', True)], limit=1)
+            if publicada:
+                raise models.ValidationError("No se puede cambiar el número de matrículas de honor: la asignatura ya tiene actas publicadas (acta {publicada.iNum_acta}).")
