@@ -16,7 +16,7 @@ class EstadoLaLinea(models.Model):
     # linea_ids = fields.One2many('uprofe.la_linea', 'estado_id', string="Líneas")
 
     _sql_constraints = [
-        ('nombre_unico', 'UNIQUE(sName)', 'Ya existe un estado con ese nombre.'),
+        ('nombre_unico', 'UNIQUE("sName")', 'Ya existe un estado con ese nombre.'),
     ]
 
     @api.constrains('sName')
