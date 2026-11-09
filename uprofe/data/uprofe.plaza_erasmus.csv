@@ -1,0 +1,11 @@
+id,cod_plaza,iDuracion_meses,nivel_estudios_id:id,idioma_id:id
+plaza_bologna_grado,PLZ-BOLOGNA-01,9,nivel_grado,idioma_italiano
+plaza_roma_grado,PLZ-ROMA-01,5,nivel_grado,idioma_italiano
+plaza_paris_master,PLZ-PARIS-01,9,nivel_master,idioma_frances
+plaza_berlin_grado,PLZ-BERLIN-01,9,nivel_grado,idioma_aleman
+plaza_lisboa_grado,PLZ-LISBOA-01,5,nivel_grado,idioma_portugues
+plaza_amsterdam_master,PLZ-AMSTERD-01,10,nivel_master,idioma_ingles
+plaza_leuven_doctorado,PLZ-LEUVEN-01,6,nivel_doctorado,idioma_ingles
+plaza_varsovia_grado,PLZ-WARSZAW-01,5,nivel_grado,idioma_ingles
+plaza_dublin_grado,PLZ-DUBLIN-01,9,nivel_grado,idioma_ingles
+plaza_estocolmo_master,PLZ-STOCKHO-01,10,nivel_master,idioma_ingles
