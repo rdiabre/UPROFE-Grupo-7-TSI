@@ -29,8 +29,9 @@ class Movilidad(models.Model):
     #     ondelete='restrict',
     # )
 
-    learning_agreement_ids = fields.One2many(
-        'uprofe.learning_agreement', 'movilidad_id', string="Learning agreements")
+    # Descomentar cuando exista LearningAgreement
+    # learning_agreement_ids = fields.One2many(
+    #     'uprofe.learning_agreement', 'movilidad_id', string="Learning agreements")
 
     _sql_constraints = [
         ('num_movilidad_unico', 'UNIQUE(sNum_movilidad)',

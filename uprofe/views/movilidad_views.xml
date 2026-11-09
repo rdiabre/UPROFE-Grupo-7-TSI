@@ -32,13 +32,43 @@
                             <field name="dFecha_fin"/>
                         </group>
                     </group>
-                    <notebook>
+                    <!-- Descomentar cuando exista LearningAgreement -->
+                    <!-- <notebook>
                         <page string="Learning agreements">
                             <field name="learning_agreement_ids"/>
                         </page>
-                    </notebook>
+                    </notebook> -->
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- Calendar: cada movilidad ocupa el periodo de la estancia (inicio - fin) -->
+    <record id="view_uprofe_movilidad_calendar" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.calendar</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <calendar string="Periodos de movilidad"
+                      date_start="dFecha_inicio"
+                      date_stop="dFecha_fin"
+                      mode="month"
+                      color="estado_id"
+                      quick_create="0">
+                <field name="sNum_movilidad"/>
+                <field name="estado_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Graph: número de movilidades por mes de inicio, separadas por estado -->
+    <record id="view_uprofe_movilidad_graph" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.graph</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <graph string="Movilidades por mes de inicio y estado" type="bar">
+                <field name="dFecha_inicio" interval="month"/>
+                <field name="estado_id"/>
+            </graph>
         </field>
     </record>
 
@@ -62,7 +92,7 @@
     <record id="action_uprofe_movilidad" model="ir.actions.act_window">
         <field name="name">Movilidades</field>
         <field name="res_model">uprofe.movilidad</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,calendar,graph</field>
     </record>
 
     <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml.
