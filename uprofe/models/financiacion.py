@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 class financiacion(models.Model):
     _name = 'uprofe.financiacion'
-    _descripcion = 'Financiación de los proyectos de investigación'
+    _description = 'Financiación de los proyectos de investigación'
     
     sName = fields.Char(string="Código de la financiación", required=True)
     fImporte = fields.Float(string="Importe", digits="Account", required=True)
