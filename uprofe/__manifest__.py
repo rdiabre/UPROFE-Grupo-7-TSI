@@ -35,7 +35,7 @@ Descripción del módulo
         'views/linea_investigacion_views.xml',
         'views/grupo_inv_views.xml',
         'views/financiacion_views.xml',
-        'views/catalogos_views.xml'
+        'views/catalogos_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
