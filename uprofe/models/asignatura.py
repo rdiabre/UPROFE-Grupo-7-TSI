@@ -112,3 +112,32 @@ class Asignatura(models.Model):
         if self.name:
             nombre = self.name.strip()
             self.name = nombre[:1].upper() + nombre[1:]
+
+    # PR Guía docente: 
+    
+    # Una asignatura tiene sus guías docentes (1,N)
+    guia_ids = fields.One2many('uprofe.guia_docente', 'asignatura_id', string="Guías docentes")
+
+    # La guía docente vigente es la del curso académico más reciente
+    guia_actual_id = fields.Many2one('uprofe.guia_docente', string="Guía docente vigente", compute='_compute_guia_actual')
+
+    @api.depends('guia_ids', 'guia_ids.sCurso_academico')
+    def _compute_guia_actual(self):
+        for record in self:
+            # sorted() ordena las guías; [:1] se queda con la primera (o con ninguna si no hay)
+            record.guia_actual_id = record.guia_ids.sorted('sCurso_academico', reverse=True)[:1]
+
+   # PR Sesion: 
+
+    # Relación del diagrama E-R: una asignatura tiene sus sesiones (1,N)
+    sesion_ids = fields.One2many('uprofe.sesion', 'asignatura_id', string="Sesiones")
+
+    # Reglas de negocio: número de sesiones y horas programadas (campos calculados, no se guardan)
+    iNum_sesiones = fields.Integer(string="Número de sesiones", compute='_compute_sesiones')
+    fHoras_programadas = fields.Float(string="Horas programadas", compute='_compute_sesiones')
+
+    @api.depends('sesion_ids', 'sesion_ids.fDuracion')
+    def _compute_sesiones(self):
+        for record in self:
+            record.iNum_sesiones = len(record.sesion_ids)
+            record.fHoras_programadas = sum(record.sesion_ids.mapped('fDuracion'))
