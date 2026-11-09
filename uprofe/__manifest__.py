@@ -24,6 +24,23 @@ Descripción del módulo
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        # Datos iniciales (uno por entidad, 10 registros cada uno).
+        # El orden importa: cada CSV va después de los catálogos a los que apunta.
+        'data/uprofe.pais.csv',
+        'data/uprofe.idioma.csv',
+        'data/uprofe.nivel_estudios.csv',
+        'data/uprofe.estado_movilidad.csv',
+        'data/uprofe.estado_learning_agreement.csv',
+        'data/uprofe.estado_la_linea.csv',
+        'data/uprofe.universidad_destino.csv',
+        # Descomentar cada línea cuando su modelo esté en main
+        # (si el modelo no existe, Odoo falla al instalar/actualizar el módulo)
+        # 'data/uprofe.ciudad.csv',
+        # 'data/uprofe.plaza_erasmus.csv',
+        # 'data/uprofe.asignatura_destino.csv',
+        # 'data/uprofe.movilidad.csv',
+        # 'data/uprofe.learning_agreement.csv',
+        # 'data/uprofe.la_linea.csv',
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',

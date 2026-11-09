@@ -1,0 +1,11 @@
+id,sName,sDescripcion
+estado_linea_propuesta,propuesta,Asignatura propuesta por el estudiante
+estado_linea_pendiente_revision,pendiente_revision,Pendiente de revisión por el coordinador
+estado_linea_aprobada,aprobada,Equivalencia aprobada
+estado_linea_rechazada,rechazada,Equivalencia no aceptada
+estado_linea_modificada,modificada,La línea ha cambiado respecto a la versión anterior
+estado_linea_cursando,cursando,El estudiante está cursando la asignatura
+estado_linea_superada,superada,Asignatura aprobada en destino
+estado_linea_suspensa,suspensa,Asignatura no superada en destino
+estado_linea_convalidada,convalidada,Créditos reconocidos en la UPO con nota
+estado_linea_anulada,anulada,Línea eliminada del acuerdo
