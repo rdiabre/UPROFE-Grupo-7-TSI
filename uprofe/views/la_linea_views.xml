@@ -53,31 +53,35 @@
         </field>
     </record>
 
-    <!-- Calendar: la tabla no tiene campos de fecha propios, así que se usa
-         la fecha de alta del registro (create_date, campo automático de Odoo) -->
-    <record id="view_uprofe_la_linea_calendar" model="ir.ui.view">
-        <field name="name">uprofe.la_linea.calendar</field>
+    <!-- Kanban (cards): esta tabla no tiene fechas, así que en lugar de Calendar
+         se muestran las líneas como tarjetas -->
+    <record id="view_uprofe_la_linea_kanban" model="ir.ui.view">
+        <field name="name">uprofe.la_linea.kanban</field>
         <field name="model">uprofe.la_linea</field>
         <field name="arch" type="xml">
-            <calendar string="Altas de líneas"
-                      date_start="create_date"
-                      mode="month"
-                      color="estado_id"
-                      quick_create="0">
-                <field name="iNum_linea"/>
-                <!-- <field name="learning_agreement_id"/> -->
-                <field name="estado_id"/>
-            </calendar>
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="fw-bold fs-5">Línea <field name="iNum_linea"/></div>
+                        <!-- Descomentar cuando existan LearningAgreement y AsignaturaDestino -->
+                        <!-- <div>L.A.: <field name="learning_agreement_id"/></div> -->
+                        <!-- <div>Asignatura: <field name="asignatura_destino_id"/></div> -->
+                        <div>Estado: <field name="estado_id"/></div>
+                        <div>Nota: <field name="fNota"/></div>
+                        <div>Créditos reconocidos: <field name="fCreditos_reconocidos"/></div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
-    <!-- Acción solo de análisis: el Graph y el Calendar necesitan una acción para poder abrirse.
+    <!-- Acción solo de análisis: el Graph y las cards necesitan una acción para poder abrirse.
          Se bloquea la creación porque las líneas se crean dentro del
          learning agreement (pestaña "Líneas"). -->
     <record id="action_uprofe_la_linea" model="ir.actions.act_window">
         <field name="name">Análisis de líneas</field>
         <field name="res_model">uprofe.la_linea</field>
-        <field name="view_mode">graph,calendar,list,form</field>
+        <field name="view_mode">graph,kanban,list,form</field>
         <field name="context">{'create': False}</field>
     </record>
 
