@@ -41,4 +41,4 @@ class patente(models.Model):
                 if sModelo == record._name:
                     lDominio.append(('id', '!=', record.id))
                 if self.env[sModelo].search_count(lDominio):
-                    raise ValidationError(f"La publicación {record.publicacion_id.name} ya está asociada a un registro de {sModelo}.")
+                    raise ValidationError(f"La publicación {record.publicacion_id.sName} ya está asociada a un registro de {sModelo}.")
