@@ -3,6 +3,7 @@ linea_investigacion_manager,linea_investigacion_manager,model_uprofe_linea_inves
 grupo_inv_manager,grupo_inv_manager,model_uprofe_grupo_inv,group_uprofe_manager,1,1,1,1
 financiacion_manager,financiacion_manager,model_uprofe_financiacion,group_uprofe_manager,1,1,1,1
 usuario_manager,usuario_manager,model_uprofe_usuario,group_uprofe_manager,1,1,1,1
+la_linea_manager,la_linea_manager,model_uprofe_la_linea,group_uprofe_manager,1,1,1,1
 plaza_erasmus_manager,plaza_erasmus_manager,model_uprofe_plaza_erasmus,group_uprofe_manager,1,1,1,1
 asignatura_destino_manager,asignatura_destino_manager,model_uprofe_asignatura_destino,group_uprofe_manager,1,1,1,1
 asignatura_manager,asignatura_manager,model_uprofe_asignatura,group_uprofe_manager,1,1,1,1
