@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lista -->
+    <record id="view_uprofe_plaza_erasmus_list" model="ir.ui.view">
+        <field name="name">uprofe.plaza_erasmus.list</field>
+        <field name="model">uprofe.plaza_erasmus</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="cod_plaza"/>
+                <!-- Descomentar cuando existan UniversidadDestino y Convocatoria -->
+                <!-- <field name="universidad_id"/> -->
+                <!-- <field name="convocatoria_id"/> -->
+                <field name="nivel_estudios_id"/>
+                <field name="idioma_id"/>
+                <field name="iDuracion_meses"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Formulario -->
+    <record id="view_uprofe_plaza_erasmus_form" model="ir.ui.view">
+        <field name="name">uprofe.plaza_erasmus.form</field>
+        <field name="model">uprofe.plaza_erasmus</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos de la plaza">
+                            <field name="cod_plaza"/>
+                            <field name="iDuracion_meses"/>
+                            <!-- Descomentar cuando exista Convocatoria -->
+                            <!-- <field name="convocatoria_id"/> -->
+                        </group>
+                        <group string="Destino y requisitos">
+                            <!-- Descomentar cuando exista UniversidadDestino -->
+                            <!-- <field name="universidad_id"/> -->
+                            <field name="nivel_estudios_id"/>
+                            <field name="idioma_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Graph: número de plazas por nivel de estudios, separadas por idioma requerido.
+         Cuando exista UniversidadDestino se puede agrupar por universidad_id. -->
+    <record id="view_uprofe_plaza_erasmus_graph" model="ir.ui.view">
+        <field name="name">uprofe.plaza_erasmus.graph</field>
+        <field name="model">uprofe.plaza_erasmus</field>
+        <field name="arch" type="xml">
+            <graph string="Plazas por nivel de estudios e idioma" type="bar">
+                <field name="nivel_estudios_id"/>
+                <field name="idioma_id"/>
+                <!-- <field name="universidad_id"/> -->
+            </graph>
+        </field>
+    </record>
+
+    <!-- Kanban (cards): esta tabla no tiene fechas, así que en lugar de Calendar
+         se muestran las plazas como tarjetas -->
+    <record id="view_uprofe_plaza_erasmus_kanban" model="ir.ui.view">
+        <field name="name">uprofe.plaza_erasmus.kanban</field>
+        <field name="model">uprofe.plaza_erasmus</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <field name="cod_plaza" class="fw-bold fs-5"/>
+                        <!-- Descomentar cuando existan UniversidadDestino y Convocatoria -->
+                        <!-- <div>Universidad: <field name="universidad_id"/></div> -->
+                        <!-- <div>Convocatoria: <field name="convocatoria_id"/></div> -->
+                        <div>Nivel: <field name="nivel_estudios_id"/></div>
+                        <div>Idioma: <field name="idioma_id"/></div>
+                        <div><field name="iDuracion_meses"/> meses</div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Búsqueda y filtros -->
+    <record id="view_uprofe_plaza_erasmus_search" model="ir.ui.view">
+        <field name="name">uprofe.plaza_erasmus.search</field>
+        <field name="model">uprofe.plaza_erasmus</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="cod_plaza"/>
+                <!-- <field name="universidad_id"/> -->
+                <!-- <field name="convocatoria_id"/> -->
+                <field name="nivel_estudios_id"/>
+                <field name="idioma_id"/>
+                <group string="Agrupar por">
+                    <!-- <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/> -->
+                    <!-- <filter string="Convocatoria" name="group_convocatoria" context="{'group_by': 'convocatoria_id'}"/> -->
+                    <filter string="Nivel de estudios" name="group_nivel" context="{'group_by': 'nivel_estudios_id'}"/>
+                    <filter string="Idioma" name="group_idioma" context="{'group_by': 'idioma_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_uprofe_plaza_erasmus" model="ir.actions.act_window">
+        <field name="name">Plazas Erasmus</field>
+        <field name="res_model">uprofe.plaza_erasmus</field>
+        <field name="view_mode">list,form,graph,kanban</field>
+    </record>
+
+    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
+    <menuitem id="menu_uprofe_plaza_erasmus"
+              name="Plazas"
+              parent="menu_uprofe_movilidad"
+              action="action_uprofe_plaza_erasmus"
+              sequence="20"/>
+
+</odoo>

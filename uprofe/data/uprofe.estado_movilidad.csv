@@ -1,0 +1,11 @@
+id,sName,sDescripcion
+estado_mov_solicitada,solicitada,El estudiante ha solicitado la movilidad
+estado_mov_aceptada,aceptada,La movilidad ha sido concedida
+estado_mov_pendiente_documentacion,pendiente_documentacion,Falta entregar documentación obligatoria
+estado_mov_pendiente_inicio,pendiente_inicio,Todo listo a la espera de la fecha de inicio
+estado_mov_en_curso,en_curso,El estudiante está en la universidad de destino
+estado_mov_ampliada,ampliada,Se ha ampliado la duración de la estancia
+estado_mov_finalizada,finalizada,La estancia ha terminado
+estado_mov_reconocida,reconocida,Los créditos ya se han reconocido en la UPO
+estado_mov_cancelada,cancelada,El estudiante ha renunciado a la movilidad
+estado_mov_rechazada,rechazada,La solicitud de movilidad no ha sido aceptada
