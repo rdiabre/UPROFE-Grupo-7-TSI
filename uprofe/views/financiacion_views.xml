@@ -4,7 +4,7 @@
         <field name="model">uprofe.financiacion</field>
         <field name="arch" type="xml">
             <pivot string="Financiación">
-                <field name="iEmpresa_id" type="row"/>
+                <field name="empresa_id" type="row"/>
                 <field name="dFecha_concesion" interval="year" type="col"/>
                 <field name="fImporte" type="measure"/>
             </pivot>
@@ -21,10 +21,9 @@
                         <field name="sName" />
                         <field name="fImporte" />
                         <field name="dFecha_concesion" />
-                        <field name="iProyecto_investigacion_id" widget="many2one" />
-                        <!-- El modelo no tiene iGrupo_inv_id: la financiación se relaciona con la empresa -->
-                        <field name="iEmpresa_id" widget="many2one" />
-                        <field name="lPersona_ids" widget="many2many">
+                        <field name="proyecto_investigacion_id" widget="many2one" />
+                        <field name="empresa_id" widget="many2one" />
+                        <field name="persona_ids" widget="many2many">
                             <list>
                                 <field name="sDni" />
                                 <field name="name" />
@@ -45,9 +44,9 @@
                 <field name="sName" />
                 <field name="fImporte" />
                 <field name="dFecha_concesion" />
-                <field name="iProyecto_investigacion_id" widget="many2one" />
-                <field name="iEmpresa_id" widget="many2one" />
-                <field name="lPersona_ids" widget="many2many_tags" />
+                <field name="proyecto_investigacion_id" widget="many2one" />
+                <field name="empresa_id" widget="many2one" />
+                <field name="persona_ids" widget="many2many_tags" />
             </list>
         </field>
     </record>
