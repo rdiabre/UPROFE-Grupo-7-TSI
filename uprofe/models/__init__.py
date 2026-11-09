@@ -11,6 +11,7 @@ from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
+from . import solicitud
 from . import convenio
 from . import convocatoria
 from . import empresa
