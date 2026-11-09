@@ -6,11 +6,11 @@
             <calendar string="Calendario de los proyectos" 
                     date_start="dFecha_inicio" 
                     date_stop="dFecha_fin" 
-                    color="iGrupo_inv_id" 
+                    color="grupo_inv_id" 
                     mode="month"
                     quick_create="0">
                 <field name="sTitulo"/>
-                <field name="iGrupo_inv_id" filters="1"/>
+                <field name="grupo_inv_id" filters="1"/>
                 <field name="fPresupuesto"/>
             </calendar>
         </field>
@@ -28,9 +28,9 @@
                         <field name="fPresupuesto" />
                         <field name="dFecha_inicio" />
                         <field name="dFecha_fin" />
-                        <field name="iGrupo_inv_id" widget="many2one" />
-                        <field name="lFinanciacion_ids" widget="one2many" />
-                        <field name="lPublicacion_ids" widget="one2many" />
+                        <field name="grupo_inv_id" widget="many2one" />
+                        <field name="financiacion_ids" widget="one2many" />
+                        <field name="publicacion_ids" widget="one2many" />
                     </group>
                 </sheet>
             </form>
@@ -47,7 +47,7 @@
                 <field name="fPresupuesto" />
                 <field name="dFecha_inicio" />
                 <field name="dFecha_fin" />
-                <field name="iGrupo_inv_id" widget="many2one" />
+                <field name="grupo_inv_id" widget="many2one" />
             </list>
         </field>
     </record>
