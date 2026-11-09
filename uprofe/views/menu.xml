@@ -5,6 +5,8 @@
 
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
     
+    <menuitem name="Estados de convenio" id="estado_convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_convenio_list_action"/>
+    
     <menuitem name="Líneas de investigación" id="linea_investigacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="linea_investigacion_list_action"/>
     
     <menuitem name="Grupos de investigación" id="grupo_inv_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="grupo_inv_list_action"/>
