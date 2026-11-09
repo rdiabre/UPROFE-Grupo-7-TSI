@@ -35,7 +35,7 @@
                             </group>
                         </page>
                         <page string="Proyecto">
-                            <field name="proyecto_id"/>
+                            <field name="proyecto_investigacion_id"/>
                         </page>
                     </notebook>
                 </sheet>
