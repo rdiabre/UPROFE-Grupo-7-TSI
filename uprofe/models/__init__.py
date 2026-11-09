@@ -3,6 +3,7 @@ from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
 from . import usuario
+from . import plaza_erasmus
 from . import asignatura_destino
 from . import asignatura
 from . import guia_docente
