@@ -22,11 +22,12 @@
                         <field name="fImporte" />
                         <field name="dFecha_concesion" />
                         <field name="iProyecto_investigacion_id" widget="many2one" />
-                        <field name="iGrupo_inv_id" widget="many2one" />
+                        <!-- El modelo no tiene iGrupo_inv_id: la financiación se relaciona con la empresa -->
+                        <field name="iEmpresa_id" widget="many2one" />
                         <field name="lPersona_ids" widget="many2many">
                             <list>
-                                <field name="sName" />
-                                <field name="sNombre" />
+                                <field name="sDni" />
+                                <field name="name" />
                                 <field name="sApellidos" />
                             </list>
                         </field>
@@ -45,8 +46,8 @@
                 <field name="fImporte" />
                 <field name="dFecha_concesion" />
                 <field name="iProyecto_investigacion_id" widget="many2one" />
-                <field name="iGrupo_inv_id" widget="many2one" />
-                <field name="lPersona_ids" widget="many2many" />
+                <field name="iEmpresa_id" widget="many2one" />
+                <field name="lPersona_ids" widget="many2many_tags" />
             </list>
         </field>
     </record>
