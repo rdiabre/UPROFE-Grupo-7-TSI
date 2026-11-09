@@ -1,0 +1,11 @@
+id,sName
+nivel_grado,grado
+nivel_doble_grado,doble_grado
+nivel_master,master
+nivel_master_habilitante,master_habilitante
+nivel_doctorado,doctorado
+nivel_posgrado,posgrado
+nivel_curso_adaptacion,curso_adaptacion
+nivel_especialista,especialista
+nivel_experto,experto
+nivel_ciclo_superior,ciclo_superior
