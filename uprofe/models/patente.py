@@ -33,12 +33,12 @@ class patente(models.Model):
             if not re.match(regex_ompi, record.sNumero_patente):
                 raise ValidationError("Formato no válido. El número de patente debe seguir el formato OMPI")
             
-    @api.constrains('iPublicacion_id')
+    @api.constrains('publicacion_id')
     def _check_publicacion_valida(self):
         for record in self:
-            for modelo in TIPOS_PUBLICACION:
-                dominio = [('iPublicacion_id', '=', record.iPublicacion_id.id)]
-                if modelo == record._name:
-                    dominio.append(('id', '!=', record.id))
-                if self.env[modelo].search_count(dominio):
-                    raise ValidationError(f"La publicación {record.iPublicacion_id.name} ya está asociada a un registro de {modelo}.")
+            for sModelo in TIPOS_PUBLICACION:
+                lDominio = [('publicacion_id', '=', record.publicacion_id.id)]
+                if sModelo == record._name:
+                    lDominio.append(('id', '!=', record.id))
+                if self.env[sModelo].search_count(lDominio):
+                    raise ValidationError(f"La publicación {record.publicacion_id.name} ya está asociada a un registro de {sModelo}.")
