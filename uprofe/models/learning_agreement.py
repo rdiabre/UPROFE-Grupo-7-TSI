@@ -13,12 +13,12 @@ class LearningAgreement(models.Model):
     iVersion = fields.Integer(string="Versión", required=True, default=1)
     dFecha_firma = fields.Date(string="Fecha de firma")
 
-    movilidad_id = fields.Many2one(
-       'uprofe.movilidad',
-       string="Movilidad",
-       required=True,
-       ondelete='restrict',
-    )
+    # movilidad_id = fields.Many2one(
+    #    'uprofe.movilidad',
+    #    string="Movilidad",
+    #    required=True,
+    #    ondelete='restrict',
+    # )
 
     estado_id = fields.Many2one(
        'uprofe.estado_learning_agreement',
@@ -27,13 +27,13 @@ class LearningAgreement(models.Model):
        ondelete='restrict',
     )
 
-    linea_ids = fields.One2many('uprofe.la_linea', 'learning_agreement_id', string="Líneas")
+    # linea_ids = fields.One2many('uprofe.la_linea', 'learning_agreement_id', string="Líneas")
 
     _sql_constraints = [
         ('num_la_unico', 'UNIQUE(sNum_la)',
          'Ya existe un learning agreement con ese número.'),
-        ('version_unica_por_movilidad', 'UNIQUE(movilidad_id, iVersion)',
-         'Esa movilidad ya tiene un learning agreement con esa versión.'),
+        #('version_unica_por_movilidad', 'UNIQUE(movilidad_id, iVersion)',
+        # 'Esa movilidad ya tiene un learning agreement con esa versión.'),
     ]
 
     @api.constrains('iVersion')
