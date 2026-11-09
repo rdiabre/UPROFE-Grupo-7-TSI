@@ -16,7 +16,7 @@ class EstadoMovilidad(models.Model):
     # movilidad_ids = fields.One2many('uprofe.movilidad', 'estado_id', string="Movilidades")
 
     _sql_constraints = [
-        ('nombre_unico', 'UNIQUE(sName)', 'Ya existe un estado con ese nombre.'),
+        ('nombre_unico', 'UNIQUE("sName")', 'Ya existe un estado con ese nombre.'),
     ]
 
     @api.constrains('sName')

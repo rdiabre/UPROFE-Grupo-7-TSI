@@ -16,7 +16,7 @@ class EstadoLearningAgreement(models.Model):
     # learning_agreement_ids = fields.One2many('uprofe.learning_agreement', 'estado_id', string="Learning agreements")
 
     _sql_constraints = [
-        ('nombre_unico', 'UNIQUE(sName)', 'Ya existe un estado con ese nombre.'),
+        ('nombre_unico', 'UNIQUE("sName")', 'Ya existe un estado con ese nombre.'),
     ]
 
     @api.constrains('sName')
