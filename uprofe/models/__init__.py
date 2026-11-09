@@ -10,6 +10,7 @@ from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
+from . import convocatoria
 from . import empresa
 from . import tipo_convocatoria
 from . import tipo_solicitud
