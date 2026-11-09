@@ -12,18 +12,17 @@ class Empresa(models.Model):
 
     scif = fields.Char(string='CIF', size=9, required=True)
     name = fields.Char(string='Nombre', required=True)
-    snombresector = fields.Char(string='Sector')
+    snombre_sector = fields.Char(string='Sector')
     semail = fields.Char(string='Correo electrónico')
 
-    # Una empresa puede financiar muchas financiaciones (el Many2one está en uprofe.financiacion)
     financiacion_ids = fields.One2many('uprofe.financiacion', 'entidad_financiadora_id',
                                        string='Financiaciones')
 
-    # lo decomento cuando existan los modelos relacionados:
-    # oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
-    #                              string='Ofertas de práctica')   # formaliza. Depende de #37
+
+    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
+                                 string='Ofertas de práctica')   
     # direccion_id = fields.Many2one('uprofe.direccion', string='Dirección',
-    #                                required=True)               # tiene. Depende del issue de DIRECCION
+    #                                required=True)               
 
     # Validaciones
     @api.constrains('scif')
