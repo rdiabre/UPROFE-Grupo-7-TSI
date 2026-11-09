@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
+from . import linea_investigacion
+from . import grupo_inv
+from . import financiacion
 from . import usuario
 from . import movilidad
+from . import asignatura
+from . import guia_docente
+from . import profesor
+from . import sesion
+from . import tipo_sesion
+from . import publicacion
+from .import proyecto_investigacion
 from . import idioma
 from . import nivel_estudios
 from . import estado_movilidad
@@ -9,4 +19,18 @@ from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
+from . import empresa
+from . import convenio_empresa
+from . import oferta_practica
+from . import doc_adjunta
+from . import solicitud
+from . import convenio
+from . import convocatoria
+from . import empresa
+from . import tipo_convocatoria
+from . import tipo_solicitud
+from . import estado_solicitud
+from . import estado_acuerdo
+from . import pregunta
+from . import tipo_respuesta
 from . import estado_la_linea
