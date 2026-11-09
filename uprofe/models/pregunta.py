@@ -6,9 +6,9 @@ from odoo.exceptions import ValidationError
 class Pregunta(models.Model):
     _name = 'uprofe.pregunta'
     _description = 'Pregunta de encuesta'
-    _order = 'inumpregunta asc'
+    _order = 'inum_pregunta asc'
 
-    inumpregunta = fields.Integer(string='Número de pregunta', required=True, default=1,
+    inum_pregunta = fields.Integer(string='Número de pregunta', required=True, default=1,
                                   aggregator=False)
     name = fields.Char(string='Texto de la pregunta', required=True)
     sopciones = fields.Text(string='Opciones (una por línea)')
@@ -25,10 +25,10 @@ class Pregunta(models.Model):
     ]
 
     # constrains
-    @api.constrains('inumpregunta')
-    def _check_inumpregunta(self):
+    @api.constrains('inum_pregunta')
+    def _check_inum_pregunta(self):
         for record in self:
-            if record.inumpregunta < 1:
+            if record.inum_pregunta < 1:
                 raise ValidationError("El número de pregunta debe ser mayor que 0.")
 
     @api.constrains('tipo_respuesta_id', 'sopciones')
@@ -41,11 +41,11 @@ class Pregunta(models.Model):
                 raise ValidationError("Solo los tipos que requieren opciones las admiten.")
 
     # onchange
-    @api.onchange('inumpregunta')
-    def _onchange_inumpregunta(self):
-        if self.inumpregunta < 1:
+    @api.onchange('inum_pregunta')
+    def _onchange_inum_pregunta(self):
+        if self.inum_pregunta < 1:
             return {
-                'value': {'inumpregunta': 1},
+                'value': {'inum_pregunta': 1},
                 'warning': {
                     'title': 'Valor incorrecto',
                     'message': 'El número de pregunta debe ser mayor que 0.'
@@ -62,3 +62,9 @@ class Pregunta(models.Model):
                     'message': 'Solo los tipos que requieren opciones las admiten.'
                 }
             }
+            
+    @api.depends('name', 'inum_pregunta', 'encuesta_id.name') #muesta a que encuesta pertenece cada pregunta
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = "Encuesta: %s, Num Pregunta: %s, Pregunta: %s" % (
+                record.encuesta_id.name or '', record.inum_pregunta, record.name or '')
