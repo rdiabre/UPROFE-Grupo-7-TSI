@@ -65,8 +65,14 @@ class Pregunta(models.Model):
                 }
             }
             
-    @api.depends('name', 'inum_pregunta', 'encuesta_id.name') #muesta a que encuesta pertenece cada pregunta
+    # Descomentar (y quitar la versión sin encuesta) cuando uprofe.encuesta esté en main
+    # @api.depends('name', 'inum_pregunta', 'encuesta_id.name') #muesta a que encuesta pertenece cada pregunta
+    # def _compute_display_name(self):
+    #     for record in self:
+    #         record.display_name = "Encuesta: %s, Num Pregunta: %s, Pregunta: %s" % (
+    #             record.encuesta_id.name or '', record.inum_pregunta, record.name or '')
+    @api.depends('name', 'inum_pregunta')
     def _compute_display_name(self):
         for record in self:
-            record.display_name = "Encuesta: %s, Num Pregunta: %s, Pregunta: %s" % (
-                record.encuesta_id.name or '', record.inum_pregunta, record.name or '')
+            record.display_name = "Num Pregunta: %s, Pregunta: %s" % (
+                record.inum_pregunta, record.name or '')

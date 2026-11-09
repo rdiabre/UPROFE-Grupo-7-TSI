@@ -9,8 +9,9 @@ class grupo_inv(models.Model):
     sNombre = fields.Char(string="Nombre del grupo", required=True)
     dFecha_creacion = fields.Datetime(string="Fecha de creación", autodate=True, readonly=True)
     
-    iDepartamento_id = fields.Many2one('uprofe.departamento', string="Departamento", required=True)
-    iLaboratorio_id = fields.Many2one('uprofe.laboratorio', string="Laboratorio", required=True)
+    # Descomentar cuando existan Departamento y Laboratorio
+    # iDepartamento_id = fields.Many2one('uprofe.departamento', string="Departamento", required=True)
+    # iLaboratorio_id = fields.Many2one('uprofe.laboratorio', string="Laboratorio", required=True)
     lProyecto_investigacion_ids = fields.One2many('uprofe.proyecto_investigacion', 'iGrupo_inv_id', 'Proyectos')
     lLinea_investigacion_ids = fields.One2many('uprofe.linea_investigacion', 'iGrupo_inv_id', 'Líneas de investigación')
     
