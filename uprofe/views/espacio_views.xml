@@ -4,10 +4,10 @@
         <field name="model">uprofe.espacio</field>
         <field name="arch" type="xml">
             <list>
-                <field name="sCod_espacio"/>
-                <field name="iCapacidad"/>
-                <field name="iPlanta"/>
-                <field name="edificio_id"/>
+                <field name="sCod_espacio" />
+                <field name="iCapacidad" />
+                <field name="iPlanta" />
+                <field name="edificio_id" />
             </list>
         </field>
     </record>
@@ -19,16 +19,28 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
-                        <group>
-                            <field name="sCod_espacio"/>
-                            <field name="iCapacidad"/>
-                            <field name="iPlanta"/>
-                        </group>
-                        <group>
-                            <field name="edificio_id"/>
-                        </group>
-                    </group>
+                    <notebook>
+                        <page string="Datos generales">
+                            <group>
+                                <field name="sCod_espacio" />
+                                <field name="iCapacidad" />
+                                <field name="iPlanta" />
+                            </group>
+                            <group>
+                                <field name="edificio_id" />
+                            </group>
+                        </page>
+                        <page string="Sala de estudio">
+                            <field name="sala_estudio_ids">
+                                <list>
+                                    <field name="sTipo" />
+                                    <field name="sRequisitos" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+
                 </sheet>
             </form>
         </field>
@@ -40,8 +52,8 @@
         <field name="model">uprofe.espacio</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sCod_espacio"/>
-                <field name="edificio_id"/>
+                <field name="sCod_espacio" />
+                <field name="edificio_id" />
             </search>
         </field>
     </record>

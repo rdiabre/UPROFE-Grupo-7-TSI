@@ -28,6 +28,7 @@ Descripción del módulo
         'views/ubicacion_views.xml',
         'views/edificio_views.xml',
         'views/espacio_views.xml',
+        'views/sala_estudio_views.xml',
         'views/menu.xml',
         'views/catalogos_views.xml'
     ],

@@ -6,4 +6,5 @@
     <menuitem name="Ubicaciones" id="ubicacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="ubicacion_list_action"/>
     <menuitem name="Edificios" id="edificio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="edificio_list_action"/>
     <menuitem name="Espacios" id="espacio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="espacio_list_action"/>
+    <menuitem name="Salas de estudio" id="sala_estudio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sala_estudio_list_action"/>
 </odoo>
