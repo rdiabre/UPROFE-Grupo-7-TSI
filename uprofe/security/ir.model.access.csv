@@ -13,6 +13,7 @@ tipo_sesion_manager,tipo_sesion_manager,model_uprofe_tipo_sesion,group_uprofe_ma
 expediente_manager,expediente_manager,model_uprofe_expediente,group_uprofe_manager,1,1,1,1
 acta_manager,acta_manager,model_uprofe_acta,group_uprofe_manager,1,1,1,1
 linea_acta_manager,linea_acta_manager,model_uprofe_linea_acta,group_uprofe_manager,1,1,1,1
+reclamacion_manager,reclamacion_manager,model_uprofe_reclamacion,group_uprofe_manager,1,1,1,1
 convocatoria_manager,convocatoria_manager,model_uprofe_convocatoria,group_uprofe_manager,1,1,1,1
 empresa_manager,empresa_manager,model_uprofe_empresa,group_uprofe_manager,1,1,1,1
 tipo_convocatoria_manager,tipo_convocatoria_manager,model_uprofe_tipo_convocatoria,group_uprofe_manager,1,1,1,1
