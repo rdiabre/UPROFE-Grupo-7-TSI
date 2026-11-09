@@ -1,0 +1,11 @@
+id,iNum_linea,fNota,fCreditos_reconocidos,estado_id:id
+linea_01,1,8.5,6,estado_linea_convalidada
+linea_02,2,7,9,estado_linea_convalidada
+linea_03,1,9.2,6,estado_linea_convalidada
+linea_04,2,6.5,8,estado_linea_superada
+linea_05,1,,0,estado_linea_cursando
+linea_06,2,,0,estado_linea_cursando
+linea_07,1,4,0,estado_linea_suspensa
+linea_08,1,,0,estado_linea_aprobada
+linea_09,2,,0,estado_linea_pendiente_revision
+linea_10,1,,0,estado_linea_propuesta
