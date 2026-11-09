@@ -25,6 +25,9 @@ Descripción del módulo
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/persona_views.xml',
+        'views/ubicacion_views.xml',
+        'views/edificio_views.xml',
+        'views/espacio_views.xml',
         'views/menu.xml',
         'views/catalogos_views.xml'
     ],
