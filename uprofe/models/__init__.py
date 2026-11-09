@@ -3,6 +3,7 @@ from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
 from . import usuario
+from .import proyecto_investigacion
 from . import idioma
 from . import nivel_estudios
 from . import estado_movilidad

@@ -27,6 +27,7 @@ Descripción del módulo
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/proyecto_investigacion_views.xml',
         'views/linea_investigacion_views.xml',
         'views/grupo_inv_views.xml',
         'views/financiacion_views.xml',
