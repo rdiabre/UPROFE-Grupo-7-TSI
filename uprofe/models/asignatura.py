@@ -27,12 +27,10 @@ class Asignatura(models.Model):
                                      ('anual', 'Anual')],
                                     string="Cuatrimestre", required=True, default='1')
     fCreditos = fields.Float(string="Créditos ECTS", required=True, default=6.0)
-    iLimite_faltas = fields.Integer(string="Límite de faltas", default=0,
-                                   help="Número máximo de faltas de asistencia permitidas")
+    iLimite_faltas = fields.Integer(string="Límite de faltas", default=0, help="Número máximo de faltas de asistencia permitidas")
 
     # Campo calculado (no se guarda) para llegar a las 5 reglas de negocio: horas de trabajo que supone la asignatura para el alumno
-    fHoras_trabajo = fields.Float(string="Horas de trabajo del alumno", compute='_compute_horas_trabajo',
-                                 help=f"Créditos ECTS x {HORAS_POR_CREDITO} horas")
+    fHoras_trabajo = fields.Float(string="Horas de trabajo del alumno", compute='_compute_horas_trabajo', help=f"Créditos ECTS x {HORAS_POR_CREDITO} horas")
 
     # Unicidad de la clave con índice en la base de datos
     _sql_constraints = [
@@ -112,3 +110,16 @@ class Asignatura(models.Model):
         if self.name:
             nombre = self.name.strip()
             self.name = nombre[:1].upper() + nombre[1:]
+
+    # Relación del diagrama E-R: una asignatura tiene sus guías docentes (1,N)
+    guia_ids = fields.One2many('uprofe.guia_docente', 'asignatura_id', string="Guías docentes")
+
+    # Regla de negocio: la guía docente vigente es la del curso académico más reciente
+    guia_actual_id = fields.Many2one('uprofe.guia_docente', string="Guía docente vigente",
+                                     compute='_compute_guia_actual')
+
+    @api.depends('guia_ids', 'guia_ids.sCurso_academico')
+    def _compute_guia_actual(self):
+        for record in self:
+            # sorted() ordena las guías; [:1] se queda con la primera (o con ninguna si no hay)
+            record.guia_actual_id = record.guia_ids.sorted('sCurso_academico', reverse=True)[:1]
