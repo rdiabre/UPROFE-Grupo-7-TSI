@@ -34,7 +34,8 @@
                             <field name="estado_id"/>
                         </group>
                     </group>
-                    <notebook>
+                    <!-- Descomentar cuando exista LaLinea -->
+                    <!-- <notebook>
                         <page string="Líneas">
                             <field name="linea_ids">
                                 <list editable="bottom">
@@ -46,7 +47,7 @@
                                 </list>
                             </field>
                         </page>
-                    </notebook>
+                    </notebook> -->
                 </sheet>
             </form>
         </field>
