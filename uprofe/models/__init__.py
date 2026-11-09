@@ -8,6 +8,7 @@ from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
+from . import tipo_convocatoria
 from . import tipo_solicitud
 from . import estado_solicitud
 from . import estado_acuerdo
