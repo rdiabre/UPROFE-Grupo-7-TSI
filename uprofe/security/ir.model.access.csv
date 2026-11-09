@@ -1,8 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 usuario_manager,usuario_manager,model_uprofe_usuario,group_uprofe_manager,1,1,1,1
+
 estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_convocatoria,group_uprofe_manager,1,1,1,1
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
+estado_solicitud_manager,estado_solicitud_manager,model_uprofe_estado_solicitud,group_uprofe_manager,1,1,1,1
 estado_acuerdo_manager,estado_acuerdo_manager,model_uprofe_estado_acuerdo,group_uprofe_manager,1,1,1,1
 tipo_solicitud_manager,tipo_solicitud_manager,model_uprofe_tipo_solicitud,group_uprofe_manager,1,1,1,1
 idioma_manager,idioma_manager,model_uprofe_idioma,group_uprofe_manager,1,1,1,1
