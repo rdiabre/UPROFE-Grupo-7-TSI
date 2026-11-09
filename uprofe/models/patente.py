@@ -14,7 +14,7 @@ class patente(models.Model):
     _description = "Patente"
     _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
     
-    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete="cascade")
+    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True)
     
     sNumero_patente(string="Número de patente", required=True)
     dFecha_concesion(string="Fecha de concesión", autodate=True, required=True)
