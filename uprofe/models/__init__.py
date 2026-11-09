@@ -5,6 +5,9 @@ from . import financiacion
 from . import usuario
 from . import asignatura
 from . import guia_docente
+from . import profesor
+from . import sesion
+from . import tipo_sesion
 from . import publicacion
 from .import proyecto_investigacion
 from . import idioma

@@ -67,6 +67,7 @@ class TipoSesion(models.Model):
         if self.name:
             nombre = self.name.strip()
             self.name = nombre[:1].upper() + nombre[1:]
+            self.name = nombre[:1].upper() + nombre[1:]
             
     # Campos calculados para la vista gráfico
     iNum_sesiones = fields.Integer(string="Nº de sesiones", compute='_compute_estadisticas', store=True) # True porque el gráfico necesita que se guarde
