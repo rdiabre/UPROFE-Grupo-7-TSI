@@ -8,6 +8,7 @@
     <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
     
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
+    <menuitem name="Sesiones" id="sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sesion_list_action"/>
     
     <menuitem name="Grupos de investigación" id="grupo_inv_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="grupo_inv_list_action"/>
     
