@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from datetime import timedelta
 
 class proyecto_investigacion(models.Model):
     _name = 'uprofe.proyecto_investigacion'
@@ -7,14 +8,13 @@ class proyecto_investigacion(models.Model):
     
     sName = fields.Char(string="Código", required=True)
     sTitulo = fields.Char(string="Título", required=True)
-    # Pasar más adelante a valor autocalculado por la suma de la financiación asociada
     fPresupuesto = fields.Float(string="Presupuesto", compute='_compute_presupuesto')
     dFecha_inicio = fields.Datetime(string="Fecha de inicio", autodate=True, required=True)
     dFecha_fin = fields.Datetime(string="Fecha de fin", required=True)
     
-    iGrupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
-    lFinanciacion_ids = fields.One2many('uprofe.financiacion', 'iProyecto_investigacion_id', "Financiaciones")
-    lPublicacion_ids = fields.One2many('uprofe.publicacion', 'iProyecto_investigacion_id', "Publicaciones")
+    grupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
+    financiacion_ids = fields.One2many('uprofe.financiacion', 'proyecto_investigacion_id', "Financiaciones")
+    publicacion_ids = fields.One2many('uprofe.publicacion', 'proyecto_investigacion_id', "Publicaciones")
     
     @api.constrains('sName')
     def _check_codigo_unico(self):
@@ -64,7 +64,7 @@ class proyecto_investigacion(models.Model):
                     }
                 }
                 
-    @api.depends('lFinanciacion_ids')
+    @api.depends('financiacion_ids')
     def _compute_presupuesto(self):
         for record in self:
-            record.presupuesto = sum(record.lFinanciacion_ids.mapped('fImporte'))
+            record.fPresupuesto = sum(record.financiacion_ids.mapped('fImporte'))
