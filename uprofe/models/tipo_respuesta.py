@@ -11,7 +11,23 @@ class TipoRespuesta(models.Model):
     name = fields.Char(string='Tipo', size=50, required=True)
     bconopciones = fields.Boolean(string='Con opciones', default=False)
 
-    # pregunta_ids (One2many a uprofe.pregunta) se añade cuando uprofe.pregunta esté en main
+    pregunta_ids = fields.One2many('uprofe.pregunta', 'tipo_respuesta_id', string='Preguntas')
+
+    @api.constrains('bconopciones')
+    def _check_preguntas_coherentes(self):
+        for record in self:
+            for pregunta in record.pregunta_ids:
+                lineas = [l for l in (pregunta.sopciones or '').splitlines() if l.strip()]
+                if record.bconopciones and len(lineas) < 2:
+                    raise ValidationError(
+                        f"No se puede marcar «Con opciones» en el tipo «{record.name}»: "
+                        f"la pregunta «{pregunta.name}» no tiene al menos dos opciones. "
+                        "Cambia antes el tipo de esas preguntas o crea un tipo nuevo.")
+                if not record.bconopciones and lineas:
+                    raise ValidationError(
+                        f"No se puede quitar «Con opciones» del tipo «{record.name}»: "
+                        f"la pregunta «{pregunta.name}» tiene opciones. "
+                        "Cambia antes el tipo de esas preguntas o crea un tipo nuevo.")
 
     @api.constrains('name')
     def _check_name_unique(self):
