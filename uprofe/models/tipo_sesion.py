@@ -11,7 +11,6 @@ TIPOS = [
     ('otro', 'Otro'),
 ]
 
-
 class TipoSesion(models.Model):
     _name = 'uprofe.tipo_sesion'
     _description = 'UPROFE Tipo de sesión'
@@ -68,3 +67,14 @@ class TipoSesion(models.Model):
         if self.name:
             nombre = self.name.strip()
             self.name = nombre[:1].upper() + nombre[1:]
+            self.name = nombre[:1].upper() + nombre[1:]
+            
+    # Campos calculados para la vista gráfico
+    iNum_sesiones = fields.Integer(string="Nº de sesiones", compute='_compute_estadisticas', store=True) # True porque el gráfico necesita que se guarde
+    fHoras = fields.Float(string="Horas programadas", compute='_compute_estadisticas', store=True)
+    
+    @api.depends('sesion_ids', 'sesion_ids.fDuracion') # Si cambia el numero de sesiones y/o la duración de una de ellas, recalcula
+    def _compute_estadisticas(self):
+        for record in self:
+            record.iNum_sesiones = len(record.sesion_ids) # Cuántas sesiones hay
+            record.fHoras = sum(record.sesion_ids.mapped('fDuracion'))
