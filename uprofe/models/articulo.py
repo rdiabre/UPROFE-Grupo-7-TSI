@@ -13,7 +13,7 @@ class articulo(models.Model):
     _description = "Artículo científicos"
     _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
     
-    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True)
+    publicacion_id = fields.Many2one('uprofe.publicacion', required=True)
     
     sRevista = fields.Char(string="Revista", required=True)
     sDoi = fields.Char(string="DOI", required=True)
