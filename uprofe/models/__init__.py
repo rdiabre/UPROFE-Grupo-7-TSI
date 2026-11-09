@@ -18,9 +18,9 @@ from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
-from . import profesor
-from . import sesion
-from . import tipo_sesion
+from . import empresa
+from . import convenio_empresa
+from . import oferta_practica
 from . import doc_adjunta
 from . import solicitud
 from . import convenio
