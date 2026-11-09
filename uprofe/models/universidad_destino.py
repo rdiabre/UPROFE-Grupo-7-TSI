@@ -13,22 +13,24 @@ class UniversidadDestino(models.Model):
     cod_erasmus = fields.Char(string="Código Erasmus", size=20, required=True)
     sName = fields.Char(string="Nombre", size=100, required=True)
     
-    ciudad_id = fields.Many2one(
-       'uprofe.ciudad',
-       string="Ciudad",
-       required=True,
-       ondelete='restrict',
-    )
-    
-    pais_id = fields.Many2one(
-       related='ciudad_id.pais_id',
-       string="País",
-       store=True,
-    )
+    # Descomentar cuando exista Ciudad (pais_id depende de ciudad_id)
+    # ciudad_id = fields.Many2one(
+    #    'uprofe.ciudad',
+    #    string="Ciudad",
+    #    required=True,
+    #    ondelete='restrict',
+    # )
+    #
+    # pais_id = fields.Many2one(
+    #    related='ciudad_id.pais_id',
+    #    string="País",
+    #    store=True,
+    # )
 
-    convenio_ids = fields.One2many('uprofe.convenio', 'universidad_id', string="Convenios")
-    plaza_ids = fields.One2many('uprofe.plaza_erasmus', 'universidad_id', string="Plazas")
-    asignatura_ids = fields.One2many('uprofe.asignatura_destino', 'universidad_id', string="Asignaturas")
+    # Descomentar cuando existan Convenio, PlazaErasmus y AsignaturaDestino
+    # convenio_ids = fields.One2many('uprofe.convenio', 'universidad_id', string="Convenios")
+    # plaza_ids = fields.One2many('uprofe.plaza_erasmus', 'universidad_id', string="Plazas")
+    # asignatura_ids = fields.One2many('uprofe.asignatura_destino', 'universidad_id', string="Asignaturas")
 
     _sql_constraints = [
         ('cod_erasmus_unico', 'UNIQUE(cod_erasmus)',
