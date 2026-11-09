@@ -13,6 +13,7 @@ from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
 from . import persona
+from . import profesor
 from . import doc_adjunta
 from . import solicitud
 from . import convenio
