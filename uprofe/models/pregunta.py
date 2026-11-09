@@ -6,9 +6,9 @@ from odoo.exceptions import ValidationError
 class Pregunta(models.Model):
     _name = 'uprofe.pregunta'
     _description = 'Pregunta de encuesta'
-    _order = 'inumpregunta asc'
+    _order = 'inum_pregunta asc'
 
-    inumpregunta = fields.Integer(string='Número de pregunta', required=True, default=1,
+    inum_pregunta = fields.Integer(string='Número de pregunta', required=True, default=1,
                                   aggregator=False)
     name = fields.Char(string='Texto de la pregunta', required=True)
     sopciones = fields.Text(string='Opciones (una por línea)')
@@ -18,34 +18,36 @@ class Pregunta(models.Model):
                                         required=True, ondelete='restrict')
     bconopciones = fields.Boolean(related='tipo_respuesta_id.bconopciones')
 
-    # Descomento cuando uprofe.encuesta esté en main 
+    # Descomento cuando uprofe.encuesta esté en main
     # encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta',
     #                               required=True, ondelete='cascade')
     # _sql_constraints = [
-    #     ('inumpregunta_encuesta_uniq', 'unique(encuesta_id, inumpregunta)',
+    #     ('inum_pregunta_encuesta_uniq', 'unique(encuesta_id, inum_pregunta)',
     #      'Ya existe una pregunta con ese número en esta encuesta.'),
     # ]
 
-    # constrains 
-    @api.constrains('inumpregunta')
-    def _check_inumpregunta(self):
-        if self.inumpregunta < 1:
-            raise ValidationError("El número de pregunta debe ser mayor que 0.")
+    # constrains
+    @api.constrains('inum_pregunta')
+    def _check_inum_pregunta(self):
+        for record in self:
+            if record.inum_pregunta < 1:
+                raise ValidationError("El número de pregunta debe ser mayor que 0.")
 
     @api.constrains('tipo_respuesta_id', 'sopciones')
     def _check_opciones(self):
-        lineas = [l for l in (self.sopciones or '').splitlines() if l.strip()]
-        if self.bconopciones and len(lineas) < 2:
-            raise ValidationError("Este tipo de pregunta necesita al menos dos opciones.")
-        if not self.bconopciones and lineas:
-            raise ValidationError("Solo los tipos que requieren opciones las admiten.")
+        for record in self:
+            lineas = [l for l in (record.sopciones or '').splitlines() if l.strip()]
+            if record.bconopciones and len(lineas) < 2:
+                raise ValidationError("Este tipo de pregunta necesita al menos dos opciones.")
+            if not record.bconopciones and lineas:
+                raise ValidationError("Solo los tipos que requieren opciones las admiten.")
 
-    # onchange 
-    @api.onchange('inumpregunta')
-    def _onchange_inumpregunta(self):
-        if self.inumpregunta < 1:
+    # onchange
+    @api.onchange('inum_pregunta')
+    def _onchange_inum_pregunta(self):
+        if self.inum_pregunta < 1:
             return {
-                'value': {'inumpregunta': 1},
+                'value': {'inum_pregunta': 1},
                 'warning': {
                     'title': 'Valor incorrecto',
                     'message': 'El número de pregunta debe ser mayor que 0.'
@@ -62,3 +64,9 @@ class Pregunta(models.Model):
                     'message': 'Solo los tipos que requieren opciones las admiten.'
                 }
             }
+            
+    @api.depends('name', 'inum_pregunta', 'encuesta_id.name') #muesta a que encuesta pertenece cada pregunta
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = "Encuesta: %s, Num Pregunta: %s, Pregunta: %s" % (
+                record.encuesta_id.name or '', record.inum_pregunta, record.name or '')
