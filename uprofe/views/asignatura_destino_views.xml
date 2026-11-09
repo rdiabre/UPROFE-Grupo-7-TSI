@@ -9,7 +9,8 @@
             <list>
                 <field name="cod_asig_destino"/>
                 <field name="sName"/>
-                <field name="universidad_id"/>
+                <!-- Descomentar cuando exista UniversidadDestino -->
+                <!-- <field name="universidad_id"/> -->
                 <field name="idioma_id"/>
                 <field name="fCreditos_ects"/>
             </list>
@@ -30,30 +31,51 @@
                             <field name="fCreditos_ects"/>
                         </group>
                         <group string="Universidad e idioma">
-                            <field name="universidad_id"/>
+                            <!-- Descomentar cuando exista UniversidadDestino -->
+                            <!-- <field name="universidad_id"/> -->
                             <field name="idioma_id"/>
                         </group>
                     </group>
-                    <notebook>
+                    <!-- Descomentar cuando exista LaLinea -->
+                    <!-- <notebook>
                         <page string="Líneas de acuerdo">
                             <field name="linea_ids"/>
                         </page>
-                    </notebook>
+                    </notebook> -->
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Graph: créditos ECTS totales ofertados por universidad
-         (no hay Calendar: esta tabla no tiene ningún campo de fecha) -->
+    <!-- Graph: créditos ECTS totales ofertados por idioma.
+         Cuando exista UniversidadDestino se puede agrupar por universidad_id. -->
     <record id="view_uprofe_asignatura_destino_graph" model="ir.ui.view">
         <field name="name">uprofe.asignatura_destino.graph</field>
         <field name="model">uprofe.asignatura_destino</field>
         <field name="arch" type="xml">
-            <graph string="Créditos ECTS por universidad" type="bar">
-                <field name="universidad_id"/>
+            <graph string="Créditos ECTS por idioma" type="bar">
+                <field name="idioma_id"/>
+                <!-- <field name="universidad_id"/> -->
                 <field name="fCreditos_ects" type="measure"/>
             </graph>
+        </field>
+    </record>
+
+    <!-- Calendar: la tabla no tiene campos de fecha propios, así que se usa
+         la fecha de alta del registro (create_date, campo automático de Odoo) -->
+    <record id="view_uprofe_asignatura_destino_calendar" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.calendar</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <calendar string="Altas de asignaturas de destino"
+                      date_start="create_date"
+                      mode="month"
+                      color="idioma_id"
+                      quick_create="0">
+                <field name="sName"/>
+                <field name="cod_asig_destino"/>
+                <field name="idioma_id"/>
+            </calendar>
         </field>
     </record>
 
@@ -65,10 +87,10 @@
             <search>
                 <field name="sName"/>
                 <field name="cod_asig_destino"/>
-                <field name="universidad_id"/>
+                <!-- <field name="universidad_id"/> -->
                 <field name="idioma_id"/>
                 <group string="Agrupar por">
-                    <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
+                    <!-- <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/> -->
                     <filter string="Idioma" name="group_idioma" context="{'group_by': 'idioma_id'}"/>
                 </group>
             </search>
@@ -79,7 +101,7 @@
     <record id="action_uprofe_asignatura_destino" model="ir.actions.act_window">
         <field name="name">Asignaturas de destino</field>
         <field name="res_model">uprofe.asignatura_destino</field>
-        <field name="view_mode">list,form,graph</field>
+        <field name="view_mode">list,form,graph,calendar</field>
     </record>
 
     <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
