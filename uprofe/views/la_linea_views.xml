@@ -41,7 +41,34 @@
         </field>
     </record>
 
-    <!-- Sin acción ni menú propios: las líneas se editan dentro del
-         formulario del learning agreement (ver la pestaña "Líneas"). -->
+    <!-- Graph: créditos reconocidos por estado de la línea
+         (no hay Calendar: esta tabla no tiene ningún campo de fecha) -->
+    <record id="view_uprofe_la_linea_graph" model="ir.ui.view">
+        <field name="name">uprofe.la_linea.graph</field>
+        <field name="model">uprofe.la_linea</field>
+        <field name="arch" type="xml">
+            <graph string="Créditos reconocidos por estado" type="bar">
+                <field name="estado_id"/>
+                <field name="fCreditos_reconocidos" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Acción solo de análisis: el Graph necesita una acción para poder abrirse.
+         Se bloquea la creación porque las líneas se crean dentro del
+         learning agreement (pestaña "Líneas"). -->
+    <record id="action_uprofe_la_linea" model="ir.actions.act_window">
+        <field name="name">Análisis de líneas</field>
+        <field name="res_model">uprofe.la_linea</field>
+        <field name="view_mode">graph,list,form</field>
+        <field name="context">{'create': False}</field>
+    </record>
+
+    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
+    <menuitem id="menu_uprofe_la_linea"
+              name="Análisis de líneas"
+              parent="menu_uprofe_movilidad"
+              action="action_uprofe_la_linea"
+              sequence="55"/>
 
 </odoo>
