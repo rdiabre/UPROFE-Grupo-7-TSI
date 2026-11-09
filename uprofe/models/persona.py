@@ -34,7 +34,7 @@ class Persona(models.Model):
     la tabla entera para comprobarlo. (El correo y el teléfono no se pueden
     hacer así porque se guardan en la tabla de res.partner, no en la de persona)"""
     _sql_constraints = [
-        ('dni_unique', 'unique(sDni)', 'Ya existe una persona con este DNI.'),
+        ('dni_unique', 'unique("sDni")', 'Ya existe una persona con este DNI.'),
     ]
 
     """VALIDACIONES (@api.constrains): impiden guardar si algo está mal
