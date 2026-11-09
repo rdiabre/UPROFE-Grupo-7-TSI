@@ -44,6 +44,19 @@
         </field>
     </record>
 
+    <!-- Graph: créditos ECTS totales ofertados por universidad
+         (no hay Calendar: esta tabla no tiene ningún campo de fecha) -->
+    <record id="view_uprofe_asignatura_destino_graph" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.graph</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <graph string="Créditos ECTS por universidad" type="bar">
+                <field name="universidad_id"/>
+                <field name="fCreditos_ects" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
     <!-- Búsqueda y filtros -->
     <record id="view_uprofe_asignatura_destino_search" model="ir.ui.view">
         <field name="name">uprofe.asignatura_destino.search</field>
@@ -66,7 +79,7 @@
     <record id="action_uprofe_asignatura_destino" model="ir.actions.act_window">
         <field name="name">Asignaturas de destino</field>
         <field name="res_model">uprofe.asignatura_destino</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,graph</field>
     </record>
 
     <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
