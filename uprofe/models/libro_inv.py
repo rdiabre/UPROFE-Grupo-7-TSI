@@ -13,7 +13,7 @@ class libro_inv(models.Model):
     _description = "Libro de investigación"
     _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
     
-    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True)
+    publicacion_id = fields.Many2one('uprofe.publicacion', required=True)
     
     sIsbn = fields.Char(string="ISBN", required=True)
     sEditorial = fields.Char(string="Editorial", required=True)
