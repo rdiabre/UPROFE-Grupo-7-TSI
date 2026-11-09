@@ -16,8 +16,8 @@ class patente(models.Model):
     
     publicacion_id = fields.Many2one('uprofe.publicacion', required=True)
     
-    sNumero_patente(string="Número de patente", required=True)
-    dFecha_concesion(string="Fecha de concesión", autodate=True, required=True)
+    sNumero_patente = fields.Char(string="Número de patente", required=True)
+    dFecha_concesion = fields.Char(string="Fecha de concesión", autodate=True, required=True)
     
     @api.constrains('sNumero_patente')
     def _check_numero_patente_unico(self):
