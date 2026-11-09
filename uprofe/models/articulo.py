@@ -2,18 +2,18 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 TIPOS_PUBLICACION = [
-        'uprofe.articulo',
-        'uprofe.libro_inv',
-        'uprofe.patente',
-        'uprofe.congreso',
-    ]
+    'uprofe.articulo',
+    'uprofe.libro_inv',
+    'uprofe.patente',
+    'uprofe.congreso',
+]
 
 class articulo(models.Model):
     _name = 'uprofe.articulo'
     _description = "Artículo científicos"
     _inherits = {'uprofe.publicacion': 'iPublicacion_id'}
     
-    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True, ondelete='cascade')
+    iPublicacion_id = fields.Many2one('uprofe.publicacion', required=True)
     
     sRevista = fields.Char(string="Revista", required=True)
     sDoi = fields.Char(string="DOI", required=True)
@@ -43,5 +43,5 @@ class articulo(models.Model):
                 dominio = [('iPublicacion_id', '=', record.iPublicacion_id.id)]
                 if modelo == record._name:
                     dominio.append(('id', '!=', record.id))
-                if self.env[modelo].sudo().search_count(dominio):
+                if self.env[modelo].search_count(dominio):
                     raise ValidationError(f"La publicación {record.iPublicacion_id.name} ya está asociada a un registro de {modelo}.")
