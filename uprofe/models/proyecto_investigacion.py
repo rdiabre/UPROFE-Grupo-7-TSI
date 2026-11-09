@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from datetime import timedelta
 
 class proyecto_investigacion(models.Model):
     _name = 'uprofe.proyecto_investigacion'
