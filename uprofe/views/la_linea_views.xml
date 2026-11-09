@@ -7,9 +7,9 @@
         <field name="model">uprofe.la_linea</field>
         <field name="arch" type="xml">
             <list>
-                <field name="learning_agreement_id"/>
+                <!-- <field name="learning_agreement_id"/> -->
                 <field name="iNum_linea"/>
-                <field name="asignatura_destino_id"/>
+                <!-- <field name="asignatura_destino_id"/> -->
                 <field name="estado_id"/>
                 <field name="fNota"/>
                 <field name="fCreditos_reconocidos"/>
@@ -26,12 +26,12 @@
                 <sheet>
                     <group>
                         <group string="Línea">
-                            <field name="learning_agreement_id"/>
+                            <!-- <field name="learning_agreement_id"/> -->
                             <field name="iNum_linea"/>
                             <field name="estado_id"/>
                         </group>
                         <group string="Asignatura y resultado">
-                            <field name="asignatura_destino_id"/>
+                            <!-- <field name="asignatura_destino_id"/> -->
                             <field name="fNota"/>
                             <field name="fCreditos_reconocidos"/>
                         </group>
