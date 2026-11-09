@@ -40,7 +40,7 @@ class LaLinea(models.Model):
     # )
 
     # _sql_constraints = [
-    #     ('linea_unica_por_la', 'UNIQUE(learning_agreement_id, iNum_linea)',
+    #     ('linea_unica_por_la', 'UNIQUE(learning_agreement_id, "iNum_linea")',
     #      'Ya existe una línea con ese número en este learning agreement.'),
     # ]
 
