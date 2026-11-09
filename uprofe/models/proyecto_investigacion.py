@@ -67,4 +67,4 @@ class proyecto_investigacion(models.Model):
     @api.depends('financiacion_ids')
     def _compute_presupuesto(self):
         for record in self:
-            record.presupuesto = sum(record.financiacion_ids.mapped('fImporte'))
+            record.fPresupuesto = sum(record.financiacion_ids.mapped('fImporte'))
