@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_pregunta_list" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.list</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <list string="Preguntas">
+                <field name="name"/>
+                <field name="inum_pregunta"/>
+                <field name="tipo_respuesta_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_pregunta_form" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.form</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <form string="Pregunta">
+                <sheet>
+                    <group>
+                        <field name="inum_pregunta"/>
+                        <field name="name"/>
+                        <field name="tipo_respuesta_id" options="{'no_quick_create': True}"/>
+                        <field name="bconopciones" invisible="1"/>
+                        <field name="sopciones" invisible="not bconopciones"
+                               required="bconopciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista avanzada: preguntas por tipo de respuesta -->
+    <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.graph</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <graph string="Preguntas por tipo" type="pie">
+                <field name="tipo_respuesta_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_pregunta_search" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.search</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tipo" string="Tipo de respuesta"
+                            context="{'group_by': 'tipo_respuesta_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_pregunta" model="ir.actions.act_window">
+        <field name="name">Preguntas</field>
+        <field name="res_model">uprofe.pregunta</field>
+        <field name="search_view_id" ref="view_uprofe_pregunta_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>
