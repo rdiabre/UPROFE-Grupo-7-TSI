@@ -3,15 +3,15 @@
         <field name="name">uprofe.linea_investigacion.kanban</field>
         <field name="model">uprofe.linea_investigacion</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="iGrupo_inv_id">
+            <kanban default_group_by="grupo_inv_id">
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <strong><field name="sNombre"/></strong>
                             <div>Código: <field name="sName"/></div>
-                            <div>PDIs: <field name="lProfesor_ids" widget="many2many_tags"/></div>
+                            <div>PDIs: <field name="profesor_ids" widget="many2many_tags"/></div>
                             <!-- Descomentar cuando exista Investigador -->
-                            <!-- <div>Investigadores: <field name="lInvestigador_ids" widget="many2many_tags"/></div> -->
+                            <!-- <div>Investigadores: <field name="investigador_ids" widget="many2many_tags"/></div> -->
                         </div>
                     </t>
                 </templates>
@@ -29,7 +29,7 @@
                         <field name="sName" />
                         <field name="sNombre" />
                         <field name="sDescripcion" />
-                        <field name="iGrupo_inv_id" widget="many2one" />
+                        <field name="grupo_inv_id" widget="many2one" />
                     </group>
                 </sheet>
             </form>
@@ -44,7 +44,7 @@
                 <field name="sName" />
                 <field name="sNombre" />
                 <field name="sDescripcion" />
-                <field name="iGrupo_inv_id" widget="many2one" />
+                <field name="grupo_inv_id" widget="many2one" />
             </list>
         </field>
     </record>
