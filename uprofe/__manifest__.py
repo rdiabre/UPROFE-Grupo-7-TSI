@@ -39,7 +39,13 @@ Descripción del módulo
         'views/grupo_inv_views.xml',
         'views/financiacion_views.xml',
         'views/catalogos_views.xml',
+        'views/movilidad_views.xml',
+        'views/learning_agreement_views.xml',
+        'views/la_linea_views.xml',
+        'views/plaza_erasmus_views.xml',
+        'views/asignatura_destino_views.xml',
         'views/menu.xml',
+      
     ],
     # only loaded in demonstration mode
     'demo': [
