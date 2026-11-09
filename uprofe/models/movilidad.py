@@ -34,7 +34,7 @@ class Movilidad(models.Model):
     #     'uprofe.learning_agreement', 'movilidad_id', string="Learning agreements")
 
     _sql_constraints = [
-        ('num_movilidad_unico', 'UNIQUE(sNum_movilidad)',
+        ('num_movilidad_unico', 'UNIQUE("sNum_movilidad")',
          'Ya existe una movilidad con ese número.'),
         # ('solicitud_unica', 'UNIQUE(solicitud_id)',
         #  'Esa solicitud ya ha originado una movilidad.'),
