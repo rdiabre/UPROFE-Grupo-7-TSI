@@ -3,7 +3,6 @@ from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
 from . import usuario
-from . import articulo
 from . import asignatura
 from . import guia_docente
 # persona debe cargarse antes que profesor (profesor la usa en _inherits)
@@ -12,6 +11,7 @@ from . import profesor
 from . import sesion
 from . import tipo_sesion
 from . import publicacion
+from . import articulo
 from . import proyecto_investigacion
 from . import idioma
 from . import nivel_estudios
