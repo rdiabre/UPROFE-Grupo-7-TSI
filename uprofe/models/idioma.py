@@ -17,7 +17,7 @@ class Idioma(models.Model):
     # plaza_erasmus_ids = fields.One2many('uprofe.plaza_erasmus', 'idioma_id', string="Plazas")
 
     _sql_constraints = [
-        ('nombre_unico', 'UNIQUE(sName)', 'Ya existe un idioma con ese nombre.'),
+        ('nombre_unico', 'UNIQUE("sName")', 'Ya existe un idioma con ese nombre.'),
     ]
 
     @api.constrains('sName')

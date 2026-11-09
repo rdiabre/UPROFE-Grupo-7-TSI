@@ -15,7 +15,7 @@ class NivelEstudios(models.Model):
     # plaza_ids = fields.One2many('uprofe.plaza_erasmus', 'nivel_estudios_id', string="Plazas")
 
     _sql_constraints = [
-        ('nombre_unico', 'UNIQUE(sName)', 'Ya existe un nivel de estudios con ese nombre.'),
+        ('nombre_unico', 'UNIQUE("sName")', 'Ya existe un nivel de estudios con ese nombre.'),
     ]
 
     @api.constrains('sName')
