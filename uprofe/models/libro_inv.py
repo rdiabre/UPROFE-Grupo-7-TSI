@@ -36,12 +36,12 @@ class libro_inv(models.Model):
             if record.sEditorial.strip() == "":
                 raise ValidationError("La editorial no puede estar vacía.")
             
-    @api.constrains('iPublicacion_id')
+    @api.constrains('publicacion_id')
     def _check_publicacion_valida(self):
         for record in self:
             for sModelo in TIPOS_PUBLICACION:
-                lDominio = [('iPublicacion_id', '=', record.iPublicacion_id.id)]
+                lDominio = [('iPublicacion_id', '=', record.publicacion_id.id)]
                 if sModelo == record._name:
                     lDominio.append(('id', '!=', record.id))
                 if self.env[sModelo].search_count(lDominio):
-                    raise ValidationError(f"La publicación {record.iPublicacion_id.name} ya está asociada a un registro de {sModelo}.")
+                    raise ValidationError(f"La publicación {record.publicacion_id.sName} ya está asociada a un registro de {sModelo}.")
