@@ -11,7 +11,6 @@ TIPOS = [
     ('otro', 'Otro'),
 ]
 
-
 class TipoSesion(models.Model):
     _name = 'uprofe.tipo_sesion'
     _description = 'UPROFE Tipo de sesión'
@@ -28,8 +27,10 @@ class TipoSesion(models.Model):
     la base de datos rechaza el registro porque llega vacío."""
     name = fields.Char(string="Tipo de sesión", required=True, compute='_compute_name', store=True, readonly=False, precompute=True)
 
-    # La relación con las sesiones (sesion_ids) se añadirá en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
-
+    # La relación con las sesiones (sesion_ids) se añade en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
+    # Un tipo de sesión tiene varias sesiones (1,N). Como Sesión tiene tipo_sesion_id con ondelete='restrict', un tipo con sesiones no se puede borrar.
+    sesion_ids = fields.One2many('uprofe.sesion', 'tipo_sesion_id', string="Sesiones")
+    
     # Unicidad de la clave primaria con índice en la base de datos
     _sql_constraints = [
         ('name_unique', 'unique(name)', 'Ya existe este tipo de sesión.'),
@@ -66,3 +67,14 @@ class TipoSesion(models.Model):
         if self.name:
             nombre = self.name.strip()
             self.name = nombre[:1].upper() + nombre[1:]
+            self.name = nombre[:1].upper() + nombre[1:]
+            
+    # Campos calculados para la vista gráfico
+    iNum_sesiones = fields.Integer(string="Nº de sesiones", compute='_compute_estadisticas', store=True) # True porque el gráfico necesita que se guarde
+    fHoras = fields.Float(string="Horas programadas", compute='_compute_estadisticas', store=True)
+    
+    @api.depends('sesion_ids', 'sesion_ids.fDuracion') # Si cambia el numero de sesiones y/o la duración de una de ellas, recalcula
+    def _compute_estadisticas(self):
+        for record in self:
+            record.iNum_sesiones = len(record.sesion_ids) # Cuántas sesiones hay
+            record.fHoras = sum(record.sesion_ids.mapped('fDuracion'))
