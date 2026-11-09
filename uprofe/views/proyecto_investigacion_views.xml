@@ -1,0 +1,63 @@
+<odoo>
+    <record id="uprofe_proyecto_investigacion_calendar_view" model="ir.ui.view">
+        <field name="name">uprofe.proyecto_investigacion.calendar</field>
+        <field name="model">uprofe.proyecto_investigacion</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendario de los proyectos" 
+                    date_start="dFecha_inicio" 
+                    date_stop="dFecha_fin" 
+                    color="iGrupo_inv_id" 
+                    mode="month"
+                    quick_create="0">
+                <field name="sTitulo"/>
+                <field name="iGrupo_inv_id" filters="1"/>
+                <field name="fPresupuesto"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="uprofe_proyecto_investigacion_form_view" model="ir.ui.view">
+        <field name="name">uprofe.proyecto_investigacion.form</field>
+        <field name="model">uprofe.proyecto_investigacion</field>
+        <field name="arch" type="xml">
+            <form string="Proyectos de investigación">
+                <sheet layout="auto">
+                    <group>
+                        <field name="sName" />
+                        <field name="sTitulo" />
+                        <field name="fPresupuesto" />
+                        <field name="dFecha_inicio" />
+                        <field name="dFecha_fin" />
+                        <field name="iGrupo_inv_id" widget="many2one" />
+                        <field name="lFinanciacion_ids" widget="one2many" />
+                        <field name="lPublicacion_ids" widget="one2many" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="uprofe_proyecto_investigacion_list_view" model="ir.ui.view">
+        <field name="name">uprofe.proyecto_investigacion.list</field>
+        <field name="model">uprofe.proyecto_investigacion</field>
+        <field name="arch" type="xml">
+            <list string="Lista de proyectos de investigación">
+                <field name="sName" />
+                <field name="sTitulo" />
+                <field name="fPresupuesto" />
+                <field name="dFecha_inicio" />
+                <field name="dFecha_fin" />
+                <field name="iGrupo_inv_id" widget="many2one" />
+            </list>
+        </field>
+    </record>
+
+    <record id="proyecto_investigacion_list_action" model="ir.actions.act_window">
+        <field name="name">Proyectos de investigación</field>
+        <field name="res_model">uprofe.proyecto_investigacion</field>
+        <field name="view_mode">list,form,calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Añade la primera línea de investigación</p>
+        </field>
+    </record>
+</odoo>
