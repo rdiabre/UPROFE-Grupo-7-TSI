@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from odoo.exception import ValidationError
+from odoo.exceptions import ValidationError
 
 class financiacion(models.Model):
     _name = 'uprofe.financiacion'
