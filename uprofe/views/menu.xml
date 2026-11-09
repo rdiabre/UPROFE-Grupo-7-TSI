@@ -6,6 +6,7 @@
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
     
     <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
+    <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
     <menuitem name="Proyectos de investigación" id="proyecto_investigacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="proyecto_investigacion_list_action"/>
     
     <menuitem name="Estados de convenio" id="estado_convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_convenio_list_action"/>

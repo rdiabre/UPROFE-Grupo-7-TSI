@@ -28,6 +28,7 @@ Descripción del módulo
         'views/pregunta_views.xml',
         'views/persona_views.xml',
         'views/profesor_views.xml',
+        'views/tipo_sesion_views.xml',
         'views/tipo_respuesta_views.xml',
         'views/proyecto_investigacion_views.xml',
         'views/linea_investigacion_views.xml',
