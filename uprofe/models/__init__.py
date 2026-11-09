@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
 from . import usuario
