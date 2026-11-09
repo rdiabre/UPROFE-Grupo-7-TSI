@@ -8,8 +8,6 @@ class Edificio(models.Model):
     _name = 'uprofe.edificio'
     _description = 'Edificios UPO'
 
-    _rec_name = 'sNombre'
-
     sNumero_edificio = fields.Char(string='Número de edificio', required=True)
 
     sNombre = fields.Char(string='Nombre', required=True)

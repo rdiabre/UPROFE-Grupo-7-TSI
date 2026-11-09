@@ -8,8 +8,6 @@ class Espacio(models.Model):
     _name = "uprofe.espacio"
     _description = "Espacios UPO"
 
-    _rec_name = "sCod_espacio"
-
     sCod_espacio = fields.Char(string="Código de espacio", required=True)
 
     iCapacidad = fields.Integer(string="Capacidad", required=True)

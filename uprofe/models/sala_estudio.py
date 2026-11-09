@@ -12,8 +12,6 @@ class SalaEstudio(models.Model):
         'uprofe.espacio': 'espacio_id'
     }
 
-    _rec_name = 'sCod_espacio'
-
     espacio_id = fields.Many2one('uprofe.espacio', string='Espacio', required=True, ondelete='cascade')
 
     sTipo = fields.Char(string='Tipo', required=True)

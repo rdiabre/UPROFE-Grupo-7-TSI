@@ -8,8 +8,6 @@ class Ubicacion(models.Model):
     _name = "uprofe.ubicacion"
     _description = "Ubicaciones geográficas UPO"
 
-    _rec_name = "sCod_ubicacion"
-
     sCod_ubicacion = fields.Char(string="Código de ubicación", required=True)
 
     fLatitud = fields.Float(string="Latitud", digits=(10, 7), required=True)
