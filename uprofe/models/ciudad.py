@@ -21,7 +21,7 @@ class Ciudad(models.Model):
     )
 
     _sql_constraints = [
-       ('ciudad_unica_por_pais', 'UNIQUE(sName, pais_id)',
+       ('ciudad_unica_por_pais', 'UNIQUE("sName", pais_id)',
         'Ya existe una ciudad con ese nombre en ese país.'),
     ]
 
