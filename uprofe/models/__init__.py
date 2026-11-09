@@ -4,6 +4,8 @@ from . import grupo_inv
 from . import financiacion
 from . import usuario
 from . import la_linea
+from . import plaza_erasmus
+from . import asignatura_destino
 from . import asignatura
 from . import guia_docente
 # persona debe cargarse antes que profesor (profesor la usa en _inherits)
