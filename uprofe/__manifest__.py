@@ -41,6 +41,7 @@ Descripción del módulo
         'views/catalogos_views.xml',
         'views/menu.xml',
         'views/plaza_erasmus_views.xml'
+        'views/asignatura_destino_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
