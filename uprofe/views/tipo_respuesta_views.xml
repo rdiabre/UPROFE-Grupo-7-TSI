@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_uprofe_tipo_respuesta_list" model="ir.ui.view">
-        <field name="name">uprofe.tipo_respuesta.list</field>
+    <record id="view_uprofe_tipo_respuesta_graph" model="ir.ui.view">
+        <field name="name">uprofe.tipo_respuesta.graph</field>
         <field name="model">uprofe.tipo_respuesta</field>
         <field name="arch" type="xml">
-            <list string="Tipos de respuesta">
-                <field name="name"/>
+            <graph string="Tipos de respuesta" type="pie">
                 <field name="bCon_opciones"/>
-            </list>
+            </graph>
         </field>
     </record>
 
@@ -26,13 +25,14 @@
         </field>
     </record>
 
-    <record id="view_uprofe_tipo_respuesta_graph" model="ir.ui.view">
-        <field name="name">uprofe.tipo_respuesta.graph</field>
+    <record id="view_uprofe_tipo_respuesta_list" model="ir.ui.view">
+        <field name="name">uprofe.tipo_respuesta.list</field>
         <field name="model">uprofe.tipo_respuesta</field>
         <field name="arch" type="xml">
-            <graph string="Tipos de respuesta" type="pie">
+            <list string="Tipos de respuesta">
+                <field name="name"/>
                 <field name="bCon_opciones"/>
-            </graph>
+            </list>
         </field>
     </record>
 
