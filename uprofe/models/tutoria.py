@@ -24,9 +24,5 @@ class Tutoria(models.Model):
     @api.constrains('horario_tutoria_id')
     def _check_horario_unico(self):
         for record in self:
-            duplicados = self.env['uprofe.tutoria'].search([
-                ('horario_tutoria_id', '=', record.horario_tutoria_id.id),
-                ('id', '!=', record.id)
-            ])
-            if duplicados:
-                raise ValidationError("¡Este horario de tutoría ya está reservado por otro alumno! Por favor, selecciona uno distinto.")
+            if len(record.horario_tutoria_id.tutoria_ids) > 1:
+                raise ValidationError("Este horario de tutoría ya está reservado")
