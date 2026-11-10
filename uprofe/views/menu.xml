@@ -25,6 +25,8 @@
     <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="10"/>
 
     <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="20"/>
+    
+    <menuitem name="Guías docentes" id="menu_uprofe_guia_docente" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_guia_docente"/>
 
     <!-- ===================== MOVILIDAD ===================== -->
     <!-- Menús estructurales (antes en catalogos_views.xml) -->
