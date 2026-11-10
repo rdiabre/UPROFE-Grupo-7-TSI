@@ -106,6 +106,8 @@
         </field>
     </record>
 
+    <!-- Se podría añadir una vista hierarchy para mostrar el árbol de asignaturas que se relacionan de un curso a otro, pero no se contempla por ahora-->
+
     <!-- Action -->
     <record id="asignatura_list_action" model="ir.actions.act_window">
         <field name="name">Asignaturas</field>
