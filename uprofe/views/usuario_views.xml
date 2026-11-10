@@ -1,14 +1,20 @@
 <odoo>
-    <search>
-        <field name="name" string="Nombre de usuario"/>
-        <field name="login" string="Correo"/>
-        <field name="profesor_id"/>
-        <field name="alumno_id"/>
+    <record id="uprofe_usuario_search" model="ir.ui.view">
+        <field name="name">uprofe.usuario.search</field>
+        <field name="model">uprofe.usuario</field>
+        <field name="arch" type="xml">
+            <search>
+            <field name="name" string="Nombre de usuario"/>
+            <field name="login" string="Correo"/>
+            <field name="profesor_id"/>
+            <field name="alumno_id"/>
 
-        <filter name="activos" string="Activos" domain="[('active', '=', True)]"/>
-        <filter name="archivados" string="Archivados" domain="[('active', '=', False)]"/>
-        <filter name="sin_acceso" string="Nunca han entrado" domain="[('login_date', '=', False)]"/>
-    </search>
+            <filter name="activos" string="Activos" domain="[('active', '=', True)]"/>
+            <filter name="archivados" string="Archivados" domain="[('active', '=', False)]"/>
+            <filter name="sin_acceso" string="Nunca han entrado" domain="[('login_date', '=', False)]"/>
+        </search>
+        </field>
+    </record>
 
     <record id="uprofe_usuario_form" model="ir.ui.view">
         <field name="name">uprofe.usuario.form</field>
