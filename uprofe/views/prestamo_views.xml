@@ -9,13 +9,13 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="num_prestamo"/>
-                            <field name="alumno_id"/>
+                            <field name="sNumPrestamo"/>
+                            <!-- <field name="alumno_id"/> -->
                             <field name="libro_id"/>
                         </group>
                         <group>
-                            <field name="fecha_prestamo"/>
-                            <field name="fecha_devolucion"/>
+                            <field name="dFechaPrestamo"/>
+                            <field name="dFechaDevolucion"/>
                         </group>
                     </group>
                 </sheet>
@@ -29,11 +29,11 @@
         <field name="model">uprofe.prestamo</field>
         <field name="arch" type="xml">
             <list>
-                <field name="num_prestamo"/>
-                <field name="alumno_id"/>
+                <field name="sNumPrestamo"/>
+                <!-- <field name="alumno_id"/> -->
                 <field name="libro_id"/>
-                <field name="fecha_prestamo"/>
-                <field name="fecha_devolucion"/>
+                <field name="dFechaPrestamo"/>
+                <field name="dFechaDevolucion"/>
             </list>
         </field>
     </record>
@@ -44,14 +44,14 @@
         <field name="model">uprofe.prestamo</field>
         <field name="arch" type="xml">
             <kanban>
-                <field name="num_prestamo"/>
-                <field name="alumno_id"/>
+                <field name="sNumPrestamo"/>
+                <!-- <field name="alumno_id"/> -->
                 <field name="libro_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
-                            <strong>Préstamo: <field name="num_prestamo"/></strong>
-                            <div>Alumno: <field name="alumno_id"/></div>
+                            <strong>Préstamo: <field name="sNumPrestamo"/></strong>
+                            <!-- <div>Alumno: <field name="alumno_id"/></div> -->
                             <div>Libro: <field name="libro_id"/></div>
                         </div>
                     </t>
