@@ -4,9 +4,10 @@ class Libro(models.Model):
     _name = 'uprofe.libro'
     _description = 'Libro de la Biblioteca'
 
-    isbn = fields.Char(string='ISBN', required=True)
+    sIsbn = fields.Char(string='ISBN', required=True)
     name = fields.Char(string='Título', required=True)
-    autor = fields.Char(string='Autor')
+    sAutor = fields.Char(string='Autor')
+
     tipo = fields.Selection([
         ('texto', 'Texto'),
         ('consulta', 'Consulta'),
@@ -14,7 +15,7 @@ class Libro(models.Model):
     ], string='Tipo')
 
     # Relación con préstamo. 
-    prestamo_id = fields.Many2one('uprofe.prestamo', string='Préstamo actual')
+    prestamo_id = fields.One2many('uprofe.prestamo', 'libro_id', string='Historial de préstamos')
 
     _sql_constraints = [
         ('prestamo_unique', 'unique(prestamo_id)', 'Este préstamo ya tiene un libro asignado.')

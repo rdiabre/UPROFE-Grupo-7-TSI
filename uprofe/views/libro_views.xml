@@ -10,10 +10,10 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="autor"/>
+                            <field name="sAutor"/>
                         </group>
                         <group>
-                            <field name="isbn"/>
+                            <field name="sIsbn"/>
                             <field name="tipo"/>
                             <field name="prestamo_id"/>
                         </group>
@@ -29,9 +29,9 @@
         <field name="model">uprofe.libro</field>
         <field name="arch" type="xml">
             <list>
-                <field name="isbn"/>
+                <field name="sIsbn"/>
                 <field name="name"/>
-                <field name="autor"/>
+                <field name="sAutor"/>
                 <field name="tipo"/>
             </list>
         </field>
@@ -44,13 +44,13 @@
         <field name="arch" type="xml">
             <kanban>
                 <field name="name"/>
-                <field name="autor"/>
+                <field name="sAutor"/>
                 <field name="tipo"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <strong><field name="name"/></strong>
-                            <div>Autor: <field name="autor"/></div>
+                            <div>Autor: <field name="sAutor"/></div>
                             <div>Tipo: <field name="tipo"/></div>
                         </div>
                     </t>
