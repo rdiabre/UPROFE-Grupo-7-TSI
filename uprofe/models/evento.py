@@ -15,7 +15,7 @@ class Evento(models.Model):
 
     #DEPENDENCIAS BLOQUEADAS#
 
-    # tipo_evento_id = fields.Many2one('uprofe.tipo_evento', string='Tipo de Evento')
+    tipo_evento_id = fields.Many2one('uprofe.tipo_evento', string='Tipo de Evento')
     # imparte_persona_ids = fields.Many2many('uprofe.persona', 'evento_imparte_rel', 'evento_id', 'persona_id', string='Impartido por')
     # organiza_persona_ids = fields.Many2many('uprofe.persona', 'evento_organiza_rel', 'evento_id', 'persona_id', string='Organizado por')
 
