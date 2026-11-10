@@ -97,11 +97,5 @@
         <field name="view_mode">list,form,kanban</field>
     </record>
 
-    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
-    <menuitem id="menu_uprofe_universidad_destino"
-              name="Universidades"
-              parent="menu_uprofe_movilidad"
-              action="action_uprofe_universidad_destino"
-              sequence="10"/>
 
 </odoo>
