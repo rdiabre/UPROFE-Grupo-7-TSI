@@ -5,8 +5,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <field name="image_1920" widget="image"
-                           class="oe_avatar" string="Foto de perfil"/>
+                    <field name="image_1920" widget="image" class="oe_avatar" string="Foto de perfil"/>
                     <group>
                         <group string="Datos de la cuenta">
                             <field name="name" string="Nombre de usuario"/>
@@ -14,39 +13,23 @@
                             <field name="active" string="Activo"/>
                         </group>
                         <group string="Seguridad">
-                            <field name="password" password="True"
-                                   string="Contraseña"
-                                   invisible="id"
-                                   required="not id"/>
-                            <field name="login_date" string="Último acceso"
-                                   readonly="1"/>
+                            <field name="password" password="True" string="Contraseña" required="not id"/> <!--Requerido solo cuando se está creando el usuario, si ya está creado no es obligatorio-->
+                            <field name="login_date" string="Último acceso" readonly="1"/>
                         </group>
                     </group>
 
-                    <notebook>
-                        <page string="Datos de profesor" name="profesor" invisible="not profesor_id">
-                            <field name="profesor_id">
-                                <list>
-                                    <field name="name"/>
-                                    <field name="sApellidos"/>
-                                    <field name="email"/>
-                                    <field name="phone"/>
-                                    <field name="sDespacho"/>
-                                </list>
-                            </field>
-                        </page>
-                        <page string="Datos de alumno" name="alumno" invisible="not alumno_id">
-                            <field name="alumno_id">
-                                <list>
-                                    <field name="name"/>
-                                    <field name="sApellidos"/>
-                                    <field name="email"/>
-                                    <field name="phone"/>
-                                    <field name="iCurso_actual"/>
-                                </list>
-                            </field>
-                        </page>
-                    </notebook>
+                    <!-- Selectores para cambiar el profesor o alumno asociado -->
+                    <group string="Persona asociada">
+                        <field name="profesor_id"
+                            readonly="alumno_id"
+                            domain="[('usuario_id', '=', False)]"
+                            options="{'no_create': True}"/>
+                        <field name="alumno_id"
+                            readonly="profesor_id"
+                            domain="[('usuario_id', '=', False)]"
+                            options="{'no_create': True}"/>
+                    </group>
+
                 </sheet>
             </form>
         </field>
