@@ -56,6 +56,12 @@ class Usuario(models.Model):
             if not re.match(regex_correo, record.login.strip()):
                 raise ValidationError("El correo electrónico no es válido.");
             
+    @api.constrains('profesor_id', 'alumno_id')
+    def _check_una_persona_asociada(self):
+        for record in self:
+            if record.profesor_id and record.alumno_id:
+                raise ValidationError("Un usuario no puede estar asociado a un alumno y a un profesor a la vez.")
+            
     # @api.constrains('password')
     # def _check_contrasena_robustez(self):
     #     regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
