@@ -28,8 +28,10 @@ class GuiaDocente(models.Model):
     binFichero = fields.Binary(string="Fichero", required=True, help="Guía docente en PDF")
     # Nombre del fichero subido (la vista lo rellena con filename="sNombre_fichero"). Sirve para comprobar que es .pdf
     sNombre_fichero = fields.Char(string="Nombre del fichero")
+    
+    # Copia del fichero solo para verlo con el visor de PDF (widget pdf_viewer) una vez guardada la guía
+    binVista = fields.Binary(string="Vista previa", compute='_compute_vista')
 
-    # Campos calculados
     # Nombre que se muestra al elegir la guía en otros modelos: "702023 (2026/2027)"
     name = fields.Char(string="Guía docente", compute='_compute_name')
     # Si la guía es la del curso académico actual (no se guarda)
@@ -51,6 +53,11 @@ class GuiaDocente(models.Model):
             if not curso:
                 curso = ''
             record.name = f"{codigo} ({curso})"
+    
+    @api.depends('binFichero')
+    def _compute_vista(self):
+        for record in self:
+            record.binVista = record.binFichero
 
     @api.depends('sCurso_academico')
     def _compute_es_actual(self):
