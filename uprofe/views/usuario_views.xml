@@ -1,0 +1,15 @@
+<odoo>
+    <record id="uprofe_usuario_list_view" model="ir.ui.view">
+        <field name="name">uprofe.usuario.list</field>
+        <field name="model">uprofe.usuario</field>
+        <field name="arch" type="xml">
+            <list string="Lista usuarios">
+                <field name="image_128" widget="image" options="{'size': [32, 32]}" string="Foto"/>
+                <field name="name" />
+                <field name="login" />
+                <field name="active" />
+                <field name="login_date" />
+            </list>
+        </field>
+    </record>
+</odoo>
