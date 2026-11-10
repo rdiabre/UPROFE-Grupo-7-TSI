@@ -98,7 +98,7 @@
         <field name="name">uprofe.asignatura.graph</field>
         <field name="model">uprofe.asignatura</field>
         <field name="arch" type="xml">
-            <graph string="Créditos por curso" type="bar">
+            <graph string="Créditos por curso" type="bar"> <!-- Barras -->
                 <field name="iCurso"/>
                 <field name="selCuatrimestre"/>
                 <field name="fCreditos" type="measure"/>
