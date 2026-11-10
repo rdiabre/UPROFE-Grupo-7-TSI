@@ -14,9 +14,17 @@ class Espacio(models.Model):
 
     iPlanta = fields.Integer(string="Planta", required=True)
 
-    edificio_id = fields.Many2one("uprofe.edificio", string="Edificio", required=True, ondelete="restrict")
+    edificio_id = fields.Many2one(
+        "uprofe.edificio", string="Edificio", required=True, ondelete="restrict"
+    )
 
-    sala_estudio_ids = fields.One2many("uprofe.sala_estudio", "espacio_id", string="Sala de estudio")
+    sala_estudio_ids = fields.One2many(
+        "uprofe.sala_estudio", "espacio_id", string="Sala de estudio"
+    )
+
+    inventario_ids = fields.One2many(
+        "uprofe.inventario", "espacio_id", string="Historial de inventarios"
+    )
 
     _sql_constraints = [
         (

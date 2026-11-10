@@ -18,7 +18,7 @@ Descripción del módulo
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'maintenance'],
 
     # always loaded
     'data': [
@@ -29,6 +29,8 @@ Descripción del módulo
         'views/edificio_views.xml',
         'views/espacio_views.xml',
         'views/sala_estudio_views.xml',
+        'views/inventario_views.xml',
+        'views/objeto_inventariable_views.xml',
         'views/menu.xml',
         'views/catalogos_views.xml'
     ],

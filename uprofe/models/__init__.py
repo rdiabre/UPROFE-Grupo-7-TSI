@@ -13,3 +13,5 @@ from . import ubicacion
 from . import edificio
 from . import espacio
 from . import sala_estudio
+from . import inventario
+from . import objeto_inventariable

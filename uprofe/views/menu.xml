@@ -3,8 +3,12 @@
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    
+    
     <menuitem name="Ubicaciones" id="ubicacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="ubicacion_list_action"/>
     <menuitem name="Edificios" id="edificio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="edificio_list_action"/>
     <menuitem name="Espacios" id="espacio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="espacio_list_action"/>
     <menuitem name="Salas de estudio" id="sala_estudio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sala_estudio_list_action"/>
+    <menuitem name="Inventarios" id="inventario_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="inventario_list_action"/>
+    <menuitem id="menu_uprofe_equipos" name="Equipos" parent="uprofe_menu" action="action_uprofe_equipos" sequence="30" groups="group_uprofe_manager"/>
 </odoo>

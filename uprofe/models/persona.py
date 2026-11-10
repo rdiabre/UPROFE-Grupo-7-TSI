@@ -29,6 +29,8 @@ class Persona(models.Model):
     # Campos propios de Persona
     apellidos = fields.Char(string="Apellidos", required=True)
     dni = fields.Char(string="DNI", size=9, required=True, help="Inserte el DNI o NIE de la persona")
+    
+    inventario_ids = fields.One2many('uprofe.inventario', 'responsable_id', string="Inventarios asociados")
 
     """Unicidad del DNI: crea un índice sobre la columna, así Postgre no lee
     la tabla entera para comprobarlo. (El correo y el teléfono no se pueden

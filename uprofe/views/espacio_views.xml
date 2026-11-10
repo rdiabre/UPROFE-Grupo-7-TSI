@@ -38,9 +38,10 @@
                                 </list>
                             </field>
                         </page>
+                        <page string="Historial de inventarios">
+                            <field name="inventario_ids" widget="one2many"/>
+                        </page>
                     </notebook>
-
-
                 </sheet>
             </form>
         </field>
