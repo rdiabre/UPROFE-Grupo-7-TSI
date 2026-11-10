@@ -11,6 +11,16 @@ class Usuario(models.Model):
     _inherits = {'res.users': 'users_id'}
     
     users_id = fields.Many2one('res.users', required=True)
+    
+    profesor_id = fields.Many2one('uprofe.profesor', string="Profesor")
+    alumno_id = fields.Many2one('uprofe.alumno', string="Alumno")
+    
+    # Validaciones para que tanto users_id, profesor_id y alumno_id solo puedan estar referenciados por una única instancia de uporfe.usuario
+    _sql_constraints = [
+        ('usuario_unique', 'UNIQUE(users_id)', "Este usuario ya tiene un perfil asociado"),
+        ('profesor_id_unique', 'UNIQUE(profesor_id)', "Este profesor ya tiene un usuario asociado"),
+        ('alumno_id_unique', 'UNIQUE(alumno_id)', "Este alumno ya tiene un usuario asociado")
+    ]
 
     # Hago la validación de unicidad con api.constrains porque si se hace con _sql_constraints, es case sensitive
     @api.constrains('name')
