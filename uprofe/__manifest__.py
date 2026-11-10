@@ -63,6 +63,7 @@ Descripción del módulo
         'views/asignatura_destino_views.xml',
         'views/universidad_destino_views.xml',
         'views/asignatura_views.xml',
+        'views/guia_docente_views.xml',
         'views/menu.xml',
       
     ],
