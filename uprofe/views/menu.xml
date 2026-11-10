@@ -25,4 +25,32 @@
     <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="10"/>
 
     <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="20"/>
+
+    <!-- ===================== MOVILIDAD ===================== -->
+    <!-- Menús estructurales (antes en catalogos_views.xml) -->
+    <menuitem id="menu_uprofe_root" name="UProfe" sequence="10"/>
+    <menuitem id="menu_uprofe_movilidad" name="Movilidad" parent="menu_uprofe_root" sequence="10"/>
+    <menuitem id="menu_uprofe_configuracion_movilidad" name="Configuración" parent="menu_uprofe_movilidad" sequence="90"/>
+
+    <!-- Entidades de movilidad (antes en cada *_views.xml) -->
+    <menuitem id="menu_uprofe_universidad_destino" name="Universidades" parent="menu_uprofe_movilidad" action="action_uprofe_universidad_destino" sequence="10"/>
+    <menuitem id="menu_uprofe_plaza_erasmus" name="Plazas" parent="menu_uprofe_movilidad" action="action_uprofe_plaza_erasmus" sequence="20"/>
+    <menuitem id="menu_uprofe_asignatura_destino" name="Asignaturas de destino" parent="menu_uprofe_movilidad" action="action_uprofe_asignatura_destino" sequence="30"/>
+    <!-- El id es menu_uprofe_movilidad_mov para no chocar con el menú padre -->
+    <menuitem id="menu_uprofe_movilidad_mov" name="Movilidades" parent="menu_uprofe_movilidad" action="action_uprofe_movilidad" sequence="40"/>
+    <menuitem id="menu_uprofe_learning_agreement" name="Learning agreements" parent="menu_uprofe_movilidad" action="action_uprofe_learning_agreement" sequence="50"/>
+    <menuitem id="menu_uprofe_la_linea" name="Análisis de líneas" parent="menu_uprofe_movilidad" action="action_uprofe_la_linea" sequence="55"/>
+
+    <!-- Configuración de movilidad: catálogos (antes en catalogos_views.xml) -->
+    
+    <!-- <menuitem id="menu_uprofe_pais" name="Países" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_pais" sequence="10"/> -->
+    <menuitem id="menu_uprofe_ciudad" name="Ciudades" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_ciudad" sequence="20"/>
+    
+    <!-- MENÚ ACTIVO DE IDIOMA -->
+    <menuitem id="menu_uprofe_idioma" name="Idiomas" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_idioma" sequence="30"/>
+    
+    <!-- <menuitem id="menu_uprofe_nivel_estudios" name="Niveles de estudio" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_nivel_estudios" sequence="40"/>
+    <menuitem id="menu_uprofe_estado_movilidad" name="Estados de movilidad" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_movilidad" sequence="50"/>
+    <menuitem id="menu_uprofe_estado_learning_agreement" name="Estados de L.A." parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_learning_agreement" sequence="60"/>
+    <menuitem id="menu_uprofe_estado_la_linea" name="Estados de línea" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_la_linea" sequence="70"/> -->
 </odoo>

@@ -85,11 +85,5 @@
         <field name="context">{'create': False}</field>
     </record>
 
-    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
-    <menuitem id="menu_uprofe_la_linea"
-              name="Análisis de líneas"
-              parent="menu_uprofe_movilidad"
-              action="action_uprofe_la_linea"
-              sequence="55"/>
 
 </odoo>
