@@ -30,7 +30,7 @@ class Profesor(models.Model):
     """ Un profesor imparte varias sesiones (0,N) y una sesión
     la pueden impartir varios profesores (1,N): Many2many.
     Usa la misma tabla que el profesor_ids de Sesión ('uprofe_profesor_sesion_rel')."""
-    sesion_ids = fields.Many2many('uprofe.sesion', 'uprofe_profesor_sesion_rel', 'profesor_id', 'sesion_id', string="Sesiones")
+    sesion_ids = fields.Many2many('uprofe.sesion', string="Sesiones")
 
     # Tipos de sesión que imparte de verdad, calculado a partir de sus sesiones
     tipo_sesion_ids = fields.Many2many('uprofe.tipo_sesion', string="Tipos de sesión que imparte", compute='_compute_tipo_sesion_ids')
