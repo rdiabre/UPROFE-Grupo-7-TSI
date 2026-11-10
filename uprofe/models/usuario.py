@@ -96,28 +96,3 @@ class Usuario(models.Model):
                     'message': 'Ambas contraseñas deben coincidir.'
                 }
             }
-            
-    # Limpiar espacios sobrantes
-    def write(self, vals):
-        if vals.get('contrasena'):
-            vals['contrasena'] = crypt.hash('contrasena')
-        self._strip_string_values(vals)
-        return super().write(vals)
-    
-    # Lo hago en el método create también para que aplique también al exportar datos (aunque yo solo vaya a usar write)
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if vals.get('contrasena'):
-                vals['contrasena'] = crypt.hash(vals['contrasena'])
-            self._strip_string_values(vals)
-        return super().create(vals_list)
-    
-    # Función auxiliar para limpiar espacios en todos los campos
-    def _strip_string_values(self, vals):
-        for field_name, val in vals.items():
-            if isinstance(val, str):
-                field = self._fields.get(field_name)
-                if field and field.type in ('char', 'text'):
-                    vals[field_name] = val.strip()
-        return vals
