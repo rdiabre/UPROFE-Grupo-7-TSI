@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <list string="Preguntas">
                 <field name="name"/>
-                <field name="inum_pregunta"/>
+                <field name="iNum_pregunta"/>
                 <field name="tipo_respuesta_id"/>
             </list>
         </field>
@@ -19,19 +19,16 @@
             <form string="Pregunta">
                 <sheet>
                     <group>
-                        <field name="inum_pregunta"/>
+                        <field name="iNum_pregunta"/>
                         <field name="name"/>
-                        <field name="tipo_respuesta_id" options="{'no_quick_create': True}"/>
-                        <field name="bconopciones" invisible="1"/>
-                        <field name="sopciones" invisible="not bconopciones"
-                               required="bconopciones"/>
+                        <field name="tipo_respuesta_id"/>
+                        <field name="sOpciones"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Vista avanzada: preguntas por tipo de respuesta -->
     <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
         <field name="name">uprofe.pregunta.graph</field>
         <field name="model">uprofe.pregunta</field>
@@ -47,7 +44,9 @@
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <search>
+                <field name="iNum_pregunta"/>
                 <field name="name"/>
+                <field name="tipo_respuesta_id"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_tipo" string="Tipo de respuesta"
                             context="{'group_by': 'tipo_respuesta_id'}"/>
