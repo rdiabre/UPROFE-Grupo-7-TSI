@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_uprofe_pregunta_list" model="ir.ui.view">
-        <field name="name">uprofe.pregunta.list</field>
+    <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.graph</field>
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
-            <list string="Preguntas">
-                <field name="name"/>
-                <field name="iNum_pregunta"/>
+            <graph string="Preguntas por tipo" type="pie">
                 <field name="tipo_respuesta_id"/>
-            </list>
+            </graph>
         </field>
     </record>
 
@@ -29,13 +27,15 @@
         </field>
     </record>
 
-    <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
-        <field name="name">uprofe.pregunta.graph</field>
+    <record id="view_uprofe_pregunta_list" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.list</field>
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
-            <graph string="Preguntas por tipo" type="pie">
+            <list string="Preguntas">
+                <field name="name"/>
+                <field name="iNum_pregunta"/>
                 <field name="tipo_respuesta_id"/>
-            </graph>
+            </list>
         </field>
     </record>
 
