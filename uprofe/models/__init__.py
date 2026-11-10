@@ -15,3 +15,5 @@ from . import espacio
 from . import sala_estudio
 from . import inventario
 from . import objeto_inventariable
+from . import inventario_linea
+from . import incidencia

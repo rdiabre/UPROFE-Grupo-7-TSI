@@ -31,6 +31,7 @@ Descripción del módulo
         'views/sala_estudio_views.xml',
         'views/inventario_views.xml',
         'views/objeto_inventariable_views.xml',
+        'views/incidencia_views.xml',
         'views/menu.xml',
         'views/catalogos_views.xml'
     ],

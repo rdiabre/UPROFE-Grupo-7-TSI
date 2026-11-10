@@ -1,0 +1,77 @@
+<odoo>
+
+    <record id="view_incidencia_form" model="ir.ui.view">
+        <field name="name">maintenance.request.form.uprofe</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="after">
+                <field name="sNum_incidencia" required="1" />
+                <attribute name="string">Número incidencia</attribute>
+            </field>
+
+            <field name="equipment_id" position="attributes">
+                <attribute name="string">Objeto inventariable</attribute>
+                <attribute name="required">1</attribute>
+                <attribute name="domain">[('sTipo_objeto', 'in', ['mobiliario', 'equipo'])]</attribute>
+            </field>
+
+            <field name="equipment_id" position="after">
+                <field name="fCoste_relacionado" />
+            </field>
+
+            <field name="maintenance_team_id" position="replace" />
+            <field name="user_id" position="replace" />
+            <field name="email_cc" position="replace" />
+
+        </field>
+    </record>
+
+
+    <record id="view_incidencia_list" model="ir.ui.view">
+        <field name="name">maintenance.request.list.uprofe</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="before">
+                <field name="sNum_incidencia" />
+            </field>
+
+            <field name="name" position="after">
+                <field name="equipment_id" />
+            </field>
+
+            <field name="stage_id" position="before">
+                <field name="fCoste_relacionado" />
+            </field>
+
+            <field name="owner_user_id" position="replace" />
+            <field name="user_id" position="replace" />
+            <field name="category_id" position="replace" />
+
+        </field>
+    </record>
+
+
+    <record id="action_uprofe_incidencias" model="ir.actions.act_window">
+        <field name="name">Incidencias</field>
+        <field name="res_model">maintenance.request</field>
+        <field name="view_mode">list,form</field>
+
+        <field name="domain">
+            [('maintenance_type', '=', 'corrective'),
+            ('equipment_id.sTipo_objeto', 'in', ['mobiliario', 'equipo'])]
+        </field>
+
+        <field name="context">
+            {'default_maintenance_type': 'corrective'}
+        </field>
+
+        <field name="search_view_id"
+            ref="maintenance.hr_equipment_request_view_search" />
+    </record>
+
+
+</odoo>

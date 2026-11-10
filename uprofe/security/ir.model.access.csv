@@ -15,3 +15,4 @@ espacio_manager,espacio_manager,model_uprofe_espacio,group_uprofe_manager,1,1,1,
 sala_estudio_manager,sala_estudio_manager,model_uprofe_sala_estudio,group_uprofe_manager,1,1,1,1
 inventario_manager,inventario_manager,model_uprofe_inventario,group_uprofe_manager,1,1,1,1
 access_maintenance_equipment_uprofe_manager,maintenance.equipment.uprofe.manager,maintenance.model_maintenance_equipment,uprofe.group_uprofe_manager,1,1,1,1
+access_inventario_linea_uprofe_manager,access.inventario.linea.uprofe.manager,model_uprofe_inventario_linea,uprofe.group_uprofe_manager,1,1,1,1

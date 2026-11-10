@@ -32,7 +32,9 @@
                 <field name="sTipo_objeto" />
                 <field name="sEstado" />
             </field>
-
+            <field name="technician_user_id" position="replace"/>
+            <field name="assign_date" position="replace"/>
+            <field name="owner_user_id" position="replace"/>
         </field>
     </record>
 

@@ -1,4 +1,3 @@
-
 <odoo>
 
     <record id="view_inventario_list" model="ir.ui.view">
@@ -20,21 +19,35 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
-                        <group string="Identificación">
-                            <field name="sNum_inventario" />
-                            <field name="dFecha_inventariado" />
-                            <field name="responsable_id" widget="many2one"/>
-                        </group>
-                        <group string="Localización">
-                            <field name="espacio_id" />
-                        </group>
-                    </group>
+                    <notebook>
+                        <page string="Datos del inventario">
+                            <group>
+                                <group string="Identificación">
+                                    <field name="sNum_inventario" />
+                                    <field name="dFecha_inventariado" />
+                                    <field name="responsable_id" widget="many2one" />
+                                </group>
+                                <group string="Localización">
+                                    <field name="espacio_id" />
+                                </group>
+                            </group>
 
-                    <group string="Observaciones generales">
-                        <field name="sObservaciones"
-                            placeholder="Observaciones generales del inventariado..." />
-                    </group>
+                            <group string="Observaciones generales">
+                                <field name="sObservaciones"
+                                    placeholder="Observaciones generales del inventariado..." />
+                            </group>
+                        </page>
+
+                        <page string="Objetos inventariados">
+                            <field name="linea_ids">
+                                <list>
+                                    <field name="objeto_id" />
+                                    <field name="bEncontrado" />
+                                    <field name="sObservaciones" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

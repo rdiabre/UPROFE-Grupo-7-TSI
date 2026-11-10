@@ -20,7 +20,11 @@ class Inventario(models.Model):
     )
 
     responsable_id = fields.Many2one(
-       "uprofe.persona", string="Responsable", required=True, ondelete="restrict"
+        "uprofe.persona", string="Responsable", required=True, ondelete="restrict"
+    )
+
+    linea_ids = fields.One2many(
+        "uprofe.inventario.linea", "inventario_id", string="Objetos inventariados"
     )
 
     _sql_constraints = [
