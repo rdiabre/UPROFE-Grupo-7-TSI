@@ -9,9 +9,9 @@
                 <field name="sLugar"/>
 
                 <filter name="con_proyecto" string="Asociados a un proyecto"
-                        domain="[('iProyecto_id', '!=', False)]"/>
+                        domain="[('proyecto_investigacion_id', '!=', False)]"/>
                 <filter name="sin_proyecto" string="Sin proyecto"
-                        domain="[('iProyecto_id', '=', False)]"/>
+                        domain="[('proyecto_investigacion_id', '=', False)]"/>
 
                 <filter name="filtro_fecha" string="Fecha de publicación"
                         date="dFecha_publicacion"/>
