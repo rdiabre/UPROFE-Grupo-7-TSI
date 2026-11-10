@@ -27,11 +27,15 @@
                             <field name="bEs_actual"/>
                         </group>
                         <group string="Fichero">
-                            <!-- filename: al subir el fichero, Odoo guarda su nombre en sNombre_fichero (así se comprueba que es .pdf).
-                                 widget="pdf_viewer": muestra el PDF dentro del formulario, sin tener que descargarlo. No usado porque no guarda el nombre-->
+                            <!-- filename: al subir el fichero, Odoo guarda su nombre en sNombre_fichero (así se comprueba que es .pdf) -->
                             <field name="binFichero" filename="sNombre_fichero"/>
                             <field name="sNombre_fichero" invisible="1"/>
                         </group>
+                    </group>
+                    <!-- Vista previa del PDF con el widget pdf_viewer. Solo de lectura y solo cuando la guía ya está guardada (id).
+                         Va en un campo aparte (binVista) porque en nuestra versión de Odoo el pdf_viewer no guarda el nombre del fichero -->
+                    <group string="Vista previa" invisible="not id">
+                        <field name="binVista" widget="pdf_viewer" readonly="1" nolabel="1"/>
                     </group>
                 </sheet>
             </form>
