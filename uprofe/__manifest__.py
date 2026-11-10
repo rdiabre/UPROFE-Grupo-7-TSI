@@ -62,6 +62,7 @@ Descripción del módulo
         'views/plaza_erasmus_views.xml',
         'views/asignatura_destino_views.xml',
         'views/universidad_destino_views.xml',
+        'views/asignatura_views.xml',
         'views/menu.xml',
       
     ],

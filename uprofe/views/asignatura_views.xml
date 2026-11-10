@@ -1,0 +1,118 @@
+<odoo>
+    <!-- List -->
+    <record id="view_asignatura_list" model="ir.ui.view">
+        <field name="name">uprofe.asignatura.list</field>
+        <field name="model">uprofe.asignatura</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sCod_asig"/>
+                <field name="name"/>
+                <field name="iCurso"/>
+                <field name="selCuatrimestre"/>
+                <field name="fCreditos"/>
+                <field name="iNum_sesiones"/>
+                <field name="fHoras_programadas" widget="float_time"/>
+                <field name="guia_actual_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_asignatura_form" model="ir.ui.view">
+        <field name="name">uprofe.asignatura.form</field>
+        <field name="model">uprofe.asignatura</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos de la asignatura">
+                            <field name="sCod_asig"/>
+                            <field name="name"/>
+                            <field name="iCurso"/>
+                            <field name="selCuatrimestre"/>
+                        </group>
+                        <group string="Créditos y asistencia">
+                            <field name="fCreditos"/>
+                            <field name="fHoras_trabajo"/>
+                            <field name="iLimite_faltas"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="sesiones" string="Sesiones">
+                            <group>
+                                <field name="iNum_sesiones"/>
+                                <field name="fHoras_programadas" widget="float_time"/>
+                            </group>
+                            <field name="sesion_ids" readonly="1">
+                                <list>
+                                    <field name="iN_sesion"/>
+                                    <field name="dtInicio"/>
+                                    <field name="dtFin"/>
+                                    <field name="tipo_sesion_id"/>
+                                    <field name="profesor_ids" widget="many2many_tags"/>
+                                    <field name="fDuracion" widget="float_time"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="guias" string="Guías docentes">
+                            <group>
+                                <field name="guia_actual_id"/>
+                            </group>
+                            <field name="guia_ids" readonly="1">
+                                <list>
+                                    <field name="sCurso_academico"/>
+                                    <field name="sNombre_fichero"/>
+                                    <field name="bEs_actual"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_asignatura_search" model="ir.ui.view">
+        <field name="name">uprofe.asignatura.search</field>
+        <field name="model">uprofe.asignatura</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCod_asig"/>
+                <filter name="filtro_primero" string="Primer cuatrimestre" domain="[('selCuatrimestre', '=', '1')]"/>
+                <filter name="filtro_segundo" string="Segundo cuatrimestre" domain="[('selCuatrimestre', '=', '2')]"/>
+                <filter name="filtro_anual" string="Anuales" domain="[('selCuatrimestre', '=', 'anual')]"/>
+                <separator/>
+                <filter name="filtro_creditos" string="Más de 6 créditos" domain="[('fCreditos', '>', 6)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="agrupar_curso" string="Curso" context="{'group_by': 'iCurso'}"/>
+                    <filter name="agrupar_cuatrimestre" string="Cuatrimestre" context="{'group_by': 'selCuatrimestre'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Vista avanzada: gráfico de barras con los créditos de cada curso, cada barra dividida por cuatrimestre -->
+    <record id="view_asignatura_graph" model="ir.ui.view">
+        <field name="name">uprofe.asignatura.graph</field>
+        <field name="model">uprofe.asignatura</field>
+        <field name="arch" type="xml">
+            <graph string="Créditos por curso" type="bar">
+                <field name="iCurso"/>
+                <field name="selCuatrimestre"/>
+                <field name="fCreditos" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="asignatura_list_action" model="ir.actions.act_window">
+        <field name="name">Asignaturas</field>
+        <field name="res_model">uprofe.asignatura</field>
+        <field name="view_mode">list,form,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea la primera asignatura</p>
+        </field>
+    </record>
+</odoo>
