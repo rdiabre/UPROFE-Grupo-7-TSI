@@ -1,0 +1,88 @@
+<odoo>
+    <!-- List -->
+    <record id="view_persona_list" model="ir.ui.view">
+        <field name="name">uprofe.persona.list</field>
+        <field name="model">uprofe.persona</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sDni"/>
+                <field name="name"/>
+                <field name="sApellidos"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_persona_form" model="ir.ui.view">
+        <field name="name">uprofe.persona.form</field>
+        <field name="model">uprofe.persona</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Nombre"/>
+                            <field name="sApellidos"/>
+                            <field name="sDni"/>
+                        </group>
+                        <group>
+                            <field name="email" string="Correo electrónico"/>
+                            <field name="phone" string="Teléfono"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_persona_search" model="ir.ui.view">
+        <field name="name">uprofe.persona.search</field>
+        <field name="model">uprofe.persona</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nombre"/>
+                <field name="sApellidos"/>
+                <field name="sDni"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Vista avanzada: kanban (tarjetas). La foto es el avatar del contacto (res.partner),
+         que Odoo genera con las iniciales si no se sube ninguna -->
+    <record id="view_persona_kanban" model="ir.ui.view">
+        <field name="name">uprofe.persona.kanban</field>
+        <field name="model">uprofe.persona</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside class="o_kanban_aside_full">
+                            <field name="avatar_128" widget="image" class="o_kanban_image_fill w-100" options="{'img_class': 'object-fit-cover'}" alt="Foto"/>
+                        </aside>
+                        <main class="ps-2 ps-md-0">
+                            <div class="mb-1 fw-bold fs-5">
+                                <field name="name"/> <field name="sApellidos"/>
+                            </div>
+                            <div><i class="fa fa-id-card-o me-1" title="DNI"/><field name="sDni"/></div>
+                            <div><i class="fa fa-envelope-o me-1" title="Correo electrónico"/><field name="email"/></div>
+                            <div><i class="fa fa-phone me-1" title="Teléfono"/><field name="phone"/></div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="persona_list_action" model="ir.actions.act_window">
+        <field name="name">Personas</field>
+        <field name="res_model">uprofe.persona</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea la primera persona</p>
+        </field>
+    </record>
+</odoo>
