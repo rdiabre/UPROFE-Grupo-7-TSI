@@ -8,7 +8,7 @@
 
             <field name="category_id" position="after">
                 <field name="sTipo_objeto" />
-                <field name="sEstado" />
+                <field name="state" />
             </field>
             <field name="maintenance_team_id" position="replace"/>
             <field name="technician_user_id" position="replace"/>
@@ -30,7 +30,7 @@
 
             <field name="name" position="after">
                 <field name="sTipo_objeto" />
-                <field name="sEstado" />
+                <field name="state" />
             </field>
             <field name="technician_user_id" position="replace"/>
             <field name="assign_date" position="replace"/>

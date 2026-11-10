@@ -10,6 +10,8 @@
     <menuitem name="Espacios" id="espacio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="espacio_list_action"/>
     <menuitem name="Salas de estudio" id="sala_estudio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sala_estudio_list_action"/>
     <menuitem name="Inventarios" id="inventario_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="inventario_list_action"/>
-    <menuitem name="Objetos inventariables" id="menu_objetos_inventariables" parent="uprofe_menu" action="action_uprofe_equipos" sequence="30" groups="group_uprofe_manager"/>
-        <menuitem id="menu_uprofe_incidencias" name="Incidencias" parent="uprofe_menu" action="action_uprofe_incidencias" sequence="40" groups="group_uprofe_manager"/>
+    <menuitem name="Objetos inventariables" id="menu_objetos_inventariables" parent="uprofe_menu" action="action_uprofe_equipos" groups="group_uprofe_manager"/>
+    <menuitem id="menu_uprofe_incidencias" name="Incidencias" parent="uprofe_menu" action="action_uprofe_incidencias" groups="group_uprofe_manager"/>
+    <menuitem id="menu_uprofe_horarios" name="Horarios de disponibilidad" parent="uprofe_menu" action="action_uprofe_horarios" groups="group_uprofe_manager"/>
+    <menuitem id="menu_uprofe_reservas" name="Reservas" parent="uprofe_menu" action="action_uprofe_reservas" groups="group_uprofe_manager"/>
 </odoo>

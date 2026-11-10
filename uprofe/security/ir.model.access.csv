@@ -16,3 +16,7 @@ sala_estudio_manager,sala_estudio_manager,model_uprofe_sala_estudio,group_uprofe
 inventario_manager,inventario_manager,model_uprofe_inventario,group_uprofe_manager,1,1,1,1
 access_maintenance_equipment_uprofe_manager,maintenance.equipment.uprofe.manager,maintenance.model_maintenance_equipment,uprofe.group_uprofe_manager,1,1,1,1
 access_inventario_linea_uprofe_manager,access.inventario.linea.uprofe.manager,model_uprofe_inventario_linea,uprofe.group_uprofe_manager,1,1,1,1
+access_resource_calendar_uprofe,resource.calendar.uprofe,model_resource_calendar,uprofe.group_uprofe_manager,1,1,1,1
+access_resource_calendar_attendance_uprofe,resource.calendar.attendance.uprofe,resource.model_resource_calendar_attendance,uprofe.group_uprofe_manager,1,1,1,1
+access_reserva_horario_uprofe,reserva.horario.uprofe,model_uprofe_reserva_horario,uprofe.group_uprofe_manager,1,1,1,1
+access_prestamo_equipo_uprofe,prestamo.equipo.uprofe,model_uprofe_prestamo_equipo,uprofe.group_uprofe_manager,1,1,1,1

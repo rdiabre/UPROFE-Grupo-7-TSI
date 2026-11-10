@@ -17,3 +17,6 @@ from . import inventario
 from . import objeto_inventariable
 from . import inventario_linea
 from . import incidencia
+from . import horario_disponibilidad
+from . import reserva_horario
+from . import prestamo_equipo

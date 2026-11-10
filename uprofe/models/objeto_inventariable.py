@@ -13,7 +13,7 @@ class ObjetoInventariable(models.Model):
         required=True,
     )
 
-    sEstado = fields.Selection(
+    state = fields.Selection(
         [
             ("nuevo", "Nuevo"),
             ("seminuevo", "Seminuevo"),
@@ -23,6 +23,10 @@ class ObjetoInventariable(models.Model):
         ],
         string="Estado",
         required=True,
+    )
+
+    prestamo_ids = fields.One2many(
+        "uprofe.prestamo.equipo", "equipo_id", string="Historial de préstamos"
     )
 
     inventario_linea_ids = fields.One2many(

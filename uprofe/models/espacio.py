@@ -26,6 +26,18 @@ class Espacio(models.Model):
         "uprofe.inventario", "espacio_id", string="Historial de inventarios"
     )
 
+    horario_disponibilidad_ids = fields.Many2many(
+        "resource.calendar",
+        "uprofe_espacio_horario_rel",
+        "espacio_id",
+        "calendar_id",
+        string="Horarios de disponibilidad",
+    )
+
+    reserva_ids = fields.One2many(
+        "uprofe.reserva.horario", "espacio_id", string="Reservas"
+    )
+
     _sql_constraints = [
         (
             "cod_espacio_unique",

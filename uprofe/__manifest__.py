@@ -18,7 +18,7 @@ Descripción del módulo
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'maintenance'],
+    'depends': ['base', 'maintenance', 'resource'],
 
     # always loaded
     'data': [
@@ -32,6 +32,8 @@ Descripción del módulo
         'views/inventario_views.xml',
         'views/objeto_inventariable_views.xml',
         'views/incidencia_views.xml',
+        'views/horario_disponibilidad_views.xml',
+        'views/reserva_horario_views.xml',
         'views/menu.xml',
         'views/catalogos_views.xml'
     ],
