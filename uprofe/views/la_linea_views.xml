@@ -13,7 +13,7 @@
                 <field name="universidad_id" optional="hide"/>
                 <field name="estado_id"/>
                 <field name="fNota"/>
-                <field name="sCalificacion" widget="uprofe_insignia_calificacion"/>
+                <field name="sCalificacion"/>
                 <field name="fCreditos_reconocidos" sum="Total"/>
             </list>
         </field>
@@ -37,7 +37,7 @@
                             <field name="universidad_id"/>
                             <field name="fCreditos_ects"/>
                             <field name="fNota"/>
-                            <field name="sCalificacion" widget="uprofe_insignia_calificacion"/>
+                            <field name="sCalificacion"/>
                             <field name="fCreditos_reconocidos"/>
                         </group>
                     </group>

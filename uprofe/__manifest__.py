@@ -18,7 +18,7 @@ Descripción del módulo
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'web'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
@@ -39,9 +39,6 @@ Descripción del módulo
         'data/uprofe.movilidad.csv',
         'data/uprofe.learning_agreement.csv',
         'data/uprofe.la_linea.csv',
-        # Informes: primero las acciones y después las plantillas (Tema 7.2)
-        'report/learning_agreement_report.xml',
-        'report/learning_agreement_templates.xml',
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
@@ -63,7 +60,6 @@ Descripción del módulo
         'views/plaza_erasmus_views.xml',
         'views/asignatura_destino_views.xml',
         'views/universidad_destino_views.xml',
-        'views/panel_views.xml',
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
         'views/menu.xml',
@@ -73,16 +69,6 @@ Descripción del módulo
     'demo': [
 
     ],
-    'assets': {
-        # Componentes OWL (JS + plantillas XML + estilos) del backend
-        'web.assets_backend': [
-            'uprofe/static/src/components/**/*',
-        ],
-        # Estilos del informe PDF/HTML del learning agreement
-        'web.report_assets_common': [
-            'uprofe/static/src/scss/informe_learning_agreement.scss',
-        ],
-    },
     'application': True,
 }
 

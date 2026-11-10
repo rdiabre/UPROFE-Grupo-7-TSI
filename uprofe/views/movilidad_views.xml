@@ -12,7 +12,7 @@
                 <field name="universidad_id" optional="show"/>
                 <field name="dFecha_inicio"/>
                 <field name="dFecha_fin"/>
-                <field name="iDuracion_dias" string="Estancia" widget="uprofe_progreso_estancia"/>
+                <field name="iDuracion_dias"/>
                 <field name="estado_id"/>
             </list>
         </field>
@@ -43,8 +43,6 @@
                             <field name="dFecha_fin"/>
                             <field name="iDuracion_dias"/>
                             <field name="fDuracion_meses"/>
-                            <label for="iDuracion_dias" string="Progreso"/>
-                            <div><field name="iDuracion_dias" widget="uprofe_progreso_estancia" nolabel="1"/></div>
                         </group>
                         <group string="Learning agreement">
                             <field name="la_vigente_id"/>

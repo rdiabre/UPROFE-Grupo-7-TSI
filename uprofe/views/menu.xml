@@ -36,9 +36,6 @@
     <menuitem id="menu_uprofe_movilidad" name="Movilidad" parent="menu_uprofe_root" sequence="10"/>
     <menuitem id="menu_uprofe_configuracion_movilidad" name="Configuración" parent="menu_uprofe_movilidad" sequence="90"/>
 
-    <!-- Panel de control (componente OWL PanelErasmus) -->
-    <menuitem id="menu_uprofe_panel_erasmus" name="Panel" parent="menu_uprofe_movilidad" action="action_uprofe_panel_erasmus" sequence="1"/>
-
     <!-- Entidades de movilidad (antes en cada *_views.xml) -->
     <menuitem id="menu_uprofe_universidad_destino" name="Universidades" parent="menu_uprofe_movilidad" action="action_uprofe_universidad_destino" sequence="10"/>
     <menuitem id="menu_uprofe_plaza_erasmus" name="Plazas" parent="menu_uprofe_movilidad" action="action_uprofe_plaza_erasmus" sequence="20"/>

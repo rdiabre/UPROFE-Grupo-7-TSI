@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve">
-    <t t-name="uprofe.InsigniaCalificacionField">
-        <span t-if="calificacion" t-attf-class="o_uprofe_insignia o_uprofe_insignia_{{ estilo.clase }}">
-            <i t-attf-class="fa {{ estilo.icono }}"/> <t t-esc="calificacion"/>
-        </span>
-        <span t-else="" class="text-muted">–</span>
-    </t>
-</templates>
