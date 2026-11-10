@@ -7,7 +7,7 @@
             <field name="name" string="Nombre de usuario"/>
             <field name="login" string="Correo"/>
             <field name="profesor_id"/>
-            <field name="alumno_id"/>
+            <!-- <field name="alumno_id"/> -->
 
             <filter name="activos" string="Activos" domain="[('active', '=', True)]"/>
             <filter name="archivados" string="Archivados" domain="[('active', '=', False)]"/>
