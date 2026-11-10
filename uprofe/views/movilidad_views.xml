@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lista -->
+    <record id="view_uprofe_movilidad_list" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.list</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sNum_movilidad"/>
+                <field name="dFecha_inicio"/>
+                <field name="dFecha_fin"/>
+                <field name="estado_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Formulario -->
+    <record id="view_uprofe_movilidad_form" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.form</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos generales">
+                            <field name="sNum_movilidad"/>
+                            <field name="estado_id"/>
+                        </group>
+                        <group string="Periodo de la estancia">
+                            <field name="dFecha_inicio"/>
+                            <field name="dFecha_fin"/>
+                        </group>
+                    </group>
+                    <!-- Descomentar cuando exista LearningAgreement -->
+                    <!-- <notebook>
+                        <page string="Learning agreements">
+                            <field name="learning_agreement_ids"/>
+                        </page>
+                    </notebook> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Calendar: cada movilidad ocupa el periodo de la estancia (inicio - fin) -->
+    <record id="view_uprofe_movilidad_calendar" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.calendar</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <calendar string="Periodos de movilidad"
+                      date_start="dFecha_inicio"
+                      date_stop="dFecha_fin"
+                      mode="month"
+                      color="estado_id"
+                      quick_create="0">
+                <field name="sNum_movilidad"/>
+                <field name="estado_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Graph: número de movilidades por mes de inicio, separadas por estado -->
+    <record id="view_uprofe_movilidad_graph" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.graph</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <graph string="Movilidades por mes de inicio y estado" type="bar">
+                <field name="dFecha_inicio" interval="month"/>
+                <field name="estado_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Búsqueda y filtros -->
+    <record id="view_uprofe_movilidad_search" model="ir.ui.view">
+        <field name="name">uprofe.movilidad.search</field>
+        <field name="model">uprofe.movilidad</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sNum_movilidad"/>
+                <field name="estado_id"/>
+                <group string="Agrupar por">
+                    <filter string="Estado" name="group_estado" context="{'group_by': 'estado_id'}"/>
+                    <filter string="Mes de inicio" name="group_inicio" context="{'group_by': 'dFecha_inicio:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_uprofe_movilidad" model="ir.actions.act_window">
+        <field name="name">Movilidades</field>
+        <field name="res_model">uprofe.movilidad</field>
+        <field name="view_mode">list,form,calendar,graph</field>
+    </record>
+
+    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml.
+         El id es menu_uprofe_movilidad_mov para no chocar con el menú padre. -->
+    <menuitem id="menu_uprofe_movilidad_mov"
+              name="Movilidades"
+              parent="menu_uprofe_movilidad"
+              action="action_uprofe_movilidad"
+              sequence="40"/>
+
+</odoo>

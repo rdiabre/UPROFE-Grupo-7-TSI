@@ -6,8 +6,7 @@ from odoo import models, fields, api
 #mismo formato de curso académico y función que el que ha puesto mi compañero en guia docente, asi no duplico codigo
 from .guia_docente import REGEX_CURSO, PRIMER_ANIO, curso_academico_actual
 
-MAX_MB = 10  # tamaño máximo del PDF en megas
-
+MAX_MB = 10  #tamaño máximo del PDF en megas
 
 class PlanEstudio(models.Model):
     _name = 'uprofe.plan_estudio'
