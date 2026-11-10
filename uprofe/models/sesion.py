@@ -24,11 +24,9 @@ class Sesion(models.Model):
     _order = 'dFecha asc, fHora_ini asc'
 
     # Una sesión es de una asignatura (1,1); si se borra la asignatura, se borran sus sesiones
-    asignatura_id = fields.Many2one('uprofe.asignatura', string="Asignatura",
-                                    required=True, ondelete='cascade')
-    # Una sesión es de un tipo (1,1); no se puede borrar un tipo que tenga sesiones (restrict)
-    tipo_sesion_id = fields.Many2one('uprofe.tipo_sesion', string="Tipo de sesión",
-                                     required=True, ondelete='restrict')
+    asignatura_id = fields.Many2one('uprofe.asignatura', string="Asignatura", required=True)
+    # Tipo de sesión de la sesión
+    tipo_sesion_id = fields.Many2one('uprofe.tipo_sesion', string="Tipo de sesión", required=True)
     # Una sesión la imparten uno o varios profesores (1,N) y un profesor imparte varias sesiones (0,N)
     profesor_ids = fields.Many2many('uprofe.profesor', 'uprofe_profesor_sesion_rel', 'sesion_id', 'profesor_id',
                                     string="Profesores")
