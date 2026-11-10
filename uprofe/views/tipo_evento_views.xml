@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VISTA FORM -->
+    <record id="view_tipo_evento_form" model="ir.ui.view">
+        <field name="name">uprofe.tipo_evento.form</field>
+        <field name="model">uprofe.tipo_evento</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sCodigoEvento"/>
+                        <field name="sTipoEvento"/>
+                    </group>
+                   
+                    <notebook>
+                        <page string="Eventos Asociados">
+                            <field name="evento_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- VISTA LIST -->
+    <record id="view_tipo_evento_list" model="ir.ui.view">
+        <field name="name">uprofe.tipo_evento.list</field>
+        <field name="model">uprofe.tipo_evento</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sCodigoEvento"/>
+                <field name="sTipoEvento"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ACCIÓN -->
+    <record id="action_uprofe_tipo_evento" model="ir.actions.act_window">
+        <field name="name">Tipos de Eventos</field>
+        <field name="res_model">uprofe.tipo_evento</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- MENÚ -->
+    <menuitem id="menu_uprofe_tipo_evento" 
+              name="Tipos de Eventos" 
+              parent="uprofe_menu" 
+              action="action_uprofe_tipo_evento" 
+              sequence="80"/>
+</odoo>
