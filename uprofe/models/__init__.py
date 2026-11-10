@@ -17,6 +17,7 @@ from . import profesor
 from . import sesion
 from . import tipo_sesion
 from . import publicacion
+from . import libro_inv
 from . import proyecto_investigacion
 from . import idioma
 from . import nivel_estudios
