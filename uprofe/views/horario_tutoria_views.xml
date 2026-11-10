@@ -67,11 +67,26 @@
         </field>
     </record>
 
+    <!-- VISTA CALENDARIO -->
+    <record id="view_horario_tutoria_calendar" model="ir.ui.view">
+        <field name="name">uprofe.horario_tutoria.calendar</field>
+        <field name="model">uprofe.horario_tutoria</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendario de Tutorías" 
+                      date_start="dFecha" 
+                      color="sUsuProfesor" 
+                      mode="month">
+                <field name="sUsuProfesor"/>
+                <field name="fHoraIni" widget="float_time"/>
+            </calendar>
+        </field>
+    </record>
+
     <!-- ACCIÓN -->
     <record id="action_uprofe_horario_tutoria" model="ir.actions.act_window">
         <field name="name">Horarios de Tutoría</field>
         <field name="res_model">uprofe.horario_tutoria</field>
-        <field name="view_mode">list,kanban,form</field>
+        <field name="view_mode">list,kanban,form,calendar</field>
     </record>
 
     <!-- MENÚ -->
