@@ -8,8 +8,11 @@
         <field name="arch" type="xml">
             <list>
                 <field name="sNum_movilidad"/>
+                <field name="plaza_erasmus_id"/>
+                <field name="universidad_id" optional="show"/>
                 <field name="dFecha_inicio"/>
                 <field name="dFecha_fin"/>
+                <field name="iDuracion_dias"/>
                 <field name="estado_id"/>
             </list>
         </field>
@@ -21,23 +24,46 @@
         <field name="model">uprofe.movilidad</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="estado_id" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <label for="sNum_movilidad"/>
+                        <h1><field name="sNum_movilidad" placeholder="Se numera sola al guardar"/></h1>
+                    </div>
                     <group>
-                        <group string="Datos generales">
-                            <field name="sNum_movilidad"/>
-                            <field name="estado_id"/>
+                        <group string="Destino">
+                            <field name="plaza_erasmus_id"/>
+                            <field name="universidad_id"/>
+                            <field name="pais_id"/>
                         </group>
                         <group string="Periodo de la estancia">
                             <field name="dFecha_inicio"/>
                             <field name="dFecha_fin"/>
+                            <field name="iDuracion_dias"/>
+                            <field name="fDuracion_meses"/>
+                        </group>
+                        <group string="Learning agreement">
+                            <field name="la_vigente_id"/>
                         </group>
                     </group>
-                    <!-- Descomentar cuando exista LearningAgreement -->
-                    <!-- <notebook>
+                    <notebook>
                         <page string="Learning agreements">
-                            <field name="learning_agreement_ids"/>
+                            <field name="learning_agreement_ids">
+                                <list>
+                                    <field name="sNum_la"/>
+                                    <field name="iVersion"/>
+                                    <field name="estado_id"/>
+                                    <field name="dFecha_firma"/>
+                                    <field name="fCreditos_totales"/>
+                                </list>
+                            </field>
                         </page>
-                    </notebook> -->
+                        <page string="Observaciones">
+                            <field name="sObservaciones" placeholder="Observaciones sobre la movilidad"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -55,7 +81,8 @@
                       color="estado_id"
                       quick_create="0">
                 <field name="sNum_movilidad"/>
-                <field name="estado_id"/>
+                <field name="universidad_id"/>
+                <field name="estado_id" filters="1"/>
             </calendar>
         </field>
     </record>
@@ -79,9 +106,20 @@
         <field name="arch" type="xml">
             <search>
                 <field name="sNum_movilidad"/>
+                <field name="plaza_erasmus_id"/>
+                <field name="universidad_id"/>
+                <field name="pais_id"/>
                 <field name="estado_id"/>
+                <filter string="En curso" name="en_curso" domain="[('dFecha_inicio', '&lt;=', context_today().strftime('%Y-%m-%d')), ('dFecha_fin', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Próximas" name="proximas" domain="[('dFecha_inicio', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Terminadas" name="terminadas" domain="[('dFecha_fin', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <filter string="Curso completo (más de 8 meses)" name="curso_completo" domain="[('iDuracion_dias', '&gt;', 240)]"/>
+                <filter string="Sin plaza asignada" name="sin_plaza" domain="[('plaza_erasmus_id', '=', False)]"/>
                 <group string="Agrupar por">
                     <filter string="Estado" name="group_estado" context="{'group_by': 'estado_id'}"/>
+                    <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
+                    <filter string="País" name="group_pais" context="{'group_by': 'pais_id'}"/>
                     <filter string="Mes de inicio" name="group_inicio" context="{'group_by': 'dFecha_inicio:month'}"/>
                 </group>
             </search>
@@ -94,6 +132,5 @@
         <field name="res_model">uprofe.movilidad</field>
         <field name="view_mode">list,form,calendar,graph</field>
     </record>
-
 
 </odoo>

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Modelos abstractos que heredan los catálogos: deben cargarse antes que ellos
+from . import catalogo_mixin
 from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
