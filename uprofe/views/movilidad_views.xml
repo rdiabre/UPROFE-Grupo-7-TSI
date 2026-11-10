@@ -95,12 +95,5 @@
         <field name="view_mode">list,form,calendar,graph</field>
     </record>
 
-    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml.
-         El id es menu_uprofe_movilidad_mov para no chocar con el menú padre. -->
-    <menuitem id="menu_uprofe_movilidad_mov"
-              name="Movilidades"
-              parent="menu_uprofe_movilidad"
-              action="action_uprofe_movilidad"
-              sequence="40"/>
 
 </odoo>
