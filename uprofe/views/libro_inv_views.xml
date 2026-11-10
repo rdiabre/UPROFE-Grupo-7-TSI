@@ -1,4 +1,32 @@
 <odoo>
+    <record id="uprofe_libro_inv_search_view" model="ir.ui.view">
+        <field name="name">uprofe.libro_inv.search</field>
+        <field name="model">uprofe.libro_inv</field>
+        <field name="arch" type="xml">
+            <search string="Buscar libros">
+                <field name="sTitulo" string="Título o editorial"
+                       filter_domain="['|', ('sTitulo', 'ilike', self), ('sEditorial', 'ilike', self)]"/>
+                <field name="sEditorial"/>
+                <field name="sIsbn"/>
+ 
+                <filter name="con_proyecto" string="Asociados a un proyecto"
+                        domain="[('proyecto_investigacion_id', '!=', False)]"/>
+                <filter name="sin_proyecto" string="Sin proyecto"
+                        domain="[('proyecto_investigacion_id', '=', False)]"/>
+
+                <filter name="filtro_fecha" string="Fecha de publicación"
+                        date="dFecha_publicacion"/>
+ 
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_editorial" string="Editorial"
+                            context="{'group_by': 'sEditorial'}"/>
+                    <filter name="group_anio" string="Año de publicación"
+                            context="{'group_by': 'dFecha_publicacion:year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="uprofe_libro_inv_form_view" model="ir.ui.view">
         <field name="name">uprofe.libro_inv.form</field>
         <field name="model">uprofe.libro_inv</field>
