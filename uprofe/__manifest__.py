@@ -28,7 +28,6 @@ Descripción del módulo
         'views/ubicacion_views.xml',
         'views/edificio_views.xml',
         'views/espacio_views.xml',
-        'views/sala_estudio_views.xml',
         'views/inventario_views.xml',
         'views/objeto_inventariable_views.xml',
         'views/incidencia_views.xml',

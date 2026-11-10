@@ -10,13 +10,13 @@
                 <field name="sTipo_objeto" />
                 <field name="state" />
             </field>
-            <field name="maintenance_team_id" position="replace"/>
-            <field name="technician_user_id" position="replace"/>
-            <field name="assign_date" position="replace"/>
-            <field name="owner_user_id" position="replace"/>
-            <field name="partner_id" position="replace"/>
-            <field name="partner_ref" position="replace"/>
-            <field name="category_id" position="attributes"> 
+            <field name="maintenance_team_id" position="replace" />
+            <field name="technician_user_id" position="replace" />
+            <field name="assign_date" position="replace" />
+            <field name="owner_user_id" position="replace" />
+            <field name="partner_id" position="replace" />
+            <field name="partner_ref" position="replace" />
+            <field name="category_id" position="attributes">
                 <field name="string">Categoría</field>
             </field>
         </field>
@@ -32,16 +32,26 @@
                 <field name="sTipo_objeto" />
                 <field name="state" />
             </field>
-            <field name="technician_user_id" position="replace"/>
-            <field name="assign_date" position="replace"/>
-            <field name="owner_user_id" position="replace"/>
+            <field name="technician_user_id" position="replace" />
+            <field name="assign_date" position="replace" />
+            <field name="owner_user_id" position="replace" />
+        </field>
+    </record>
+
+    <record id="view_objeto_inventariable_graph" model="ir.ui.view">
+        <field name="name">objeto.inventariable.graph</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <graph string="Objetos inventariables por estado" type="pie">
+                <field name="state" type="row" />
+            </graph>
         </field>
     </record>
 
     <record id="action_uprofe_equipos" model="ir.actions.act_window">
         <field name="name">Objetos de inventario</field>
         <field name="res_model">maintenance.equipment</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,graph</field>
         <field name="domain">[('sTipo_objeto', '=', 'equipo')]</field>
         <field name="context">{'default_sTipo_objeto': 'equipo'}</field>
     </record>

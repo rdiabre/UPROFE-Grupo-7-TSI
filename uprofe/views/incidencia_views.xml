@@ -54,24 +54,32 @@
         </field>
     </record>
 
+    <record id="view_incidencia_graph" model="ir.ui.view">
+        <field name="name">incidencia.graph</field>
+        <field name="model">maintenance.request</field>
+        <field name="arch" type="xml">
+            <graph string="Coste de incidencias por etapa" type="bar">
+                <field name="stage_id" type="row" />
+                <field name="fCoste_relacionado" type="measure" />
+            </graph>
+        </field>
+    </record>
+
 
     <record id="action_uprofe_incidencias" model="ir.actions.act_window">
         <field name="name">Incidencias</field>
         <field name="res_model">maintenance.request</field>
-        <field name="view_mode">list,form</field>
-
-        <field name="domain">
-            [('maintenance_type', '=', 'corrective'),
-            ('equipment_id.sTipo_objeto', 'in', ['mobiliario', 'equipo'])]
-        </field>
-
-        <field name="context">
-            {'default_maintenance_type': 'corrective'}
-        </field>
+        <field name="view_mode">list,form,graph</field>
 
         <field name="search_view_id"
             ref="maintenance.hr_equipment_request_view_search" />
     </record>
 
+    <record id="action_uprofe_incidencias_graph" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_incidencia_graph" />
+        <field name="act_window_id" ref="action_uprofe_incidencias" />
+    </record>
 
 </odoo>
