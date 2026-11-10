@@ -20,14 +20,8 @@
 
                     <!-- Selectores para cambiar el profesor o alumno asociado -->
                     <group string="Persona asociada">
-                        <field name="profesor_id"
-                            readonly="alumno_id"
-                            domain="[('usuario_id', '=', False)]"
-                            options="{'no_create': True}"/>
-                        <field name="alumno_id"
-                            readonly="profesor_id"
-                            domain="[('usuario_id', '=', False)]"
-                            options="{'no_create': True}"/>
+                        <field name="profesor_id" readonly="alumno_id" domain="[('usuario_id', '=', False)]" options="{'no_create': True}"/>
+                        <!-- <field name="alumno_id" readonly="profesor_id" domain="[('usuario_id', '=', False)]" options="{'no_create': True}"/> -->
                     </group>
 
                 </sheet>

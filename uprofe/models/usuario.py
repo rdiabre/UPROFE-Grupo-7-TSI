@@ -13,13 +13,13 @@ class Usuario(models.Model):
     users_id = fields.Many2one('res.users', required=True)
     
     profesor_id = fields.Many2one('uprofe.profesor', string="Profesor")
-    alumno_id = fields.Many2one('uprofe.alumno', string="Alumno")
+    # alumno_id = fields.Many2one('uprofe.alumno', string="Alumno")
     
     # Validaciones para que tanto users_id, profesor_id y alumno_id solo puedan estar referenciados por una única instancia de uporfe.usuario
     _sql_constraints = [
         ('usuario_unique', 'UNIQUE(users_id)', "Este usuario ya tiene un perfil asociado"),
         ('profesor_id_unique', 'UNIQUE(profesor_id)', "Este profesor ya tiene un usuario asociado"),
-        ('alumno_id_unique', 'UNIQUE(alumno_id)', "Este alumno ya tiene un usuario asociado")
+        # ('alumno_id_unique', 'UNIQUE(alumno_id)', "Este alumno ya tiene un usuario asociado")
     ]
 
     # Hago la validación de unicidad con api.constrains porque si se hace con _sql_constraints, es case sensitive
@@ -56,33 +56,9 @@ class Usuario(models.Model):
             if not re.match(regex_correo, record.login.strip()):
                 raise ValidationError("El correo electrónico no es válido.");
             
-    @api.constrains('profesor_id', 'alumno_id')
-    def _check_una_persona_asociada(self):
-        for record in self:
-            if record.profesor_id and record.alumno_id:
-                raise ValidationError("Un usuario no puede estar asociado a un alumno y a un profesor a la vez.")
-            
-    # @api.constrains('password')
-    # def _check_contrasena_robustez(self):
-    #     regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
-        
+    # @api.constrains('profesor_id', 'alumno_id')
+    # def _check_una_persona_asociada(self):
     #     for record in self:
-    #         if not re.match(regex_robustez, record.password.strip()):
-    #             raise ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
+    #         if record.profesor_id and record.alumno_id:
+    #             raise ValidationError("Un usuario no puede estar asociado a un alumno y a un profesor a la vez.")
             
-    # @api.constrains('password', 'name')
-    # def _check_contrasena_identidad(self):
-    #     for record in self:
-    #         if record.password.strip() == record.name.strip():
-    #             raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
-            
-    # @api.onchange('password')
-    # def _onchange_contrasena(self):
-    #     regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
-    #     if not re.match(regex_robustez, self.password.strip()):
-    #         return {
-    #             'warning': {
-    #                 'title': 'Contraseña insegura',
-    #                 'message': 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.'
-    #             }
-    #         }
