@@ -46,27 +46,27 @@ class Usuario(models.Model):
             if not re.match(regex_correo, record.login.strip()):
                 raise ValidationError("El correo electrónico no es válido.");
             
-    @api.constrains('password')
-    def _check_contrasena_robustez(self):
-        regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
+    # @api.constrains('password')
+    # def _check_contrasena_robustez(self):
+    #     regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
         
-        for record in self:
-            if not re.match(regex_robustez, record.password.strip()):
-                raise ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
+    #     for record in self:
+    #         if not re.match(regex_robustez, record.password.strip()):
+    #             raise ValidationError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
             
-    @api.constrains('password', 'name')
-    def _check_contrasena_identidad(self):
-        for record in self:
-            if record.password.strip() == record.name.strip():
-                raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
+    # @api.constrains('password', 'name')
+    # def _check_contrasena_identidad(self):
+    #     for record in self:
+    #         if record.password.strip() == record.name.strip():
+    #             raise ValidationError("Por seguridad, el nombre de usuario y la contraseña no pueden ser iguales.");
             
-    @api.onchange('password')
-    def _onchange_contrasena(self):
-        regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
-        if not re.match(regex_robustez, self.password.strip()):
-            return {
-                'warning': {
-                    'title': 'Contraseña insegura',
-                    'message': 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.'
-                }
-            }
+    # @api.onchange('password')
+    # def _onchange_contrasena(self):
+    #     regex_robustez = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'
+    #     if not re.match(regex_robustez, self.password.strip()):
+    #         return {
+    #             'warning': {
+    #                 'title': 'Contraseña insegura',
+    #                 'message': 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.'
+    #             }
+    #         }
