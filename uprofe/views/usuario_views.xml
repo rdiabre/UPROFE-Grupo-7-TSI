@@ -1,4 +1,57 @@
 <odoo>
+    <record id="uprofe_usuario_form" model="ir.ui.view">
+        <field name="name">uprofe.usuario.form</field>
+        <field name="model">uprofe.usuario</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image_1920" widget="image"
+                           class="oe_avatar" string="Foto de perfil"/>
+                    <group>
+                        <group string="Datos de la cuenta">
+                            <field name="name" string="Nombre de usuario"/>
+                            <field name="login" string="Correo electrónico"/>
+                            <field name="active" string="Activo"/>
+                        </group>
+                        <group string="Seguridad">
+                            <field name="password" password="True"
+                                   string="Contraseña"
+                                   invisible="id"
+                                   required="not id"/>
+                            <field name="login_date" string="Último acceso"
+                                   readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Datos de profesor" name="profesor" invisible="not profesor_id">
+                            <field name="profesor_id">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="sApellidos"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                    <field name="sDespacho"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Datos de alumno" name="alumno" invisible="not alumno_id">
+                            <field name="alumno_id">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="sApellidos"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                    <field name="iCurso_actual"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="uprofe_usuario_list_view" model="ir.ui.view">
         <field name="name">uprofe.usuario.list</field>
         <field name="model">uprofe.usuario</field>
