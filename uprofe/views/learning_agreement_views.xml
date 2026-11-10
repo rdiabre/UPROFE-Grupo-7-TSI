@@ -105,11 +105,5 @@
         <field name="view_mode">list,form,calendar,graph</field>
     </record>
 
-    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
-    <menuitem id="menu_uprofe_learning_agreement"
-              name="Learning agreements"
-              parent="menu_uprofe_movilidad"
-              action="action_uprofe_learning_agreement"
-              sequence="50"/>
 
 </odoo>

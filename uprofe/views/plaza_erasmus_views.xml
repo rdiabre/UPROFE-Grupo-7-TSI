@@ -108,11 +108,5 @@
         <field name="view_mode">list,form,graph,kanban</field>
     </record>
 
-    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
-    <menuitem id="menu_uprofe_plaza_erasmus"
-              name="Plazas"
-              parent="menu_uprofe_movilidad"
-              action="action_uprofe_plaza_erasmus"
-              sequence="20"/>
 
 </odoo>
