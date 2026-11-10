@@ -1,20 +1,28 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-class Prestamo(models.Model):
-    _name = 'uprofe.prestamo'
-    _description = 'Préstamo de Biblioteca'
-    _rec_name = 'sNumPrestamo'
+class Tutoria(models.Model):
+    _name = 'uprofe.tutoria'
+    _description = 'Tutoría Programada'
 
-    sNumPrestamo = fields.Char(string='numero de Préstamo', required=True, copy=False)
-    dFechaPrestamo = fields.Date(string='Fecha de Préstamo', default=fields.Date.context_today, required=True)
-    dFechaDevolucion = fields.Date(string='Fecha de Devolucion')
+    # Atributos nativos
+    dFecha = fields.Date(string='Fecha', default=fields.Date.context_today, required=True)
+    sUsuProfesor = fields.Char(string='Usuario Profesor', required=True)
+    sUsuAlumno = fields.Char(string='Usuario Alumno', required=True)
+    bTelematico = fields.Boolean(string='Es Telemática', default=False)
+    bAsiste = fields.Boolean(string='Asiste', default=False)
 
-    #alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
-    libro_id = fields.Many2one('uprofe.libro', string='Libro', required=True)
+    # Relación interna
+    horario_tutoria_id = fields.Many2one('uprofe.horario_tutoria', string='Horario de Tutoría', required=True)
 
-    @api.constrains('dFechaPrestamo', 'dFechaDevolucion')
-    def _check_fechas(self):
+    fHoraIni = fields.Float(related='horario_tutoria_id.fHoraIni', string='Hora de Inicio', readonly=True)
+    fHoraFin = fields.Float(related='horario_tutoria_id.fHoraFin', string='Hora de Fin', readonly=True)
+
+    # --- DEPENDENCIAS BLOQUEADAS ---
+    # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno')
+
+    @api.constrains('horario_tutoria_id')
+    def _check_horario_unico(self):
         for record in self:
-            if record.dFechaDevolucion and record.dFechaDevolucion < record.dFechaPrestamo:
-                raise ValidationError("La fecha de devolución no puede ser anterior a la de préstamo!")
+            if len(record.horario_tutoria_id.tutoria_ids) > 1:
+                raise ValidationError("Este horario de tutoría ya está reservado")
