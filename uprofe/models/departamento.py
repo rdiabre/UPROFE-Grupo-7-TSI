@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from odoo import models, fields, api
-from openerp.exceptions import ValidationError
+from odoo.exceptions import ValidationError
 
 MAX_CODIGO = 5
 MAX_NOMBRE = 50
@@ -12,11 +12,17 @@ REGEX_CODIGO = r'^[A-Z0-9-]+$'
 class Departamento(models.Model):
     _name = 'uprofe.departamento'
     _description = 'Departamento'
-    _order = 'name_asc'
+    _order = 'name asc'
 
     sCod_departamento = fields.Char(string="Código", required=True, help="Código del departamento. Ejemplo: RBT")
     name = fields.Char(string="Nombre", required = True)
     sArea_conocimiento = fields.Char(string="Área de conocimiento")
+
+    #en un departamento puede haber muchos profesores
+    lProfesor_ids = fields.One2many('uprofe.profesor', 'iDepartamento_id', string="Profesores")
+ 
+    #un departamento puede pertenecer a varios grupos
+    lGrupo_inv_ids = fields.One2many('uprofe.grupo_inv', 'iDepartamento_id', string="Grupos de investigación")
 
     #estos campos se rellenan con la funcion del final; se usan en la lista y el formulario como resumen
     iNum_profesores = fields.Integer(string="Nº de profesores", compute='_compute_totales')
@@ -40,7 +46,7 @@ class Departamento(models.Model):
 
     #cuenta cuántos profesores y cuántos grupos de investigación tiene el departamento
     #se recalcula sola ante una inserción o eliminación
-    @api.depends('lProfesor_ids', 'lGrupo_ind_ids')
+    @api.depends('lProfesor_ids', 'lGrupo_inv_ids')
     def _compute_totales(self):
         for record in self:
             record.iNum_profesores = len(record.lProfesor_ids)
@@ -92,7 +98,7 @@ class Departamento(models.Model):
     def _onchange_nombre(self):
         if self.name:
             nombre = self.name.strip()
-            self.name[:1].upper() + nombre[1:]
+            self.name = nombre[:1].upper() + nombre[1:]
 
     @api.onchange('sArea_conocimiento')
     def _onchange_area_conocimiento(self):
