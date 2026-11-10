@@ -58,7 +58,7 @@ class Sesion(models.Model):
     def onchange_n_sesion(self):
         if self.iN_sesion <= 0:
             return {
-                'value': {'capacity': 1},
+                'value': {'iN_sesion': 1},
                 'warning': {
                     'title': 'Valores incorrectos',
                     'message': 'El número de sesión debe ser mayor que 0. ¿Quisiste escribir 1?'
