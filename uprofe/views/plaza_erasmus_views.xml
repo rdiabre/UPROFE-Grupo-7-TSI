@@ -8,12 +8,16 @@
         <field name="arch" type="xml">
             <list>
                 <field name="cod_plaza"/>
-                <!-- Descomentar cuando existan UniversidadDestino y Convocatoria -->
-                <!-- <field name="universidad_id"/> -->
+                <field name="universidad_id"/>
+                <field name="pais_id" optional="show"/>
                 <!-- <field name="convocatoria_id"/> -->
                 <field name="nivel_estudios_id"/>
                 <field name="idioma_id"/>
+                <field name="sNivel_idioma"/>
                 <field name="iDuracion_meses"/>
+                <field name="iNum_vacantes"/>
+                <field name="iVacantes_libres"/>
+                <field name="fAyuda_total" optional="hide"/>
             </list>
         </field>
     </record>
@@ -25,55 +29,73 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_title">
+                        <label for="cod_plaza"/>
+                        <h1><field name="cod_plaza" placeholder="Se genera solo al guardar"/></h1>
+                    </div>
                     <group>
                         <group string="Datos de la plaza">
-                            <field name="cod_plaza"/>
                             <field name="iDuracion_meses"/>
-                            <!-- Descomentar cuando exista Convocatoria -->
+                            <field name="iNum_vacantes"/>
+                            <field name="iVacantes_libres"/>
+                            <!-- Descomentar cuando exista Convocatoria (modelo de otro compañero) -->
                             <!-- <field name="convocatoria_id"/> -->
                         </group>
                         <group string="Destino y requisitos">
-                            <!-- Descomentar cuando exista UniversidadDestino -->
-                            <!-- <field name="universidad_id"/> -->
+                            <field name="universidad_id"/>
+                            <field name="pais_id"/>
                             <field name="nivel_estudios_id"/>
                             <field name="idioma_id"/>
+                            <field name="sNivel_idioma" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group string="Ayuda económica">
+                            <field name="fAyuda_mensual"/>
+                            <field name="fAyuda_total"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Movilidades">
+                            <field name="movilidad_ids" readonly="1">
+                                <list>
+                                    <field name="sNum_movilidad"/>
+                                    <field name="dFecha_inicio"/>
+                                    <field name="dFecha_fin"/>
+                                    <field name="estado_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Graph: número de plazas por nivel de estudios, separadas por idioma requerido.
-         Cuando exista UniversidadDestino se puede agrupar por universidad_id. -->
+    <!-- Graph: vacantes por nivel de estudios, separadas por idioma requerido -->
     <record id="view_uprofe_plaza_erasmus_graph" model="ir.ui.view">
         <field name="name">uprofe.plaza_erasmus.graph</field>
         <field name="model">uprofe.plaza_erasmus</field>
         <field name="arch" type="xml">
-            <graph string="Plazas por nivel de estudios e idioma" type="bar">
+            <graph string="Vacantes por nivel de estudios e idioma" type="bar">
                 <field name="nivel_estudios_id"/>
                 <field name="idioma_id"/>
-                <!-- <field name="universidad_id"/> -->
+                <field name="iNum_vacantes" type="measure"/>
             </graph>
         </field>
     </record>
 
-    <!-- Kanban (cards): esta tabla no tiene fechas, así que en lugar de Calendar
-         se muestran las plazas como tarjetas -->
+    <!-- Kanban (cards): la plaza no tiene fechas, así que en lugar de Calendar se muestran tarjetas -->
     <record id="view_uprofe_plaza_erasmus_kanban" model="ir.ui.view">
         <field name="name">uprofe.plaza_erasmus.kanban</field>
         <field name="model">uprofe.plaza_erasmus</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban default_group_by="nivel_estudios_id">
                 <templates>
                     <t t-name="card">
                         <field name="cod_plaza" class="fw-bold fs-5"/>
-                        <!-- Descomentar cuando existan UniversidadDestino y Convocatoria -->
-                        <!-- <div>Universidad: <field name="universidad_id"/></div> -->
+                        <div><field name="universidad_id"/></div>
                         <!-- <div>Convocatoria: <field name="convocatoria_id"/></div> -->
-                        <div>Nivel: <field name="nivel_estudios_id"/></div>
-                        <div>Idioma: <field name="idioma_id"/></div>
-                        <div><field name="iDuracion_meses"/> meses</div>
+                        <div>Idioma: <field name="idioma_id"/> (<field name="sNivel_idioma"/>)</div>
+                        <div><field name="iDuracion_meses"/> meses · <field name="iVacantes_libres"/>/<field name="iNum_vacantes"/> vacantes libres</div>
                     </t>
                 </templates>
             </kanban>
@@ -87,15 +109,22 @@
         <field name="arch" type="xml">
             <search>
                 <field name="cod_plaza"/>
-                <!-- <field name="universidad_id"/> -->
+                <field name="universidad_id"/>
+                <field name="pais_id"/>
                 <!-- <field name="convocatoria_id"/> -->
                 <field name="nivel_estudios_id"/>
                 <field name="idioma_id"/>
+                <filter string="Curso completo (9 meses o más)" name="curso_completo" domain="[('iDuracion_meses', '&gt;=', 9)]"/>
+                <filter string="Un semestre (menos de 9 meses)" name="semestre" domain="[('iDuracion_meses', '&lt;', 9)]"/>
+                <separator/>
+                <filter string="Exigen B2 o más" name="b2" domain="[('sNivel_idioma', 'in', ['b2', 'c1', 'c2'])]"/>
                 <group string="Agrupar por">
-                    <!-- <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/> -->
+                    <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
+                    <filter string="País" name="group_pais" context="{'group_by': 'pais_id'}"/>
                     <!-- <filter string="Convocatoria" name="group_convocatoria" context="{'group_by': 'convocatoria_id'}"/> -->
                     <filter string="Nivel de estudios" name="group_nivel" context="{'group_by': 'nivel_estudios_id'}"/>
                     <filter string="Idioma" name="group_idioma" context="{'group_by': 'idioma_id'}"/>
+                    <filter string="Nivel de idioma" name="group_nivel_idioma" context="{'group_by': 'sNivel_idioma'}"/>
                 </group>
             </search>
         </field>
@@ -107,6 +136,5 @@
         <field name="res_model">uprofe.plaza_erasmus</field>
         <field name="view_mode">list,form,graph,kanban</field>
     </record>
-
 
 </odoo>

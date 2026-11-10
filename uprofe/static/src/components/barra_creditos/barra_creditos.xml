@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="uprofe.BarraCreditosField">
+        <div t-attf-class="o_uprofe_barra_creditos o_uprofe_barra_{{ nivel }}"
+             t-att-title="formatear(reconocidos) + ' de ' + formatear(total) + ' créditos reconocidos'">
+            <div class="o_uprofe_barra_pista">
+                <div class="o_uprofe_barra_relleno" t-attf-style="width: {{ porcentaje }}%"/>
+            </div>
+            <span class="o_uprofe_barra_texto">
+                <t t-esc="formatear(reconocidos)"/> / <t t-esc="formatear(total)"/>
+                <span class="o_uprofe_barra_pct">(<t t-esc="porcentaje"/>%)</span>
+            </span>
+        </div>
+    </t>
+</templates>

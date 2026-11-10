@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="uprofe.GraficoBarras">
+        <div class="o_uprofe_grafico">
+            <div class="o_uprofe_grafico_cabecera">
+                <h4 t-esc="props.titulo"/>
+                <span class="o_uprofe_grafico_total">Total: <t t-esc="total"/> <t t-esc="props.unidad"/></span>
+            </div>
+            <t t-if="barras.length">
+                <div t-foreach="barras" t-as="barra" t-key="barra.id"
+                     class="o_uprofe_grafico_fila" t-att-class="{ 'o_uprofe_grafico_clic': props.onSeleccion }"
+                     t-on-click="() => this.seleccionar(barra)"
+                     t-att-title="barra.etiqueta + ': ' + barra.valor + ' (' + barra.porcentaje + '%)'">
+                    <div class="o_uprofe_grafico_etiqueta" t-esc="barra.etiqueta"/>
+                    <div class="o_uprofe_grafico_pista">
+                        <div t-attf-class="o_uprofe_grafico_barra o_uprofe_color_{{ barra.color or 0 }}"
+                             t-attf-style="width: {{ barra.ancho }}%"/>
+                    </div>
+                    <div class="o_uprofe_grafico_valor" t-esc="barra.valor"/>
+                </div>
+            </t>
+            <div t-else="" class="o_uprofe_grafico_vacio">No hay datos.</div>
+        </div>
+    </t>
+</templates>

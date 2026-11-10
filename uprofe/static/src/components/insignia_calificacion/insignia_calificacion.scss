@@ -1,0 +1,15 @@
+.o_uprofe_insignia {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1px 9px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+
+    &.o_uprofe_insignia_suspenso { background: #c62828; }
+    &.o_uprofe_insignia_aprobado { background: #e8590c; }
+    &.o_uprofe_insignia_notable { background: #1971c2; }
+    &.o_uprofe_insignia_sobresaliente { background: #1e8e3e; }
+}

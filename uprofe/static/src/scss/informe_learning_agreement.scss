@@ -1,0 +1,196 @@
+// Estilos del informe del learning agreement (report/learning_agreement_templates.xml).
+// Se carga en el bundle web.report_assets_common, así que todo va bajo .o_uprofe_la
+// para no afectar a otros informes. El PDF lo genera wkhtmltopdf (WebKit antiguo):
+// se maqueta con tablas en lugar de flexbox/grid para que se vea igual en PDF y en HTML.
+
+$la-azul: #1f3c88;
+$la-azul-claro: #e8eef9;
+$la-oro: #f2b705;
+$la-texto: #1f2933;
+$la-gris: #6b7280;
+$la-borde: #d6dce5;
+$la-fondo-par: #f6f8fb;
+$la-verde: #1e8e3e;
+$la-rojo: #c62828;
+
+// Paleta de colores de Odoo (0-11), la misma que usan los estados (campo iColor)
+$la-colores: (
+    0: #6b7280, 1: #c62828, 2: #e8590c, 3: #f2b705, 4: #1971c2, 5: #862e9c,
+    6: #c2255c, 7: #0b7285, 8: #364fc7, 9: #a61e4d, 10: #1e8e3e, 11: #5f3dc4,
+);
+
+.o_uprofe_la {
+    color: $la-texto;
+    font-size: 11px;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+
+    h1, h2 { margin: 0; font-weight: 700; }
+
+    table { width: 100%; border-collapse: collapse; }
+    td, th { vertical-align: top; }
+
+    // ---------- Cabecera
+    .o_la_cabecera {
+        display: table;
+        width: 100%;
+        background: $la-azul;
+        color: #fff;
+        border-radius: 6px;
+        border-bottom: 4px solid $la-oro;
+        margin-bottom: 14px;
+        page-break-inside: avoid;
+    }
+    .o_la_cabecera_texto, .o_la_cabecera_estado {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 14px 18px;
+    }
+    .o_la_cabecera_estado { text-align: right; width: 35%; }
+    .o_la_programa { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; }
+    .o_la_cabecera h1 { font-size: 24px; color: #fff; margin: 2px 0; }
+    .o_la_numero { font-size: 13px; font-weight: 600; color: $la-oro; }
+    .o_la_firma_fecha { margin-top: 6px; font-size: 10px; opacity: 0.9; }
+
+    // ---------- Insignias de estado (color según iColor)
+    .o_la_badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        background: map-get($la-colores, 0);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+    .o_la_badge_peq { padding: 1px 7px; font-size: 9px; border: none; }
+    .o_la_punto {
+        display: inline-block;
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background: map-get($la-colores, 0);
+    }
+    @each $indice, $color in $la-colores {
+        .o_la_badge.o_la_color_#{$indice},
+        .o_la_punto.o_la_color_#{$indice} { background: $color; }
+    }
+
+    // ---------- Fichas de datos
+    .o_la_fichas { border-spacing: 8px 0; border-collapse: separate; margin: 0 -8px 12px; }
+    .o_la_ficha {
+        width: 33.33%;
+        border: 1px solid $la-borde;
+        border-top: 3px solid $la-azul;
+        border-radius: 4px;
+        padding: 8px 10px;
+        page-break-inside: avoid;
+    }
+    .o_la_ficha_titulo {
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 1px; color: $la-azul; margin-bottom: 6px;
+    }
+    dl { margin: 0; }
+    dt { font-size: 9px; color: $la-gris; text-transform: uppercase; margin-top: 4px; }
+    dd { margin: 0; font-weight: 600; }
+    .o_la_vacio { color: $la-gris; font-style: italic; margin: 0; }
+
+    // ---------- Indicadores
+    .o_la_kpis { border-spacing: 8px 0; border-collapse: separate; margin: 0 -8px 8px; }
+    .o_la_kpi {
+        width: 25%;
+        text-align: center;
+        background: $la-azul-claro;
+        border-radius: 4px;
+        padding: 10px 6px;
+    }
+    .o_la_kpi_valor { font-size: 22px; font-weight: 700; color: $la-azul; }
+    .o_la_kpi_titulo { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: $la-gris; }
+
+    .o_la_progreso { margin-bottom: 14px; page-break-inside: avoid; }
+    .o_la_progreso_texto { font-size: 10px; margin-bottom: 3px; }
+    .o_la_progreso_barra { height: 9px; background: #e5e7eb; border-radius: 5px; overflow: hidden; }
+    .o_la_progreso_relleno { height: 9px; background: $la-oro; border-radius: 5px; }
+    .o_la_progreso_relleno.o_la_completo { background: $la-verde; }
+
+    // ---------- Secciones y tablas
+    .o_la_seccion {
+        font-size: 13px;
+        color: $la-azul;
+        border-bottom: 2px solid $la-oro;
+        padding-bottom: 3px;
+        margin: 14px 0 8px;
+        page-break-after: avoid;
+    }
+    .o_la_tabla {
+        border: 1px solid $la-borde;
+        thead { display: table-header-group; }  // repite la cabecera si la tabla salta de página
+        tr { page-break-inside: avoid; }
+        th {
+            background: $la-azul;
+            color: #fff;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 6px;
+            text-align: left;
+        }
+        td { padding: 5px 6px; border-top: 1px solid $la-borde; }
+        tr.o_la_par td { background: $la-fondo-par; }
+        tr.o_la_actual td { background: #fff7d6; font-weight: 700; }
+        tfoot td { background: $la-azul-claro; font-weight: 700; border-top: 2px solid $la-azul; }
+        // El layout estándar de Odoo quita el relleno a la primera y última celda: lo restauramos
+        th:first-child, td:first-child { padding-left: 6px !important; }
+        th:last-child, td:last-child { padding-right: 8px !important; }
+    }
+    .o_la_tabla_peq { th, td { padding: 4px 6px; } }
+    .o_la_num { text-align: right !important; white-space: nowrap; }
+    .o_la_centro { text-align: center !important; }
+    .o_la_codigo { font-family: monospace; font-size: 10px; color: $la-gris; white-space: nowrap; }
+
+    // Calificación (texto de la nota)
+    .o_la_nota { font-weight: 700; font-size: 10px; }
+    .o_la_nota_suspenso { color: $la-rojo; }
+    .o_la_nota_aprobado { color: map-get($la-colores, 2); }
+    .o_la_nota_notable { color: map-get($la-colores, 4); }
+    .o_la_nota_sobresaliente { color: $la-verde; }
+
+    .o_la_doble { border-spacing: 12px 0; border-collapse: separate; margin: 0 -12px; page-break-inside: avoid; }
+    .o_la_doble > tbody > tr > td, .o_la_doble > tr > td { width: 50%; }
+
+    .o_la_observaciones {
+        page-break-inside: avoid;
+        p { border-left: 3px solid $la-oro; background: $la-fondo-par; padding: 8px 10px; margin: 0; }
+    }
+
+    // ---------- Firmas
+    .o_la_firmas { border-spacing: 10px 0; border-collapse: separate; margin: 0 -10px; page-break-inside: avoid; }
+    .o_la_firma {
+        width: 33.33%;
+        border: 1px dashed $la-borde;
+        border-radius: 4px;
+        padding: 8px 10px;
+        text-align: center;
+    }
+    .o_la_firma_rol { font-size: 9px; text-transform: uppercase; color: $la-gris; min-height: 24px; }
+    .o_la_firma_espacio {
+        height: 46px;
+        line-height: 46px;
+        font-size: 13px;
+        font-weight: 700;
+        border-bottom: 1px solid $la-texto;
+        margin: 4px 6px;
+    }
+    .o_la_firma_pie { font-size: 9px; color: $la-gris; }
+    .o_la_firmada { border: 1px solid $la-verde; background: #eef8f0; .o_la_firma_espacio { color: $la-verde; } }
+    .o_la_pendiente .o_la_firma_espacio { color: $la-gris; font-weight: 400; font-style: italic; }
+
+    .o_la_emision {
+        margin-top: 16px;
+        padding-top: 6px;
+        border-top: 1px solid $la-borde;
+        font-size: 9px;
+        color: $la-gris;
+        text-align: right;
+    }
+}

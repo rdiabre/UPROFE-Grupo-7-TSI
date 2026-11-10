@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="uprofe.ProgresoEstanciaField">
+        <t t-set="i" t-value="info"/>
+        <div t-attf-class="o_uprofe_estancia o_uprofe_estancia_{{ i.fase }}">
+            <i t-attf-class="fa {{ i.icono }}"/>
+            <div class="o_uprofe_estancia_cuerpo">
+                <span class="o_uprofe_estancia_texto" t-esc="i.texto"/>
+                <div t-if="i.fase === 'en_curso'" class="o_uprofe_estancia_pista">
+                    <div class="o_uprofe_estancia_relleno" t-attf-style="width: {{ i.porcentaje }}%"/>
+                </div>
+            </div>
+            <span t-if="i.fase === 'en_curso'" class="o_uprofe_estancia_pct"><t t-esc="i.porcentaje"/>%</span>
+        </div>
+    </t>
+</templates>

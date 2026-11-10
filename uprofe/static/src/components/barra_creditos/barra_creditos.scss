@@ -1,0 +1,22 @@
+.o_uprofe_barra_creditos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-width: 150px;
+
+    .o_uprofe_barra_pista {
+        flex: 1;
+        height: 10px;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .o_uprofe_barra_relleno { height: 100%; border-radius: 5px; transition: width 0.4s ease; }
+    .o_uprofe_barra_texto { font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .o_uprofe_barra_pct { opacity: 0.65; font-weight: 400; }
+
+    &.o_uprofe_barra_bajo .o_uprofe_barra_relleno { background: #e8590c; }
+    &.o_uprofe_barra_medio .o_uprofe_barra_relleno { background: #f2b705; }
+    &.o_uprofe_barra_completo .o_uprofe_barra_relleno { background: #1e8e3e; }
+}

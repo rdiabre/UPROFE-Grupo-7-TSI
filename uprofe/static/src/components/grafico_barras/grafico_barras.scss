@@ -1,0 +1,40 @@
+// Paleta de colores de Odoo (0-11), la misma que el campo iColor de los estados
+$uprofe-colores: (
+    0: #868e96, 1: #c62828, 2: #e8590c, 3: #f2b705, 4: #1971c2, 5: #862e9c,
+    6: #c2255c, 7: #0b7285, 8: #364fc7, 9: #a61e4d, 10: #1e8e3e, 11: #5f3dc4,
+);
+@each $indice, $color in $uprofe-colores {
+    .o_uprofe_color_#{$indice} { background: $color; }
+}
+
+.o_uprofe_grafico {
+    padding: 16px;
+    border-radius: 8px;
+    background: var(--o-view-background-color, #fff);
+    border: 1px solid var(--border-color, #dee2e6);
+
+    .o_uprofe_grafico_cabecera {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 12px;
+        h4 { margin: 0; font-size: 15px; font-weight: 700; }
+    }
+    .o_uprofe_grafico_total { font-size: 12px; opacity: 0.7; }
+
+    .o_uprofe_grafico_fila {
+        display: grid;
+        grid-template-columns: 140px 1fr 36px;
+        align-items: center;
+        gap: 10px;
+        padding: 4px 6px;
+        border-radius: 4px;
+        &.o_uprofe_grafico_clic { cursor: pointer; }
+        &.o_uprofe_grafico_clic:hover { background: rgba(0, 0, 0, 0.04); }
+    }
+    .o_uprofe_grafico_etiqueta { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .o_uprofe_grafico_pista { height: 14px; background: rgba(0, 0, 0, 0.06); border-radius: 7px; overflow: hidden; }
+    .o_uprofe_grafico_barra { height: 100%; border-radius: 7px; transition: width 0.4s ease; }
+    .o_uprofe_grafico_valor { font-size: 12px; font-weight: 700; text-align: right; }
+    .o_uprofe_grafico_vacio { font-style: italic; opacity: 0.6; }
+}

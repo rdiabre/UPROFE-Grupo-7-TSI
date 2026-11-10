@@ -1,0 +1,34 @@
+.o_uprofe_kpi {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: var(--o-view-background-color, #fff);
+    border: 1px solid var(--border-color, #dee2e6);
+    border-left: 5px solid var(--kpi-color);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &.o_uprofe_kpi_clic { cursor: pointer; }
+    &.o_uprofe_kpi_clic:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+
+    .o_uprofe_kpi_icono {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #fff;
+        background: var(--kpi-color);
+        flex-shrink: 0;
+    }
+    .o_uprofe_kpi_valor { font-size: 24px; font-weight: 700; line-height: 1.1; }
+    .o_uprofe_kpi_titulo { font-size: 12px; opacity: 0.75; }
+}
+.o_uprofe_kpi_primary { --kpi-color: #1f3c88; }
+.o_uprofe_kpi_info { --kpi-color: #0b7285; }
+.o_uprofe_kpi_success { --kpi-color: #1e8e3e; }
+.o_uprofe_kpi_warning { --kpi-color: #e8590c; }
+.o_uprofe_kpi_secondary { --kpi-color: #5f3dc4; }

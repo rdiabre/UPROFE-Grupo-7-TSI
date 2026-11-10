@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acción cliente que abre el componente OWL PanelErasmus
+         (static/src/components/panel_erasmus, registrado como "uprofe.panel_erasmus") -->
+    <record id="action_uprofe_panel_erasmus" model="ir.actions.client">
+        <field name="name">Panel Erasmus</field>
+        <field name="tag">uprofe.panel_erasmus</field>
+    </record>
+</odoo>
