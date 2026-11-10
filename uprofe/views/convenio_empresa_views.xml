@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- vista de listas -->
-    <record id="view_uprofe_convenio_empresa_list" model="ir.ui.view">
-        <field name="name">uprofe.convenio_empresa.list</field>
+    <record id="view_uprofe_convenio_empresa_calendar" model="ir.ui.view">
+        <field name="name">uprofe.convenio_empresa.calendar</field>
         <field name="model">uprofe.convenio_empresa</field>
         <field name="arch" type="xml">
-            <list string="Convenios">
-                <field name="snum_convenio_practicas"/>
-                <field name="dfecha_firma"/>
-                <field name="dfecha_expiracion"/>
+            <calendar string="Convenios" date_start="dFecha_firma" date_stop="dFecha_expiracion"
+                      color="estado_convenio_id" mode="month">
+                <field name="name"/>
                 <field name="estado_convenio_id"/>
-            </list>
+            </calendar>
         </field>
     </record>
 
@@ -23,12 +21,12 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="snum_convenio_practicas"/>
+                            <field name="name"/>
                             <field name="estado_convenio_id"/>
                         </group>
                         <group>
-                            <field name="dfecha_firma"/>
-                            <field name="dfecha_expiracion"/>
+                            <field name="dFecha_firma"/>
+                            <field name="dFecha_expiracion"/>
                         </group>
                     </group>
                 </sheet>
@@ -36,16 +34,17 @@
         </field>
     </record>
 
-    <!-- Vista avanzada -->
-    <record id="view_uprofe_convenio_empresa_calendar" model="ir.ui.view">
-        <field name="name">uprofe.convenio_empresa.calendar</field>
+    <!-- vista de listas -->
+    <record id="view_uprofe_convenio_empresa_list" model="ir.ui.view">
+        <field name="name">uprofe.convenio_empresa.list</field>
         <field name="model">uprofe.convenio_empresa</field>
         <field name="arch" type="xml">
-            <calendar string="Convenios" date_start="dfecha_firma" date_stop="dfecha_expiracion"
-                      color="estado_convenio_id" mode="year" quick_create="0">
-                <field name="snum_convenio_practicas"/>
+            <list string="Convenios">
+                <field name="name"/>
+                <field name="dFecha_firma"/>
+                <field name="dFecha_expiracion"/>
                 <field name="estado_convenio_id"/>
-            </calendar>
+            </list>
         </field>
     </record>
 
@@ -55,12 +54,11 @@
         <field name="model">uprofe.convenio_empresa</field>
         <field name="arch" type="xml">
             <search>
-                <field name="snum_convenio_practicas"/>
+                <field name="name"/>
                 <field name="estado_convenio_id"/>
-                <filter name="no_caducados" string="No caducados"
-                        domain="[('dfecha_expiracion', '>=', context_today().strftime('%Y-%m-%d'))]"/>
                 <group expand="0" string="Agrupar por">
-                    <filter name="group_estado" string="Estado"
+                    <filter name="group_estado"
+                            string="Estado"
                             context="{'group_by': 'estado_convenio_id'}"/>
                 </group>
             </search>
