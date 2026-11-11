@@ -4,6 +4,28 @@
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
 
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+
+
+    <!-- Infraestructura -->
+    <menuitem name="Infraestructura" id="menu_infraestructura" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="2"/>
+    <menuitem name="Ubicaciones" id="ubicacion_menu" parent="menu_infraestructura" action="ubicacion_list_action" groups="group_uprofe_manager" sequence="1"/>
+    <menuitem name="Edificios" id="edificio_menu" parent="menu_infraestructura" action="edificio_list_action" groups="group_uprofe_manager" sequence="2"/>
+    <menuitem name="Espacios" id="espacio_menu" parent="menu_infraestructura" action="espacio_list_action" groups="group_uprofe_manager" sequence="3"/>
+
+    <!-- Recursos inventariables -->
+    <menuitem name="Recursos inventariables" id="menu_recursos" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="3"/>
+    <menuitem name="Inventarios" id="inventario_menu" parent="menu_recursos" action="inventario_list_action" groups="group_uprofe_manager" sequence="1"/>
+    <menuitem name="Objetos inventariables" id="menu_objetos_inventariables" parent="menu_recursos" action="action_uprofe_equipos" groups="group_uprofe_manager" sequence="2"/>
+
+    <!-- Mantenimiento -->
+    <menuitem name="Mantenimiento" id="menu_mantenimiento" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="4"/>
+    <menuitem id="menu_uprofe_incidencias" name="Incidencias" parent="menu_mantenimiento" action="action_uprofe_incidencias" groups="group_uprofe_manager" sequence="1"/>
+
+    <!-- Reservas -->
+    <menuitem name="Reservas" id="menu_reservas" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="5"/>
+    <menuitem id="menu_uprofe_horarios" name="Horarios de disponibilidad" parent="menu_reservas" action="action_uprofe_horarios" groups="group_uprofe_manager" sequence="1"/>
+    <menuitem id="menu_uprofe_reservas" name="Reservas" parent="menu_reservas" action="action_uprofe_reservas" groups="group_uprofe_manager" sequence="2"/>    
+    
     <menuitem name="Tutores externos" id="menu_uprofe_tutor_externo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tutor_externo" sequence="40"/>
     <menuitem name="Acuerdos de prácticas" id="menu_uprofe_acuerdo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_acuerdo" sequence="70"/>
     <menuitem name="Seguimientos de práctica" id="menu_uprofe_seguimiento_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_seguimiento_practica" sequence="80"/>

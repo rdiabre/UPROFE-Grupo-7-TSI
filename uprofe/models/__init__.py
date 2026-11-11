@@ -48,5 +48,16 @@ from . import estado_acuerdo
 from . import pregunta
 from . import tipo_respuesta
 from . import estado_la_linea
+from . import ubicacion
+from . import edificio
+from . import espacio
+from . import sala_estudio
+from . import inventario
+from . import objeto_inventariable
+from . import inventario_linea
+from . import incidencia
+from . import horario_disponibilidad
+from . import reserva_horario
+from . import prestamo_equipo
 from . import direccion
 from . import libro

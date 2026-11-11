@@ -1,0 +1,97 @@
+<odoo>
+
+    <record id="view_horario_disponibilidad_form" model="ir.ui.view">
+        <field name="name">resource.calendar.form.uprofe</field>
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.resource_calendar_form" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="attributes">
+                <attribute name="string">Código de horario</attribute>
+            </field>
+
+            <field name="full_time_required_hours" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="hours_per_day" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <xpath expr="//page[@name='working_hours']" position="attributes">
+                <attribute name="string">Franjas horarias</attribute>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Espacios asociados">
+                    <field name="espacio_ids" widget="many2many" />
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="view_horario_disponibilidad_list" model="ir.ui.view">
+        <field name="name">resource.calendar.list.uprofe</field>
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_tree" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="attributes">
+                <attribute name="string">Código de horario</attribute>
+            </field>
+
+            <field name="name" position="after">
+                <field name="espacio_ids" widget="many2many_tags" />
+                
+            </field>
+
+        </field>
+    </record>
+
+
+    <record id="view_horario_franja_list" model="ir.ui.view">
+        <field name="name">resource.calendar.attendance.list.uprofe</field>
+        <field name="model">resource.calendar.attendance</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="attributes">
+                <attribute name="string">Código de franja</attribute>
+            </field>
+
+            <field name="date_from" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+
+            <field name="date_to" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+
+            <field name="day_period" position="replace" />
+            <field name="duration_days" position="replace" />
+
+        </field>
+    </record>
+
+    <record id="view_horario_franja_form" model="ir.ui.view">
+        <field name="name">resource.calendar.attendance.form.uprofe</field>
+        <field name="model">resource.calendar.attendance</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_attendance_form" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="attributes">
+                <attribute name="string">Código de franja</attribute>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="action_uprofe_horarios" model="ir.actions.act_window">
+        <field name="name">Horarios de disponibilidad</field>
+        <field name="res_model">resource.calendar</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="resource.view_resource_calendar_search" />
+    </record>
+
+</odoo>
