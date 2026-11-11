@@ -23,7 +23,7 @@
             <form string="Proyectos de investigación">
                 <sheet layout="auto">
                     <group>
-                        <field name="sName" />
+                        <field name="name" />
                         <field name="sTitulo" />
                         <field name="fPresupuesto" />
                         <field name="dFecha_inicio" />
@@ -42,7 +42,7 @@
         <field name="model">uprofe.proyecto_investigacion</field>
         <field name="arch" type="xml">
             <list string="Lista de proyectos de investigación">
-                <field name="sName" />
+                <field name="name" />
                 <field name="sTitulo" />
                 <field name="fPresupuesto" />
                 <field name="dFecha_inicio" />
