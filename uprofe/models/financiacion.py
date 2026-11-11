@@ -5,24 +5,24 @@ class financiacion(models.Model):
     _name = 'uprofe.financiacion'
     _description = 'Financiación de los proyectos de investigación'
     
-    sName = fields.Char(string="Código de la financiación", required=True)
-    fImporte = fields.Float(string="Importe", digits="Account", required=True)
+    name = fields.Char(string="Código de la financiación", required=True)
+    fImporte = fields.Float(string="Importe", digits="Account", required=True, default=1000)
     dFecha_concesion = fields.Datetime(string="Fecha de concesión", autodate=True, required=True)
     
     proyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigación", required=True)
     empresa_id = fields.Many2one('uprofe.empresa', string="Empresa financiadora", required=True)
     persona_ids = fields.Many2many('uprofe.persona', string="Personas financiadas")
     
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', record.sName.strip())]):
+            if self.search_count([('id', '!=', record.id), ('name', '=ilike', (record.name or '').strip())]):
                 raise ValidationError("Ya existe una financiación con este código, debe ser único.")
     
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_codigo_valido(self):
         for record in self:
-            if len(record.sName.strip()) == 0:
+            if len((record.name or '').strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
     @api.constrains('fImporte')

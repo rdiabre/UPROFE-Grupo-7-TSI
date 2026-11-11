@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autor: Isabel Cherino
 
 import re
 from dateutil.relativedelta import relativedelta
@@ -46,14 +47,13 @@ class Movilidad(models.Model):
     universidad_id = fields.Many2one(related='plaza_erasmus_id.universidad_id', string="Universidad", store=True)
     pais_id = fields.Many2one(related='plaza_erasmus_id.pais_id', string="País", store=True)
 
-    # Descomentar cuando exista Solicitud (modelo de otro compañero).
     # El UNIQUE de abajo refleja el (0,1) de "origina": una solicitud origina como mucho una movilidad.
-    # solicitud_id = fields.Many2one(
-    #     'uprofe.solicitud',
-    #     string="Solicitud de origen",
-    #     required=True,
-    #     ondelete='restrict',
-    # )
+    solicitud_id = fields.Many2one(
+        'uprofe.solicitud',
+        string="Solicitud de origen",
+        required=True,
+        ondelete='restrict',
+    )
 
     learning_agreement_ids = fields.One2many(
         'uprofe.learning_agreement', 'movilidad_id', string="Learning agreements")
@@ -66,8 +66,8 @@ class Movilidad(models.Model):
     _sql_constraints = [
         ('num_movilidad_unico', 'UNIQUE("sNum_movilidad")',
          'Ya existe una movilidad con ese número.'),
-        # ('solicitud_unica', 'UNIQUE(solicitud_id)',
-        #  'Esa solicitud ya ha originado una movilidad.'),
+        ('solicitud_unica', 'UNIQUE(solicitud_id)',
+         'Esa solicitud ya ha originado una movilidad.'),
     ]
 
     # ------------------------------------------------------------------ validaciones

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -29,10 +30,8 @@ class OfertaPractica(models.Model):
         for record in self:
             if record.name:
                 if record.name.strip() == '':
-                    raise ValidationError(
-                        'El título no puede contener solo espacios.'
-                    )
-                    
+                    raise ValidationError('El título no puede contener solo espacios.' )
+
     @api.constrains('iNum_oferta')
     def _check_num_oferta(self):
         for record in self:

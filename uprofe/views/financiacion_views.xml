@@ -18,7 +18,7 @@
             <form string="Financiaciones">
                 <sheet layout="auto">
                     <group>
-                        <field name="sName" />
+                        <field name="name" />
                         <field name="fImporte" />
                         <field name="dFecha_concesion" />
                         <field name="proyecto_investigacion_id" widget="many2one" />
@@ -41,7 +41,7 @@
         <field name="model">uprofe.financiacion</field>
         <field name="arch" type="xml">
             <list string="Lista de financiaciones">
-                <field name="sName" />
+                <field name="name" />
                 <field name="fImporte" />
                 <field name="dFecha_concesion" />
                 <field name="proyecto_investigacion_id" widget="many2one" />

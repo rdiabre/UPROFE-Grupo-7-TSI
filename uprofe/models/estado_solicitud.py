@@ -6,31 +6,20 @@ from odoo.exceptions import ValidationError
 class estado_solicitud(models.Model):
     _name= 'uprofe.estado_solicitud'
     _description = 'Estados de la solicitud'
-    _order = 'sName asc'
+    _order = 'name asc'
 
-    sName = fields.Char(string="Nombre", size=50, required=True)
+    name = fields.Char(string="Nombre", size=50, required=True)
     sDescripcion = fields.Text(string="Descripción")
 
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_name_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("sName", "=ilike", record.sName.strip())]):
+            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name.strip())]):
                 raise ValidationError("Ya existe un estado de solicitud con este nombre.")
 
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_name_not_empty(self):
         for record in self:
-            if len(record.sName.strip()) == 0:
+            if len(record.name.strip()) == 0:
                 raise ValidationError("El nombre del estado de solicitud no puede estar vacío.")
 
-    def write(self, vals):
-        self._strip_string_values(vals)
-        return super().write(vals)
-
-    def _strip_string_values(self, vals):
-        for field_name, val in vals.items():
-            if isinstance(val, str):
-                field = self._fields.get(field_name)
-                if field and field.type in ('char', 'text'):
-                    vals[field_name] = val.strip()
-        return vals

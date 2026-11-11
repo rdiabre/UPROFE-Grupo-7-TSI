@@ -6,7 +6,7 @@ class proyecto_investigacion(models.Model):
     _name = 'uprofe.proyecto_investigacion'
     _description = "Proyecto de investigación"
     
-    sName = fields.Char(string="Código", required=True)
+    name = fields.Char(string="Código", required=True)
     sTitulo = fields.Char(string="Título", required=True)
     fPresupuesto = fields.Float(string="Presupuesto", compute='_compute_presupuesto')
     dFecha_inicio = fields.Datetime(string="Fecha de inicio", autodate=True, required=True)
@@ -16,22 +16,22 @@ class proyecto_investigacion(models.Model):
     financiacion_ids = fields.One2many('uprofe.financiacion', 'proyecto_investigacion_id', "Financiaciones")
     publicacion_ids = fields.One2many('uprofe.publicacion', 'proyecto_investigacion_id', "Publicaciones")
     
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', record.sName.strip())]):
+            if self.search_count([('id', '!=', record.id), ('name', '=ilike', (record.name or '').strip())]):
                 raise ValidationError("Este código ya está utilizado, debe ser único.")
 
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_codigo_valido(self):
         for record in self:
-            if len(record.sName.strip()) == 0:
+            if len((record.name or '').strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
     @api.constrains('sTitulo')
     def _check_titulo_valido(self):
         for record in self:
-            if len(record.sTitle.strip()) == 0:
+            if len((record.sTitle or '').strip()) == 0:
                 raise ValidationError("El título no puede estar vacío.")
             
     @api.constrains('fPresupuesto')
