@@ -1,0 +1,63 @@
+
+
+<odoo>
+
+    <record id="view_sala_estudio_list" model="ir.ui.view">
+        <field name="name">uprofe.sala_estudio.list</field>
+        <field name="model">uprofe.sala_estudio</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sCod_espacio"/>
+                <field name="sTipo"/>
+                <field name="iCapacidad"/>
+                <field name="iPlanta"/>
+                <field name="edificio_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sala_estudio_form" model="ir.ui.view">
+        <field name="name">uprofe.sala_estudio.form</field>
+        <field name="model">uprofe.sala_estudio</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos de la sala">
+                            <field name="espacio_id"/>
+                            <field name="sTipo"/>
+                            <field name="sRequisitos"/>
+                        </group>
+
+                        <group string="Datos del espacio">
+                            <field name="iCapacidad" readonly="1"/>
+                            <field name="iPlanta" readonly="1"/>
+                            <field name="edificio_id" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_sala_estudio_search" model="ir.ui.view">
+        <field name="name">uprofe.sala_estudio.search</field>
+        <field name="model">uprofe.sala_estudio</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sCod_espacio"/>
+                <field name="sTipo"/>
+                <field name="edificio_id"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="sala_estudio_list_action" model="ir.actions.act_window">
+        <field name="name">Salas de estudio</field>
+        <field name="res_model">uprofe.sala_estudio</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>
