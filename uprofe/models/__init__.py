@@ -27,6 +27,7 @@ from . import profesor
 from . import sesion
 from . import tipo_sesion
 from . import publicacion
+from . import patente
 from . import articulo
 from . import proyecto_investigacion
 from . import idioma
