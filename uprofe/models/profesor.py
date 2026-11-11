@@ -13,7 +13,7 @@ class Profesor(models.Model):
     _inherits = {'uprofe.persona': 'persona_id'}
 
     persona_id = fields.Many2one('uprofe.persona', string="Persona", required=True, ondelete='cascade') # Aquí si ponemos el ondelete. Se ha visto un caso similar en el Tema 5
-
+    departamento_id = fields.Many2one('uprofe.departamento', string="Departamento", ondelete='restrict')
     # Campos propios de Profesor
     sDespacho = fields.Char(string="Despacho", help="Despacho del profesor. Por ejemplo: 11.2.14")
     bDoctor = fields.Boolean(string="Doctor", default=False, help="Marcar si el profesor es doctor")

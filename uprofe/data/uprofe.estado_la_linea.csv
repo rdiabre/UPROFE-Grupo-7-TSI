@@ -1,11 +1,11 @@
-id,sName,sDescripcion
-estado_linea_propuesta,propuesta,Asignatura propuesta por el estudiante
-estado_linea_pendiente_revision,pendiente_revision,Pendiente de revisión por el coordinador
-estado_linea_aprobada,aprobada,Equivalencia aprobada
-estado_linea_rechazada,rechazada,Equivalencia no aceptada
-estado_linea_modificada,modificada,La línea ha cambiado respecto a la versión anterior
-estado_linea_cursando,cursando,El estudiante está cursando la asignatura
-estado_linea_superada,superada,Asignatura aprobada en destino
-estado_linea_suspensa,suspensa,Asignatura no superada en destino
-estado_linea_convalidada,convalidada,Créditos reconocidos en la UPO con nota
-estado_linea_anulada,anulada,Línea eliminada del acuerdo
+id,sName,sDescripcion,iColor,bInicial,bFinal,iSecuencia
+estado_linea_propuesta,propuesta,Asignatura propuesta por el estudiante,0,True,False,10
+estado_linea_pendiente_revision,pendiente_revision,Pendiente de revisión por el coordinador,3,False,False,20
+estado_linea_aprobada,aprobada,Equivalencia aprobada,4,False,False,30
+estado_linea_rechazada,rechazada,Equivalencia no aceptada,1,False,True,40
+estado_linea_modificada,modificada,La línea ha cambiado respecto a la versión anterior,8,False,False,50
+estado_linea_cursando,cursando,El estudiante está cursando la asignatura,7,False,False,60
+estado_linea_superada,superada,Asignatura aprobada en destino,10,False,True,70
+estado_linea_suspensa,suspensa,Asignatura no superada en destino,1,False,True,80
+estado_linea_convalidada,convalidada,Créditos reconocidos en la UPO con nota,10,False,True,90
+estado_linea_anulada,anulada,Línea eliminada del acuerdo,1,False,True,100
