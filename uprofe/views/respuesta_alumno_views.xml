@@ -18,8 +18,6 @@
                 <sheet>
                     <group>
                         <field name="pregunta_id"/>
-                        <field name="encuesta_id" readonly="1"/>
-                        <field name="sOpciones" readonly="1" />
                         <field name="name"/>
                     </group>
                 </sheet>
@@ -32,7 +30,6 @@
         <field name="model">uprofe.respuesta_alumno</field>
         <field name="arch" type="xml">
             <list string="Respuestas de alumnos">
-                <field name="encuesta_id"/>
                 <field name="pregunta_id"/>
                 <field name="name"/>
             </list>
@@ -44,14 +41,11 @@
         <field name="model">uprofe.respuesta_alumno</field>
         <field name="arch" type="xml">
             <search>
-                <field name="encuesta_id"/>
                 <field name="pregunta_id"/>
                 <field name="name"/>
                 <filter name="con_opciones" string="Preguntas con opciones" domain="[('pregunta_id.tipo_respuesta_id.bCon_opciones', '=', True)]"/>
                 <filter name="sin_opciones" string="Preguntas sin opciones" domain="[('pregunta_id.tipo_respuesta_id.bCon_opciones', '=', False)]"/>
                 <group expand="0" string="Agrupar por">
-                    <filter name="group_encuesta" string="Encuesta"
-                            context="{'group_by': 'encuesta_id'}"/>
                     <filter name="group_pregunta" string="Pregunta"
                             context="{'group_by': 'pregunta_id'}"/>
                 </group>

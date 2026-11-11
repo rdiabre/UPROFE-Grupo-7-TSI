@@ -8,11 +8,8 @@ class RespuestaAlumno(models.Model):
     _description = 'Respuesta de un alumno a una pregunta'
 
     name = fields.Text(string='Respuesta', required=True)
-   
+
     pregunta_id = fields.Many2one('uprofe.pregunta', string='Pregunta', required=True)
-    encuesta_id = fields.Many2one(related='pregunta_id.encuesta_id', string='Encuesta', store=True)
-    sOpciones = fields.Text(related='pregunta_id.sOpciones', string='Opciones disponibles')
-    bCon_opciones = fields.Boolean(related='pregunta_id.tipo_respuesta_id.bCon_opciones', string='Requiere opciones')
 
     # Descomentar cuando exista el modelo uprofe.alumno
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
@@ -29,6 +26,9 @@ class RespuestaAlumno(models.Model):
 
             if not respuesta:
                 raise ValidationError('La respuesta no puede estar vacía.')
+            if record.name != respuesta:
+                raise ValidationError('La respuesta no puede tener espacios al principio o al final.')
+
             if record.pregunta_id.tipo_respuesta_id.bCon_opciones:
                 opciones = []
                 for linea in (record.pregunta_id.sOpciones or '').splitlines():
@@ -39,6 +39,8 @@ class RespuestaAlumno(models.Model):
 
     @api.onchange('pregunta_id', 'name')
     def _onchange_respuesta(self):
+        if self.name:
+            self.name = self.name.strip()
         if self.pregunta_id and self.name:
             if self.pregunta_id.tipo_respuesta_id.bCon_opciones:
                 opciones = []

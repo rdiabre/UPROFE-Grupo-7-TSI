@@ -74,3 +74,8 @@ class SeguimientoAluInt(models.Model):
                     'message': 'La calificación no puede superar 10; se ha puesto 10.'
                 }
             }
+
+    @api.onchange('sObservaciones')
+    def _onchange_observaciones(self):
+        if self.sObservaciones:
+            self.sObservaciones = self.sObservaciones.strip()

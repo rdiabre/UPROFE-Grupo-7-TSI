@@ -48,7 +48,7 @@ class Encuesta(models.Model):
             if curso[4] != '/':
                 raise ValidationError('Los años del curso académico deben estar separados por /.')
 
-            primer_anio = curso[:4] 
+            primer_anio = curso[:4]
             segundo_anio = curso[5:]
 
             for caracter in primer_anio + segundo_anio:

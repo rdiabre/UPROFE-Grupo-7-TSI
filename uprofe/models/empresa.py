@@ -8,14 +8,14 @@ class Empresa(models.Model):
     _description = 'Empresa colaboradora'
     _order = 'name asc'
 
-    sCif = fields.Char(string='CIF', size=9, required=True)
+    sCif = fields.Char(string='CIF', required=True)
     name = fields.Char(string='Nombre', required=True)
     sNombre_sector = fields.Char(string='Sector')
     sEmail = fields.Char(string='Correo electrónico')
 
     financiacion_ids = fields.One2many('uprofe.financiacion', 'empresa_id', string='Financiaciones')
-    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id', string='Ofertas de práctica')   
-    direccion_id = fields.Many2one('uprofe.direccion', string='Dirección', required=True)               
+    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id', string='Ofertas de práctica')
+    direccion_id = fields.Many2one('uprofe.direccion', string='Dirección', required=True)
 
 
     @api.constrains('name')
@@ -24,7 +24,7 @@ class Empresa(models.Model):
             if record.name:
                 if record.name.strip() == '':
                     raise ValidationError('El nombre de la empresa no puede contener solo espacios.' )
-    
+
     @api.constrains('sCif')
     def _check_cif(self):
         for record in self:
@@ -33,8 +33,8 @@ class Empresa(models.Model):
                     raise ValidationError('El CIF debe tener 9 caracteres.' )
 
                 if ' ' in record.sCif:
-                    raise ValidationError('El CIF no puede contener espacios.' ) 
-                                   
+                    raise ValidationError('El CIF no puede contener espacios.' )
+
     @api.constrains('sCif')
     def _check_cif_unique(self):
         for record in self:
@@ -46,7 +46,7 @@ class Empresa(models.Model):
 
                 if self.search_count(lDominio):
                     raise ValidationError('Ya existe una empresa con este CIF.')
-                                    
+
     @api.constrains('sEmail')
     def _check_email(self):
         for record in self:
