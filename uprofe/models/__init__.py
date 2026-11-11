@@ -48,5 +48,6 @@ from . import estado_acuerdo
 from . import pregunta
 from . import tipo_respuesta
 from . import estado_la_linea
+from . import horario_tutoria
 from . import direccion
 from . import libro
