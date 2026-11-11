@@ -21,18 +21,17 @@ class Evento(models.Model):
 
     inscripcion_ids = fields.One2many('uprofe.evento_inscripcion', 'evento_id', string='Inscripciones')
 
-    # Modelo intermedio para la relación "se inscribe en" con atributos propios
-class EventoInscripcion(models.Model):
-    _name = 'uprofe.evento_inscripcion'
-    _description = 'Inscripción a Evento'
+    @api.constrains('fecha_inicio', 'fecha_fin')
+    def _check_fechas_evento(self):
+        for record in self:
+            if record.fecha_fin and record.fecha_inicio:
+                if record.fecha_fin < record.fecha_inicio:
+                    raise ValidationError('La fecha de fin del evento debe ser posterior a la de inicio.')
 
-    evento_id = fields.Many2one('uprofe.evento', string='Evento', required=True, ondelete='cascade')
-    # persona_id = fields.Many2one('uprofe.persona', string='Persona', required=True, ondelete='cascade')
+    @api.constrains('aforo_maximo')
+    def _check_aforo(self):
+        for record in self:
+            if record.aforo_maximo <= 0:
+                raise ValidationError('El aforo máximo debe ser superior a cero.')
+
     
-    asiste = fields.Boolean(string='Asiste', default=False)
-    estado = fields.Selection([
-        ('pendiente', 'Pendiente'),
-        ('confirmado', 'Confirmado'),
-        ('cancelado', 'Cancelado')
-    ], string='Estado', default='pendiente')
-    fecha_inscripcion = fields.Date(string='Fecha de Inscripción', default=fields.Date.context_today)

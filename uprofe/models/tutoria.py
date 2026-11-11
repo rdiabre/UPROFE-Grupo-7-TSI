@@ -26,3 +26,4 @@ class Tutoria(models.Model):
         for record in self:
             if len(record.horario_tutoria_id.tutoria_ids) > 1:
                 raise ValidationError("Este horario de tutoría ya está reservado")
+
