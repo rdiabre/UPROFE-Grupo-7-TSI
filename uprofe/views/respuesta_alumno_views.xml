@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_respuesta_alumno_graph" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.graph</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <graph string="Respuestas por pregunta" type="bar">
+                <field name="pregunta_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_respuesta_alumno_form" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.form</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <form string="Respuesta de alumno">
+                <sheet>
+                    <group>
+                        <field name="pregunta_id"/>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_respuesta_alumno_list" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.list</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <list string="Respuestas de alumnos">
+                <field name="pregunta_id"/>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_respuesta_alumno_search" model="ir.ui.view">
+        <field name="name">uprofe.respuesta_alumno.search</field>
+        <field name="model">uprofe.respuesta_alumno</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="pregunta_id"/>
+                <field name="name"/>
+                <filter name="con_opciones" string="Preguntas con opciones" domain="[('pregunta_id.tipo_respuesta_id.bCon_opciones', '=', True)]"/>
+                <filter name="sin_opciones" string="Preguntas sin opciones" domain="[('pregunta_id.tipo_respuesta_id.bCon_opciones', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_pregunta" string="Pregunta"
+                            context="{'group_by': 'pregunta_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_respuesta_alumno" model="ir.actions.act_window">
+        <field name="name">Respuestas de alumnos</field>
+        <field name="res_model">uprofe.respuesta_alumno</field>
+        <field name="search_view_id" ref="view_uprofe_respuesta_alumno_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>

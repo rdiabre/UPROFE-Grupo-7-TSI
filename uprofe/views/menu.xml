@@ -2,5 +2,113 @@
     <menuitem name="Uprofe" id="main_uprofe_menu" groups="group_uprofe_manager"/>
 
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
+
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    <menuitem name="Convenios" id="convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="convenio_list_action"/>
+
+    <menuitem name="Tipos de solicitud" id="tipo_solicitud_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_solicitud_list_action"/>
+
+    <menuitem name="Estados de convocatoria" id="estado_convocatoria_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_convocatoria_list_action"/>
+    <menuitem name="Documentos adjuntos" id="doc_adjunta_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="doc_adjunta_list_action"/>
+
+
+    <!-- Infraestructura -->
+    <menuitem name="Infraestructura" id="menu_infraestructura" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="2"/>
+    <menuitem name="Ubicaciones" id="ubicacion_menu" parent="menu_infraestructura" action="ubicacion_list_action" groups="group_uprofe_manager" sequence="1"/>
+    <menuitem name="Edificios" id="edificio_menu" parent="menu_infraestructura" action="edificio_list_action" groups="group_uprofe_manager" sequence="2"/>
+    <menuitem name="Espacios" id="espacio_menu" parent="menu_infraestructura" action="espacio_list_action" groups="group_uprofe_manager" sequence="3"/>
+
+    <!-- Recursos inventariables -->
+    <menuitem name="Recursos inventariables" id="menu_recursos" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="3"/>
+    <menuitem name="Inventarios" id="inventario_menu" parent="menu_recursos" action="inventario_list_action" groups="group_uprofe_manager" sequence="1"/>
+    <menuitem name="Objetos inventariables" id="menu_objetos_inventariables" parent="menu_recursos" action="action_uprofe_equipos" groups="group_uprofe_manager" sequence="2"/>
+
+    <!-- Mantenimiento -->
+    <menuitem name="Mantenimiento" id="menu_mantenimiento" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="4"/>
+    <menuitem id="menu_uprofe_incidencias" name="Incidencias" parent="menu_mantenimiento" action="action_uprofe_incidencias" groups="group_uprofe_manager" sequence="1"/>
+
+    <!-- Reservas -->
+    <menuitem name="Reservas" id="menu_reservas" parent="main_uprofe_menu" groups="group_uprofe_manager" sequence="5"/>
+    <menuitem id="menu_uprofe_horarios" name="Horarios de disponibilidad" parent="menu_reservas" action="action_uprofe_horarios" groups="group_uprofe_manager" sequence="1"/>
+    <menuitem id="menu_uprofe_reservas" name="Reservas" parent="menu_reservas" action="action_uprofe_reservas" groups="group_uprofe_manager" sequence="2"/>
+
+    <!-- Prácticas -->
+    <menuitem name="Prácticas" id="menu_uprofe_practicas_root" parent="uprofe_menu" groups="group_uprofe_manager" sequence="40"/>
+    <menuitem name="Tutores externos" id="menu_uprofe_tutor_externo" parent="menu_uprofe_practicas_root" groups="group_uprofe_manager" action="action_uprofe_tutor_externo" sequence="40"/>
+    <menuitem name="Acuerdos de prácticas" id="menu_uprofe_acuerdo" parent="menu_uprofe_practicas_root" groups="group_uprofe_manager" action="action_uprofe_acuerdo" sequence="70"/>
+    <menuitem name="Seguimientos de práctica" id="menu_uprofe_seguimiento_practica" parent="menu_uprofe_practicas_root" groups="group_uprofe_manager" action="action_uprofe_seguimiento_practica" sequence="80"/>
+
+    <!-- Empresas de prácticas -->
+    <menuitem name="Empresas" id="menu_uprofe_empresa" parent="menu_uprofe_practicas_root" groups="group_uprofe_manager" action="action_uprofe_empresa" sequence="40"/>
+
+    <!-- Convenios y ofertas de prácticas -->
+    <menuitem name="Convenios de prácticas" id="menu_uprofe_convenio_empresa" parent="menu_uprofe_practicas_root" groups="group_uprofe_manager" action="action_uprofe_convenio_empresa" sequence="50"/>
+    <menuitem name="Ofertas de práctica" id="menu_uprofe_oferta_practica" parent="menu_uprofe_practicas_root" groups="group_uprofe_manager" action="action_uprofe_oferta_practica" sequence="60"/>
+
+    <!-- Tasas y recibos -->
+    <menuitem name="Tasas y recibos" id="menu_uprofe_tasas_root" parent="uprofe_menu" groups="group_uprofe_manager" sequence="50"/>
+    <menuitem name="Tasas" id="menu_uprofe_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tasa" sequence="1"/>
+    <menuitem name="Tipos de tasa" id="menu_uprofe_tipo_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tipo_tasa" sequence="3"/>
+    <menuitem name="Métodos de pago" id="menu_uprofe_metodo_pago" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_metodo_pago" sequence="4"/>
+    <menuitem name="Recibos" id="menu_uprofe_recibo" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_recibo" sequence="2"/>
+
+    <!-- Direcciones -->
+    <menuitem name="Direcciones" id="menu_uprofe_direccion" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_direccion" sequence="70"/>
+
+    <!-- Encuestas -->
+    <menuitem name="Encuestas" id="menu_uprofe_encuestas_root" parent="uprofe_menu" groups="group_uprofe_manager" sequence="5"/>
+    <menuitem name="Encuestas" id="menu_uprofe_encuesta" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_encuesta" sequence="1"/>
+    <menuitem name="Preguntas" id="menu_uprofe_pregunta" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_pregunta" sequence="2"/>
+    <menuitem name="Tipos de respuesta" id="menu_uprofe_tipo_respuesta" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_tipo_respuesta" sequence="3"/>
+    <menuitem name="Respuestas de alumnos" id="menu_uprofe_respuesta_alumno" parent="menu_uprofe_encuestas_root" groups="group_uprofe_manager" action="action_uprofe_respuesta_alumno" sequence="4"/>
+
+
+    <menuitem name="Libros" id="menu_uprofe_libro" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_libro"/>
+    <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
+
+    <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
+    <menuitem name="Sesiones" id="sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sesion_list_action"/>
+    <menuitem name="Proyectos de investigación" id="proyecto_investigacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="proyecto_investigacion_list_action"/>
+
+    <menuitem name="Estados de convenio" id="estado_convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_convenio_list_action"/>
+
+    <menuitem name="Líneas de investigación" id="linea_investigacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="linea_investigacion_list_action"/>
+
+    <menuitem name="Grupos de investigación" id="grupo_inv_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="grupo_inv_list_action"/>
+
+    <menuitem name="Financiaciones" id="financiacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="financiacion_list_action"/>
+
+
+    <menuitem name="Guías docentes" id="menu_uprofe_guia_docente" parent="uprofe_menu" groups="group_uprofe_manager" action="guia_docente_list_action"/>
+
+    <menuitem name="Asignaturas" id="menu_uprofe_asignatura" parent="uprofe_menu" groups="group_uprofe_manager" action="asignatura_list_action"/>
+
+    <!-- ===================== MOVILIDAD ===================== -->
+    <!-- Menús estructurales (antes en catalogos_views.xml) -->
+    <menuitem id="menu_uprofe_root" name="UProfe" sequence="10"/>
+    <menuitem id="menu_uprofe_movilidad" name="Movilidad" parent="menu_uprofe_root" sequence="10"/>
+    <menuitem id="menu_uprofe_configuracion_movilidad" name="Configuración" parent="menu_uprofe_movilidad" sequence="90"/>
+
+    <!-- Entidades de movilidad (antes en cada *_views.xml) -->
+    <menuitem id="menu_uprofe_universidad_destino" name="Universidades" parent="menu_uprofe_movilidad" action="action_uprofe_universidad_destino" sequence="10"/>
+    <menuitem id="menu_uprofe_plaza_erasmus" name="Plazas" parent="menu_uprofe_movilidad" action="action_uprofe_plaza_erasmus" sequence="20"/>
+    <menuitem id="menu_uprofe_asignatura_destino" name="Asignaturas de destino" parent="menu_uprofe_movilidad" action="action_uprofe_asignatura_destino" sequence="30"/>
+    <!-- El id es menu_uprofe_movilidad_mov para no chocar con el menú padre -->
+    <menuitem id="menu_uprofe_movilidad_mov" name="Movilidades" parent="menu_uprofe_movilidad" action="action_uprofe_movilidad" sequence="40"/>
+    <menuitem id="menu_uprofe_learning_agreement" name="Learning agreements" parent="menu_uprofe_movilidad" action="action_uprofe_learning_agreement" sequence="50"/>
+    <menuitem id="menu_uprofe_la_linea" name="Análisis de líneas" parent="menu_uprofe_movilidad" action="action_uprofe_la_linea" sequence="55"/>
+
+    <!-- Configuración de movilidad: catálogos (antes en catalogos_views.xml) -->
+    <menuitem id="menu_uprofe_pais" name="Países" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_pais" sequence="10"/>
+    <menuitem id="menu_uprofe_ciudad" name="Ciudades" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_ciudad" sequence="20"/>
+
+    <menuitem id="menu_uprofe_idioma" name="Idiomas" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_idioma" sequence="30"/>
+
+    <menuitem id="menu_uprofe_nivel_estudios" name="Niveles de estudio" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_nivel_estudios" sequence="40"/>
+    <menuitem id="menu_uprofe_estado_movilidad" name="Estados de movilidad" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_movilidad" sequence="50"/>
+    <menuitem id="menu_uprofe_estado_learning_agreement" name="Estados de L.A." parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_learning_agreement" sequence="60"/>
+    <menuitem id="menu_uprofe_estado_la_linea" name="Estados de línea" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_la_linea" sequence="70"/>
+
+    <!-- Seguimiento del alumno interno -->
+    <menuitem name="Seguimiento alumno interno" id="menu_uprofe_seguimiento_alu_int" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_seguimiento_alu_int" sequence="85"/>
 </odoo>

@@ -20,6 +20,9 @@ class Usuario(models.Model):
     estado_cuenta = fields.Boolean(string="Activo", default=False)
     ultimo_acceso = fields.Datetime(string="Último acceso", autodate=True, readonly=True)
     foto = fields.Binary(string="Foto de perfil")
+    #alumno_id = fields.One2many('uprofe.alumno', string="Alumno", required=True)
+    #investigador_id = fields.One2many('uprofe.investigador', string="Investigador", required=True)
+
 
     # Hago la validación de unicidad con api.constrains porque si se hace con _sql_constraints, es case sensitive
     @api.constrains('name')
