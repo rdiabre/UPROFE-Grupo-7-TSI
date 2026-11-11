@@ -12,18 +12,15 @@ class TipoTasa(models.Model):
         ('expedicion', 'Tasa de expedición de títulos o certificados'),
         ('servicios', 'Tasa por servicios complementarios'),
         ('pruebas', 'Tasa por pruebas o exámenes'),
-    ], string='Tipo', required=True)  # PK
+    ], string='Tipo', required=True)  
 
     tasa_ids = fields.One2many('uprofe.tasa', 'tipo_tasa_id', string='Tasas')
-
-    @api.depends('name')
-    def _compute_display_name(self):
-        etiquetas = dict(self._fields['name'].selection)
-        for record in self:
-            record.display_name = etiquetas.get(record.name, '')
 
     @api.constrains('name')
     def _check_tipo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('name', '=', record.name)]):
+            if self.search_count([
+                ('id', '!=', record.id),
+                ('name', '=', record.name)
+            ]):
                 raise ValidationError("Ya existe ese tipo de tasa.")
