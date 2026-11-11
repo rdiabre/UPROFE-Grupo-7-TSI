@@ -30,6 +30,8 @@
 
     <menuitem name="Asignaturas" id="menu_uprofe_asignatura" parent="uprofe_menu" groups="group_uprofe_manager" action="asignatura_list_action"/>
 
+    <menuitem name="Convocatorias de asignatura" id="menu_uprofe_convocatoria_asignatura" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_convocatoria_asignatura"/>
+
     <!-- ===================== MOVILIDAD ===================== -->
     <!-- Menús estructurales (antes en catalogos_views.xml) -->
     <menuitem id="menu_uprofe_root" name="UProfe" sequence="10"/>

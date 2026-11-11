@@ -93,10 +93,6 @@
         <field name="view_mode">list,kanban,form,calendar</field>
     </record>
 
-    <!-- MENÚ -->
-    <menuitem id="menu_uprofe_convocatoria_asignatura" 
-              name="Convocatorias" 
-              parent="uprofe_menu" 
-              action="action_uprofe_convocatoria_asignatura" 
-              sequence="70"/>
+
+    
 </odoo>

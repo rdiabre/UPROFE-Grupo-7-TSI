@@ -39,3 +39,4 @@ pais_manager,pais_manager,model_uprofe_pais,group_uprofe_manager,1,1,1,1
 pregunta_manager,pregunta_manager,model_uprofe_pregunta,group_uprofe_manager,1,1,1,1
 tipo_respuesta_manager,tipo_respuesta_manager,model_uprofe_tipo_respuesta,group_uprofe_manager,1,1,1,1
 estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
+access_uprofe_convocatoria,uprofe.convocatoria_asignatura,model_uprofe_convocatoria_asignatura,base.group_user,1,1,1,1
