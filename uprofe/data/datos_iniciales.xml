@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Se ejecuta antes de los CSV de data/ en cada instalación y actualización:
+         devuelve su xmlid a los registros que ya existen pero lo han perdido, para que el
+         CSV los actualice en lugar de reinsertarlos (evita el error de UNIQUE al reinstalar).
+         Ver models/datos_iniciales.py -->
+    <function model="uprofe.datos_iniciales" name="vincular_registros_existentes"/>
+</odoo>
