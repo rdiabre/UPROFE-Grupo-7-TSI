@@ -1,0 +1,11 @@
+id,sName,sDescription,sCodigo_iso,bUnion_europea
+pais_espana,España,País de origen de los estudiantes de la UPO,ES,True
+pais_italia,Italia,Destino Erasmus con gran oferta de universidades,IT,True
+pais_francia,Francia,Destino Erasmus de habla francesa,FR,True
+pais_alemania,Alemania,Destino Erasmus de habla alemana,DE,True
+pais_portugal,Portugal,Destino Erasmus de habla portuguesa,PT,True
+pais_paises_bajos,Países Bajos,Destino Erasmus con docencia en inglés,NL,True
+pais_belgica,Bélgica,Destino Erasmus de habla francesa y neerlandesa,BE,True
+pais_polonia,Polonia,Destino Erasmus de Europa del este,PL,True
+pais_irlanda,Irlanda,Destino Erasmus de habla inglesa,IE,True
+pais_suecia,Suecia,Destino Erasmus nórdico con docencia en inglés,SE,True

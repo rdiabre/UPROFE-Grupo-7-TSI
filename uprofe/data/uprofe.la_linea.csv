@@ -1,0 +1,11 @@
+id,iNum_linea,fNota,fCreditos_reconocidos,estado_id:id,learning_agreement_id:id,asignatura_destino_id:id
+linea_01,1,8.5,6,estado_linea_convalidada,la_2025_001,asig_amsterdam_ds
+linea_02,2,7,8,estado_linea_convalidada,la_2025_001,asig_amsterdam_ml
+linea_03,1,9.2,6,estado_linea_convalidada,la_2025_002,asig_roma_bd
+linea_04,2,6.5,8,estado_linea_superada,la_2025_002,asig_roma_ia
+linea_05,1,,0,estado_linea_cursando,la_2026_002,asig_amsterdam_ds
+linea_06,2,,0,estado_linea_cursando,la_2026_002,asig_amsterdam_ml
+linea_07,1,4,0,estado_linea_suspensa,la_2026_003,asig_varsovia_hist
+linea_08,1,,0,estado_linea_aprobada,la_2027_001,asig_roma_bd
+linea_09,2,,0,estado_linea_pendiente_revision,la_2027_001,asig_roma_ia
+linea_10,1,,0,estado_linea_propuesta,la_2027_003,asig_varsovia_hist
