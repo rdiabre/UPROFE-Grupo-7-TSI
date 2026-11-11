@@ -25,9 +25,6 @@ class MetodoPago(models.Model):
             if len(metodo) > 50:
                 raise ValidationError("El método de pago no puede superar los 50 caracteres.")
 
-            if '  ' in metodo:
-                raise ValidationError('El método de pago no puede tener espacios consecutivos.')
-
             if self.search_count([
                 ('id', '!=', record.id),
                 ('name', '=ilike', metodo)

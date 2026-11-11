@@ -13,8 +13,7 @@ class RespuestaAlumno(models.Model):
 
     # Descomentar cuando exista el modelo uprofe.alumno
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
-
-    # Descomentar junto con alumno_id
+    # 
     # _sql_constraints = [
     #     ('pregunta_alumno_uniq', 'unique(pregunta_id, alumno_id)', 'Este alumno ya ha respondido a esta pregunta.'),
     # ]
@@ -26,8 +25,6 @@ class RespuestaAlumno(models.Model):
 
             if not respuesta:
                 raise ValidationError('La respuesta no puede estar vacía.')
-            if record.name != respuesta:
-                raise ValidationError('La respuesta no puede tener espacios al principio o al final.')
 
             if record.pregunta_id.tipo_respuesta_id.bCon_opciones:
                 opciones = []

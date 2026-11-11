@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 
 class TipoTasa(models.Model):
@@ -16,17 +15,8 @@ class TipoTasa(models.Model):
 
     tasa_ids = fields.One2many('uprofe.tasa', 'tipo_tasa_id', string='Tasas')
 
-    # Refuerza la misma regla de unicidad ante altas simultáneas.
-    # No es una regla de negocio adicional.
+    # No permite dos registros con el mismo tipo de tasa.
     _sql_constraints = [
         ('tipo_tasa_nombre_unique', 'unique(name)', 'Ya existe ese tipo de tasa.'),
     ]
 
-    @api.constrains('name')
-    def _check_tipo_unico(self):
-        for record in self:
-            if self.search_count([
-                ('id', '!=', record.id),
-                ('name', '=', record.name)
-            ]):
-                raise ValidationError("Ya existe ese tipo de tasa.")
