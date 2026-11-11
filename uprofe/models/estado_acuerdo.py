@@ -9,7 +9,7 @@ class estado_acuerdo(models.Model):
     _order='name asc'
     
     name = fields.Char(string="Nombre", size=50, required=True)
-    descripcion = fields.Text(string="Descripción")
+    sDescripcion = fields.Text(string="Descripción")
     
     @api.constrains('name')
     def _check_name_unique(self):
