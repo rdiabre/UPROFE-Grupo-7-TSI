@@ -1,0 +1,84 @@
+<odoo>
+    <record id="uprofe_congreso_search_view" model="ir.ui.view">
+        <field name="name">uprofe.congreso.search</field>
+        <field name="model">uprofe.congreso</field>
+        <field name="arch" type="xml">
+            <search string="Buscar congresos">
+                <field name="sNombre_congreso" string="Congreso o título"
+                       filter_domain="['|', ('sNombre_congreso', 'ilike', self), ('sTitulo', 'ilike', self)]"/>
+                <field name="sLugar"/>
+
+                <filter name="con_proyecto" string="Asociados a un proyecto"
+                        domain="[('proyecto_investigacion_id', '!=', False)]"/>
+                <filter name="sin_proyecto" string="Sin proyecto"
+                        domain="[('proyecto_investigacion_id', '=', False)]"/>
+
+                <filter name="filtro_fecha" string="Fecha de publicación"
+                        date="dFecha_publicacion"/>
+ 
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_lugar" string="Lugar"
+                            context="{'group_by': 'sLugar'}"/>
+                    <filter name="group_anio" string="Año de publicación"
+                            context="{'group_by': 'dFecha_publicacion:year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="uprofe_congreso_form_view" model="ir.ui.view">
+        <field name="name">uprofe.congreso.form</field>
+        <field name="model">uprofe.congreso</field>
+        <field name="arch" type="xml">
+            <form string="Aportación a congreso">
+                <sheet>
+                    <group>
+                        <group string="Datos de la publicación">
+                            <field name="sName"/>
+                            <field name="sTitulo"/>
+                            <field name="dFecha_publicacion"/>
+                        </group>
+                        <group string="Datos del congreso">
+                            <field name="sNombre_congreso"/>
+                            <field name="sLugar"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Autores">
+                            <group>
+                                <field name="profesor_ids" widget="many2many_tags"/>
+                                <!--<field name="investigador_ids" widget="many2many_tags"/>-->
+                            </group>
+                        </page>
+                        <page string="Proyecto">
+                            <field name="proyecto_investigacion_id"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="uprofe_congreso_list_view" model="ir.ui.view">
+        <field name="name">uprofe.congreso.list</field>
+        <field name="model">uprofe.congreso</field>
+        <field name="arch" type="xml">
+            <list string="Aportaciones a congreso">
+                <field name="sName"/>
+                <field name="sTitulo"/>
+                <field name="dFecha_publicacion"/>
+                <field name="sNombre_congreso"/>
+                <field name="sLugar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="congreso_list_action" model="ir.actions.act_window">
+        <field name="name">Aportaciones a congreso</field>
+        <field name="res_model">uprofe.congreso</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Añade la primera aportación a congreso</p>
+        </field>
+    </record>
+</odoo>
