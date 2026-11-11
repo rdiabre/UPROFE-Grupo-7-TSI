@@ -5,7 +5,7 @@ class linea_investigacion(models.Model):
     _name = 'uprofe.linea_investigacion'
     _description = 'Lineas de investigación'
     
-    sName = fields.Char(string="Código", required=True)
+    name = fields.Char(string="Código", required=True)
     sNombre = fields.Char(string="Nombre", required=True)
     sDescripcion = fields.Text(string="Descripción", required=True)
     
@@ -13,16 +13,16 @@ class linea_investigacion(models.Model):
     profesor_ids = fields.Many2many('uprofe.profesor', string="PDIs")
     investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
     
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_name_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', (record.sName or '').strip())]):
+            if self.search_count([('id', '!=', record.id), ('name', '=ilike', (record.name or '').strip())]):
                 raise ValidationError("Ya existe una línea con ese código, debe ser único.")
             
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_name_valido(self):
         for record in self:
-            if len((record.sName or '').strip() == 0):
+            if len((record.name or '').strip() == 0):
                 raise ValidationError("El código de la línea de investigación no puede estar vacío.")
     
     @api.constrains('sNombre')
