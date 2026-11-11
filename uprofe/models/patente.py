@@ -22,7 +22,7 @@ class patente(models.Model):
     @api.constrains('sNumero_patente')
     def _check_numero_patente_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sNumero_patente', '=ilike', record.sNumero_patente.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sNumero_patente', '=ilike', (record.sNumero_patente or '').strip())]):
                 raise ValidationError("El número de patente ya está utilizado, debe ser único");
             
     @api.constrains('sNumero_patente')
