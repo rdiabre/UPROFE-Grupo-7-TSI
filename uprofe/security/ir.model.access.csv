@@ -48,3 +48,13 @@ tipo_respuesta_manager,tipo_respuesta_manager,model_uprofe_tipo_respuesta,group_
 estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
 direccion_manager,direccion_manager,model_uprofe_direccion,group_uprofe_manager,1,1,1,1
 access_uprofe_libro,uprofe.libro,model_uprofe_libro,base.group_user,1,1,1,1
+
+access_uprofe_aula,uprofe.aula,model_uprofe_aula,group_uprofe_manager,1,1,1,1
+access_uprofe_convocatoria_asignatura,uprofe.convocatoria_asignatura,model_uprofe_convocatoria_asignatura,group_uprofe_manager,1,1,1,1
+access_uprofe_evento,uprofe.evento,model_uprofe_evento,group_uprofe_manager,1,1,1,1
+access_uprofe_evento_inscripcion,uprofe.evento_inscripcion,model_uprofe_evento_inscripcion,group_uprofe_manager,1,1,1,1
+access_uprofe_horario_tutoria,uprofe.horario_tutoria,model_uprofe_horario_tutoria,group_uprofe_manager,1,1,1,1
+access_uprofe_laboratorio,uprofe.laboratorio,model_uprofe_laboratorio,group_uprofe_manager,1,1,1,1
+access_uprofe_prestamo,uprofe.prestamo,model_uprofe_prestamo,group_uprofe_manager,1,1,1,1
+access_uprofe_tipo_evento,uprofe.tipo_evento,model_uprofe_tipo_evento,group_uprofe_manager,1,1,1,1
+access_uprofe_tutoria,uprofe.tutoria,model_uprofe_tutoria,group_uprofe_manager,1,1,1,1

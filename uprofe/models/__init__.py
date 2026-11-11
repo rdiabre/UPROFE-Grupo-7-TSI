@@ -50,3 +50,12 @@ from . import tipo_respuesta
 from . import estado_la_linea
 from . import direccion
 from . import libro
+from . import aula
+from . import convocatoria_asignatura
+from . import evento
+from . import evento_inscripcion
+from . import horario_tutoria
+from . import laboratorio
+from . import prestamo
+from . import tipo_evento
+from . import tutoria

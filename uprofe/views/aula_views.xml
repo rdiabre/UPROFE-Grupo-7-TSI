@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista Formulario -->
+    <record id="view_uprofe_aula_form" model="ir.ui.view">
+        <field name="name">uprofe.aula.form</field>
+        <field name="model">uprofe.aula</field>
+        <field name="arch" type="xml">
+            <form string="Aula">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="cod_espacio"/>
+                        <h1>
+                            <field name="cod_espacio" placeholder="Ej. B.01, A.12..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Datos del Espacio">
+                            <field name="planta"/>
+                            <field name="capacidad"/>
+                        </group>
+                        <group string="Datos del Aula">
+                            <field name="tipo_aula"/>
+                            <field name="calendario_academico"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Horarios de Tutoría">
+                            <field name="horario_tutoria_ids">
+                                <tree>
+                                    <field name="dia_semana" optional="show"/>
+                                    <field name="hora_inicio" widget="float_time" optional="show"/>
+                                    <field name="hora_fin" widget="float_time" optional="show"/>
+                                    <field name="profesor_id" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Sesiones">
+                            <field name="sesion_ids">
+                                <tree>
+                                    <field name="name" optional="show"/>
+                                    <field name="fecha" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Convocatorias de Asignatura">
+                            <field name="convocatoria_asignatura_ids">
+                                <tree>
+                                    <field name="name" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Árbol / Lista -->
+    <record id="view_uprofe_aula_tree" model="ir.ui.view">
+        <field name="name">uprofe.aula.tree</field>
+        <field name="model">uprofe.aula</field>
+        <field name="arch" type="xml">
+            <tree string="Aulas">
+                <field name="cod_espacio"/>
+                <field name="planta"/>
+                <field name="capacidad"/>
+                <field name="tipo_aula"/>
+                <field name="calendario_academico"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Búsqueda / Filtros -->
+    <record id="view_uprofe_aula_search" model="ir.ui.view">
+        <field name="name">uprofe.aula.search</field>
+        <field name="model">uprofe.aula</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Aula">
+                <field name="cod_espacio"/>
+                <field name="calendario_academico"/>
+                <separator/>
+                <filter string="Aulas Docentes" name="filter_docente" domain="[('tipo_aula', '=', 'docente')]"/>
+                <filter string="Laboratorios / Informática" name="filter_lab" domain="[('tipo_aula', 'in', ['laboratorio', 'informatica'])]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Tipo de Aula" name="group_by_tipo" context="{'group_by': 'tipo_aula'}"/>
+                    <filter string="Planta" name="group_by_planta" context="{'group_by': 'planta'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana -->
+    <record id="action_uprofe_aula" model="ir.actions.act_window">
+        <field name="name">Aulas</field>
+        <field name="res_model">uprofe.aula</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_uprofe_aula_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea la primera aula del sistema
+            </p>
+        </field>
+    </record>
+
+</odoo>
