@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- vista de listas -->
-    <record id="view_uprofe_oferta_practica_list" model="ir.ui.view">
-        <field name="name">uprofe.oferta_practica.list</field>
+    <record id="view_uprofe_oferta_practica_calendar" model="ir.ui.view">
+        <field name="name">uprofe.oferta_practica.calendar</field>
         <field name="model">uprofe.oferta_practica</field>
         <field name="arch" type="xml">
-            <list string="Ofertas de práctica">
-                <field name="inum_oferta"/>
-                <field name="stitulo"/>
+            <calendar string="Ofertas" date_start="dFecha_inicio" date_stop="dFecha_fin"
+                      color="empresa_id" mode="month">
+                <field name="name"/>
                 <field name="empresa_id"/>
-                <field name="iplazas_disp"/>
-                <field name="dfecha_inicio"/>
-                <field name="dfecha_fin"/>
-                <field name="sestado"/>
-            </list>
+            </calendar>
         </field>
     </record>
 
-    <!-- vista de formulario -->
     <record id="view_uprofe_oferta_practica_form" model="ir.ui.view">
         <field name="name">uprofe.oferta_practica.form</field>
         <field name="model">uprofe.oferta_practica</field>
@@ -26,62 +20,67 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="inum_oferta"/>
-                            <field name="stitulo"/>
-                            <field name="sestado"/>
-                            <field name="empresa_id" options="{'no_create': True}"/>
-                            <field name="convenio_id" options="{'no_create': True}"/>
+                            <field name="iNum_oferta"/>
+                            <field name="name"/>
+                            <field name="sEstado"/>
+                            <field name="empresa_id"/>
+                            <field name="convenio_id"/>
                         </group>
                         <group>
-                            <field name="iplazas_disp"/>
-                            <field name="ihoras"/>
-                            <field name="fremuneracion"/>
-                            <field name="dfecha_inicio"/>
-                            <field name="dfecha_fin"/>
+                            <field name="iPlazas_disp"/>
+                            <field name="iHoras"/>
+                            <field name="fRemuneracion"/>
+                            <field name="dFecha_inicio"/>
+                            <field name="dFecha_fin"/>
                         </group>
                     </group>
                     <group string="Descripción">
-                        <field name="sdescripcion" nolabel="1"/>
+                        <field name="sDescripcion" nolabel="1"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- vista avanzada -->
-    <record id="view_uprofe_oferta_practica_calendar" model="ir.ui.view">
-        <field name="name">uprofe.oferta_practica.calendar</field>
+    <record id="view_uprofe_oferta_practica_list" model="ir.ui.view">
+        <field name="name">uprofe.oferta_practica.list</field>
         <field name="model">uprofe.oferta_practica</field>
         <field name="arch" type="xml">
-            <calendar string="Ofertas" date_start="dfecha_inicio" date_stop="dfecha_fin"
-                      color="empresa_id" mode="month" quick_create="0">
-                <field name="stitulo"/>
+            <list string="Ofertas de práctica">
+                <field name="iNum_oferta"/>
+                <field name="name"/>
                 <field name="empresa_id"/>
-            </calendar>
+                <field name="iPlazas_disp"/>
+                <field name="dFecha_inicio"/>
+                <field name="dFecha_fin"/>
+                <field name="sEstado"/>
+            </list>
         </field>
     </record>
 
-    <!-- busqueda -->
     <record id="view_uprofe_oferta_practica_search" model="ir.ui.view">
         <field name="name">uprofe.oferta_practica.search</field>
         <field name="model">uprofe.oferta_practica</field>
         <field name="arch" type="xml">
             <search>
-                <field name="stitulo"/>
+                <field name="iNum_oferta"/>
+                <field name="name"/>
                 <field name="empresa_id"/>
-                <filter name="abiertas" string="Abiertas"
-                        domain="[('sestado', '=', 'abierta')]"/>
+                <filter name="abiertas"
+                        string="Abiertas"
+                        domain="[('sEstado', '=', 'abierta')]"/>
                 <group expand="0" string="Agrupar por">
-                    <filter name="group_empresa" string="Empresa"
+                    <filter name="group_empresa"
+                            string="Empresa"
                             context="{'group_by': 'empresa_id'}"/>
-                    <filter name="group_estado" string="Estado"
-                            context="{'group_by': 'sestado'}"/>
+                    <filter name="group_estado"
+                            string="Estado"
+                            context="{'group_by': 'sEstado'}"/>
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- accion -->
     <record id="action_uprofe_oferta_practica" model="ir.actions.act_window">
         <field name="name">Ofertas de práctica</field>
         <field name="res_model">uprofe.oferta_practica</field>
