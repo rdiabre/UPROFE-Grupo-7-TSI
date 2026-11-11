@@ -24,7 +24,7 @@ class ConvenioEmpresa(models.Model):
                     ('name', '=ilike', record.name)
                 ]):
                     raise ValidationError( 'Ya existe un convenio con este número.' )
-                    
+
     @api.constrains('name')
     def _check_num_convenio(self):
         for record in self:

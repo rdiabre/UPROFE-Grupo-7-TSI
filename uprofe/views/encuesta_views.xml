@@ -23,7 +23,7 @@
                             <field name="sCurso_academico"/>
                         </group>
                         <group>
-                            <field name="asignatura_id"/>
+                            <field name="asignatura_ids"/>
                             <field name="profesor_id"/>
                             <field name="dtFecha_inicio"/>
                             <field name="dtFecha_fin"/>
@@ -69,7 +69,7 @@
                 <field name="sCod_encuesta"/>
                 <field name="name"/>
                 <field name="sCurso_academico"/>
-                <field name="asignatura_id"/>
+                <field name="asignatura_ids"/>
                 <field name="profesor_id"/>
                 <field name="dtFecha_inicio"/>
                 <field name="dtFecha_fin"/>
@@ -85,14 +85,12 @@
                 <field name="name"/>
                 <field name="sCod_encuesta"/>
                 <field name="sCurso_academico"/>
-                <field name="asignatura_id"/>
+                <field name="asignatura_ids"/>
                 <field name="profesor_id"/>
 
                 <group expand="0" string="Agrupar por">
                     <filter name="group_curso" string="Curso académico"
                             context="{'group_by': 'sCurso_academico'}"/>
-                    <filter name="group_asignatura" string="Asignatura"
-                            context="{'group_by': 'asignatura_id'}"/>
                     <filter name="group_profesor" string="Profesor revisor"
                             context="{'group_by': 'profesor_id'}"/>
                 </group>

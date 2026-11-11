@@ -15,7 +15,7 @@ class Encuesta(models.Model):
     dtFecha_inicio = fields.Date(string='Fecha de inicio', required=True)
     dtFecha_fin = fields.Date(string='Fecha de fin', required=True)
 
-    asignatura_id = fields.Many2one('uprofe.asignatura', string='Asignatura')
+    asignatura_ids = fields.Many2many('uprofe.asignatura', string='Asignaturas')
     profesor_id = fields.Many2one('uprofe.profesor', string='Profesor revisor', required=True)
     pregunta_ids = fields.One2many('uprofe.pregunta', 'encuesta_id', string='Preguntas')
 
@@ -48,7 +48,7 @@ class Encuesta(models.Model):
             if curso[4] != '/':
                 raise ValidationError('Los años del curso académico deben estar separados por /.')
 
-            primer_anio = curso[:4] 
+            primer_anio = curso[:4]
             segundo_anio = curso[5:]
 
             for caracter in primer_anio + segundo_anio:

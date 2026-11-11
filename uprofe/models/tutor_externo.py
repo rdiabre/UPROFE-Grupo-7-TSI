@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class TutorExterno(models.Model):
@@ -16,3 +16,28 @@ class TutorExterno(models.Model):
     _sql_constraints = [
         ('persona_unique', 'unique(persona_id)', 'Esta persona ya es tutor externo.'),
     ]
+
+    @api.onchange('name')
+    def _onchange_nombre(self):
+        if self.name:
+            self.name = self.name.strip().title()
+
+    @api.onchange('sApellidos')
+    def _onchange_apellidos(self):
+        if self.sApellidos:
+            self.sApellidos = self.sApellidos.strip().title()
+
+    @api.onchange('sDni')
+    def _onchange_dni(self):
+        if self.sDni:
+            self.sDni = self.sDni.strip().upper().replace(' ', '').replace('-', '')
+
+    @api.onchange('email')
+    def _onchange_correo(self):
+        if self.email:
+            self.email = self.email.strip().lower()
+
+    @api.onchange('phone')
+    def _onchange_telefono(self):
+        if self.phone:
+            self.phone = self.phone.replace(' ', '')
