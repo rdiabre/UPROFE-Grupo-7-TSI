@@ -63,6 +63,7 @@ from . import estado_la_linea
 from . import ubicacion
 from . import edificio
 from . import espacio
+from . import laboratorio
 from . import sala_estudio
 from . import inventario
 from . import objeto_inventariable
@@ -78,7 +79,6 @@ from . import convocatoria_asignatura
 from . import evento
 from . import evento_inscripcion
 from . import horario_tutoria
-from . import laboratorio
 from . import prestamo
 from . import tipo_evento
 from . import tutoria

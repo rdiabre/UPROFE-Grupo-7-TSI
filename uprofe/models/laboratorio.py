@@ -5,11 +5,9 @@ from odoo import models, fields, api
 class Laboratorio(models.Model):
     _name = 'uprofe.laboratorio'
     _description = 'Laboratorio'
-    _rec_name = 'cod_espacio'
-    
-    # descomentar cuando exista "espacio"
-    # _inherit = 'uprofe.espacio'
+    _inherits = {'uprofe.espacio': 'espacio_id'}
 
+    espacio_id = fields.Many2one('uprofe.espacio', required=True)
 
     cod_espacio = fields.Char(string='Código de Espacio', required=True)
     capacidad = fields.Integer(string='Capacidad')
@@ -32,3 +30,8 @@ class Laboratorio(models.Model):
         inverse_name='laboratorio_id',
         string='Grupos de Investigación'
     )
+
+    TIPOS_ESPACIO = [
+    'uprofe.aula',
+    'uprofe.laboratorio',
+    ]
