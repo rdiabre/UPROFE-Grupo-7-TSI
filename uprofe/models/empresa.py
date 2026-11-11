@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
-
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -10,46 +8,72 @@ class Empresa(models.Model):
     _description = 'Empresa colaboradora'
     _order = 'name asc'
 
-    scif = fields.Char(string='CIF', size=9, required=True)
+    sCif = fields.Char(string='CIF', size=9, required=True)
     name = fields.Char(string='Nombre', required=True)
-    snombre_sector = fields.Char(string='Sector')
-    semail = fields.Char(string='Correo electrónico')
+    sNombre_sector = fields.Char(string='Sector')
+    sEmail = fields.Char(string='Correo electrónico')
 
-    # Descomento cuando uprofe.financiacion esté en main
-    #financiacion_ids = fields.One2many('uprofe.financiacion', 'entidad_financiadora_id',
-    #                                   string='Financiaciones')
+    financiacion_ids = fields.One2many('uprofe.financiacion', 'empresa_id', string='Financiaciones')
+    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id', string='Ofertas de práctica')   
+    #direccion_id = fields.Many2one('uprofe.direccion', string='Dirección', required=True)               
 
 
-    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
-                                 string='Ofertas de práctica')   
-    # direccion_id = fields.Many2one('uprofe.direccion', string='Dirección',
-    #                                required=True)               
+    @api.constrains('name')
+    def _check_nombre(self):
+        for record in self:
+            if record.name:
+                if record.name.strip() == '':
+                    raise ValidationError(
+                        'El nombre de la empresa no puede contener solo espacios.'
+                    )
+    
+    @api.constrains('sCif')
+    def _check_cif(self):
+        for record in self:
+            if record.sCif:
+                if len(record.sCif) != 9:
+                    raise ValidationError(
+                        'El CIF debe tener 9 caracteres.'
+                    )
 
-    # Validaciones
-    @api.constrains('scif')
+                if ' ' in record.sCif:
+                    raise ValidationError(
+                        'El CIF no puede contener espacios.'
+                    ) 
+                                   
+    @api.constrains('sCif')
     def _check_cif_unique(self):
-        if self.search_count([('id', '!=', self.id), ('scif', '=ilike', self.scif.strip())]):
-            raise ValidationError("Ya existe una empresa con este CIF.")
+        for record in self:
+            if record.sCif:
+                lDominio = [
+                    ('id', '!=', record.id),
+                    ('sCif', '=ilike', record.sCif)
+                ]
 
-    @api.constrains('semail')
-    def _check_email_format(self):
-        if self.semail and not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', self.semail.strip()):
-            raise ValidationError("El correo electrónico de la empresa no es válido.")
+                if self.search_count(lDominio):
+                    raise ValidationError(
+                        'Ya existe una empresa con este CIF.'
+                    )
+                    
+    @api.constrains('sEmail')
+    def _check_email(self):
+        for record in self:
+            if record.sEmail:
+                if '@' not in record.sEmail:
+                    raise ValidationError(
+                        'El correo electrónico debe contener una @.'
+                    )
 
-    # onchange 
-    @api.onchange('scif')
+                if ' ' in record.sEmail:
+                    raise ValidationError(
+                        'El correo electrónico no puede contener espacios.'
+                    )
+
+    @api.onchange('sCif')
     def _onchange_cif(self):
-        # Normaliza el CIF
-        if self.scif:
-            self.scif = self.scif.strip().upper()
-
-    @api.onchange('semail')
-    def _onchange_email(self):
-        if self.semail and not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', self.semail.strip()):
+        if self.sCif:
             return {
-                'value': {'semail': False},
-                'warning': {
-                    'title': 'Correo no válido',
-                    'message': 'El formato del correo electrónico no parece correcto.'
+                'value': {
+                    'sCif': self.sCif.strip().upper()
                 }
             }

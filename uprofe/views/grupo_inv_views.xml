@@ -3,13 +3,14 @@
         <field name="name">uprofe.grupo_inv.kanban</field>
         <field name="model">uprofe.grupo_inv</field>
         <field name="arch" type="xml">
-            <kanban string="Grupos de investigación por departamentos" default_group_by="iDepartamento_id">
+            <!-- Volver a poner default_group_by="departamento_id" cuando exista Departamento -->
+            <kanban string="Grupos de investigación por departamentos">
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <strong><field name="sNombre"/></strong>
                             <div>Código: <field name="sName"/></div>
-                            <div>Laboratorio: <field name="iLaboratorio_id"/></div>
+                            <!-- <div>Laboratorio: <field name="laboratorio_id"/></div> -->
                         </div>
                     </t>
                 </templates>
@@ -27,10 +28,10 @@
                         <field name="sName" />
                         <field name="sNombre" />
                         <field name="dFecha_creacion" />
-                        <field name="iDepartamento_id" widget="many2one" />
-                        <field name="iDepartamento_id" widget="many2one" />
-                        <field name="iLaboratorio_id" widget="many2one" />
-                        <field name="lProyecto_investigacion_ids" widget="one2many" />
+                        <!-- Descomentar cuando existan Departamento y Laboratorio -->
+                        <!-- <field name="departamento_id" widget="many2one" /> -->
+                        <!-- <field name="laboratorio_id" widget="many2one" /> -->
+                        <field name="proyecto_investigacion_ids" widget="one2many" />
                     </group>
                 </sheet>
             </form>
@@ -45,9 +46,9 @@
                 <field name="sName" />
                 <field name="sNombre" />
                 <field name="dFecha_creacion" />
-                <field name="iDepartamento_id" widget="many2one" />
-                <field name="iDepartamento_id" widget="many2one" />
-                <field name="iLaboratorio_id" widget="many2one" />
+                <!-- Descomentar cuando existan Departamento y Laboratorio -->
+                <!-- <field name="departamento_id" widget="many2one" /> -->
+                <!-- <field name="laboratorio_id" widget="many2one" /> -->
             </list>
         </field>
     </record>
