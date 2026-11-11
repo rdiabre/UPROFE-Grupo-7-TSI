@@ -27,6 +27,13 @@ from . import estado_learning_agreement
 from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
+from . import tutor_externo
+from . import seguimiento_practica
+from . import acuerdo
+from . import tasa
+from . import tipo_tasa
+from . import metodo_pago
+from . import recibo
 from . import empresa
 from . import convenio_empresa
 from . import oferta_practica
@@ -52,3 +59,5 @@ from . import incidencia
 from . import horario_disponibilidad
 from . import reserva_horario
 from . import prestamo_equipo
+from . import direccion
+from . import libro

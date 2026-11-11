@@ -50,9 +50,17 @@ Descripción del módulo
         'views/incidencia_views.xml',
         'views/horario_disponibilidad_views.xml',
         'views/reserva_horario_views.xml',
+        'views/acuerdo_views.xml',
+        'views/seguimiento_practica_views.xml',
+        'views/tasa_views.xml',
+        'views/tipo_tasa_views.xml',
+        'views/metodo_pago_views.xml',
+        'views/recibo_views.xml',
         'views/empresa_views.xml',
+        'views/direccion_views.xml',
         'views/convenio_empresa_views.xml',
         'views/oferta_practica_views.xml',
+        'views/tutor_externo_views.xml',
         'views/profesor_views.xml',
         'views/tipo_sesion_views.xml',
         'views/sesion_views.xml',
@@ -71,7 +79,7 @@ Descripción del módulo
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
         'views/menu.xml',
-      
+        'views/libro_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -79,4 +87,3 @@ Descripción del módulo
     ],
     'application': True,
 }
-
