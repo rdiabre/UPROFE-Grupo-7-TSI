@@ -63,6 +63,7 @@ Descripción del módulo
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
         'views/menu.xml',
+        'views/tipo_evento_views.xml'
       
     ],
     # only loaded in demonstration mode

@@ -41,10 +41,4 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- MENÚ -->
-    <menuitem id="menu_uprofe_tipo_evento" 
-              name="Tipos de Eventos" 
-              parent="uprofe_menu" 
-              action="action_uprofe_tipo_evento" 
-              sequence="80"/>
 </odoo>
