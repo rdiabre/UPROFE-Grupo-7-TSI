@@ -5,9 +5,7 @@ from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
 from . import usuario
-<<<<<<< HEAD
 from . import prestamo
-=======
 from . import universidad_destino
 from . import ciudad
 from . import movilidad
@@ -44,4 +42,3 @@ from . import estado_acuerdo
 from . import pregunta
 from . import tipo_respuesta
 from . import estado_la_linea
->>>>>>> origin/main

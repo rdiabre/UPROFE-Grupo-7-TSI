@@ -24,10 +24,6 @@ Descripción del módulo
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-<<<<<<< HEAD
-        'views/menu.xml',
-        'views/prestamo_views.xml'
-=======
         # Datos iniciales (uno por entidad, 10 registros cada uno).
         # El orden importa: cada CSV va después de los catálogos a los que apunta.
         'data/uprofe.pais.csv',
@@ -67,6 +63,7 @@ Descripción del módulo
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
         'views/menu.xml',
+        'views/prestamo_views.xml'
       
 >>>>>>> origin/main
     ],

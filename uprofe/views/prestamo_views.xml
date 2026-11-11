@@ -68,9 +68,5 @@
     </record>
 
     <!-- MENÚ -->
-    <menuitem id="menu_uprofe_prestamo" 
-              name="Préstamos" 
-              parent="uprofe_menu" 
-              action="action_uprofe_prestamo" 
-              sequence="30"/>
+    
 </odoo>
