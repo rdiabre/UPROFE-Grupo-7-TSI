@@ -5,17 +5,14 @@ from odoo import models, fields
 class TutorExterno(models.Model):
     _name = 'uprofe.tutor_externo'
     _description = 'Tutor externo de prácticas'
+    _order = 'name asc'
 
-    #  herencia de persona
     _inherits = {'uprofe.persona': 'persona_id'}
 
-    persona_id = fields.Many2one('uprofe.persona', string='Persona',
-                                 required=True, ondelete='cascade')
+    persona_id = fields.Many2one('uprofe.persona', string='Persona', required=True, ondelete='cascade')
+
+    seguimiento_ids = fields.One2many('uprofe.seguimiento_practica', 'tutor_externo_id', string='Seguimientos')
 
     _sql_constraints = [
         ('persona_unique', 'unique(persona_id)', 'Esta persona ya es tutor externo.'),
     ]
-
-    # Descomento cuando uprofe.seguimiento_practica esté en main 
-    # seguimiento_ids = fields.One2many('uprofe.seguimiento_practica', 'tutor_externo_id',
-    #                                   string='Seguimientos')
