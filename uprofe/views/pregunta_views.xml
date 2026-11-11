@@ -17,10 +17,15 @@
             <form string="Pregunta">
                 <sheet>
                     <group>
-                        <field name="iNum_pregunta"/>
-                        <field name="name"/>
-                        <field name="tipo_respuesta_id"/>
-                        <field name="sOpciones"/>
+                        <group>
+                            <field name="encuesta_id"/>
+                            <field name="iNum_pregunta"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="tipo_respuesta_id"/>
+                            <field name="sOpciones"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -32,8 +37,9 @@
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <list string="Preguntas">
-                <field name="name"/>
+                <field name="encuesta_id"/>
                 <field name="iNum_pregunta"/>
+                <field name="name"/>
                 <field name="tipo_respuesta_id"/>
             </list>
         </field>
@@ -46,10 +52,17 @@
             <search>
                 <field name="iNum_pregunta"/>
                 <field name="name"/>
+                <field name="encuesta_id"/>
                 <field name="tipo_respuesta_id"/>
-                <filter name="requiere_opciones" string="Requiere opciones" domain="[('tipo_respuesta_id.bCon_opciones', '=', True)]"/>
-                <filter name="no_requiere_opciones" string="No requiere opciones" domain="[('tipo_respuesta_id.bCon_opciones', '=', False)]"/>
+
+                <filter name="requiere_opciones" string="Requiere opciones"
+                        domain="[('tipo_respuesta_id.bCon_opciones', '=', True)]"/>
+                <filter name="no_requiere_opciones" string="No requiere opciones"
+                        domain="[('tipo_respuesta_id.bCon_opciones', '=', False)]"/>
+
                 <group expand="0" string="Agrupar por">
+                    <filter name="group_encuesta" string="Encuesta"
+                            context="{'group_by': 'encuesta_id'}"/>
                     <filter name="group_tipo" string="Tipo de respuesta"
                             context="{'group_by': 'tipo_respuesta_id'}"/>
                 </group>

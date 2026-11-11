@@ -11,17 +11,13 @@ class Pregunta(models.Model):
     iNum_pregunta = fields.Integer(string='Número de pregunta', required=True, default=1)
     name = fields.Char(string='Texto de la pregunta', required=True)
     sOpciones = fields.Text(string='Opciones (una por línea)')
-    
-    tipo_respuesta_id = fields.Many2one('uprofe.tipo_respuesta', string='Tipo de respuesta', required=True)
 
-    # Descomento cuando uprofe.encuesta esté en main
-    # encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta', required=True)
-    
-    # no se puede repetir el mismo número de pregunta en una encuesta
-    # _sql_constraints = [
-    #     ('iNum_pregunta_encuesta_uniq', 'unique(encuesta_id, "iNum_pregunta")',
-    #      'Ya existe una pregunta con ese número en esta encuesta.'),
-    # ]
+    tipo_respuesta_id = fields.Many2one('uprofe.tipo_respuesta', string='Tipo de respuesta', required=True)
+    encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta', required=True)
+
+    _sql_constraints = [
+        ('iNum_pregunta_encuesta_uniq', 'unique(encuesta_id, "iNum_pregunta")', 'Ya existe una pregunta con ese número en esta encuesta.'),
+    ]
 
     @api.constrains('iNum_pregunta')
     def _check_iNum_pregunta(self):
@@ -64,4 +60,3 @@ class Pregunta(models.Model):
                     'message': 'El número de pregunta debe ser mayor que 0.'
                 }
             }
-

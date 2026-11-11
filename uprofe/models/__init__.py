@@ -50,3 +50,6 @@ from . import tipo_respuesta
 from . import estado_la_linea
 from . import direccion
 from . import libro
+from . import encuesta
+from . import respuesta_alumno
+from . import seguimiento_alu_int
