@@ -46,8 +46,5 @@ recibo_manager,recibo_manager,model_uprofe_recibo,group_uprofe_manager,1,1,1,1
 pregunta_manager,pregunta_manager,model_uprofe_pregunta,group_uprofe_manager,1,1,1,1
 tipo_respuesta_manager,tipo_respuesta_manager,model_uprofe_tipo_respuesta,group_uprofe_manager,1,1,1,1
 estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
-access_uprofe_evento,uprofe.evento,model_uprofe_evento,base.group_user,1,1,1,1
-access_uprofe_evento_inscripcion,uprofe.evento_inscripcion,model_uprofe_evento_inscripcion,base.group_user,1,1,1,1
-access_uprofe_horario_tutoria,uprofe.horario_tutoria,model_uprofe_horario_tutoria,base.group_user,1,1,1,1
 direccion_manager,direccion_manager,model_uprofe_direccion,group_uprofe_manager,1,1,1,1
 access_uprofe_libro,uprofe.libro,model_uprofe_libro,base.group_user,1,1,1,1
