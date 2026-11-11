@@ -11,7 +11,8 @@ class linea_investigacion(models.Model):
     
     grupo_inv_id = fields.Many2one('uprofe.grupo_inv', string="Grupo de investigación", required=True)
     profesor_ids = fields.Many2many('uprofe.profesor', string="PDIs")
-    investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
+    # Descomentar cuando exista Investigador
+    # investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
     
     @api.constrains('sName')
     def _check_name_unico(self):

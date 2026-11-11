@@ -11,7 +11,8 @@ class publicacion(models.Model):
     
     proyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigacion")
     profesor_ids = fields.Many2many('uprofe.profesor', string="Profesores")
-    investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
+    # Descomentar cuando exista Investigador
+    # investigador_ids = fields.Many2many('uprofe.investigador', string="Investigadores")
     
     @api.constrains('sName')
     def _check_codigo_unico(self):
