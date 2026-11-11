@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Catálogos de movilidad: país, ciudad, idioma, nivel de estudios y los 3 estados.
-         Todos heredan de uprofe.catalogo_mixin: secuencia (se reordena arrastrando con
-         widget="handle"), archivado (campo active) y nº de usos.
-         Los menús están en menu.xml. -->
-
-    <!-- ============================== PAÍS ============================== -->
-    <record id="view_uprofe_pais_list" model="ir.ui.view">
+    <!-- <record id="view_uprofe_pais_list" model="ir.ui.view">
         <field name="name">uprofe.pais.list</field>
         <field name="model">uprofe.pais</field>
         <field name="arch" type="xml">
             <list>
-                <field name="iSecuencia" widget="handle"/>
                 <field name="sName"/>
-                <field name="sCodigo_iso"/>
-                <field name="bUnion_europea"/>
-                <field name="iNum_usos" string="Nº de ciudades"/>
-                <field name="iNum_universidades"/>
             </list>
         </field>
     </record>
@@ -27,96 +16,39 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, Italia"/></h1>
-                    </div>
                     <group>
-                        <group string="Datos del país">
-                            <field name="sCodigo_iso" placeholder="IT"/>
-                            <field name="bUnion_europea"/>
-                            <field name="sDescription"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_usos" string="Nº de ciudades"/>
-                            <field name="iNum_universidades"/>
-                            <field name="iSecuencia"/>
-                        </group>
+                        <field name="sName"/>
                     </group>
-                    <notebook>
-                        <page string="Ciudades">
-                            <field name="ciudad_ids">
-                                <list>
-                                    <field name="sName"/>
-                                    <field name="iPoblacion"/>
-                                    <field name="bCapital"/>
-                                </list>
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <record id="view_uprofe_pais_kanban" model="ir.ui.view">
-        <field name="name">uprofe.pais.kanban</field>
-        <field name="model">uprofe.pais</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <templates>
-                    <t t-name="card">
-                        <div class="d-flex justify-content-between">
-                            <field name="sName" class="fw-bold fs-5"/>
-                            <field name="sCodigo_iso" class="badge text-bg-secondary"/>
-                        </div>
-                        <div><field name="iNum_usos"/> ciudades · <field name="iNum_universidades"/> universidades</div>
-                        <div invisible="not bUnion_europea" class="text-success">Unión Europea</div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="view_uprofe_pais_search" model="ir.ui.view">
-        <field name="name">uprofe.pais.search</field>
-        <field name="model">uprofe.pais</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="sName"/>
-                <field name="sCodigo_iso"/>
-                <filter string="Unión Europea" name="ue" domain="[('bUnion_europea', '=', True)]"/>
-                <filter string="Fuera de la UE" name="no_ue" domain="[('bUnion_europea', '=', False)]"/>
-                <separator/>
-                <filter string="Archivados" name="archivados" domain="[('active', '=', False)]"/>
-                <group string="Agrupar por">
-                    <filter string="Unión Europea" name="group_ue" context="{'group_by': 'bUnion_europea'}"/>
-                </group>
-            </search>
         </field>
     </record>
 
     <record id="action_uprofe_pais" model="ir.actions.act_window">
         <field name="name">Países</field>
         <field name="res_model">uprofe.pais</field>
-        <field name="view_mode">list,form,kanban</field>
-    </record>
+        <field name="view_mode">list,form</field>
+    </record> -->
 
-    <!-- ============================== CIUDAD ============================== -->
+    <!-- <record id="view_uprofe_ciudad_list" model="ir.ui.view">
+        <field name="name">uprofe.ciudad.list</field>
+        <field name="model">uprofe.ciudad</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sName"/>
+                <field name="pais_id"/>
+            </list>
+        </field>
+    </record>
+-->
     <record id="view_uprofe_ciudad_list" model="ir.ui.view">
         <field name="name">uprofe.ciudad.list</field>
         <field name="model">uprofe.ciudad</field>
         <field name="arch" type="xml">
             <list>
-                <field name="iSecuencia" widget="handle"/>
                 <field name="sName"/>
                 <field name="pais_id"/>
-                <field name="bCapital"/>
-                <field name="iPoblacion"/>
-                <field name="iNum_usos" string="Nº de universidades"/>
-                <field name="sDescription" optional="hide"/>
+                <field name="sDescription"/>
             </list>
         </field>
     </record>
@@ -127,34 +59,11 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, Bolonia"/></h1>
-                    </div>
                     <group>
-                        <group string="Datos de la ciudad">
-                            <field name="pais_id"/>
-                            <field name="bCapital"/>
-                            <field name="iPoblacion"/>
-                            <field name="sDescription"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_usos" string="Nº de universidades"/>
-                            <field name="iSecuencia"/>
-                        </group>
+                        <field name="sName"/>
+                        <field name="pais_id"/>
+                        <field name="sDescription"/>
                     </group>
-                    <notebook>
-                        <page string="Universidades">
-                            <field name="universidad_ids">
-                                <list>
-                                    <field name="cod_erasmus"/>
-                                    <field name="sName"/>
-                                </list>
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -167,10 +76,6 @@
             <search>
                 <field name="sName"/>
                 <field name="pais_id"/>
-                <filter string="Capitales" name="capitales" domain="[('bCapital', '=', True)]"/>
-                <filter string="Más de un millón de habitantes" name="grandes" domain="[('iPoblacion', '&gt;', 1000000)]"/>
-                <separator/>
-                <filter string="Archivadas" name="archivados" domain="[('active', '=', False)]"/>
                 <group string="Agrupar por">
                     <filter string="País" name="group_pais" context="{'group_by': 'pais_id'}"/>
                 </group>
@@ -189,7 +94,8 @@
         </field>
     </record>
 
-    <!-- Kanban (cards): la ciudad no tiene fechas, así que en lugar de Calendar se muestran tarjetas -->
+    <!-- Kanban (cards): esta tabla no tiene fechas, así que en lugar de Calendar
+         se muestran las ciudades como tarjetas -->
     <record id="view_uprofe_ciudad_kanban" model="ir.ui.view">
         <field name="name">uprofe.ciudad.kanban</field>
         <field name="model">uprofe.ciudad</field>
@@ -199,7 +105,6 @@
                     <t t-name="card">
                         <field name="sName" class="fw-bold fs-5"/>
                         <div>País: <field name="pais_id"/></div>
-                        <div invisible="not bCapital" class="text-primary">Capital</div>
                         <field name="sDescription" class="text-muted"/>
                     </t>
                 </templates>
@@ -213,18 +118,12 @@
         <field name="view_mode">list,form,graph,kanban</field>
     </record>
 
-    <!-- ============================== IDIOMA ============================== -->
     <record id="view_uprofe_idioma_list" model="ir.ui.view">
         <field name="name">uprofe.idioma.list</field>
         <field name="model">uprofe.idioma</field>
         <field name="arch" type="xml">
             <list>
-                <field name="iSecuencia" widget="handle"/>
                 <field name="sName"/>
-                <field name="sCodigo"/>
-                <field name="iNum_universidades"/>
-                <field name="iNum_plazas"/>
-                <field name="iNum_asignaturas"/>
             </list>
         </field>
     </record>
@@ -235,97 +134,27 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, Inglés"/></h1>
-                    </div>
                     <group>
-                        <group string="Datos del idioma">
-                            <field name="sCodigo" placeholder="en"/>
-                            <field name="iSecuencia"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_universidades"/>
-                            <field name="iNum_plazas"/>
-                            <field name="iNum_asignaturas"/>
-                        </group>
+                        <field name="sName"/>
                     </group>
-                    <notebook>
-                        <page string="Universidades que lo imparten">
-                            <field name="universidad_ids" widget="many2many">
-                                <list>
-                                    <field name="sName"/>
-                                    <field name="pais_id"/>
-                                </list>
-                            </field>
-                        </page>
-                        <page string="Plazas">
-                            <field name="plaza_erasmus_ids" readonly="1"/>
-                        </page>
-                        <page string="Asignaturas">
-                            <field name="asignatura_destino_ids" readonly="1"/>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <record id="view_uprofe_idioma_kanban" model="ir.ui.view">
-        <field name="name">uprofe.idioma.kanban</field>
-        <field name="model">uprofe.idioma</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <templates>
-                    <t t-name="card">
-                        <div class="d-flex justify-content-between">
-                            <field name="sName" class="fw-bold fs-5"/>
-                            <field name="sCodigo" class="badge text-bg-secondary"/>
-                        </div>
-                        <div><field name="iNum_universidades"/> universidades · <field name="iNum_plazas"/> plazas</div>
-                        <div><field name="iNum_asignaturas"/> asignaturas</div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="view_uprofe_idioma_search" model="ir.ui.view">
-        <field name="name">uprofe.idioma.search</field>
-        <field name="model">uprofe.idioma</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="sName"/>
-                <field name="sCodigo"/>
-                <field name="universidad_ids"/>
-                <filter string="Con plazas" name="con_plazas" domain="[('plaza_erasmus_ids', '!=', False)]"/>
-                <filter string="Con asignaturas" name="con_asignaturas" domain="[('asignatura_destino_ids', '!=', False)]"/>
-                <separator/>
-                <filter string="Archivados" name="archivados" domain="[('active', '=', False)]"/>
-            </search>
         </field>
     </record>
 
     <record id="action_uprofe_idioma" model="ir.actions.act_window">
         <field name="name">Idiomas</field>
         <field name="res_model">uprofe.idioma</field>
-        <field name="view_mode">list,form,kanban</field>
+        <field name="view_mode">list,form</field>
     </record>
 
-    <!-- ============================== NIVEL DE ESTUDIOS ============================== -->
+<!-- 
     <record id="view_uprofe_nivel_estudios_list" model="ir.ui.view">
         <field name="name">uprofe.nivel_estudios.list</field>
         <field name="model">uprofe.nivel_estudios</field>
         <field name="arch" type="xml">
             <list>
-                <field name="iSecuencia" widget="handle"/>
                 <field name="sName"/>
-                <field name="iDuracion_anios"/>
-                <field name="bRequiere_titulo_previo"/>
-                <field name="iNum_usos" string="Nº de plazas"/>
-                <field name="iMeses_ofertados"/>
             </list>
         </field>
     </record>
@@ -336,267 +165,27 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, master"/></h1>
-                    </div>
                     <group>
-                        <group string="Datos del nivel">
-                            <field name="iDuracion_anios"/>
-                            <field name="bRequiere_titulo_previo"/>
-                            <field name="iSecuencia"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_usos" string="Nº de plazas"/>
-                            <field name="iMeses_ofertados"/>
-                        </group>
+                        <field name="sName"/>
                     </group>
-                    <notebook>
-                        <page string="Plazas">
-                            <field name="plaza_ids" readonly="1"/>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <record id="view_uprofe_nivel_estudios_kanban" model="ir.ui.view">
-        <field name="name">uprofe.nivel_estudios.kanban</field>
-        <field name="model">uprofe.nivel_estudios</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <templates>
-                    <t t-name="card">
-                        <field name="sName" class="fw-bold fs-5"/>
-                        <div><field name="iDuracion_anios"/> años · <field name="iNum_usos"/> plazas</div>
-                        <div invisible="not bRequiere_titulo_previo" class="text-muted">Requiere titulación previa</div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="view_uprofe_nivel_estudios_search" model="ir.ui.view">
-        <field name="name">uprofe.nivel_estudios.search</field>
-        <field name="model">uprofe.nivel_estudios</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="sName"/>
-                <filter string="Requiere titulación previa" name="titulo_previo" domain="[('bRequiere_titulo_previo', '=', True)]"/>
-                <filter string="Con plazas" name="con_plazas" domain="[('plaza_ids', '!=', False)]"/>
-                <separator/>
-                <filter string="Archivados" name="archivados" domain="[('active', '=', False)]"/>
-                <group string="Agrupar por">
-                    <filter string="Duración" name="group_duracion" context="{'group_by': 'iDuracion_anios'}"/>
-                </group>
-            </search>
         </field>
     </record>
 
     <record id="action_uprofe_nivel_estudios" model="ir.actions.act_window">
-        <field name="name">Niveles de estudio</field>
+        <field name="name">Niveles de estudios</field>
         <field name="res_model">uprofe.nivel_estudios</field>
-        <field name="view_mode">list,form,kanban</field>
+        <field name="view_mode">list,form</field>
     </record>
 
-    <!-- ============================== ESTADO DE MOVILIDAD ============================== -->
-    <record id="view_uprofe_estado_movilidad_list" model="ir.ui.view">
-        <field name="name">uprofe.estado_movilidad.list</field>
-        <field name="model">uprofe.estado_movilidad</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="iSecuencia" widget="handle"/>
-                <field name="sName"/>
-                <field name="sDescripcion"/>
-                <field name="bInicial"/>
-                <field name="bFinal"/>
-                <field name="iNum_usos" string="Nº de movilidades"/>
-                <field name="fDuracion_media"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_movilidad_form" model="ir.ui.view">
-        <field name="name">uprofe.estado_movilidad.form</field>
-        <field name="model">uprofe.estado_movilidad</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, en_curso"/></h1>
-                    </div>
-                    <group>
-                        <group string="Comportamiento">
-                            <field name="bInicial"/>
-                            <field name="bFinal"/>
-                            <field name="iColor" widget="color_picker"/>
-                            <field name="iSecuencia"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_usos" string="Nº de movilidades"/>
-                            <field name="fDuracion_media"/>
-                        </group>
-                    </group>
-                    <field name="sDescripcion" placeholder="Descripción del estado"/>
-                    <notebook>
-                        <page string="Movilidades">
-                            <field name="movilidad_ids" readonly="1"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_movilidad_kanban" model="ir.ui.view">
-        <field name="name">uprofe.estado_movilidad.kanban</field>
-        <field name="model">uprofe.estado_movilidad</field>
-        <field name="arch" type="xml">
-            <kanban highlight_color="iColor">
-                <templates>
-                    <t t-name="card">
-                        <field name="sName" class="fw-bold fs-5"/>
-                        <field name="sDescripcion" class="text-muted"/>
-                        <div><field name="iNum_usos"/> movilidades</div>
-                        <div invisible="not bInicial" class="text-primary">Estado inicial</div>
-                        <div invisible="not bFinal" class="text-danger">Estado final</div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_movilidad_search" model="ir.ui.view">
-        <field name="name">uprofe.estado_movilidad.search</field>
-        <field name="model">uprofe.estado_movilidad</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="sName"/>
-                <field name="sDescripcion"/>
-                <filter string="Inicial" name="inicial" domain="[('bInicial', '=', True)]"/>
-                <filter string="Finales" name="finales" domain="[('bFinal', '=', True)]"/>
-                <separator/>
-                <filter string="Archivados" name="archivados" domain="[('active', '=', False)]"/>
-            </search>
-        </field>
-    </record>
-
-    <record id="action_uprofe_estado_movilidad" model="ir.actions.act_window">
-        <field name="name">Estados de movilidad</field>
-        <field name="res_model">uprofe.estado_movilidad</field>
-        <field name="view_mode">list,form,kanban</field>
-    </record>
-
-    <!-- ============================== ESTADO DE LEARNING AGREEMENT ============================== -->
-    <record id="view_uprofe_estado_learning_agreement_list" model="ir.ui.view">
-        <field name="name">uprofe.estado_learning_agreement.list</field>
-        <field name="model">uprofe.estado_learning_agreement</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="iSecuencia" widget="handle"/>
-                <field name="sName"/>
-                <field name="sDescripcion"/>
-                <field name="bInicial"/>
-                <field name="bFinal"/>
-                <field name="iNum_usos" string="Nº de acuerdos"/>
-                <field name="iNum_firmados"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_learning_agreement_form" model="ir.ui.view">
-        <field name="name">uprofe.estado_learning_agreement.form</field>
-        <field name="model">uprofe.estado_learning_agreement</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, pendiente_firma"/></h1>
-                    </div>
-                    <group>
-                        <group string="Comportamiento">
-                            <field name="bInicial"/>
-                            <field name="bFinal"/>
-                            <field name="iColor" widget="color_picker"/>
-                            <field name="iSecuencia"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_usos" string="Nº de acuerdos"/>
-                            <field name="iNum_firmados"/>
-                        </group>
-                    </group>
-                    <field name="sDescripcion" placeholder="Descripción del estado"/>
-                    <notebook>
-                        <page string="Learning agreements">
-                            <field name="learning_agreement_ids" readonly="1"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_learning_agreement_kanban" model="ir.ui.view">
-        <field name="name">uprofe.estado_learning_agreement.kanban</field>
-        <field name="model">uprofe.estado_learning_agreement</field>
-        <field name="arch" type="xml">
-            <kanban highlight_color="iColor">
-                <templates>
-                    <t t-name="card">
-                        <field name="sName" class="fw-bold fs-5"/>
-                        <field name="sDescripcion" class="text-muted"/>
-                        <div><field name="iNum_usos"/> acuerdos · <field name="iNum_firmados"/> firmados</div>
-                        <div invisible="not bInicial" class="text-primary">Estado inicial</div>
-                        <div invisible="not bFinal" class="text-danger">Estado final</div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_learning_agreement_search" model="ir.ui.view">
-        <field name="name">uprofe.estado_learning_agreement.search</field>
-        <field name="model">uprofe.estado_learning_agreement</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="sName"/>
-                <field name="sDescripcion"/>
-                <filter string="Inicial" name="inicial" domain="[('bInicial', '=', True)]"/>
-                <filter string="Finales" name="finales" domain="[('bFinal', '=', True)]"/>
-                <separator/>
-                <filter string="Archivados" name="archivados" domain="[('active', '=', False)]"/>
-            </search>
-        </field>
-    </record>
-
-    <record id="action_uprofe_estado_learning_agreement" model="ir.actions.act_window">
-        <field name="name">Estados de learning agreement</field>
-        <field name="res_model">uprofe.estado_learning_agreement</field>
-        <field name="view_mode">list,form,kanban</field>
-    </record>
-
-    <!-- ============================== ESTADO DE LÍNEA ============================== -->
-    <record id="view_uprofe_estado_la_linea_list" model="ir.ui.view">
+   <record id="view_uprofe_estado_la_linea_list" model="ir.ui.view">
         <field name="name">uprofe.estado_la_linea.list</field>
         <field name="model">uprofe.estado_la_linea</field>
         <field name="arch" type="xml">
             <list>
-                <field name="iSecuencia" widget="handle"/>
                 <field name="sName"/>
-                <field name="sDescripcion"/>
-                <field name="bInicial"/>
-                <field name="bFinal"/>
-                <field name="iNum_usos" string="Nº de líneas"/>
-                <field name="fCreditos_total"/>
+                <field name="sDescription"/>
             </list>
         </field>
     </record>
@@ -607,71 +196,98 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger" invisible="active"/>
-                    <field name="active" invisible="1"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, convalidada"/></h1>
-                    </div>
                     <group>
-                        <group string="Comportamiento">
-                            <field name="bInicial"/>
-                            <field name="bFinal"/>
-                            <field name="iColor" widget="color_picker"/>
-                            <field name="iSecuencia"/>
-                        </group>
-                        <group string="Uso">
-                            <field name="iNum_usos" string="Nº de líneas"/>
-                            <field name="fCreditos_total"/>
-                        </group>
+                        <field name="sName"/>
+                        <field name="sDescription"/>
                     </group>
-                    <field name="sDescripcion" placeholder="Descripción del estado"/>
-                    <notebook>
-                        <page string="Líneas">
-                            <field name="linea_ids" readonly="1"/>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_la_linea_kanban" model="ir.ui.view">
-        <field name="name">uprofe.estado_la_linea.kanban</field>
-        <field name="model">uprofe.estado_la_linea</field>
-        <field name="arch" type="xml">
-            <kanban highlight_color="iColor">
-                <templates>
-                    <t t-name="card">
-                        <field name="sName" class="fw-bold fs-5"/>
-                        <field name="sDescripcion" class="text-muted"/>
-                        <div><field name="iNum_usos"/> líneas · <field name="fCreditos_total"/> créditos</div>
-                        <div invisible="not bInicial" class="text-primary">Estado inicial</div>
-                        <div invisible="not bFinal" class="text-danger">Estado final</div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record id="view_uprofe_estado_la_linea_search" model="ir.ui.view">
-        <field name="name">uprofe.estado_la_linea.search</field>
-        <field name="model">uprofe.estado_la_linea</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="sName"/>
-                <field name="sDescripcion"/>
-                <filter string="Inicial" name="inicial" domain="[('bInicial', '=', True)]"/>
-                <filter string="Finales" name="finales" domain="[('bFinal', '=', True)]"/>
-                <separator/>
-                <filter string="Archivados" name="archivados" domain="[('active', '=', False)]"/>
-            </search>
         </field>
     </record>
 
     <record id="action_uprofe_estado_la_linea" model="ir.actions.act_window">
         <field name="name">Estados de línea</field>
         <field name="res_model">uprofe.estado_la_linea</field>
-        <field name="view_mode">list,form,kanban</field>
+        <field name="view_mode">list,form</field>
     </record>
+
+    <record id="view_uprofe_estado_movilidad_list" model="ir.ui.view">
+        <field name="name">uprofe.estado_movilidad.list</field>
+        <field name="model">uprofe.estado_movilidad</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sName"/>
+                <field name="sDescription"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_estado_movilidad_form" model="ir.ui.view">
+        <field name="name">uprofe.estado_movilidad.form</field>
+        <field name="model">uprofe.estado_movilidad</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sName"/>
+                        <field name="sDescription"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_uprofe_estado_movilidad" model="ir.actions.act_window">
+        <field name="name">Estados de movilidad</field>
+        <field name="res_model">uprofe.estado_movilidad</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_uprofe_estado_learning_agreement_list" model="ir.ui.view">
+        <field name="name">uprofe.estado_learning_agreement.list</field>
+        <field name="model">uprofe.estado_learning_agreement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sName"/>
+                <field name="sDescription"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_estado_learning_agreement_form" model="ir.ui.view">
+        <field name="name">uprofe.estado_learning_agreement.form</field>
+        <field name="model">uprofe.estado_learning_agreement</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sName"/>
+                        <field name="sDescription"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_uprofe_estado_learning_agreement" model="ir.actions.act_window">
+        <field name="name">Estados de learning agreement</field>
+        <field name="res_model">uprofe.estado_learning_agreement</field>
+        <field name="view_mode">list,form</field>
+    </record> -->
+
+    <!-- MENÚS ESTRUCTURALES DESCOMENTADOS PARA EVITAR ERROR AL CARGAR EL MENÚ DE IDIOMA -->
+    <menuitem id="menu_uprofe_root" name="UProfe" sequence="10"/>
+    <menuitem id="menu_uprofe_movilidad" name="Movilidad" parent="menu_uprofe_root" sequence="10"/>
+    <menuitem id="menu_uprofe_configuracion_movilidad" name="Configuración" parent="menu_uprofe_movilidad" sequence="90"/>
+    
+    <!-- <menuitem id="menu_uprofe_pais" name="Países" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_pais" sequence="10"/> -->
+    <menuitem id="menu_uprofe_ciudad" name="Ciudades" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_ciudad" sequence="20"/>
+    
+    <!-- MENÚ ACTIVO DE IDIOMA -->
+    <menuitem id="menu_uprofe_idioma" name="Idiomas" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_idioma" sequence="30"/>
+    
+    <!-- <menuitem id="menu_uprofe_nivel_estudios" name="Niveles de estudio" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_nivel_estudios" sequence="40"/>
+    <menuitem id="menu_uprofe_estado_movilidad" name="Estados de movilidad" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_movilidad" sequence="50"/>
+    <menuitem id="menu_uprofe_estado_learning_agreement" name="Estados de L.A." parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_learning_agreement" sequence="60"/>
+    <menuitem id="menu_uprofe_estado_la_linea" name="Estados de línea" parent="menu_uprofe_configuracion_movilidad" action="action_uprofe_estado_la_linea" sequence="70"/> -->
 </odoo>

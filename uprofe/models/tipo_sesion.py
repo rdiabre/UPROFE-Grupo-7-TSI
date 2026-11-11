@@ -4,20 +4,31 @@ from odoo import models, fields, api
 
 MAX_NOMBRE = 50
 
+# Opciones del desplegable. "otro" permite escribir el tipo a mano.
+TIPOS = [
+    ('eb', 'Enseñanzas Básicas'),
+    ('epd', 'Enseñanzas Prácticas y de Desarrollo'),
+    ('otro', 'Otro'),
+]
+
 class TipoSesion(models.Model):
     _name = 'uprofe.tipo_sesion'
     _description = 'UPROFE Tipo de sesión'
     _order = 'name asc'
 
     # Desplegable para elegir el tipo. Si se elige "Otro", el tipo se escribe a mano en "name".
-    selTipo = fields.Selection([('eb', 'Enseñanzas Básicas'),
-                                ('epd', 'Enseñanzas Prácticas y de Desarrollo'),
-                                ('otro', 'Otro'),
-                                ], string="Tipo", required=True, default='eb')
+    selTipo = fields.Selection(TIPOS, string="Tipo", required=True, default='eb')
 
-    name = fields.Char(string="Tipo de sesión", required=True, default='Enseñanzas Básicas')
+    """Clave primaria del diagrama E-R (atributo tipo_sesion). Se llama "name"
+    porque es el campo que Odoo muestra al seleccionar un tipo en otros modelos.
+    Se calcula a partir del desplegable (compute), pero sigue siendo editable
+    (readonly=False) para poder escribirlo a mano cuando se elige "Otro".
+    precompute=True: se calcula antes de guardar; sin él, al ser obligatorio,
+    la base de datos rechaza el registro porque llega vacío."""
+    name = fields.Char(string="Tipo de sesión", required=True, compute='_compute_name', store=True, readonly=False, precompute=True)
 
-    # Lista de todas las sesiones de un tipo de sesión
+    # La relación con las sesiones (sesion_ids) se añade en el PR del modelo Sesión: One2many hacia un modelo que todavía no existe impide instalar el módulo.
+    # Un tipo de sesión tiene varias sesiones (1,N). Como Sesión tiene tipo_sesion_id con ondelete='restrict', un tipo con sesiones no se puede borrar.
     sesion_ids = fields.One2many('uprofe.sesion', 'tipo_sesion_id', string="Sesiones")
     
     # Unicidad de la clave primaria con índice en la base de datos
@@ -25,35 +36,27 @@ class TipoSesion(models.Model):
         ('name_unique', 'unique(name)', 'Ya existe este tipo de sesión.'),
     ]
 
-    @api.onchange('selTipo')
-    def onchange_tipo(self):
-        if self.selTipo == 'eb': 
-            self.name = 'Enseñanzas Básicas'
-        elif self.selTipo == 'epd':
-            self.name = 'Enseñanzas Prácticas y de Desarrollo'
-        else:
-            self.name = ''
-    
-    # Por si no entran por formulario los datos, para que no haya incoherencia entre los tipos predfinidos y el nombre puesto
-    @api.constrains('selTipo', 'name')
-    def _check_tipo(self):
-        for record in self: # Si no ponemos esto y los datos se reciben por un CSV = petardazo, porque self no es un registro sino varios
-            if record.selTipo == 'eb' and record.name != 'Enseñanzas Básicas': 
-                raise models.ValidationError('Si el tipo es "Enseñanzas Básicas", el nombre debe ser "Enseñanzas Básicas".')
-            if record.selTipo == 'epd' and record.name != 'Enseñanzas Prácticas y de Desarrollo':
-                raise models.ValidationError('Si el tipo es "Enseñanzas Prácticas y de Desarrollo", el nombre debe ser "Enseñanzas Prácticas y de Desarrollo".')
-            
-    # Tipo de sesión: no vacío, con máximo de caracteres y único sin distinguir mayúsculas
+    # Rellena el tipo de sesión con la opción elegida en el desplegable. Con "Otro" se vacía para que se escriba a mano.
+    @api.depends('selTipo')
+    def _compute_name(self):
+        opciones = dict(TIPOS)
+        for record in self:
+            if record.selTipo == 'otro':
+                if record.name in opciones.values():
+                    record.name = False
+            else:
+                record.name = opciones.get(record.selTipo)
+
+    # Tipo de sesión: no vacío, con máximo de caracteres y único sin distinguir mayúsculas (_sql_constraints sí distingue: "Enseñanzas básicas" y "Enseñanzas Básicas" serían distintos)
     @api.constrains('name')
     def _check_nombre(self):
         for record in self:
-            nombre = record.name
-            if not nombre or nombre.strip() == '':
+            nombre = (record.name or '').strip()
+            if not nombre:
                 raise models.ValidationError("El tipo de sesión no puede estar vacío.")
-            nombre = nombre.strip()
             if len(nombre) > MAX_NOMBRE:
                 raise models.ValidationError(f"El tipo de sesión no puede tener más de {MAX_NOMBRE} caracteres.")
-            if self.search([('id', '!=', record.id), ('name', '=ilike', nombre)], limit=1): # Variante de lo que hemos visto en clase (ilike). Con ilike, "Prácticas" está contenido en "Enseñanzas Prácticas ...", por tanto no se guardaría
+            if self.search([('id', '!=', record.id), ('name', '=ilike', nombre)], limit=1):
                 raise models.ValidationError("Ya existe este tipo de sesión.")
 
     """Sin espacios sobrantes y con la primera letra en mayúscula, respetando
@@ -63,13 +66,14 @@ class TipoSesion(models.Model):
     def _onchange_nombre(self):
         if self.name:
             nombre = self.name.strip()
-            self.name = nombre[:1].upper() + nombre[1:] # Solo cambia la primera letra
+            self.name = nombre[:1].upper() + nombre[1:]
+            self.name = nombre[:1].upper() + nombre[1:]
             
-    # Campo computado (store=True para poder usarlo en la vista Graph)
-    iNum_sesiones = fields.Integer( compute='_compute_estadisticas', string="Nº de sesiones", store=True)
-    fHoras = fields.Float(compute='_compute_estadisticas', string="Horas programadas", store=True)
+    # Campos calculados para la vista gráfico
+    iNum_sesiones = fields.Integer(string="Nº de sesiones", compute='_compute_estadisticas', store=True) # True porque el gráfico necesita que se guarde
+    fHoras = fields.Float(string="Horas programadas", compute='_compute_estadisticas', store=True)
     
-    @api.depends('sesion_ids', 'sesion_ids.fDuracion') # Si cambia el numero de sesiones o la duración de una de ellas, recalcula
+    @api.depends('sesion_ids', 'sesion_ids.fDuracion') # Si cambia el numero de sesiones y/o la duración de una de ellas, recalcula
     def _compute_estadisticas(self):
         for record in self:
             record.iNum_sesiones = len(record.sesion_ids) # Cuántas sesiones hay

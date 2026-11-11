@@ -9,11 +9,9 @@
             <list>
                 <field name="cod_erasmus"/>
                 <field name="sName"/>
-                <field name="ciudad_id"/>
-                <field name="pais_id"/>
-                <field name="idioma_ids" widget="many2many_tags"/>
-                <field name="iNum_plazas"/>
-                <field name="fCreditos_ofertados" optional="hide"/>
+                <!-- Descomentar cuando exista Ciudad -->
+                <!-- <field name="ciudad_id"/> -->
+                <!-- <field name="pais_id"/> -->
             </list>
         </field>
     </record>
@@ -25,77 +23,37 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button name="action_ver_plazas" type="object" class="oe_stat_button" icon="fa-graduation-cap">
-                            <field name="iNum_plazas" widget="statinfo" string="Plazas"/>
-                        </button>
-                    </div>
-                    <field name="bLogo" widget="image" class="oe_avatar"/>
-                    <div class="oe_title">
-                        <label for="sName"/>
-                        <h1><field name="sName" placeholder="Por ejemplo, Università di Bologna"/></h1>
-                    </div>
                     <group>
                         <group string="Datos generales">
-                            <field name="cod_erasmus" placeholder="I BOLOGNA01"/>
-                            <field name="idioma_ids" widget="many2many_tags"/>
-                            <field name="sWeb" widget="url"/>
-                            <field name="sEmail_contacto" widget="email"/>
+                            <field name="sName"/>
+                            <field name="cod_erasmus"/>
                         </group>
-                        <group string="Ubicación">
+                        <!-- Descomentar cuando exista Ciudad -->
+                        <!-- <group string="Ubicación">
                             <field name="ciudad_id"/>
                             <field name="pais_id"/>
-                        </group>
-                        <group string="Oferta">
-                            <field name="iNum_asignaturas"/>
-                            <field name="fCreditos_ofertados"/>
-                        </group>
+                        </group> -->
                     </group>
-                    <notebook>
-                        <!-- Descomentar cuando convenio tenga el campo universidad_id -->
-                        <!-- <page string="Convenios">
+                    <!-- Descomentar cuando existan Convenio, PlazaErasmus y AsignaturaDestino -->
+                    <!-- <notebook>
+                        <page string="Convenios">
                             <field name="convenio_ids"/>
-                        </page> -->
+                        </page>
                         <page string="Plazas">
-                            <field name="plaza_ids">
-                                <list>
-                                    <field name="cod_plaza"/>
-                                    <field name="nivel_estudios_id"/>
-                                    <field name="idioma_id"/>
-                                    <field name="iDuracion_meses"/>
-                                    <field name="iNum_vacantes"/>
-                                </list>
-                            </field>
+                            <field name="plaza_ids"/>
                         </page>
                         <page string="Asignaturas">
-                            <field name="asignatura_ids">
-                                <list>
-                                    <field name="cod_asig_destino"/>
-                                    <field name="sName"/>
-                                    <field name="idioma_id"/>
-                                    <field name="fCreditos_ects"/>
-                                </list>
-                            </field>
+                            <field name="asignatura_ids"/>
                         </page>
-                    </notebook>
+                    </notebook> -->
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Graph: créditos ofertados por país -->
-    <record id="view_uprofe_universidad_destino_graph" model="ir.ui.view">
-        <field name="name">uprofe.universidad_destino.graph</field>
-        <field name="model">uprofe.universidad_destino</field>
-        <field name="arch" type="xml">
-            <graph string="Créditos ofertados por país" type="bar">
-                <field name="pais_id"/>
-                <field name="fCreditos_ofertados" type="measure"/>
-            </graph>
-        </field>
-    </record>
-
-    <!-- Kanban (cards): la universidad no tiene fechas, así que en lugar de Calendar se muestran tarjetas -->
+    <!-- Kanban (cards): esta tabla no tiene fechas ni campos por los que agrupar
+         mientras falte Ciudad, así que en lugar de Graph y Calendar se muestran
+         las universidades como tarjetas -->
     <record id="view_uprofe_universidad_destino_kanban" model="ir.ui.view">
         <field name="name">uprofe.universidad_destino.kanban</field>
         <field name="model">uprofe.universidad_destino</field>
@@ -105,9 +63,8 @@
                     <t t-name="card">
                         <field name="sName" class="fw-bold fs-5"/>
                         <field name="cod_erasmus" class="text-muted"/>
-                        <div><field name="ciudad_id"/></div>
-                        <field name="idioma_ids" widget="many2many_tags"/>
-                        <div><field name="iNum_plazas"/> plazas · <field name="iNum_asignaturas"/> asignaturas</div>
+                        <!-- Descomentar cuando exista Ciudad -->
+                        <!-- <div><field name="ciudad_id"/> (<field name="pais_id"/>)</div> -->
                     </t>
                 </templates>
             </kanban>
@@ -122,17 +79,13 @@
             <search>
                 <field name="sName"/>
                 <field name="cod_erasmus"/>
-                <field name="ciudad_id"/>
-                <field name="pais_id"/>
-                <field name="idioma_ids"/>
-                <filter string="Con plazas" name="con_plazas" domain="[('iNum_plazas', '&gt;', 0)]"/>
-                <filter string="Sin plazas" name="sin_plazas" domain="[('iNum_plazas', '=', 0)]"/>
-                <separator/>
-                <filter string="Docencia en inglés" name="ingles" domain="[('idioma_ids.sCodigo', '=', 'en')]"/>
-                <group string="Agrupar por">
+                <!-- Descomentar cuando exista Ciudad -->
+                <!-- <field name="ciudad_id"/> -->
+                <!-- <field name="pais_id"/> -->
+                <!-- <group string="Agrupar por">
                     <filter string="País" name="group_pais" context="{'group_by': 'pais_id'}"/>
                     <filter string="Ciudad" name="group_ciudad" context="{'group_by': 'ciudad_id'}"/>
-                </group>
+                </group> -->
             </search>
         </field>
     </record>
@@ -141,7 +94,14 @@
     <record id="action_uprofe_universidad_destino" model="ir.actions.act_window">
         <field name="name">Universidades de destino</field>
         <field name="res_model">uprofe.universidad_destino</field>
-        <field name="view_mode">list,form,kanban,graph</field>
+        <field name="view_mode">list,form,kanban</field>
     </record>
+
+    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
+    <menuitem id="menu_uprofe_universidad_destino"
+              name="Universidades"
+              parent="menu_uprofe_movilidad"
+              action="action_uprofe_universidad_destino"
+              sequence="10"/>
 
 </odoo>

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -8,73 +10,46 @@ class Empresa(models.Model):
     _description = 'Empresa colaboradora'
     _order = 'name asc'
 
-    sCif = fields.Char(string='CIF', size=9, required=True)
+    scif = fields.Char(string='CIF', size=9, required=True)
     name = fields.Char(string='Nombre', required=True)
-    sNombre_sector = fields.Char(string='Sector')
-    sEmail = fields.Char(string='Correo electrónico')
+    snombre_sector = fields.Char(string='Sector')
+    semail = fields.Char(string='Correo electrónico')
 
-    financiacion_ids = fields.One2many('uprofe.financiacion', 'empresa_id', string='Financiaciones')
-    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id', string='Ofertas de práctica')   
-    direccion_id = fields.Many2one('uprofe.direccion', string='Dirección', required=True)               
+    # Descomento cuando uprofe.financiacion esté en main
+    #financiacion_ids = fields.One2many('uprofe.financiacion', 'entidad_financiadora_id',
+    #                                   string='Financiaciones')
 
 
-    @api.constrains('name')
-    def _check_nombre(self):
-        for record in self:
-            if record.name:
-                if record.name.strip() == '':
-                    raise ValidationError('El nombre de la empresa no puede contener solo espacios.' )
-    
-    @api.constrains('sCif')
-    def _check_cif(self):
-        for record in self:
-            if record.sCif:
-                if len(record.sCif) != 9:
-                    raise ValidationError('El CIF debe tener 9 caracteres.' )
+    oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id',
+                                 string='Ofertas de práctica')   
+    # direccion_id = fields.Many2one('uprofe.direccion', string='Dirección',
+    #                                required=True)               
 
-                if ' ' in record.sCif:
-                    raise ValidationError('El CIF no puede contener espacios.' ) 
-                                   
-    @api.constrains('sCif')
+    # Validaciones
+    @api.constrains('scif')
     def _check_cif_unique(self):
-        for record in self:
-            if record.sCif:
-                lDominio = [
-                    ('id', '!=', record.id),
-                    ('sCif', '=ilike', record.sCif)
-                ]
+        if self.search_count([('id', '!=', self.id), ('scif', '=ilike', self.scif.strip())]):
+            raise ValidationError("Ya existe una empresa con este CIF.")
 
-                if self.search_count(lDominio):
-                    raise ValidationError('Ya existe una empresa con este CIF.')
-                                    
-    @api.constrains('sEmail')
-    def _check_email(self):
-        for record in self:
-            if record.sEmail:
-                correo = record.sEmail
+    @api.constrains('semail')
+    def _check_email_format(self):
+        if self.semail and not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', self.semail.strip()):
+            raise ValidationError("El correo electrónico de la empresa no es válido.")
 
-                if ' ' in correo:
-                    raise ValidationError('El correo electrónico no puede contener espacios.')
-
-                if correo.count('@') != 1:
-                    raise ValidationError('El correo electrónico debe contener una sola @.')
-
-                usuario, dominio = correo.split('@')
-
-                if not usuario or not dominio:
-                    raise ValidationError('El correo electrónico debe tener texto antes y después de la @.' )
-
-                if '.' not in dominio:
-                    raise ValidationError('El dominio del correo electrónico debe contener un punto.')
-
-                if dominio.startswith('.') or dominio.endswith('.'):
-                    raise ValidationError('El dominio del correo electrónico no puede empezar ni terminar con un punto.')
-
-    @api.onchange('sCif')
+    # onchange 
+    @api.onchange('scif')
     def _onchange_cif(self):
-        if self.sCif:
+        # Normaliza el CIF
+        if self.scif:
+            self.scif = self.scif.strip().upper()
+
+    @api.onchange('semail')
+    def _onchange_email(self):
+        if self.semail and not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', self.semail.strip()):
             return {
-                'value': {
-                    'sCif': self.sCif.strip().upper()
+                'value': {'semail': False},
+                'warning': {
+                    'title': 'Correo no válido',
+                    'message': 'El formato del correo electrónico no parece correcto.'
                 }
             }

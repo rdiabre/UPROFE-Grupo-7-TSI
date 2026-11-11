@@ -10,7 +10,7 @@
                 <field name="sApellidos"/>
                 <field name="email" string="Correo electrónico"/>
                 <field name="sDespacho"/>
-                <field name="tipo_sesion_ids" widget="many2many_tags"/>
+                <!-- <field name="tipo_sesion_ids" widget="many2many_tags"/> VA EN EL PR DE SESION -->
                 <field name="bDoctor"/>
                 <field name="bTutor_interno"/>
             </list>
@@ -27,9 +27,9 @@
                     <group>
                         <!-- Herencia de Persona -->
                         <group string="Datos personales">
-                            <!-- Si la persona ya existe, se elige aquí y se rellenan sus datos. Si no, se deja vacío y se crea al guardar -->
-                            <field name="persona_id" string="Persona existente" required="0"/>
+                            <!-- Oculto. Si el DNI existe ya porque está registrada la persona, se rellena  -->
                             <field name="sDni"/>
+                            <field name="persona_id" invisible="1"/>
                             <field name="name" string="Nombre"/>
                             <field name="sApellidos"/>
                             <field name="email" string="Correo electrónico" required="1"/>
@@ -37,7 +37,7 @@
                         </group>
                         <!-- Campos propios -->
                         <group string="Datos del profesor">
-                            <field name="tipo_sesion_ids" widget="many2many_tags"/>
+                            <!-- <field name="tipo_sesion_ids" widget="many2many_tags"/> VA EN EL PR DE SESION -->
                             <field name="sDespacho"/>
                             <field name="bDoctor"/>
                             <field name="bTutor_interno"/>

@@ -7,14 +7,12 @@
         <field name="model">uprofe.la_linea</field>
         <field name="arch" type="xml">
             <list>
-                <field name="learning_agreement_id"/>
+                <!-- <field name="learning_agreement_id"/> -->
                 <field name="iNum_linea"/>
-                <field name="asignatura_destino_id"/>
-                <field name="universidad_id" optional="hide"/>
+                <!-- <field name="asignatura_destino_id"/> -->
                 <field name="estado_id"/>
                 <field name="fNota"/>
-                <field name="sCalificacion"/>
-                <field name="fCreditos_reconocidos" sum="Total"/>
+                <field name="fCreditos_reconocidos"/>
             </list>
         </field>
     </record>
@@ -28,20 +26,16 @@
                 <sheet>
                     <group>
                         <group string="Línea">
-                            <field name="learning_agreement_id"/>
+                            <!-- <field name="learning_agreement_id"/> -->
                             <field name="iNum_linea"/>
                             <field name="estado_id"/>
                         </group>
                         <group string="Asignatura y resultado">
-                            <field name="asignatura_destino_id"/>
-                            <field name="universidad_id"/>
-                            <field name="fCreditos_ects"/>
+                            <!-- <field name="asignatura_destino_id"/> -->
                             <field name="fNota"/>
-                            <field name="sCalificacion"/>
                             <field name="fCreditos_reconocidos"/>
                         </group>
                     </group>
-                    <field name="sObservaciones" placeholder="Observaciones sobre la línea"/>
                 </sheet>
             </form>
         </field>
@@ -59,46 +53,25 @@
         </field>
     </record>
 
-    <!-- Kanban (cards): la línea no tiene fechas, así que en lugar de Calendar se muestran tarjetas -->
+    <!-- Kanban (cards): esta tabla no tiene fechas, así que en lugar de Calendar
+         se muestran las líneas como tarjetas -->
     <record id="view_uprofe_la_linea_kanban" model="ir.ui.view">
         <field name="name">uprofe.la_linea.kanban</field>
         <field name="model">uprofe.la_linea</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="estado_id">
+            <kanban>
                 <templates>
                     <t t-name="card">
-                        <div class="fw-bold fs-5"><field name="learning_agreement_id"/> · línea <field name="iNum_linea"/></div>
-                        <div><field name="asignatura_destino_id"/></div>
-                        <div>Nota: <field name="fNota"/> (<field name="sCalificacion"/>)</div>
+                        <div class="fw-bold fs-5">Línea <field name="iNum_linea"/></div>
+                        <!-- Descomentar cuando existan LearningAgreement y AsignaturaDestino -->
+                        <!-- <div>L.A.: <field name="learning_agreement_id"/></div> -->
+                        <!-- <div>Asignatura: <field name="asignatura_destino_id"/></div> -->
+                        <div>Estado: <field name="estado_id"/></div>
+                        <div>Nota: <field name="fNota"/></div>
                         <div>Créditos reconocidos: <field name="fCreditos_reconocidos"/></div>
                     </t>
                 </templates>
             </kanban>
-        </field>
-    </record>
-
-    <!-- Búsqueda y filtros -->
-    <record id="view_uprofe_la_linea_search" model="ir.ui.view">
-        <field name="name">uprofe.la_linea.search</field>
-        <field name="model">uprofe.la_linea</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="learning_agreement_id"/>
-                <field name="asignatura_destino_id"/>
-                <field name="universidad_id"/>
-                <field name="estado_id"/>
-                <filter string="Con nota" name="con_nota" domain="[('fNota', '!=', 0)]"/>
-                <filter string="Aprobadas (5 o más)" name="aprobadas" domain="[('fNota', '&gt;=', 5)]"/>
-                <filter string="Suspensas (menos de 5)" name="suspensas" domain="[('fNota', '&gt;', 0), ('fNota', '&lt;', 5)]"/>
-                <separator/>
-                <filter string="Con créditos reconocidos" name="reconocidas" domain="[('fCreditos_reconocidos', '&gt;', 0)]"/>
-                <group string="Agrupar por">
-                    <filter string="Learning agreement" name="group_la" context="{'group_by': 'learning_agreement_id'}"/>
-                    <filter string="Estado" name="group_estado" context="{'group_by': 'estado_id'}"/>
-                    <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
-                    <filter string="Calificación" name="group_calificacion" context="{'group_by': 'sCalificacion'}"/>
-                </group>
-            </search>
         </field>
     </record>
 
@@ -111,5 +84,12 @@
         <field name="view_mode">graph,kanban,list,form</field>
         <field name="context">{'create': False}</field>
     </record>
+
+    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
+    <menuitem id="menu_uprofe_la_linea"
+              name="Análisis de líneas"
+              parent="menu_uprofe_movilidad"
+              action="action_uprofe_la_linea"
+              sequence="55"/>
 
 </odoo>

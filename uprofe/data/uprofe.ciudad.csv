@@ -1,11 +1,11 @@
-id,sName,sDescription,pais_id:id,iPoblacion,bCapital
-ciudad_bolonia,Bolonia,Sede de la universidad más antigua de Europa,pais_italia,390000,False
-ciudad_roma,Roma,Capital de Italia,pais_italia,2750000,True
-ciudad_paris,París,Capital de Francia,pais_francia,2100000,True
-ciudad_berlin,Berlín,Capital de Alemania,pais_alemania,3700000,True
-ciudad_lisboa,Lisboa,Capital de Portugal,pais_portugal,545000,True
-ciudad_amsterdam,Ámsterdam,Capital de los Países Bajos,pais_paises_bajos,920000,True
-ciudad_lovaina,Lovaina,Ciudad universitaria de Bélgica,pais_belgica,102000,False
-ciudad_varsovia,Varsovia,Capital de Polonia,pais_polonia,1860000,True
-ciudad_dublin,Dublín,Capital de Irlanda,pais_irlanda,590000,True
-ciudad_estocolmo,Estocolmo,Capital de Suecia,pais_suecia,990000,True
+id,sName,sDescription,pais_id:id
+ciudad_bolonia,Bolonia,Sede de la universidad más antigua de Europa,pais_italia
+ciudad_roma,Roma,Capital de Italia,pais_italia
+ciudad_paris,París,Capital de Francia,pais_francia
+ciudad_berlin,Berlín,Capital de Alemania,pais_alemania
+ciudad_lisboa,Lisboa,Capital de Portugal,pais_portugal
+ciudad_amsterdam,Ámsterdam,Capital de los Países Bajos,pais_paises_bajos
+ciudad_lovaina,Lovaina,Ciudad universitaria de Bélgica,pais_belgica
+ciudad_varsovia,Varsovia,Capital de Polonia,pais_polonia
+ciudad_dublin,Dublín,Capital de Irlanda,pais_irlanda
+ciudad_estocolmo,Estocolmo,Capital de Suecia,pais_suecia

@@ -1,4 +1,26 @@
-# always loaded
+# -*- coding: utf-8 -*-
+{
+    'name': "uprofe",
+
+    'summary': "Módulo de gestión de la UPO",
+
+    'description': """
+Descripción del módulo
+    """,
+
+    'author': "Grupo 7",
+    'website': "https://www.yourcompany.com",
+
+    # Categories can be used to filter modules in modules listing
+    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
+    # for the full list
+    'category': 'Uncategorized',
+    'version': '0.1',
+
+    # any module necessary for this one to work correctly
+    'depends': ['base'],
+
+    # always loaded
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
@@ -10,27 +32,21 @@
         'data/uprofe.estado_movilidad.csv',
         'data/uprofe.estado_learning_agreement.csv',
         'data/uprofe.estado_la_linea.csv',
-        'data/uprofe.ciudad.csv',
         'data/uprofe.universidad_destino.csv',
-        'data/uprofe.plaza_erasmus.csv',
-        'data/uprofe.asignatura_destino.csv',
-        'data/uprofe.movilidad.csv',
-        'data/uprofe.learning_agreement.csv',
-        'data/uprofe.la_linea.csv',
+        # Descomentar cada línea cuando su modelo esté en main
+        # (si el modelo no existe, Odoo falla al instalar/actualizar el módulo)
+        # 'data/uprofe.ciudad.csv',
+        # 'data/uprofe.plaza_erasmus.csv',
+        # 'data/uprofe.asignatura_destino.csv',
+        # 'data/uprofe.movilidad.csv',
+        # 'data/uprofe.learning_agreement.csv',
+        # 'data/uprofe.la_linea.csv',
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
-        'views/acuerdo_views.xml',
-        'views/seguimiento_practica_views.xml',
-        'views/tasa_views.xml',
-        'views/tipo_tasa_views.xml',
-        'views/metodo_pago_views.xml',
-        'views/recibo_views.xml',
         'views/empresa_views.xml',
-        'views/direccion_views.xml',
         'views/convenio_empresa_views.xml',
         'views/oferta_practica_views.xml',
-        'views/tutor_externo_views.xml',
         'views/profesor_views.xml',
         'views/tipo_sesion_views.xml',
         'views/sesion_views.xml',
@@ -46,13 +62,8 @@
         'views/plaza_erasmus_views.xml',
         'views/asignatura_destino_views.xml',
         'views/universidad_destino_views.xml',
-        'views/asignatura_views.xml',
-        'views/guia_docente_views.xml',
-        'views/evento_views.xml',
-        'views/direccion_views',
-        'views/horario_tutoria_views.xml',
-        'views/libro_views.xml',
-        'views/menu.xml'
+        'views/menu.xml',
+      
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -60,3 +71,4 @@
     ],
     'application': True,
 }
+

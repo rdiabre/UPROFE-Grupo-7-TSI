@@ -5,8 +5,9 @@
         <field name="model">uprofe.sesion</field>
         <field name="arch" type="xml">
             <list>
-                <field name="dtInicio"/>
-                <field name="dtFin"/>
+                <field name="dFecha"/>
+                <field name="fHora_ini" widget="float_time"/>
+                <field name="fHora_fin" widget="float_time"/>
                 <field name="asignatura_id"/>
                 <field name="iN_sesion"/>
                 <field name="tipo_sesion_id"/>
@@ -32,8 +33,10 @@
                             <field name="profesor_ids" widget="many2many_tags"/>
                         </group>
                         <group string="Horario">
-                            <field name="dtInicio"/>
-                            <field name="dtFin"/>
+                            <field name="dFecha"/>
+                            <!-- float_time: muestra 9.5 como 09:30 -->
+                            <field name="fHora_ini" widget="float_time"/>
+                            <field name="fHora_fin" widget="float_time"/>
                             <field name="fDuracion" widget="float_time"/>
                         </group>
                     </group>
@@ -51,20 +54,22 @@
                 <field name="asignatura_id"/>
                 <field name="profesor_ids"/>
                 <field name="tipo_sesion_id"/>
-                <filter name="filtro_largas" string="Más de 2 horas" domain="[('fDuracion', '>', 2)]"/>
-                <filter name="filtro_cortas" string="1 hora o menos" domain="[('fDuracion', '&lt;=', 1)]"/> <!-- lt porque no se puede usar '<'-->
+                <filter name="filtro_hoy" string="Hoy"
+                        domain="[('dFecha', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="filtro_proximas" string="Próximas"
+                        domain="[('dFecha', '>=', context_today().strftime('%Y-%m-%d'))]"/>
                 <separator/>
-                <filter name="filtro_fecha" string="Fecha" date="dtInicio"/>
+                <filter name="filtro_fecha" string="Fecha" date="dFecha"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="agrupar_asignatura" string="Asignatura" context="{'group_by': 'asignatura_id'}"/>
                     <filter name="agrupar_tipo" string="Tipo de sesión" context="{'group_by': 'tipo_sesion_id'}"/>
-                    <filter name="agrupar_semana" string="Semana" context="{'group_by': 'dtInicio:week'}"/>
+                    <filter name="agrupar_semana" string="Semana" context="{'group_by': 'dFecha:week'}"/>
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- Vista avanzada: calendario semanal, un color por asignatura. Usa dtInicio y dtFin -->
+    <!-- Vista avanzada: calendario semanal, un color por asignatura. Usa dtInicio y dtFin; al arrastrar una sesión se cambian la fecha y las horas (inverse) -->
     <record id="view_sesion_calendar" model="ir.ui.view">
         <field name="name">uprofe.sesion.calendar</field>
         <field name="model">uprofe.sesion</field>

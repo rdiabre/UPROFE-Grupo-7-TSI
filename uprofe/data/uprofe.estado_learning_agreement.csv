@@ -1,11 +1,11 @@
-id,sName,sDescripcion,iColor,bInicial,bFinal,iSecuencia
-estado_la_borrador,borrador,El estudiante está preparando el acuerdo,0,True,False,10
-estado_la_enviado,enviado,Enviado al coordinador para revisión,4,False,False,20
-estado_la_pendiente_firma,pendiente_firma,Revisado y pendiente de firmas,3,False,False,30
-estado_la_firmado_estudiante,firmado_estudiante,Firmado por el estudiante,2,False,False,40
-estado_la_firmado_origen,firmado_origen,Firmado por la universidad de origen,2,False,False,50
-estado_la_firmado_destino,firmado_destino,Firmado por la universidad de destino,2,False,False,60
-estado_la_aprobado,aprobado,Acuerdo aprobado por las tres partes,10,False,False,70
-estado_la_modificacion_solicitada,modificacion_solicitada,Se ha pedido cambiar asignaturas del acuerdo,8,False,False,80
-estado_la_rechazado,rechazado,El acuerdo no ha sido aceptado,1,False,True,90
-estado_la_anulado,anulado,El acuerdo ya no es válido,1,False,True,100
+id,sName,sDescripcion
+estado_la_borrador,borrador,El estudiante está preparando el acuerdo
+estado_la_enviado,enviado,Enviado al coordinador para revisión
+estado_la_pendiente_firma,pendiente_firma,Revisado y pendiente de firmas
+estado_la_firmado_estudiante,firmado_estudiante,Firmado por el estudiante
+estado_la_firmado_origen,firmado_origen,Firmado por la universidad de origen
+estado_la_firmado_destino,firmado_destino,Firmado por la universidad de destino
+estado_la_aprobado,aprobado,Acuerdo aprobado por las tres partes
+estado_la_modificacion_solicitada,modificacion_solicitada,Se ha pedido cambiar asignaturas del acuerdo
+estado_la_rechazado,rechazado,El acuerdo no ha sido aceptado
+estado_la_anulado,anulado,El acuerdo ya no es válido

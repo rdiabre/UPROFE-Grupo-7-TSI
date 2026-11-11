@@ -8,39 +8,35 @@ class TipoRespuesta(models.Model):
     _description = 'Tipo de respuesta'
     _order = 'name asc'
 
-    name = fields.Char(string='Tipo', required=True)
-    bCon_opciones = fields.Boolean(string='Requiere opciones', default=False )
-    
+    name = fields.Char(string='Tipo', size=50, required=True)
+    bconopciones = fields.Boolean(string='Con opciones', default=False)
+
     pregunta_ids = fields.One2many('uprofe.pregunta', 'tipo_respuesta_id', string='Preguntas')
+
+    @api.constrains('bconopciones')
+    def _check_preguntas_coherentes(self):
+        for record in self:
+            for pregunta in record.pregunta_ids:
+                lineas = [l for l in (pregunta.sopciones or '').splitlines() if l.strip()]
+                if record.bconopciones and len(lineas) < 2:
+                    raise ValidationError(
+                        f"No se puede marcar «Con opciones» en el tipo «{record.name}»: "
+                        f"la pregunta «{pregunta.name}» no tiene al menos dos opciones. "
+                        "Cambia antes el tipo de esas preguntas o crea un tipo nuevo.")
+                if not record.bconopciones and lineas:
+                    raise ValidationError(
+                        f"No se puede quitar «Con opciones» del tipo «{record.name}»: "
+                        f"la pregunta «{pregunta.name}» tiene opciones. "
+                        "Cambia antes el tipo de esas preguntas o crea un tipo nuevo.")
 
     @api.constrains('name')
     def _check_name_unique(self):
         for record in self:
-            if record.name:
-                lDominio = [
-                    ('id', '!=', record.id),
-                    ('name', '=ilike', record.name.strip())
-                ]
+            if self.search_count([('id', '!=', record.id), ('name', '=ilike', record.name.strip())]):
+                raise ValidationError("Ya existe un tipo de respuesta con ese nombre.")
 
-                if self.search_count(lDominio):
-                    raise ValidationError('Ya existe un tipo de respuesta con ese nombre.')
-    
     @api.constrains('name')
     def _check_name_not_empty(self):
         for record in self:
-            nombre = (record.name or '').strip()
-
-            if not nombre:
-                raise ValidationError('El nombre del tipo de respuesta no puede estar vacío.')
-            if record.name != nombre:
-                raise ValidationError('El nombre del tipo de respuesta no puede tener espacios al principio o al final.' )
-            if len(nombre) > 50:
-                raise ValidationError( 'El nombre del tipo de respuesta no puede superar los 50 caracteres.')
-            
-            
-    @api.constrains('bCon_opciones')
-    def _check_preguntas_con_opciones(self):
-        for record in self:
-            if record.bCon_opciones:
-                for pregunta in record.pregunta_ids:
-                    pregunta._check_opciones()
+            if not record.name.strip():
+                raise ValidationError("El nombre del tipo de respuesta no puede estar vacío.")
