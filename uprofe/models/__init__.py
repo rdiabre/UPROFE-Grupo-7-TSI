@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 # Modelos abstractos que heredan los catálogos: deben cargarse antes que ellos
 from . import catalogo_mixin
+from . import departamento
+from . import titulacion
+from . import grado
+from . import master
+from . import plan_estudio
 from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
@@ -15,6 +20,8 @@ from . import asignatura_destino
 from . import asignatura
 from . import guia_docente
 from . import persona
+from . import alumno
+from . import investigador
 from . import profesor
 from . import sesion
 from . import tipo_sesion
