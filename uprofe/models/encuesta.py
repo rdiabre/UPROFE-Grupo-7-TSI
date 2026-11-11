@@ -15,7 +15,7 @@ class Encuesta(models.Model):
     dtFecha_inicio = fields.Date(string='Fecha de inicio', required=True)
     dtFecha_fin = fields.Date(string='Fecha de fin', required=True)
 
-    asignatura_id = fields.Many2one('uprofe.asignatura', string='Asignatura')
+    asignatura_ids = fields.Many2many('uprofe.asignatura', string='Asignaturas')
     profesor_id = fields.Many2one('uprofe.profesor', string='Profesor revisor', required=True)
     pregunta_ids = fields.One2many('uprofe.pregunta', 'encuesta_id', string='Preguntas')
 

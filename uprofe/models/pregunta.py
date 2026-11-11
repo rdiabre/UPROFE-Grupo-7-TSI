@@ -49,7 +49,17 @@ class Pregunta(models.Model):
 
                 if len(opciones) < 2:
                     raise ValidationError('Debes indicar al menos dos opciones.')
-                
+        
+    @api.constrains('sOpciones', 'tipo_respuesta_id')
+    def _check_respuestas_existentes(self):
+        for record in self:
+            respuestas = self.env['uprofe.respuesta_alumno'].search([
+                ('pregunta_id', '=', record.id)
+            ])
+
+            for respuesta in respuestas:
+                respuesta._check_respuesta_valida()
+                            
     @api.onchange('iNum_pregunta')
     def _onchange_iNum_pregunta(self):
         if self.iNum_pregunta < 1:

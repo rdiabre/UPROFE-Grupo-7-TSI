@@ -44,3 +44,4 @@ class TipoRespuesta(models.Model):
             if record.bCon_opciones:
                 for pregunta in record.pregunta_ids:
                     pregunta._check_opciones()
+                    pregunta._check_respuestas_existentes()
