@@ -52,7 +52,8 @@ class UniversidadDestino(models.Model):
     idioma_ids = fields.Many2many('uprofe.idioma', 'uprofe_universidad_idioma_rel',
                                   'universidad_id', 'idioma_id', string="Idiomas de docencia")
 
-    # Descomentar cuando convenio tenga el campo universidad_id (inverso de esta relación)
+    # Descomentar cuando convenio tenga el campo universidad_id (inverso de esta relación).
+    # A 11/11/2026 uprofe.convenio sigue sin ese campo, así que no se puede activar.
     # convenio_ids = fields.One2many('uprofe.convenio', 'universidad_id', string="Convenios")
     plaza_ids = fields.One2many('uprofe.plaza_erasmus', 'universidad_id', string="Plazas")
     asignatura_ids = fields.One2many('uprofe.asignatura_destino', 'universidad_id', string="Asignaturas")

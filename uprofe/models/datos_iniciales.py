@@ -18,6 +18,13 @@ CLAVES_NATURALES = [
     ('uprofe.estado_movilidad', [['sName']]),
     ('uprofe.estado_learning_agreement', [['sName']]),
     ('uprofe.estado_la_linea', [['sName']]),
+    ('uprofe.tipo_convocatoria', [['sName']]),
+    ('uprofe.estado_convocatoria', [['name']]),
+    ('uprofe.convocatoria', [['name']]),
+    ('uprofe.tipo_solicitud', [['sName']]),
+    ('uprofe.estado_solicitud', [['name']]),
+    ('uprofe.solicitud', [['sName']]),
+    ('uprofe.asignatura', [['sCod_asig']]),
     ('uprofe.ciudad', [['sName', 'pais_id:id']]),
     ('uprofe.universidad_destino', [['cod_erasmus']]),
     ('uprofe.plaza_erasmus', [['cod_plaza']]),
@@ -76,7 +83,14 @@ class DatosIniciales(models.AbstractModel):
                         break
                     dominio.append((columna[:-3], '=', referencia.res_id))
                 else:
-                    if Modelo._fields[columna].type == 'integer':
+                    campo = Modelo._fields.get(columna)
+                    if not campo:
+                        # La columna ya no existe en el modelo (p. ej. un compañero renombró el campo):
+                        # no se puede usar esta clave, pero no debe parar la actualización del módulo.
+                        _logger.warning("uprofe: %s no tiene el campo '%s' del CSV; se ignora esa clave",
+                                        Modelo._name, columna)
+                        break
+                    if campo.type == 'integer':
                         valor = int(valor)
                     dominio.append((columna, '=', valor))
             else:
