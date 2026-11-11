@@ -15,7 +15,7 @@ class Empresa(models.Model):
 
     financiacion_ids = fields.One2many('uprofe.financiacion', 'empresa_id', string='Financiaciones')
     oferta_ids = fields.One2many('uprofe.oferta_practica', 'empresa_id', string='Ofertas de práctica')   
-    #direccion_id = fields.Many2one('uprofe.direccion', string='Dirección', required=True)               
+    direccion_id = fields.Many2one('uprofe.direccion', string='Dirección', required=True)               
 
 
     @api.constrains('name')
