@@ -16,7 +16,7 @@ class Direccion(models.Model):
     sCod_postal = fields.Char(string='Código postal', required=True)
 
     empresa_ids = fields.One2many('uprofe.empresa', 'direccion_id', string='Empresas')
-    # persona_ids = fields.One2many('uprofe.persona', 'direccion_id', string='Personas')
+    persona_ids = fields.One2many('uprofe.persona', 'direccion_id', string='Personas')
 
     @api.constrains('name')
     def _check_codigo(self):

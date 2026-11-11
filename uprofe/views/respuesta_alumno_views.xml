@@ -18,6 +18,7 @@
             <form string="Respuesta de alumno">
                 <sheet>
                     <group>
+                        <field name="alumno_id"/>
                         <field name="pregunta_id"/>
                         <field name="name"/>
                     </group>
@@ -31,6 +32,7 @@
         <field name="model">uprofe.respuesta_alumno</field>
         <field name="arch" type="xml">
             <list string="Respuestas de alumnos">
+                <field name="alumno_id"/>
                 <field name="pregunta_id"/>
                 <field name="name"/>
             </list>
@@ -42,6 +44,7 @@
         <field name="model">uprofe.respuesta_alumno</field>
         <field name="arch" type="xml">
             <search>
+                <field name="alumno_id"/>
                 <field name="pregunta_id"/>
                 <field name="name"/>
                 <filter name="con_opciones" string="Preguntas con opciones" domain="[('pregunta_id.tipo_respuesta_id.bCon_opciones', '=', True)]"/>

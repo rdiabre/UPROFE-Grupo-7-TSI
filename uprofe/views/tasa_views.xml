@@ -20,6 +20,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="alumno_id"/>
                             <field name="name"/>
                             <field name="tipo_tasa_id"/>
                         </group>
@@ -53,6 +54,7 @@
         <field name="model">uprofe.tasa</field>
         <field name="arch" type="xml">
             <list string="Tasas">
+                <field name="alumno_id"/>
                 <field name="name"/>
                 <field name="tipo_tasa_id"/>
                 <field name="fImporte"/>
@@ -67,6 +69,7 @@
         <field name="model">uprofe.tasa</field>
         <field name="arch" type="xml">
             <search>
+                <field name="alumno_id"/>
                 <field name="name"/>
                 <field name="tipo_tasa_id"/>
                 <filter name="pendientes" string="Pendientes"

@@ -53,13 +53,9 @@ from . import recibo
 from . import empresa
 from . import convenio_empresa
 from . import oferta_practica
-from . import doc_adjunta
 from . import solicitud
-from . import convenio
 from . import convocatoria
 from . import tipo_convocatoria
-from . import tipo_solicitud
-from . import estado_solicitud
 from . import estado_acuerdo
 from . import pregunta
 from . import tipo_respuesta

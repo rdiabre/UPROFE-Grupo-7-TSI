@@ -31,6 +31,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="persona_id"/>
                             <field name="name"/>
                             <field name="sApellidos"/>
                             <field name="sDni"/>
