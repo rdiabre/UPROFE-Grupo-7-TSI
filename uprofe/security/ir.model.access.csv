@@ -46,13 +46,13 @@ recibo_manager,recibo_manager,model_uprofe_recibo,group_uprofe_manager,1,1,1,1
 pregunta_manager,pregunta_manager,model_uprofe_pregunta,group_uprofe_manager,1,1,1,1
 tipo_respuesta_manager,tipo_respuesta_manager,model_uprofe_tipo_respuesta,group_uprofe_manager,1,1,1,1
 estado_la_linea_manager,estado_la_linea_manager,model_uprofe_estado_la_linea,group_uprofe_manager,1,1,1,1
-departamento_manager, departamento_manager,model_uprofe_departamento, group_uprofe_departamento,1,1,1,1
-titulacion_manager, titulacion_manager, model_uprofe_titulacion, group_uprofe_titulacion,1,1,1,1
-master_manager, master_manager, model_uprofe_master, group_uprofe_master, 1,1,1,1
-grado_manager, grado_manager, model_uprofe_grado, group_uprofe_grado, 1,1,1,1
-plan_estudio_manager, plan_estudio_manager, model_uprofe_plan_estudio, group_uprofe_plan_estudio, 1,1,1,1
-alumno_manager, alumno_manager, model_uprofe_alumno, group_uprofe_alumno,1,1,1,1
-investigador_manager, investigador_manager, model_uprofe_investigador, group_uprofe_investigador,1,1,1,1
+departamento_manager,departamento_manager,model_uprofe_departamento,group_uprofe_manager,1,1,1,1
+titulacion_manager,titulacion_manager,model_uprofe_titulacion,group_uprofe_manager,1,1,1,1
+master_manager,master_manager,model_uprofe_master,group_uprofe_manager,1,1,1,1
+grado_manager,grado_manager,model_uprofe_grado,group_uprofe_manager,1,1,1,1
+plan_estudio_manager,plan_estudio_manager,model_uprofe_plan_estudio,group_uprofe_manager,1,1,1,1
+alumno_manager,alumno_manager,model_uprofe_alumno,group_uprofe_manager,1,1,1,1
+investigador_manager,investigador_manager,model_uprofe_investigador,group_uprofe_manager,1,1,1,1
 ubicacion_manager,ubicacion_manager,model_uprofe_ubicacion,group_uprofe_manager,1,1,1,1
 edificio_manager,edificio_manager,model_uprofe_edificio,group_uprofe_manager,1,1,1,1
 espacio_manager,espacio_manager,model_uprofe_espacio,group_uprofe_manager,1,1,1,1
