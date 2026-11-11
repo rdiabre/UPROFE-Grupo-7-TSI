@@ -34,6 +34,7 @@
                             <field name="sApellidos"/>
                             <field name="email" string="Correo electrónico" required="1"/>
                             <field name="phone" string="Teléfono" required="1"/>
+                            <field name="direccion_id"/>
                         </group>
                         <!-- Campos propios -->
                         <group string="Datos del profesor">
