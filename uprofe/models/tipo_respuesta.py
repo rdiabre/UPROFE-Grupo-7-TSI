@@ -8,7 +8,7 @@ class TipoRespuesta(models.Model):
     _description = 'Tipo de respuesta'
     _order = 'name asc'
 
-    name = fields.Char(string='Tipo', size=50, required=True)
+    name = fields.Char(string='Tipo', required=True)
     bCon_opciones = fields.Boolean(string='Requiere opciones', default=False )
     
     pregunta_ids = fields.One2many('uprofe.pregunta', 'tipo_respuesta_id', string='Preguntas')
@@ -32,9 +32,10 @@ class TipoRespuesta(models.Model):
 
             if not nombre:
                 raise ValidationError('El nombre del tipo de respuesta no puede estar vacío.')
-
             if record.name != nombre:
                 raise ValidationError('El nombre del tipo de respuesta no puede tener espacios al principio o al final.' )
+            if len(nombre) > 50:
+                raise ValidationError( 'El nombre del tipo de respuesta no puede superar los 50 caracteres.')
             
             
     @api.constrains('bCon_opciones')
@@ -42,5 +43,4 @@ class TipoRespuesta(models.Model):
         for record in self:
             if record.bCon_opciones:
                 for pregunta in record.pregunta_ids:
-                    if not pregunta.sOpciones or not pregunta.sOpciones.strip():
-                        raise ValidationError('No puedes activar "Requiere opciones" porque hay preguntas de este tipo sin opciones.')        
+                    pregunta._check_opciones()
