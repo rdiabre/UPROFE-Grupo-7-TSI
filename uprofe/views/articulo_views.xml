@@ -17,7 +17,7 @@
                 <sheet>
                     <group>
                         <group string="Datos de la publicación">
-                            <field name="sName"/>
+                            <field name="name"/>
                             <field name="sTitulo"/>
                             <field name="dFecha_publicacion"/>
                         </group>
@@ -48,7 +48,7 @@
         <field name="model">uprofe.articulo</field>
         <field name="arch" type="xml">
             <list string="Artículos">
-                <field name="sName"/>
+                <field name="name"/>
                 <field name="sTitulo"/>
                 <field name="sRevista"/>
                 <field name="dFecha_publicacion"/>
