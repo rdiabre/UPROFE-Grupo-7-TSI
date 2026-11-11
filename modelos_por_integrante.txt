@@ -1,0 +1,105 @@
+Angelo Ríos Mera:
+  uprofe.edificio
+  uprofe.equipo
+  uprofe.espacio
+  uprofe.franja_horaria
+  uprofe.horario_disponibilidad
+  uprofe.incidencia
+  uprofe.inventario
+  uprofe.mobiliario
+  uprofe.objeto_inventariable
+  uprofe.reserva_horario
+  uprofe.sala_estudio
+  uprofe.ubicacion
+
+Carlos Gallego Reina
+  uprofe.aula
+  uprofe.convocatoria_asignatura
+  uprofe.evento
+  uprofe.horario_tutoria
+  uprofe.laboratorio
+  uprofe.libro
+  uprofe.prestamo
+  uprofe.tipo_evento
+  uprofe.tutoria
+
+Fernando Franzoni Gómez:
+  uprofe.convenio
+  uprofe.convocatoria
+  uprofe.doc_adjunta
+  uprofe.estado_acuerdo
+  uprofe.estado_convenio
+  uprofe.estado_convocatoria
+  uprofe.estado_solicitud
+  uprofe.solicitud
+  uprofe.tipo_convocatoria
+  uprofe.tipo_solicitud
+
+Francisco de Paula Rodríguez Tejada
+  uprofe.alumno
+  uprofe.defensa_tfg
+  uprofe.departamento
+  uprofe.grado
+  uprofe.investigador
+  uprofe.master
+  uprofe.plan_de_estudio
+  uprofe.titulacion
+  uprofe.trabajo_final
+  uprofe.tribunal_tf
+
+Isabel Cherino Berrocal:
+  uprofe.asignatura_destino
+  uprofe.ciudad
+  uprofe.estado_la_linea
+  uprofe.estado_learning_agreement
+  uprofe.estado_movilidad
+  uprofe.idioma
+  uprofe.la_linea
+  uprofe.learning_agreement
+  uprofe.movilidad
+  uprofe.nivel_estudios
+  uprofe.pais
+  uprofe.plaza_erasmus
+  uprofe.universidad_destino
+
+José Ignacio Muñoz Sotelo:
+  uprofe.acta
+  uprofe.asignatura
+  uprofe.expediente
+  uprofe.guia_docente
+  uprofe.linea_acta
+  uprofe.persona
+  uprofe.profesor
+  uprofe.reclamacion
+  uprofe.sesion
+  uprofe.tipo_sesion
+
+Rodrigo Díaz Brenes:
+  uprofe.articulo
+  uprofe.congreso
+  uprofe.financiacion
+  uprofe.grupo_inv
+  uprofe.libro_inv
+  uprofe.linea_investigacion
+  uprofe.patente
+  uprofe.proyecto_investigacion
+  uprofe.publicacion
+  uprofe.usuario
+
+Sandra Megolla Fernández:
+  uprofe.acuerdo
+  uprofe.convenio_empresa
+  uprofe.direccion
+  uprofe.empresa
+  uprofe.encuesta
+  uprofe.metodo_pago
+  uprofe.oferta_practica
+  uprofe.pregunta
+  uprofe.recibo
+  uprofe.respuesta_alumno
+  uprofe.seguimiento_alu_int
+  uprofe.seguimiento_practica
+  uprofe.tasa
+  uprofe.tipo_respuesta
+  uprofe.tipo_tasa
+  uprofe.tutor_externo
