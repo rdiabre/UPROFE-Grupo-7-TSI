@@ -9,7 +9,7 @@ class tipo_convocatoria(models.Model):
     _order = 'name asc'
 
     name = fields.Char(string="Nombre", size=50, required=True)
-    descripcion = fields.Text(string="Descripción")
+    sDescripcion = fields.Text(string="Descripción")
 
     
     @api.constrains('name')
