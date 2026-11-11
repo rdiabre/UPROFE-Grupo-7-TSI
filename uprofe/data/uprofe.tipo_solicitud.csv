@@ -1,4 +1,4 @@
-id,sName,sDescripcion
+id,name,sDescripcion
 tipo_sol_estudios,Movilidad de estudios,Solicitud de plaza para cursar estudios
 tipo_sol_practicas,Movilidad de prácticas,Solicitud de plaza para realizar prácticas
 tipo_sol_ampliacion,Ampliación de estancia,Solicitud para ampliar una movilidad en curso

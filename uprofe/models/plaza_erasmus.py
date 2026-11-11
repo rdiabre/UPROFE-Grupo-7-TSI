@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autor: Isabel Cherino
 
 import re
 import unicodedata

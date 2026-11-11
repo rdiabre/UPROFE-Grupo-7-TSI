@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Autor: Isabel Cherino -->
 <odoo>
     <!-- Se ejecuta antes de los CSV de data/ en cada instalación y actualización:
          devuelve su xmlid a los registros que ya existen pero lo han perdido, para que el

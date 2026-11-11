@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autor: Isabel Cherino
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError, UserError

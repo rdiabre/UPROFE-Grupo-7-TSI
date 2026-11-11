@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autor: Isabel Cherino
 
 import csv
 import logging
@@ -18,12 +19,12 @@ CLAVES_NATURALES = [
     ('uprofe.estado_movilidad', [['sName']]),
     ('uprofe.estado_learning_agreement', [['sName']]),
     ('uprofe.estado_la_linea', [['sName']]),
-    ('uprofe.tipo_convocatoria', [['sName']]),
+    ('uprofe.tipo_convocatoria', [['name']]),
     ('uprofe.estado_convocatoria', [['name']]),
     ('uprofe.convocatoria', [['name']]),
-    ('uprofe.tipo_solicitud', [['sName']]),
+    ('uprofe.tipo_solicitud', [['name']]),
     ('uprofe.estado_solicitud', [['name']]),
-    ('uprofe.solicitud', [['sName']]),
+    ('uprofe.solicitud', [['name']]),
     ('uprofe.asignatura', [['sCod_asig']]),
     ('uprofe.ciudad', [['sName', 'pais_id:id']]),
     ('uprofe.universidad_destino', [['cod_erasmus']]),
