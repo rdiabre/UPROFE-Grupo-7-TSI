@@ -44,6 +44,7 @@ Descripción del módulo
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/convenio_views.xml',
         'views/estado_convocatoria_views.xml',
         'views/doc_adjunta_views.xml'
         'views/ubicacion_views.xml',
@@ -87,7 +88,7 @@ Descripción del módulo
         'views/respuesta_alumno_views.xml',
         'views/seguimiento_alu_int_views.xml',
         'views/menu.xml',
-        'views/tipo_solicitud_views.xml'
+        'views/tipo_solicitud_views.xml',
         'views/menu.xml'
 
     ],

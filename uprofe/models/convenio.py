@@ -14,7 +14,7 @@ class convenio(models.Model):
     dFechaFin = fields.Date(string="Fecha de fin", required=True)
 
     oEstadoConvenio_id = fields.Many2one('uprofe.estado_convenio', string="Estado del convenio", required=True)
-    titulacion_ids = fields.Many2many('uprofe.titulacion', 'uprofe_titulacion_convenio_rel','convenio_id', 'titulacion_id', string="Titulaciones")
+    #titulacion_ids = fields.Many2many('uprofe.titulacion', 'uprofe_titulacion_convenio_rel','convenio_id', 'titulacion_id', string="Titulaciones")
 
     @api.constrains('sName')
     def _check_name_unique(self):
