@@ -24,6 +24,7 @@
                             <field name="tipo_tasa_id"/>
                         </group>
                         <group>
+                            <field name="alumno_id"/>
                             <field name="fImporte"/>
                             <field name="iCantidad_plazos"/>
                             <field name="sEstado"/>
@@ -54,6 +55,7 @@
         <field name="arch" type="xml">
             <list string="Tasas">
                 <field name="name"/>
+                <field name="alumno_id"/>
                 <field name="tipo_tasa_id"/>
                 <field name="fImporte"/>
                 <field name="iCantidad_plazos"/>
@@ -69,6 +71,7 @@
             <search>
                 <field name="name"/>
                 <field name="tipo_tasa_id"/>
+                <field name="alumno_id"/>
                 <filter name="pendientes" string="Pendientes"
                         domain="[('sEstado', '=', 'pendiente')]"/>
                 <filter name="pagadas" string="Pagadas"

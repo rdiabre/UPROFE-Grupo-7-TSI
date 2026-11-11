@@ -25,6 +25,7 @@
                             <field name="tutor_interno_id"/>
                             <field name="solicitud_id"/>
                             <field name="estado_acuerdo_id"/>
+                            <field name="alumno_id"/>
                         </group>
                         <group>
                             <field name="dFecha_firma"/>
@@ -48,6 +49,7 @@
         <field name="arch" type="xml">
             <list string="Acuerdos">
                 <field name="name"/>
+                <field name="alumno_id"/>
                 <field name="tutor_interno_id"/>
                 <field name="solicitud_id"/>
                 <field name="estado_acuerdo_id"/>
@@ -67,6 +69,7 @@
                 <field name="tutor_interno_id"/>
                 <field name="solicitud_id"/>
                 <field name="estado_acuerdo_id"/>
+                <field name="alumno_id"/>
                 <filter name="con_seguimientos" string="Con seguimientos" domain="[('seguimiento_ids', '!=', False)]"/>
                 <filter name="sin_seguimientos" string="Sin seguimientos" domain="[('seguimiento_ids', '=', False)]"/>
                 <group expand="0" string="Agrupar por">

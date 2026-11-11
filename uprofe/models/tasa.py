@@ -17,9 +17,7 @@ class Tasa(models.Model):
 
     tipo_tasa_id = fields.Many2one('uprofe.tipo_tasa', string='Tipo de tasa', required=True)
 
-    # Descomento cuando uprofe.alumno esté en main
-    # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno',
-    #                             required=True)
+    alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
 
     recibo_ids = fields.One2many('uprofe.recibo', 'tasa_id', string='Recibos')
 

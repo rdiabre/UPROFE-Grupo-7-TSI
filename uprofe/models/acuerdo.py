@@ -14,7 +14,7 @@ class Acuerdo(models.Model):
     dFecha_inicio = fields.Date(string='Fecha de inicio', required=True)
     dFecha_fin = fields.Date(string='Fecha de fin', required=True)
 
-    # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
+    alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
     tutor_interno_id = fields.Many2one('uprofe.profesor', string='Tutor interno', required=True)
     solicitud_id = fields.Many2one('uprofe.solicitud', string='Solicitud', required=True)
     estado_acuerdo_id = fields.Many2one('uprofe.estado_acuerdo', string='Estado', required=True)
