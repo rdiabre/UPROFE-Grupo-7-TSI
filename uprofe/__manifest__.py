@@ -45,6 +45,8 @@ Descripción del módulo
         'views/pregunta_views.xml',
         'views/persona_views.xml',
         'views/congreso_views.xml',
+        'views/patente_views.xml',
+        'views/articulo_views.xml',
         'views/convenio_views.xml',
         'views/estado_convocatoria_views.xml',
         'views/doc_adjunta_views.xml'

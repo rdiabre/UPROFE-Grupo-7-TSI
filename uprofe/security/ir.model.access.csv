@@ -17,6 +17,8 @@ estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_conv
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
 congreso_manager,congreso_manager,model_uprofe_congreso,group_uprofe_manager,1,1,1,1
+patente_manager,patente_manager,model_uprofe_patente,group_uprofe_manager,1,1,1,1
+articulo_manager,articulo_manager,model_uprofe_articulo,group_uprofe_manager,1,1,1,1
 convenio_manager,convenio_manager,model_uprofe_convenio,group_uprofe_manager,1,1,1,1
 tipo_solicitud_manager,tipo_solicitud_manager,model_uprofe_tipo_solicitud,group_uprofe_manager,1,1,1,1
 doc_adjunta_manager,doc_adjunta_manager,model_uprofe_doc_adjunta,group_uprofe_manager,1,1,1,1

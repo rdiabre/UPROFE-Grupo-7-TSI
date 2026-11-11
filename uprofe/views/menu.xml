@@ -5,8 +5,10 @@
 
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
     <menuitem name="Convenios" id="convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="convenio_list_action"/>
+    <menuitem name="Patentes" id="patente_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="patente_list_action"/>
 
     <menuitem name="Aportaciones a congreso" id="congreso_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="congreso_list_action"/>
+    <menuitem name="Artículos" id="articulo_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="articulo_list_action"/>
     <menuitem name="Tipos de solicitud" id="tipo_solicitud_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_solicitud_list_action"/>
 
     <menuitem name="Estados de convocatoria" id="estado_convocatoria_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_convocatoria_list_action"/>
