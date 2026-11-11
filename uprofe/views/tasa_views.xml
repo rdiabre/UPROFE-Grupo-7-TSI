@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_tasa_graph" model="ir.ui.view">
+        <field name="name">uprofe.tasa.graph</field>
+        <field name="model">uprofe.tasa</field>
+        <field name="arch" type="xml">
+            <graph string="Importe por tipo de tasa" type="bar">
+                <field name="tipo_tasa_id"/>
+                <field name="fImporte" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tasa_form" model="ir.ui.view">
+        <field name="name">uprofe.tasa.form</field>
+        <field name="model">uprofe.tasa</field>
+        <field name="arch" type="xml">
+            <form string="Tasa">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="tipo_tasa_id"/>
+                        </group>
+                        <group>
+                            <field name="fImporte"/>
+                            <field name="iCantidad_plazos"/>
+                            <field name="sEstado"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Recibos">
+                            <field name="recibo_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="iNumero_plazo"/>
+                                    <field name="fImporte"/>
+                                    <field name="dFecha"/>
+                                    <field name="dFecha_limite"/>
+                                    <field name="metodo_pago_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tasa_list" model="ir.ui.view">
+        <field name="name">uprofe.tasa.list</field>
+        <field name="model">uprofe.tasa</field>
+        <field name="arch" type="xml">
+            <list string="Tasas">
+                <field name="name"/>
+                <field name="tipo_tasa_id"/>
+                <field name="fImporte"/>
+                <field name="iCantidad_plazos"/>
+                <field name="sEstado"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tasa_search" model="ir.ui.view">
+        <field name="name">uprofe.tasa.search</field>
+        <field name="model">uprofe.tasa</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="tipo_tasa_id"/>
+                <filter name="pendientes" string="Pendientes"
+                        domain="[('sEstado', '=', 'pendiente')]"/>
+                <filter name="pagadas" string="Pagadas"
+                        domain="[('sEstado', '=', 'pagada')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_estado" string="Estado"
+                            context="{'group_by': 'sEstado'}"/>
+                    <filter name="group_tipo" string="Tipo de tasa"
+                            context="{'group_by': 'tipo_tasa_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_tasa" model="ir.actions.act_window">
+        <field name="name">Tasas</field>
+        <field name="res_model">uprofe.tasa</field>
+        <field name="search_view_id" ref="view_uprofe_tasa_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>

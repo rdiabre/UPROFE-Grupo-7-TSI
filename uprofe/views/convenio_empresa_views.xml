@@ -28,6 +28,11 @@
                             <field name="dFecha_expiracion"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Ofertas de práctica">
+                            <field name="oferta_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

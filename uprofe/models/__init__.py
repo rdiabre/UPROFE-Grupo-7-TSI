@@ -27,6 +27,10 @@ from . import estado_learning_agreement
 from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
+from . import tasa
+from . import tipo_tasa
+from . import metodo_pago
+from . import recibo
 from . import empresa
 from . import convenio_empresa
 from . import oferta_practica
