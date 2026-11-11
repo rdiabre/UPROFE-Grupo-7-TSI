@@ -71,7 +71,7 @@ Descripción del módulo
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
         'views/menu.xml',
-      
+        'views/libro_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -79,4 +79,3 @@ Descripción del módulo
     ],
     'application': True,
 }
-
