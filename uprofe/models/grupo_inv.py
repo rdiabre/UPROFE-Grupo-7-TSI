@@ -5,7 +5,7 @@ class grupo_inv(models.Model):
     _name = 'uprofe.grupo_inv'
     _description = 'Grupos de investigación'
     
-    sName = fields.Char(string="Código del grupo de investigación", required=True)
+    name = fields.Char(string="Código del grupo de investigación", required=True)
     sNombre = fields.Char(string="Nombre del grupo", required=True)
     dFecha_creacion = fields.Datetime(string="Fecha de creación", autodate=True, readonly=True)
     
@@ -15,16 +15,16 @@ class grupo_inv(models.Model):
     proyecto_investigacion_ids = fields.One2many('uprofe.proyecto_investigacion', 'grupo_inv_id', 'Proyectos')
     linea_investigacion_ids = fields.One2many('uprofe.linea_investigacion', 'grupo_inv_id', 'Líneas de investigación')
     
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', (record.sName or '').strip())]):
+            if self.search_count([('id', '!=', record.id), ('name', '=ilike', (record.name or '').strip())]):
                 raise ValidationError("Ya existe un grupo con este código, debe ser único")
     
-    @api.constrains('sName')
+    @api.constrains('name')
     def _check_codigo_valido(self):
         for record in self:
-            if len((record.sName or '').strip()) == 0:
+            if len((record.name or '').strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
     @api.constrains('sNombre')
