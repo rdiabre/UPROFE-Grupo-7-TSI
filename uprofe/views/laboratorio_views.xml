@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista Formulario -->
+    <record id="view_uprofe_laboratorio_form" model="ir.ui.view">
+        <field name="name">uprofe.laboratorio.form</field>
+        <field name="model">uprofe.laboratorio</field>
+        <field name="arch" type="xml">
+            <form string="Laboratorio">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="cod_espacio"/>
+                        <h1>
+                            <field name="cod_espacio" placeholder="Ej. LAB-01, LAB-QUIM..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Datos del Espacio">
+                            <field name="planta"/>
+                            <field name="capacidad"/>
+                        </group>
+                        <group string="Datos del Laboratorio">
+                            <field name="especialidad"/>
+                        </group>
+                    </group>
+                    <group string="Seguridad">
+                        <field name="normas_seguridad" placeholder="Describa el protocolo de seguridad obligatorio..."/>
+                    </group>
+                    <notebook>
+                        <page string="Grupos de Investigación">
+                            <field name="grupo_inv_ids">
+                                <tree>
+                                    <field name="name" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Árbol / Lista -->
+    <record id="view_uprofe_laboratorio_tree" model="ir.ui.view">
+        <field name="name">uprofe.laboratorio.tree</field>
+        <field name="model">uprofe.laboratorio</field>
+        <field name="arch" type="xml">
+            <tree string="Laboratorios">
+                <field name="cod_espacio"/>
+                <field name="especialidad"/>
+                <field name="planta"/>
+                <field name="capacidad"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Búsqueda / Filtros -->
+    <record id="view_uprofe_laboratorio_search" model="ir.ui.view">
+        <field name="name">uprofe.laboratorio.search</field>
+        <field name="model">uprofe.laboratorio</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Laboratorio">
+                <field name="cod_espacio"/>
+                <field name="especialidad"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Planta" name="group_by_planta" context="{'group_by': 'planta'}"/>
+                    <filter string="Especialidad" name="group_by_especialidad" context="{'group_by': 'especialidad'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana -->
+    <record id="action_uprofe_laboratorio" model="ir.actions.act_window">
+        <field name="name">Laboratorios</field>
+        <field name="res_model">uprofe.laboratorio</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_uprofe_laboratorio_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea el primer laboratorio del sistema
+            </p>
+        </field>
+    </record>
+
+</odoo>
