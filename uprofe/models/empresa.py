@@ -23,23 +23,17 @@ class Empresa(models.Model):
         for record in self:
             if record.name:
                 if record.name.strip() == '':
-                    raise ValidationError(
-                        'El nombre de la empresa no puede contener solo espacios.'
-                    )
+                    raise ValidationError('El nombre de la empresa no puede contener solo espacios.' )
     
     @api.constrains('sCif')
     def _check_cif(self):
         for record in self:
             if record.sCif:
                 if len(record.sCif) != 9:
-                    raise ValidationError(
-                        'El CIF debe tener 9 caracteres.'
-                    )
+                    raise ValidationError('El CIF debe tener 9 caracteres.' )
 
                 if ' ' in record.sCif:
-                    raise ValidationError(
-                        'El CIF no puede contener espacios.'
-                    ) 
+                    raise ValidationError('El CIF no puede contener espacios.' ) 
                                    
     @api.constrains('sCif')
     def _check_cif_unique(self):
@@ -51,23 +45,30 @@ class Empresa(models.Model):
                 ]
 
                 if self.search_count(lDominio):
-                    raise ValidationError(
-                        'Ya existe una empresa con este CIF.'
-                    )
-                    
+                    raise ValidationError('Ya existe una empresa con este CIF.')
+                                    
     @api.constrains('sEmail')
     def _check_email(self):
         for record in self:
             if record.sEmail:
-                if '@' not in record.sEmail:
-                    raise ValidationError(
-                        'El correo electrónico debe contener una @.'
-                    )
+                correo = record.sEmail
 
-                if ' ' in record.sEmail:
-                    raise ValidationError(
-                        'El correo electrónico no puede contener espacios.'
-                    )
+                if ' ' in correo:
+                    raise ValidationError('El correo electrónico no puede contener espacios.')
+
+                if correo.count('@') != 1:
+                    raise ValidationError('El correo electrónico debe contener una sola @.')
+
+                usuario, dominio = correo.split('@')
+
+                if not usuario or not dominio:
+                    raise ValidationError('El correo electrónico debe tener texto antes y después de la @.' )
+
+                if '.' not in dominio:
+                    raise ValidationError('El dominio del correo electrónico debe contener un punto.')
+
+                if dominio.startswith('.') or dominio.endswith('.'):
+                    raise ValidationError('El dominio del correo electrónico no puede empezar ni terminar con un punto.')
 
     @api.onchange('sCif')
     def _onchange_cif(self):
