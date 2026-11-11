@@ -1,11 +1,11 @@
-id,cod_asig_destino,sName,fCreditos_ects,idioma_id:id
-asig_bologna_bd,BOL-INF-101,Basi di Dati,6,idioma_italiano
-asig_roma_ia,ROM-INF-210,Intelligenza Artificiale,9,idioma_italiano
-asig_paris_droit,PAR-DRT-305,Droit International Public,6,idioma_frances
-asig_berlin_ml,BER-INF-420,Maschinelles Lernen,8,idioma_aleman
-asig_lisboa_eco,LIS-ECO-150,Economia Europeia,6,idioma_portugues
-asig_amsterdam_ds,AMS-DS-500,Data Science,6,idioma_ingles
-asig_leuven_bio,LEU-BIO-330,Molecular Biology,5,idioma_ingles
-asig_varsovia_hist,WAR-HIS-120,History of Central Europe,4.5,idioma_ingles
-asig_dublin_se,DUB-CS-340,Software Engineering,5,idioma_ingles
-asig_estocolmo_sost,STO-ENV-210,Sustainable Development,7.5,idioma_ingles
+id,cod_asig_destino,sName,fCreditos_ects,sSemestre,idioma_id:id,universidad_id:id
+asig_roma_bd,ROM-INF-101,Basi di Dati,6,1,idioma_italiano,univ_roma
+asig_roma_ia,ROM-INF-210,Intelligenza Artificiale,9,2,idioma_italiano,univ_roma
+asig_paris_droit,PAR-DRT-305,Droit International Public,6,1,idioma_frances,univ_paris
+asig_berlin_ml,BER-INF-420,Maschinelles Lernen,8,2,idioma_aleman,univ_berlin
+asig_lisboa_eco,LIS-ECO-150,Economia Europeia,6,1,idioma_portugues,univ_lisboa
+asig_amsterdam_ds,AMS-DS-500,Data Science,6,1,idioma_ingles,univ_amsterdam
+asig_amsterdam_ml,AMS-AI-420,Machine Learning,8,2,idioma_ingles,univ_amsterdam
+asig_varsovia_hist,WAR-HIS-120,History of Central Europe,4.5,1,idioma_ingles,univ_varsovia
+asig_dublin_se,DUB-CS-340,Software Engineering,5,2,idioma_ingles,univ_dublin
+asig_estocolmo_sost,STO-ENV-210,Sustainable Development,7.5,anual,idioma_ingles,univ_estocolmo

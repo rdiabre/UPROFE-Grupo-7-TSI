@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_empresa_graph" model="ir.ui.view">
+        <field name="name">uprofe.empresa.graph</field>
+        <field name="model">uprofe.empresa</field>
+        <field name="arch" type="xml">
+            <graph string="Empresas por sector" type="bar">
+                <field name="sNombre_sector"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_empresa_form" model="ir.ui.view">
+        <field name="name">uprofe.empresa.form</field>
+        <field name="model">uprofe.empresa</field>
+        <field name="arch" type="xml">
+            <form string="Empresa">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sCif"/>
+                        </group>
+                        <group>
+                            <field name="sNombre_sector"/>
+                            <field name="sEmail"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ofertas de práctica">
+                            <field name="oferta_ids"/>
+                        </page>
+                        <page string="Financiaciones">
+                            <field name="financiacion_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_empresa_list" model="ir.ui.view">
+        <field name="name">uprofe.empresa.list</field>
+        <field name="model">uprofe.empresa</field>
+        <field name="arch" type="xml">
+            <list string="Empresas">
+                <field name="name"/>
+                <field name="sCif"/>
+                <field name="sNombre_sector"/>
+                <field name="sEmail"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_empresa_search" model="ir.ui.view">
+        <field name="name">uprofe.empresa.search</field>
+        <field name="model">uprofe.empresa</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCif"/>
+                <field name="sNombre_sector"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_sector" string="Sector"
+                            context="{'group_by': 'sNombre_sector'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_empresa" model="ir.actions.act_window">
+        <field name="name">Empresas</field>
+        <field name="res_model">uprofe.empresa</field>
+        <field name="search_view_id" ref="view_uprofe_empresa_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>
