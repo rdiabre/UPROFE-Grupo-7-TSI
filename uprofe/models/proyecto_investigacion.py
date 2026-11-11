@@ -19,19 +19,19 @@ class proyecto_investigacion(models.Model):
     @api.constrains('sName')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', record.sName.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', (record.sName or '').strip())]):
                 raise ValidationError("Este código ya está utilizado, debe ser único.")
 
     @api.constrains('sName')
     def _check_codigo_valido(self):
         for record in self:
-            if len(record.sName.strip()) == 0:
+            if len((record.sName or '').strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
     @api.constrains('sTitulo')
     def _check_titulo_valido(self):
         for record in self:
-            if len(record.sTitle.strip()) == 0:
+            if len((record.sTitle or '').strip()) == 0:
                 raise ValidationError("El título no puede estar vacío.")
             
     @api.constrains('fPresupuesto')
