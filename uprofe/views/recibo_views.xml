@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Vista de listas -->
-    <record id="view_uprofe_recibo_list" model="ir.ui.view">
-        <field name="name">uprofe.recibo.list</field>
+    <record id="view_uprofe_recibo_calendar" model="ir.ui.view">
+        <field name="name">uprofe.recibo.calendar</field>
         <field name="model">uprofe.recibo</field>
         <field name="arch" type="xml">
-            <list string="Recibos">
+            <calendar string="Pagos de recibos" date_start="dFecha" color="tasa_id" mode="month">
                 <field name="name"/>
                 <field name="tasa_id"/>
-                <field name="inumero_plazo"/>
-                <field name="fimporte"/>
-                <field name="dfecha"/>
-                <field name="dfecha_limite"/>
-                <field name="metodo_pago_id"/>
-            </list>
+            </calendar>
         </field>
     </record>
 
-    <!-- Vista de formulario -->
     <record id="view_uprofe_recibo_form" model="ir.ui.view">
         <field name="name">uprofe.recibo.form</field>
         <field name="model">uprofe.recibo</field>
@@ -27,14 +20,14 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="tasa_id" options="{'no_create': True}"/>
-                            <field name="inumero_plazo"/>
+                            <field name="tasa_id"/>
+                            <field name="iNumero_plazo"/>
                             <field name="metodo_pago_id"/>
                         </group>
                         <group>
-                            <field name="fimporte"/>
-                            <field name="dfecha"/>
-                            <field name="dfecha_limite"/>
+                            <field name="fImporte"/>
+                            <field name="dFecha"/>
+                            <field name="dFecha_limite"/>
                         </group>
                     </group>
                 </sheet>
@@ -42,20 +35,22 @@
         </field>
     </record>
 
-    <!-- Vista avanzada -->
-    <record id="view_uprofe_recibo_calendar" model="ir.ui.view">
-        <field name="name">uprofe.recibo.calendar</field>
+    <record id="view_uprofe_recibo_list" model="ir.ui.view">
+        <field name="name">uprofe.recibo.list</field>
         <field name="model">uprofe.recibo</field>
         <field name="arch" type="xml">
-            <calendar string="Recibos" date_start="dfecha" color="tasa_id"
-                      mode="month" quick_create="0">
+            <list string="Recibos">
                 <field name="name"/>
                 <field name="tasa_id"/>
-            </calendar>
+                <field name="iNumero_plazo"/>
+                <field name="fImporte"/>
+                <field name="dFecha"/>
+                <field name="dFecha_limite"/>
+                <field name="metodo_pago_id"/>
+            </list>
         </field>
     </record>
 
-    <!-- busqueda -->
     <record id="view_uprofe_recibo_search" model="ir.ui.view">
         <field name="name">uprofe.recibo.search</field>
         <field name="model">uprofe.recibo</field>
@@ -64,17 +59,19 @@
                 <field name="name"/>
                 <field name="tasa_id"/>
                 <field name="metodo_pago_id"/>
+
                 <group expand="0" string="Agrupar por">
-                    <filter name="group_tasa" string="Tasa"
+                    <filter name="group_tasa"
+                            string="Tasa"
                             context="{'group_by': 'tasa_id'}"/>
-                    <filter name="group_metodo" string="Método de pago"
+                    <filter name="group_metodo"
+                            string="Método de pago"
                             context="{'group_by': 'metodo_pago_id'}"/>
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- accion -->
     <record id="action_uprofe_recibo" model="ir.actions.act_window">
         <field name="name">Recibos</field>
         <field name="res_model">uprofe.recibo</field>
