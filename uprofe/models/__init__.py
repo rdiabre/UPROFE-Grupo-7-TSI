@@ -30,6 +30,10 @@ from . import estado_convenio
 from . import tutor_externo
 from . import seguimiento_practica
 from . import acuerdo
+from . import tasa
+from . import tipo_tasa
+from . import metodo_pago
+from . import recibo
 from . import empresa
 from . import convenio_empresa
 from . import oferta_practica
