@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autor: Isabel Cherino
 
 import re
 from odoo import models, fields, api

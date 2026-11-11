@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -24,7 +25,7 @@ class ConvenioEmpresa(models.Model):
                     ('name', '=ilike', record.name)
                 ]):
                     raise ValidationError( 'Ya existe un convenio con este número.' )
-                    
+
     @api.constrains('name')
     def _check_num_convenio(self):
         for record in self:

@@ -17,6 +17,6 @@ class Libro(models.Model):
     # Relación con préstamo. 
     #prestamo_id = fields.One2many('uprofe.prestamo', 'libro_id', string='Historial de préstamos')
 
-    _sql_constraints = [
-        ('prestamo_unique', 'unique(prestamo_id)', 'Este préstamo ya tiene un libro asignado.')
-    ]
+    #_sql_constraints = [
+    #    ('prestamo_unique', 'unique(prestamo_id)', 'Este préstamo ya tiene un libro asignado.')
+    #]

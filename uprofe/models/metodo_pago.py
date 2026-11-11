@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -6,8 +7,8 @@ from odoo.exceptions import ValidationError
 class MetodoPago(models.Model):
     _name = 'uprofe.metodo_pago'
     _description = 'Método de pago'
-    
-    name = fields.Char(string='Método de pago', required=True)  
+
+    name = fields.Char(string='Método de pago', required=True)
 
     recibo_ids = fields.One2many('uprofe.recibo', 'metodo_pago_id', string='Recibos')
 
@@ -30,3 +31,8 @@ class MetodoPago(models.Model):
                 ('name', '=ilike', metodo)
             ]):
                 raise ValidationError( "Ya existe ese método de pago.")
+
+    @api.onchange('name')
+    def _onchange_nombre(self):
+        if self.name:
+            self.name = ' '.join(self.name.split())

@@ -1,0 +1,5 @@
+id,name,sDescripcion
+estado_sol_presentada,Presentada,Solicitud registrada
+estado_sol_revision,En revisión,La comisión está revisando la solicitud
+estado_sol_aceptada,Aceptada,Plaza concedida
+estado_sol_rechazada,Rechazada,Plaza no concedida

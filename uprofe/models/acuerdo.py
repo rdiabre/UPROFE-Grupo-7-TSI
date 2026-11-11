@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -15,10 +16,14 @@ class Acuerdo(models.Model):
 
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
     tutor_interno_id = fields.Many2one('uprofe.profesor', string='Tutor interno', required=True)
-    solicitud_id = fields.Many2one('uprofe.solicitud', string='Solicitud')
+    solicitud_id = fields.Many2one('uprofe.solicitud', string='Solicitud', required=True)
     estado_acuerdo_id = fields.Many2one('uprofe.estado_acuerdo', string='Estado', required=True)
     seguimiento_ids = fields.One2many('uprofe.seguimiento_practica', 'acuerdo_id', string='Seguimientos')
-
+    
+    _sql_constraints = [
+        ('solicitud_acuerdo_unique', 'unique(solicitud_id)', 'Esta solicitud ya tiene un acuerdo.'),
+    ]
+    
     @api.constrains('name')
     def _check_num_acuerdo(self):
         for record in self:

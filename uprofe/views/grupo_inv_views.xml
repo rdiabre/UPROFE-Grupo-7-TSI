@@ -9,7 +9,7 @@
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <strong><field name="sNombre"/></strong>
-                            <div>Código: <field name="sName"/></div>
+                            <div>Código: <field name="name"/></div>
                             <!-- <div>Laboratorio: <field name="laboratorio_id"/></div> -->
                         </div>
                     </t>
@@ -25,7 +25,7 @@
             <form string="Grupos de investigación">
                 <sheet layout="auto">
                     <group>
-                        <field name="sName" />
+                        <field name="name" />
                         <field name="sNombre" />
                         <field name="dFecha_creacion" />
                         <!-- Descomentar cuando existan Departamento y Laboratorio -->
@@ -43,7 +43,7 @@
         <field name="model">uprofe.grupo_inv</field>
         <field name="arch" type="xml">
             <list string="Lista de grupos de investigación">
-                <field name="sName" />
+                <field name="name" />
                 <field name="sNombre" />
                 <field name="dFecha_creacion" />
                 <!-- Descomentar cuando existan Departamento y Laboratorio -->

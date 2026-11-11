@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -8,7 +9,7 @@ class Tasa(models.Model):
     _description = 'Tasa universitaria'
     _order = 'id desc'
 
-    name = fields.Char(string='Nº de liquidación', required=True)  
+    name = fields.Char(string='Nº de liquidación', required=True)
     fImporte = fields.Float(string='Importe (€)', required=True, default=0.0)
     sEstado = fields.Selection([('pendiente', 'Pendiente'), ('pagada', 'Pagada')],
                                string='Estado', required=True, default='pendiente')
@@ -18,7 +19,7 @@ class Tasa(models.Model):
 
     # Descomento cuando uprofe.alumno esté en main
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno',
-    #                             required=True, ondelete='restrict')
+    #                             required=True)
 
     recibo_ids = fields.One2many('uprofe.recibo', 'tasa_id', string='Recibos')
 
@@ -38,7 +39,7 @@ class Tasa(models.Model):
                 ('name', '=ilike', num)
             ]):
                 raise ValidationError( "Ya existe una tasa con ese número de liquidación." )
-                
+
     @api.constrains('fImporte')
     def _check_importe(self):
         for record in self:
@@ -52,9 +53,7 @@ class Tasa(models.Model):
                 raise ValidationError("La tasa debe tener al menos un plazo.")
             for recibo in record.recibo_ids:
                 if recibo.iNumero_plazo > record.iCantidad_plazos:
-                    raise ValidationError(
-                        "No puedes reducir los plazos porque existe un recibo con un número de plazo superior."
-                    )
+                    raise ValidationError( "No puedes reducir los plazos porque existe un recibo con un número de plazo superior." )
 
     @api.onchange('fImporte')
     def _onchange_importe(self):

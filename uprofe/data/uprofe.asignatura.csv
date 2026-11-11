@@ -1,0 +1,11 @@
+id,sCod_asig,name,iCurso,selCuatrimestre,fCreditos
+asig_upo_mineria,803101,Minería de Datos,3,1,6
+asig_upo_aprendizaje,803102,Aprendizaje Automático,4,2,6
+asig_upo_bd,802201,Bases de Datos,2,1,6
+asig_upo_ia,803203,Inteligencia Artificial,3,2,6
+asig_upo_big_data,804101,Análisis de Datos Masivos,4,1,6
+asig_upo_sistemas_int,804102,Sistemas Inteligentes,4,2,6
+asig_upo_historia_eu,801301,Historia de Europa Contemporánea,1,1,4.5
+asig_upo_diseno_bd,803204,Diseño de Bases de Datos,3,1,6
+asig_upo_conocimiento,804203,Ingeniería del Conocimiento,4,anual,9
+asig_upo_rel_intern,802305,Historia de las Relaciones Internacionales,2,2,4.5

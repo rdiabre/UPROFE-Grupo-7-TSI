@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Autor: Isabel Cherino -->
 <odoo>
 
     <!-- Lista -->
@@ -58,6 +59,7 @@
                                 <list editable="bottom">
                                     <field name="iNum_linea"/>
                                     <field name="asignatura_destino_id"/>
+                                    <field name="asignatura_id"/>
                                     <field name="fCreditos_ects"/>
                                     <field name="estado_id"/>
                                     <field name="fNota"/>

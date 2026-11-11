@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Autora: Sandra Megolla Fernández -->
+<odoo>
+    <record id="view_uprofe_seguimiento_alu_int_calendar" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.calendar</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <calendar string="Seguimientos de alumnos internos" date_start="dFecha" color="acuerdo_id" mode="month">
+                <field name="name"/>
+                <field name="acuerdo_id"/>
+                <field name="fCalificacion"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_uprofe_seguimiento_alu_int_form" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.form</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <form string="Seguimiento del alumno interno">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="iNum_seguimiento_alu"/>
+                            <field name="acuerdo_id"/>
+                        </group>
+                        <group>
+                            <field name="dFecha"/>
+                            <field name="fCalificacion"/>
+                        </group>
+                    </group>
+                    <group string="Observaciones">
+                        <field name="sObservaciones" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_seguimiento_alu_int_list" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.list</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <list string="Seguimientos de alumnos internos">
+                <field name="iNum_seguimiento_alu"/>
+                <field name="acuerdo_id"/>
+                <field name="dFecha"/>
+                <field name="fCalificacion"/>
+                <field name="sObservaciones"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_seguimiento_alu_int_search" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_alu_int.search</field>
+        <field name="model">uprofe.seguimiento_alu_int</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="iNum_seguimiento_alu"/>
+                <field name="acuerdo_id"/>
+                <field name="sObservaciones"/>
+                <filter name="con_observaciones" string="Con observaciones" domain="[('sObservaciones', '!=', False)]"/>
+                <filter name="sin_observaciones" string="Sin observaciones"  domain="[('sObservaciones', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_acuerdo" string="Acuerdo"
+                            context="{'group_by': 'acuerdo_id'}"/>
+                    <filter name="group_fecha" string="Mes"
+                            context="{'group_by': 'dFecha:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_seguimiento_alu_int" model="ir.actions.act_window">
+        <field name="name">Seguimiento alumno interno</field>
+        <field name="res_model">uprofe.seguimiento_alu_int</field>
+        <field name="search_view_id" ref="view_uprofe_seguimiento_alu_int_search"/>
+        <field name="view_mode">list,form,calendar</field>
+    </record>
+</odoo>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -8,15 +9,15 @@ class Recibo(models.Model):
     _description = 'Recibo de una tasa'
     _order = 'dFecha desc'
 
-    name = fields.Char(string='Nº de recibo', required=True)  
+    name = fields.Char(string='Nº de recibo', required=True)
     fImporte = fields.Float(string='Importe (€)', required=True, default=0.0)
     dFecha = fields.Date(string='Fecha de pago', required=True)
     dFecha_limite = fields.Date(string='Fecha límite')
     iNumero_plazo = fields.Integer(string='Nº de plazo', required=True, default=1)
 
-    
+
     tasa_id = fields.Many2one('uprofe.tasa', string='Tasa', required=True)
-    
+
     metodo_pago_id = fields.Many2one('uprofe.metodo_pago', string='Método de pago', required=True)
 
     @api.constrains('name')
@@ -35,7 +36,7 @@ class Recibo(models.Model):
                 ('name', '=ilike', num)
             ]):
                 raise ValidationError( "Ya existe un recibo con ese número." )
-                
+
     @api.constrains('fImporte')
     def _check_importe(self):
         for record in self:
