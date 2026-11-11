@@ -71,7 +71,7 @@ Descripción del módulo
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
         'views/evento_views.xml',
-        'views/direccion_views',
+        'views/direccion_views.xml',
         'views/horario_tutoria_views.xml',
         'views/libro_views.xml',
         'views/menu.xml'
