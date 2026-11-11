@@ -34,7 +34,7 @@
                         <page string="Autores">
                             <group>
                                 <field name="profesor_ids" widget="many2many_tags"/>
-                                <!--<field name="investigador_ids" widget="many2many_tags"/>-->
+                                <field name="investigador_ids" widget="many2many_tags"/>
                             </group>
                         </page>
                         <page string="Proyecto">

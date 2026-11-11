@@ -10,8 +10,7 @@
                             <strong><field name="sNombre"/></strong>
                             <div>Código: <field name="name"/></div>
                             <div>PDIs: <field name="profesor_ids" widget="many2many_tags"/></div>
-                            <!-- Descomentar cuando exista Investigador -->
-                            <!-- <div>Investigadores: <field name="investigador_ids" widget="many2many_tags"/></div> -->
+                            <div>Investigadores: <field name="investigador_ids" widget="many2many_tags"/></div>
                         </div>
                     </t>
                 </templates>

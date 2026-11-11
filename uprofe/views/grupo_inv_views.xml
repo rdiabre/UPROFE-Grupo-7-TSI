@@ -3,8 +3,7 @@
         <field name="name">uprofe.grupo_inv.kanban</field>
         <field name="model">uprofe.grupo_inv</field>
         <field name="arch" type="xml">
-            <!-- Volver a poner default_group_by="departamento_id" cuando exista Departamento -->
-            <kanban string="Grupos de investigación por departamentos">
+            <kanban string="Grupos de investigación por departamentos" default_group_by="departamento_id">
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
@@ -28,8 +27,7 @@
                         <field name="name" />
                         <field name="sNombre" />
                         <field name="dFecha_creacion" />
-                        <!-- Descomentar cuando existan Departamento y Laboratorio -->
-                        <!-- <field name="departamento_id" widget="many2one" /> -->
+                        <field name="departamento_id" widget="many2one" />
                         <!-- <field name="laboratorio_id" widget="many2one" /> -->
                         <field name="proyecto_investigacion_ids" widget="one2many" />
                     </group>
@@ -46,8 +44,7 @@
                 <field name="name" />
                 <field name="sNombre" />
                 <field name="dFecha_creacion" />
-                <!-- Descomentar cuando existan Departamento y Laboratorio -->
-                <!-- <field name="departamento_id" widget="many2one" /> -->
+                <field name="departamento_id" widget="many2one" />
                 <!-- <field name="laboratorio_id" widget="many2one" /> -->
             </list>
         </field>
