@@ -9,7 +9,7 @@
                         <div class="oe_kanban_global_click">
                             <strong><field name="sNombre"/></strong>
                             <div>Código: <field name="name"/></div>
-                            <!-- <div>Laboratorio: <field name="laboratorio_id"/></div> -->
+                            <div>Laboratorio: <field name="laboratorio_id"/></div>
                         </div>
                     </t>
                 </templates>
@@ -45,7 +45,7 @@
                 <field name="sNombre" />
                 <field name="dFecha_creacion" />
                 <field name="departamento_id" widget="many2one" />
-                <!-- <field name="laboratorio_id" widget="many2one" /> -->
+                <field name="laboratorio_id" widget="many2one" />
             </list>
         </field>
     </record>
