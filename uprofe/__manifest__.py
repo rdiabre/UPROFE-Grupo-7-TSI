@@ -48,10 +48,8 @@
         'views/universidad_destino_views.xml',
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
-        'views/evento_views.xml',
-        'views/direccion_views',
-        'views/horario_tutoria_views.xml',
-        'views/libro_views.xml',
+        'views/horario_tutoria_views.xml'
+        'views/libro_views.xml'
         'views/menu.xml'
     ],
     # only loaded in demonstration mode

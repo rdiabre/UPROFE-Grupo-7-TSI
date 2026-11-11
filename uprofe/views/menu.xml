@@ -23,9 +23,6 @@
     <menuitem name="Horarios de tutoría" id="menu_uprofe_horario_tutoria" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_horario_tutoria"/>
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
     <menuitem name="Sesiones" id="sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sesion_list_action"/>
-
-    <menuitem name="Eventos" id="menu_uprofe_evento" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_evento"/>
-
     <menuitem name="Proyectos de investigación" id="proyecto_investigacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="proyecto_investigacion_list_action"/>
     
     <menuitem name="Estados de convenio" id="estado_convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_convenio_list_action"/>
