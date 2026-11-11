@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-class estado_solicitud(Models.models):
+class estado_solicitud(models.Model):
     _name= 'uprofe.estado_solicitud'
     _description = 'Estados de la solicitud'
     _order = 'sName asc'
