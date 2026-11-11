@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autora: Sandra Megolla Fernández
 from odoo import models, fields
 
 
@@ -15,7 +16,6 @@ class TipoTasa(models.Model):
 
     tasa_ids = fields.One2many('uprofe.tasa', 'tipo_tasa_id', string='Tasas')
 
-    # No permite dos registros con el mismo tipo de tasa.
     _sql_constraints = [
         ('tipo_tasa_nombre_unique', 'unique(name)', 'Ya existe ese tipo de tasa.'),
     ]
