@@ -87,6 +87,9 @@ Descripción del módulo
         'views/respuesta_alumno_views.xml',
         'views/seguimiento_alu_int_views.xml',
         'views/menu.xml',
+        'views/tipo_solicitud_views.xml'
+        'views/menu.xml'
+
     ],
     # only loaded in demonstration mode
     'demo': [
