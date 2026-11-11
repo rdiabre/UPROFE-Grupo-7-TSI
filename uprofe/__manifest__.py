@@ -42,6 +42,7 @@ Descripción del módulo
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/doc_adjunta_views.xml'
         'views/ubicacion_views.xml',
         'views/edificio_views.xml',
         'views/espacio_views.xml',

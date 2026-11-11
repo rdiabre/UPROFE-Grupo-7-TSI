@@ -34,6 +34,7 @@ from . import estado_learning_agreement
 from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
+from . import doc_adjunta
 from . import tutor_externo
 from . import seguimiento_practica
 from . import acuerdo
