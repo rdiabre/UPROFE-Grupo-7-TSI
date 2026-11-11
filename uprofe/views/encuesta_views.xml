@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_encuesta_graph" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.graph</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <graph string="Encuestas por curso" type="bar">
+                <field name="sCurso_academico"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_encuesta_form" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.form</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <form string="Encuesta de satisfacción docente">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sCod_encuesta"/>
+                            <field name="name"/>
+                            <field name="sCurso_academico"/>
+                        </group>
+                        <group>
+                            <field name="asignatura_ids"/>
+                            <field name="profesor_id"/>
+                            <field name="dtFecha_inicio"/>
+                            <field name="dtFecha_fin"/>
+                        </group>
+                    </group>
+
+                    <group string="Descripción">
+                        <field name="sDescripcion" nolabel="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Preguntas">
+                            <field name="pregunta_ids">
+                                <list>
+                                    <field name="iNum_pregunta"/>
+                                    <field name="name"/>
+                                    <field name="tipo_respuesta_id"/>
+                                    <field name="sOpciones"/>
+                                </list>
+                                <form string="Pregunta">
+                                    <sheet>
+                                        <group>
+                                            <field name="iNum_pregunta"/>
+                                            <field name="name"/>
+                                            <field name="tipo_respuesta_id"/>
+                                            <field name="sOpciones"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_encuesta_list" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.list</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <list string="Encuestas">
+                <field name="sCod_encuesta"/>
+                <field name="name"/>
+                <field name="sCurso_academico"/>
+                <field name="asignatura_ids"/>
+                <field name="profesor_id"/>
+                <field name="dtFecha_inicio"/>
+                <field name="dtFecha_fin"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_encuesta_search" model="ir.ui.view">
+        <field name="name">uprofe.encuesta.search</field>
+        <field name="model">uprofe.encuesta</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCod_encuesta"/>
+                <field name="sCurso_academico"/>
+                <field name="asignatura_ids"/>
+                <field name="profesor_id"/>
+
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_curso" string="Curso académico"
+                            context="{'group_by': 'sCurso_academico'}"/>
+                    <filter name="group_profesor" string="Profesor revisor"
+                            context="{'group_by': 'profesor_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_encuesta" model="ir.actions.act_window">
+        <field name="name">Encuestas</field>
+        <field name="res_model">uprofe.encuesta</field>
+        <field name="search_view_id" ref="view_uprofe_encuesta_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>

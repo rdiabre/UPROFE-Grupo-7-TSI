@@ -1,0 +1,90 @@
+<odoo>
+
+    <record id="view_inventario_list" model="ir.ui.view">
+        <field name="name">uprofe.inventario.list</field>
+        <field name="model">uprofe.inventario</field>
+        <field name="arch" type="xml">
+            <list default_order="dFecha_inventariado desc">
+                <field name="sNum_inventario" />
+                <field name="dFecha_inventariado" />
+                <field name="espacio_id" />
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_inventario_form" model="ir.ui.view">
+        <field name="name">uprofe.inventario.form</field>
+        <field name="model">uprofe.inventario</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <notebook>
+                        <page string="Datos del inventario">
+                            <group>
+                                <group string="Identificación">
+                                    <field name="sNum_inventario" />
+                                    <field name="dFecha_inventariado" />
+                                    <field name="responsable_id" widget="many2one" />
+                                </group>
+                                <group string="Localización">
+                                    <field name="espacio_id" />
+                                </group>
+                            </group>
+
+                            <group string="Observaciones generales">
+                                <field name="sObservaciones"
+                                    placeholder="Observaciones generales del inventariado..." />
+                            </group>
+                        </page>
+
+                        <page string="Objetos inventariados">
+                            <field name="linea_ids">
+                                <list>
+                                    <field name="objeto_id" />
+                                    <field name="bEncontrado" />
+                                    <field name="sObservaciones" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_inventario_search" model="ir.ui.view">
+        <field name="name">uprofe.inventario.search</field>
+        <field name="model">uprofe.inventario</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sNum_inventario" />
+                <field name="espacio_id" />
+                <field name="dFecha_inventariado" />
+
+                <group>
+                    <filter
+                        string="Espacio"
+                        name="group_by_espacio"
+                        context="{'group_by': 'espacio_id'}"
+                    />
+
+                    <filter
+                        string="Mes de inventariado"
+                        name="group_by_fecha"
+                        context="{'group_by': 'dFecha_inventariado:month'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="inventario_list_action" model="ir.actions.act_window">
+        <field name="name">Inventarios</field>
+        <field name="res_model">uprofe.inventario</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>
