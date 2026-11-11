@@ -9,7 +9,7 @@ class TutorExterno(models.Model):
 
     _inherits = {'uprofe.persona': 'persona_id'}
 
-    persona_id = fields.Many2one('uprofe.persona', string='Persona', required=True, ondelete='cascade')
+    persona_id = fields.Many2one('uprofe.persona', string='Persona', required=True)
 
     seguimiento_ids = fields.One2many('uprofe.seguimiento_practica', 'tutor_externo_id', string='Seguimientos')
 
