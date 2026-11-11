@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- vista de listas -->
-    <record id="view_uprofe_direccion_list" model="ir.ui.view">
-        <field name="name">uprofe.direccion.list</field>
+    <record id="view_uprofe_direccion_graph" model="ir.ui.view">
+        <field name="name">uprofe.direccion.graph</field>
         <field name="model">uprofe.direccion</field>
         <field name="arch" type="xml">
-            <list string="Direcciones">
-                <field name="scod_direccion"/>
-                <field name="scalle"/>
-                <field name="snumero"/>
-                <field name="scod_postal"/>
-                <field name="sciudad"/>
-            </list>
+            <graph string="Direcciones por ciudad" type="bar">
+                <field name="sCiudad"/>
+            </graph>
         </field>
     </record>
 
-    <!-- vista de formulario -->
     <record id="view_uprofe_direccion_form" model="ir.ui.view">
         <field name="name">uprofe.direccion.form</field>
         <field name="model">uprofe.direccion</field>
@@ -24,50 +18,58 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="scod_direccion"/>
-                            <field name="scalle"/>
-                            <field name="snumero"/>
+                            <field name="name"/>
+                            <field name="sCalle"/>
+                            <field name="sNumero"/>
                         </group>
                         <group>
-                            <field name="scod_postal"/>
-                            <field name="sciudad"/>
+                            <field name="sCod_postal"/>
+                            <field name="sCiudad"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Empresas">
+                            <field name="empresa_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Vista avanzada -->
-    <record id="view_uprofe_direccion_graph" model="ir.ui.view">
-        <field name="name">uprofe.direccion.graph</field>
+    <record id="view_uprofe_direccion_list" model="ir.ui.view">
+        <field name="name">uprofe.direccion.list</field>
         <field name="model">uprofe.direccion</field>
         <field name="arch" type="xml">
-            <graph string="Direcciones por ciudad" type="bar">
-                <field name="sciudad"/>
-            </graph>
+            <list string="Direcciones">
+                <field name="name"/>
+                <field name="sCalle"/>
+                <field name="sNumero"/>
+                <field name="sCod_postal"/>
+                <field name="sCiudad"/>
+            </list>
         </field>
     </record>
 
-    <!-- busqueda -->
     <record id="view_uprofe_direccion_search" model="ir.ui.view">
         <field name="name">uprofe.direccion.search</field>
         <field name="model">uprofe.direccion</field>
         <field name="arch" type="xml">
             <search>
-                <field name="scod_direccion"/>
-                <field name="scalle"/>
-                <field name="sciudad"/>
-                <field name="scod_postal"/>
+                <field name="name"/>
+                <field name="sCalle"/>
+                <field name="sCiudad"/>
+                <field name="sCod_postal"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_ciudad" string="Ciudad"
-                            context="{'group_by': 'sciudad'}"/>
+                            context="{'group_by': 'sCiudad'}"/>
+                    <filter name="group_codigo_postal" string="Código postal"
+                            context="{'group_by': 'sCod_postal'}"/>
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- accion -->
     <record id="action_uprofe_direccion" model="ir.actions.act_window">
         <field name="name">Direcciones</field>
         <field name="res_model">uprofe.direccion</field>
