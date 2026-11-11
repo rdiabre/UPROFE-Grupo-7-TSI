@@ -21,19 +21,19 @@ class libro_inv(models.Model):
     @api.constrains('sIsbn')
     def _check_isbn_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sIsbn', '=ilike', record.sIsbn.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sIsbn', '=ilike', (record.sIsbn or '').strip())]):
                 raise ValidationError("ISBN ya registrado, debe ser único.")
     
     @api.constrains('sIsbn')
     def _check_isbn_valido(self):
         for record in self:
-            if record.sIsbn.strip() == "":
+            if (record.sIsbn or '').strip() == "":
                 raise ValidationError("El ISBN no puede estar vacío.")
     
     @api.constrains('sEditorial')
     def _check_isbn_valido(self):
         for record in self:
-            if record.sEditorial.strip() == "":
+            if (record.sEditorial or '').strip() == "":
                 raise ValidationError("La editorial no puede estar vacía.")
             
     @api.constrains('publicacion_id')
@@ -44,4 +44,4 @@ class libro_inv(models.Model):
                 if sModelo == record._name:
                     lDominio.append(('id', '!=', record.id))
                 if self.env[sModelo].search_count(lDominio):
-                    raise ValidationError(f"La publicación {record.publicacion_id.sName} ya está asociada a un registro de {sModelo}.")
+                    raise ValidationError(f"La publicación {record.publicacion_id.name} ya está asociada a un registro de {sModelo}.")

@@ -34,7 +34,7 @@
                 <sheet>
                     <group>
                         <group string="Datos de la publicación">
-                            <field name="sName"/>
+                            <field name="name"/>
                             <field name="sTitulo"/>
                             <field name="dFecha_publicacion"/>
                         </group>
@@ -64,7 +64,7 @@
         <field name="model">uprofe.libro_inv</field>
         <field name="arch" type="xml">
             <list string="Libros de investigación">
-                <field name="sName"/>
+                <field name="name"/>
                 <field name="sTitulo"/>
                 <field name="dFecha_publicacion"/>
                 <field name="sIsbn"/>

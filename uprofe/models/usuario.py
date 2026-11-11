@@ -26,26 +26,26 @@ class Usuario(models.Model):
     @api.constrains('name')
     def _check_name_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("name", "=ilike", record.name.strip())]):
+            if self.search_count([("id", "!=", record.id), ("name", "=ilike", (record.name or '').strip())]):
                 raise ValidationError("Ya existe un usuario con este nombre de usuario.");
 
     @api.constrains('login')
     def _check_correo_unique(self):
         for record in self:
-            if self.search_count([("id", "!=", record.id), ("login", "=ilike", record.login.strip())]):
+            if self.search_count([("id", "!=", record.id), ("login", "=ilike", (record.login or '').strip())]):
                 raise ValidationError("Ya se registró un usuario con este correo electrónico.");
 
     # Validaciones de valores
     @api.constrains('name')
     def _check_name_not_empty(self):
         for record in self:
-            if len(record.name.strip()) == 0:
+            if len((record.name or '').strip()) == 0:
                 raise ValidationError("El nombre de usuario no puede estar vacío.");
 
     @api.constrains('login')
     def _check_correo_not_empty(self):
         for record in self:
-            if len(record.login.strip()) == 0:
+            if len((record.login or '').strip()) == 0:
                 raise ValidationError("El correo electrónico no puede estar vacío.");
             
     @api.constrains('login')
@@ -53,12 +53,6 @@ class Usuario(models.Model):
         regex_correo = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         
         for record in self:
-            if not re.match(regex_correo, record.login.strip()):
+            if not re.match(regex_correo, (record.login or '').strip()):
                 raise ValidationError("El correo electrónico no es válido.");
-            
-    # @api.constrains('profesor_id', 'alumno_id')
-    # def _check_una_persona_asociada(self):
-    #     for record in self:
-    #         if record.profesor_id and record.alumno_id:
-    #             raise ValidationError("Un usuario no puede estar asociado a un alumno y a un profesor a la vez.")
             

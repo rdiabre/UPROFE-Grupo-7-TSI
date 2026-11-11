@@ -22,7 +22,7 @@ class patente(models.Model):
     @api.constrains('sNumero_patente')
     def _check_numero_patente_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sNumero_patente', '=ilike', record.sNumero_patente.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sNumero_patente', '=ilike', (record.sNumero_patente or '').strip())]):
                 raise ValidationError("El número de patente ya está utilizado, debe ser único");
             
     @api.constrains('sNumero_patente')
@@ -41,4 +41,4 @@ class patente(models.Model):
                 if sModelo == record._name:
                     lDominio.append(('id', '!=', record.id))
                 if self.env[sModelo].search_count(lDominio):
-                    raise ValidationError(f"La publicación {record.publicacion_id.sName} ya está asociada a un registro de {sModelo}.")
+                    raise ValidationError(f"La publicación {record.publicacion_id.name} ya está asociada a un registro de {sModelo}.")
