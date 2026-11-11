@@ -16,6 +16,7 @@ proyecto_investigacion_manager,proyecto_investigacion_manager,model_uprofe_proye
 estado_convocatoria_manager,estado_convocatoria_manager,model_uprofe_estado_convocatoria,group_uprofe_manager,1,1,1,1
 estado_convenio_manager,estado_convenio_manager,model_uprofe_estado_convenio,group_uprofe_manager,1,1,1,1
 persona_manager,persona_manager,model_uprofe_persona,group_uprofe_manager,1,1,1,1
+libro_inv_manager,libro_inv_manager,model_uprofe_libro_inv,group_uprofe_manager,1,1,1,1
 congreso_manager,congreso_manager,model_uprofe_congreso,group_uprofe_manager,1,1,1,1
 patente_manager,patente_manager,model_uprofe_patente,group_uprofe_manager,1,1,1,1
 articulo_manager,articulo_manager,model_uprofe_articulo,group_uprofe_manager,1,1,1,1

@@ -7,6 +7,7 @@
     <menuitem name="Convenios" id="convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="convenio_list_action"/>
     <menuitem name="Patentes" id="patente_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="patente_list_action"/>
 
+    <menuitem name="Libros de investigación" id="libro_inv_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="libro_inv_list_action"/>
     <menuitem name="Aportaciones a congreso" id="congreso_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="congreso_list_action"/>
     <menuitem name="Artículos" id="articulo_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="articulo_list_action"/>
     <menuitem name="Tipos de solicitud" id="tipo_solicitud_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_solicitud_list_action"/>
