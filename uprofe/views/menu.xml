@@ -9,6 +9,8 @@
     <menuitem name="Ofertas de práctica" id="menu_uprofe_oferta_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_oferta_practica" sequence="60"/>
     
     <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
+
+    <menuitem name="Tutorías" id="menu_uprofe_tutoria" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tutoria"/>
     
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
     <menuitem name="Sesiones" id="sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sesion_list_action"/>
