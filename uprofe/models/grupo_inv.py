@@ -18,19 +18,19 @@ class grupo_inv(models.Model):
     @api.constrains('sName')
     def _check_codigo_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', record.sName.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', (record.sName or '').strip())]):
                 raise ValidationError("Ya existe un grupo con este código, debe ser único")
     
     @api.constrains('sName')
     def _check_codigo_valido(self):
         for record in self:
-            if len(record.sName.strip()) == 0:
+            if len((record.sName or '').strip()) == 0:
                 raise ValidationError("El código no puede estar vacío.")
             
     @api.constrains('sNombre')
     def _check_nombre_valido(self):
         for record in self:
-            if len(record.sNombre.strip()) == 0:
+            if len((record.sNombre or '').strip()) == 0:
                 raise ValidationError("El nombre del grupo no puede estar vacío.")
             
     # Valida que haya al menos una línea de investigación asociada
