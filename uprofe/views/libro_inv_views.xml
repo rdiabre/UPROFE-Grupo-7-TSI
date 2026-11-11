@@ -1,0 +1,84 @@
+<odoo>
+    <record id="uprofe_libro_inv_search_view" model="ir.ui.view">
+        <field name="name">uprofe.libro_inv.search</field>
+        <field name="model">uprofe.libro_inv</field>
+        <field name="arch" type="xml">
+            <search string="Buscar libros">
+                <field name="sTitulo"/>
+                <field name="sEditorial"/>
+                <field name="sIsbn"/>
+ 
+                <filter name="con_proyecto" string="Asociados a un proyecto"
+                        domain="[('proyecto_investigacion_id', '!=', False)]"/>
+                <filter name="sin_proyecto" string="Sin proyecto"
+                        domain="[('proyecto_investigacion_id', '=', False)]"/>
+
+                <filter name="filtro_fecha" string="Fecha de publicación"
+                        date="dFecha_publicacion"/>
+ 
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_editorial" string="Editorial"
+                            context="{'group_by': 'sEditorial'}"/>
+                    <filter name="group_anio" string="Año de publicación"
+                            context="{'group_by': 'dFecha_publicacion:year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="uprofe_libro_inv_form_view" model="ir.ui.view">
+        <field name="name">uprofe.libro_inv.form</field>
+        <field name="model">uprofe.libro_inv</field>
+        <field name="arch" type="xml">
+            <form string="Libro de investigación">
+                <sheet>
+                    <group>
+                        <group string="Datos de la publicación">
+                            <field name="sName"/>
+                            <field name="sTitulo"/>
+                            <field name="dFecha_publicacion"/>
+                        </group>
+                        <group string="Datos del libro">
+                            <field name="sIsbn"/>
+                            <field name="sEditorial"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Autores">
+                            <group>
+                                <field name="profesor_ids" widget="many2many_tags"/>
+                                <!--<field name="investigador_ids" widget="many2many_tags"/>-->
+                            </group>
+                        </page>
+                        <page string="Proyecto">
+                            <field name="proyecto_investigacion_id"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="uprofe_libro_inv_list_view" model="ir.ui.view">
+        <field name="name">uprofe.libro_inv.list</field>
+        <field name="model">uprofe.libro_inv</field>
+        <field name="arch" type="xml">
+            <list string="Libros de investigación">
+                <field name="sName"/>
+                <field name="sTitulo"/>
+                <field name="dFecha_publicacion"/>
+                <field name="sIsbn"/>
+                <field name="sEditorial"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="libro_inv_list_action" model="ir.actions.act_window">
+        <field name="name">Libros de investigación</field>
+        <field name="res_model">uprofe.libro_inv</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Añade el primer libro de investigación</p>
+        </field>
+    </record>
+</odoo>
