@@ -23,7 +23,6 @@ class Pregunta(models.Model):
     #      'Ya existe una pregunta con ese número en esta encuesta.'),
     # ]
 
-    # constrains
     @api.constrains('iNum_pregunta')
     def _check_iNum_pregunta(self):
         for record in self:
@@ -35,25 +34,18 @@ class Pregunta(models.Model):
         for record in self:
             if record.name:
                 if record.name.strip() == '':
-                    raise ValidationError(
-                        'El texto de la pregunta no puede contener solo espacios.'
-                    )
+                    raise ValidationError('El texto de la pregunta no puede contener solo espacios.' )
                    
     @api.constrains('sOpciones', 'tipo_respuesta_id')
     def _check_opciones(self):
         for record in self:
             if record.tipo_respuesta_id.bCon_opciones:
                 if not record.sOpciones:
-                    raise ValidationError(
-                        'Este tipo de respuesta requiere indicar opciones.'
-                    )
+                    raise ValidationError('Este tipo de respuesta requiere indicar opciones.' )
 
                 if record.sOpciones.strip() == '':
-                    raise ValidationError(
-                        'Las opciones no pueden contener solo espacios.'
-                    )
+                    raise ValidationError('Las opciones no pueden contener solo espacios.')
                                     
-    # onchange
     @api.onchange('iNum_pregunta')
     def _onchange_iNum_pregunta(self):
         if self.iNum_pregunta < 1:
