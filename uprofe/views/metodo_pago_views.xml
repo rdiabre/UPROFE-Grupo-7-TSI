@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_metodo_pago_kanban" model="ir.ui.view">
+        <field name="name">uprofe.metodo_pago.kanban</field>
+        <field name="model">uprofe.metodo_pago</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_uprofe_metodo_pago_form" model="ir.ui.view">
+        <field name="name">uprofe.metodo_pago.form</field>
+        <field name="model">uprofe.metodo_pago</field>
+        <field name="arch" type="xml">
+            <form string="Método de pago">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_metodo_pago_list" model="ir.ui.view">
+        <field name="name">uprofe.metodo_pago.list</field>
+        <field name="model">uprofe.metodo_pago</field>
+        <field name="arch" type="xml">
+            <list string="Métodos de pago">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_metodo_pago_search" model="ir.ui.view">
+        <field name="name">uprofe.metodo_pago.search</field>
+        <field name="model">uprofe.metodo_pago</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="con_recibos" string="Con recibos" domain="[('recibo_ids', '!=', False)]"/>
+                <filter name="sin_recibos" string="Sin recibos" domain="[('recibo_ids', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_metodo_pago" model="ir.actions.act_window">
+        <field name="name">Métodos de pago</field>
+        <field name="res_model">uprofe.metodo_pago</field>
+        <field name="search_view_id" ref="view_uprofe_metodo_pago_search"/>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

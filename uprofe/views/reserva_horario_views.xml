@@ -1,0 +1,124 @@
+<odoo>
+
+    <record id="view_reserva_horario_form" model="ir.ui.view">
+        <field name="name">uprofe.reserva.horario.form</field>
+        <field name="model">uprofe.reserva.horario</field>
+        <field name="arch" type="xml">
+            <form string="Reserva de horario">
+
+                <header>
+                    <field name="state" widget="statusbar" />
+                    <button name="btn_submit_to_pendiente" string="Pendiente" type="object"
+                        class="oe_highlight" />
+                    <button name="btn_submit_to_confirmado" string="Confirmada" type="object"
+                        class="oe_highlight" />
+                    <button name="btn_submit_to_rechazado" string="Rechazada" type="object"
+                        class="oe_highlight" />
+                    <button name="btn_submit_to_cancelado" string="Cancelada" type="object"
+                        class="oe_highlight" />
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sNum_reserva" />
+                            <field name="dFecha_solicitud" />
+                            <field name="dFecha_uso" />
+                        </group>
+
+                        <group>
+                            <field name="persona_id" />
+                            <field name="espacio_id" />
+                        </group>
+                    </group>
+
+                    <group string="Franjas horarias">
+                        <field name="franja_ids"
+                            widget="many2many_tags"
+                            domain="[('calendar_id.espacio_ids', 'in', [espacio_id])] if espacio_id else [('id', '=', False)]"
+                        />
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_reserva_horario_list" model="ir.ui.view">
+        <field name="name">uprofe.reserva.horario.list</field>
+        <field name="model">uprofe.reserva.horario</field>
+        <field name="arch" type="xml">
+            <list default_order="dFecha_uso asc">
+                <field name="sNum_reserva" />
+                <field name="persona_id" />
+                <field name="espacio_id" />
+                <field name="dFecha_uso" />
+                <field name="dFecha_solicitud" />
+                <field name="state" />
+                <field name="franja_ids" widget="many2many_tags" />
+                <field name="dFecha_inicio" />
+                <field name="dFecha_fin" />
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_reserva_horario_search" model="ir.ui.view">
+        <field name="name">uprofe.reserva.horario.search</field>
+        <field name="model">uprofe.reserva.horario</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sNum_reserva" />
+                <field name="persona_id" />
+                <field name="espacio_id" />
+
+                <filter name="pendiente"
+                    string="Pendientes"
+                    domain="[('state', '=', 'pendiente')]" />
+
+                <filter name="confirmada"
+                    string="Confirmadas"
+                    domain="[('state', '=', 'confirmada')]" />
+
+                <group string="Agrupar por" expand="0">
+                    <filter name="group_estado"
+                        string="Estado"
+                        context="{'group_by': 'state'}" />
+
+                    <filter name="group_espacio"
+                        string="Espacio"
+                        context="{'group_by': 'espacio_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="view_reserva_horario_calendar" model="ir.ui.view">
+        <field name="name">uprofe.reserva.horario.calendar</field>
+        <field name="model">uprofe.reserva.horario</field>
+        <field name="arch" type="xml">
+            <calendar string="Reservas"
+                date_start="dFecha_inicio"
+                date_stop="dFecha_fin"
+                color="state"
+                mode="week"
+                quick_create="false"
+                event_open_popup="true">
+                <field name="sNum_reserva" />
+                <field name="persona_id" />
+                <field name="espacio_id" />
+                <field name="state" />
+            </calendar>
+        </field>
+    </record>
+
+
+    <record id="action_uprofe_reservas" model="ir.actions.act_window">
+        <field name="name">Reservas</field>
+        <field name="res_model">uprofe.reserva.horario</field>
+        <field name="view_mode">list,form,calendar</field>
+        <field name="search_view_id" ref="view_reserva_horario_search" />
+    </record>
+</odoo>

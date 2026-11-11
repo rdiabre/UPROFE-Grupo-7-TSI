@@ -1,11 +1,11 @@
-id,cod_erasmus,sName
-univ_bologna,I BOLOGNA01,Università di Bologna
-univ_roma,I ROMA01,Sapienza Università di Roma
-univ_paris,F PARIS001,Université Paris 1 Panthéon-Sorbonne
-univ_berlin,D BERLIN01,Freie Universität Berlin
-univ_lisboa,P LISBOA109,Universidade de Lisboa
-univ_amsterdam,NL AMSTERD01,Universiteit van Amsterdam
-univ_leuven,B LEUVEN01,KU Leuven
-univ_varsovia,PL WARSZAW01,Uniwersytet Warszawski
-univ_dublin,IRLDUBLIN01,Trinity College Dublin
-univ_estocolmo,S STOCKHO01,Stockholms universitet
+id,cod_erasmus,sName,ciudad_id:id,idioma_ids:id,sWeb
+univ_bologna,I BOLOGNA01,Università di Bologna,ciudad_bolonia,"idioma_italiano,idioma_ingles",https://www.unibo.it
+univ_roma,I ROMA01,Sapienza Università di Roma,ciudad_roma,"idioma_italiano,idioma_ingles",https://www.uniroma1.it
+univ_paris,F PARIS001,Université Paris 1 Panthéon-Sorbonne,ciudad_paris,"idioma_frances,idioma_ingles",https://www.pantheonsorbonne.fr
+univ_berlin,D BERLIN01,Freie Universität Berlin,ciudad_berlin,"idioma_aleman,idioma_ingles",https://www.fu-berlin.de
+univ_lisboa,P LISBOA109,Universidade de Lisboa,ciudad_lisboa,"idioma_portugues,idioma_ingles",https://www.ulisboa.pt
+univ_amsterdam,NL AMSTERD01,Universiteit van Amsterdam,ciudad_amsterdam,"idioma_neerlandes,idioma_ingles",https://www.uva.nl
+univ_leuven,B LEUVEN01,KU Leuven,ciudad_lovaina,"idioma_neerlandes,idioma_ingles",https://www.kuleuven.be
+univ_varsovia,PL WARSZAW01,Uniwersytet Warszawski,ciudad_varsovia,"idioma_polaco,idioma_ingles",https://www.uw.edu.pl
+univ_dublin,IRLDUBLIN01,Trinity College Dublin,ciudad_dublin,idioma_ingles,https://www.tcd.ie
+univ_estocolmo,S STOCKHO01,Stockholms universitet,ciudad_estocolmo,"idioma_sueco,idioma_ingles",https://www.su.se
