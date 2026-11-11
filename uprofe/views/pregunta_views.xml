@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_uprofe_pregunta_list" model="ir.ui.view">
-        <field name="name">uprofe.pregunta.list</field>
-        <field name="model">uprofe.pregunta</field>
-        <field name="arch" type="xml">
-            <list string="Preguntas">
-                <field name="name"/>
-                <field name="inum_pregunta"/>
-                <field name="tipo_respuesta_id"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="view_uprofe_pregunta_form" model="ir.ui.view">
-        <field name="name">uprofe.pregunta.form</field>
-        <field name="model">uprofe.pregunta</field>
-        <field name="arch" type="xml">
-            <form string="Pregunta">
-                <sheet>
-                    <group>
-                        <field name="inum_pregunta"/>
-                        <field name="name"/>
-                        <field name="tipo_respuesta_id" options="{'no_quick_create': True}"/>
-                        <field name="bconopciones" invisible="1"/>
-                        <field name="sopciones" invisible="not bconopciones"
-                               required="bconopciones"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Vista avanzada: preguntas por tipo de respuesta -->
     <record id="view_uprofe_pregunta_graph" model="ir.ui.view">
         <field name="name">uprofe.pregunta.graph</field>
         <field name="model">uprofe.pregunta</field>
@@ -42,13 +10,59 @@
         </field>
     </record>
 
+    <record id="view_uprofe_pregunta_form" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.form</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <form string="Pregunta">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="encuesta_id"/>
+                            <field name="iNum_pregunta"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="tipo_respuesta_id"/>
+                            <field name="sOpciones"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_pregunta_list" model="ir.ui.view">
+        <field name="name">uprofe.pregunta.list</field>
+        <field name="model">uprofe.pregunta</field>
+        <field name="arch" type="xml">
+            <list string="Preguntas">
+                <field name="encuesta_id"/>
+                <field name="iNum_pregunta"/>
+                <field name="name"/>
+                <field name="tipo_respuesta_id"/>
+            </list>
+        </field>
+    </record>
+
     <record id="view_uprofe_pregunta_search" model="ir.ui.view">
         <field name="name">uprofe.pregunta.search</field>
         <field name="model">uprofe.pregunta</field>
         <field name="arch" type="xml">
             <search>
+                <field name="iNum_pregunta"/>
                 <field name="name"/>
+                <field name="encuesta_id"/>
+                <field name="tipo_respuesta_id"/>
+
+                <filter name="requiere_opciones" string="Requiere opciones"
+                        domain="[('tipo_respuesta_id.bCon_opciones', '=', True)]"/>
+                <filter name="no_requiere_opciones" string="No requiere opciones"
+                        domain="[('tipo_respuesta_id.bCon_opciones', '=', False)]"/>
+
                 <group expand="0" string="Agrupar por">
+                    <filter name="group_encuesta" string="Encuesta"
+                            context="{'group_by': 'encuesta_id'}"/>
                     <filter name="group_tipo" string="Tipo de respuesta"
                             context="{'group_by': 'tipo_respuesta_id'}"/>
                 </group>
