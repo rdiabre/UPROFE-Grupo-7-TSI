@@ -12,7 +12,6 @@
         </field>
     </record>
 
-    <!-- vista de formulario -->
     <record id="view_uprofe_convenio_empresa_form" model="ir.ui.view">
         <field name="name">uprofe.convenio_empresa.form</field>
         <field name="model">uprofe.convenio_empresa</field>
@@ -34,7 +33,6 @@
         </field>
     </record>
 
-    <!-- vista de listas -->
     <record id="view_uprofe_convenio_empresa_list" model="ir.ui.view">
         <field name="name">uprofe.convenio_empresa.list</field>
         <field name="model">uprofe.convenio_empresa</field>
@@ -48,7 +46,6 @@
         </field>
     </record>
 
-    <!-- busqueda -->
     <record id="view_uprofe_convenio_empresa_search" model="ir.ui.view">
         <field name="name">uprofe.convenio_empresa.search</field>
         <field name="model">uprofe.convenio_empresa</field>
@@ -65,7 +62,6 @@
         </field>
     </record>
 
-    <!-- accion -->
     <record id="action_uprofe_convenio_empresa" model="ir.actions.act_window">
         <field name="name">Convenios de prácticas</field>
         <field name="res_model">uprofe.convenio_empresa</field>
