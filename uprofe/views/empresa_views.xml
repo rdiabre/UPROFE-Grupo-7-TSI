@@ -63,6 +63,8 @@
                 <field name="sCif"/>
                 <field name="sNombre_sector"/>
                 <field name="direccion_id"/>
+                <filter name="con_ofertas" string="Con ofertas" domain="[('oferta_ids', '!=', False)]"/>
+                <filter name="sin_ofertas" string="Sin ofertas" domain="[('oferta_ids', '=', False)]"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_sector" string="Sector"
                             context="{'group_by': 'sNombre_sector'}"/>
