@@ -45,6 +45,7 @@ Descripción del módulo
         'views/acuerdo_views.xml',
         'views/seguimiento_practica_views.xml',
         'views/empresa_views.xml',
+        'views/direccion_views.xml',
         'views/convenio_empresa_views.xml',
         'views/oferta_practica_views.xml',
         'views/tutor_externo_views.xml',
