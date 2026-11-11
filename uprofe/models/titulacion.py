@@ -60,7 +60,7 @@ class Titulacion(models.Model):
     def _compute_display_name(self):
         for record in self:
             if record.sCod_titulacion:
-                record.display_name = f"[{record.sCod_departamento}] {record.name or ''}"
+                record.display_name = f"[{record.sCod_titulacion}] {record.name or ''}"
             else:
                 record.diplay_name = record.name
 

@@ -20,6 +20,8 @@ from . import asignatura_destino
 from . import asignatura
 from . import guia_docente
 from . import persona
+from . import alumno
+from . import investigador
 from . import profesor
 from . import sesion
 from . import tipo_sesion
