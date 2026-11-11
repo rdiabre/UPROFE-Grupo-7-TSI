@@ -30,6 +30,7 @@
                         <group>
                             <field name="email" string="Correo electrónico"/>
                             <field name="phone" string="Teléfono"/>
+                            <field name="direccion_id"/>
                         </group>
                     </group>
                 </sheet>
