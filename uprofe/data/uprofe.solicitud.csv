@@ -1,4 +1,4 @@
-id,sName,dFechaSolicitud,sObservaciones,oTipoSolicitud_id:id,oEstadoSolicitud_id:id
+id,name,dFechaSolicitud,sObservaciones,tipo_solicitud_id:id,estado_solicitud_id:id
 sol_2025_001,SOL-2025-001,2025-02-10,Origina la movilidad MOV-2025-001,tipo_sol_estudios,estado_sol_aceptada
 sol_2025_002,SOL-2025-002,2025-02-12,Origina la movilidad MOV-2025-002,tipo_sol_estudios,estado_sol_aceptada
 sol_2025_003,SOL-2025-003,2025-02-20,Origina la movilidad MOV-2025-003,tipo_sol_estudios,estado_sol_aceptada
