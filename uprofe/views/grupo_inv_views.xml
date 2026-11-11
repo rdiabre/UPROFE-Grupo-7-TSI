@@ -1,0 +1,64 @@
+<odoo>
+    <record id="uprofe_grupo_inv_kanban_view" model="ir.ui.view">
+        <field name="name">uprofe.grupo_inv.kanban</field>
+        <field name="model">uprofe.grupo_inv</field>
+        <field name="arch" type="xml">
+            <!-- Volver a poner default_group_by="departamento_id" cuando exista Departamento -->
+            <kanban string="Grupos de investigación por departamentos">
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="sNombre"/></strong>
+                            <div>Código: <field name="sName"/></div>
+                            <!-- <div>Laboratorio: <field name="laboratorio_id"/></div> -->
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="uprofe_grupo_inv_form_view" model="ir.ui.view">
+        <field name="name">uprofe.grupo_inv.form</field>
+        <field name="model">uprofe.grupo_inv</field>
+        <field name="arch" type="xml">
+            <form string="Grupos de investigación">
+                <sheet layout="auto">
+                    <group>
+                        <field name="sName" />
+                        <field name="sNombre" />
+                        <field name="dFecha_creacion" />
+                        <!-- Descomentar cuando existan Departamento y Laboratorio -->
+                        <!-- <field name="departamento_id" widget="many2one" /> -->
+                        <!-- <field name="laboratorio_id" widget="many2one" /> -->
+                        <field name="proyecto_investigacion_ids" widget="one2many" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="uprofe_grupo_inv_list_view" model="ir.ui.view">
+        <field name="name">uprofe.grupo_inv.list</field>
+        <field name="model">uprofe.grupo_inv</field>
+        <field name="arch" type="xml">
+            <list string="Lista de grupos de investigación">
+                <field name="sName" />
+                <field name="sNombre" />
+                <field name="dFecha_creacion" />
+                <!-- Descomentar cuando existan Departamento y Laboratorio -->
+                <!-- <field name="departamento_id" widget="many2one" /> -->
+                <!-- <field name="laboratorio_id" widget="many2one" /> -->
+            </list>
+        </field>
+    </record>
+
+    <record id="grupo_inv_list_action" model="ir.actions.act_window">
+        <field name="name">Grupos de investigación</field>
+        <field name="res_model">uprofe.grupo_inv</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea el primer grupo de investigación</p>
+        </field>
+    </record>
+</odoo>

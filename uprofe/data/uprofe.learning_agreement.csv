@@ -1,0 +1,11 @@
+id,sNum_la,iVersion,dFecha_firma,estado_id:id,movilidad_id:id
+la_2025_001,LA-2025-001,1,2025-07-10,estado_la_aprobado,mov_2025_001
+la_2025_002,LA-2025-002,1,2025-07-15,estado_la_aprobado,mov_2025_002
+la_2025_003,LA-2025-003,2,2025-10-20,estado_la_aprobado,mov_2025_003
+la_2026_001,LA-2026-001,1,2025-12-01,estado_la_aprobado,mov_2026_001
+la_2026_002,LA-2026-002,1,2026-07-05,estado_la_aprobado,mov_2026_002
+la_2026_003,LA-2026-003,2,2026-10-12,estado_la_modificacion_solicitada,mov_2026_003
+la_2026_004,LA-2026-004,1,2026-07-20,estado_la_firmado_destino,mov_2026_004
+la_2027_001,LA-2027-001,1,,estado_la_pendiente_firma,mov_2027_001
+la_2027_002,LA-2027-002,1,,estado_la_enviado,mov_2027_002
+la_2027_003,LA-2027-003,1,,estado_la_borrador,mov_2027_003

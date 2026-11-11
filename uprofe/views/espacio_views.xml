@@ -1,0 +1,69 @@
+<odoo>
+    <record id="view_espacio_list" model="ir.ui.view">
+        <field name="name">uprofe.espacio.list</field>
+        <field name="model">uprofe.espacio</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sCod_espacio" />
+                <field name="iCapacidad" />
+                <field name="iPlanta" />
+                <field name="edificio_id" />
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_espacio_form" model="ir.ui.view">
+        <field name="name">uprofe.espacio.form</field>
+        <field name="model">uprofe.espacio</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <notebook>
+                        <page string="Datos generales">
+                            <group>
+                                <field name="sCod_espacio" />
+                                <field name="iCapacidad" />
+                                <field name="iPlanta" />
+                            </group>
+                            <group>
+                                <field name="edificio_id" />
+                            </group>
+                        </page>
+                        <page string="Sala de estudio">
+                            <field name="sala_estudio_ids">
+                                <list>
+                                    <field name="sTipo" />
+                                    <field name="sRequisitos" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Historial de inventarios">
+                            <field name="inventario_ids" widget="one2many"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_espacio_search" model="ir.ui.view">
+        <field name="name">uprofe.espacio.search</field>
+        <field name="model">uprofe.espacio</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sCod_espacio" />
+                <field name="edificio_id" />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="espacio_list_action" model="ir.actions.act_window">
+        <field name="name">Espacios</field>
+        <field name="res_model">uprofe.espacio</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>
