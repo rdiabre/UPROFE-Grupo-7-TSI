@@ -20,4 +20,14 @@ class Alumno(models.Model):
         ('persona_unique', 'unique(persona_id)','Esta persona ya está registrada como alumno')
     ]
 
-    
+    #una persona es es alumno, investigador, profesor o tutor externo
+    #faltaría poner tutor externo en el and
+    @api.constrains('persona_id')
+    def _check_no_es_otra_persona(self):
+        #se parece a la comprobación hecha en grado y master, que se exluían mutuamente, pero aquí hay más opciones
+        for record in self:
+            if 'uprofe.investigador' in self.env and self.env['uprofe.investigador'].search_count([('persona_id', '=', record.persona_id.id)]):
+                raise models.ValidationsError("Esta persona ya está registrada como investigador")
+            if 'uprofe.profesor' in self.env and self.env['uprofe.profesor'].search_count([('persona_id', '=', record.persona_id.id)]):
+                raise models.ValidationsError("Esta persona ya está registrada como profesor")
+            #descomentar (y añadir código) cuando existe tutor externo
