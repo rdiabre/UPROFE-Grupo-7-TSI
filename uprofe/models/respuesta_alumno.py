@@ -13,7 +13,7 @@ class RespuestaAlumno(models.Model):
     pregunta_id = fields.Many2one('uprofe.pregunta', string='Pregunta', required=True)
 
     alumno_id = fields.Many2one('uprofe.alumno', string='Alumno', required=True)
-     
+
     _sql_constraints = [
         ('pregunta_alumno_uniq', 'unique(pregunta_id, alumno_id)', 'Este alumno ya ha respondido a esta pregunta.'),
     ]
