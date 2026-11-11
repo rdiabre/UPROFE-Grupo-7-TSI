@@ -28,7 +28,7 @@
                         <field name="sNombre" />
                         <field name="dFecha_creacion" />
                         <field name="departamento_id" widget="many2one" />
-                        <!-- <field name="laboratorio_id" widget="many2one" /> -->
+                        <field name="laboratorio_id" widget="many2one" />
                         <field name="proyecto_investigacion_ids" widget="one2many" />
                     </group>
                 </sheet>
