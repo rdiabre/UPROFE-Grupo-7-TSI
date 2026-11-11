@@ -44,6 +44,7 @@ Descripción del módulo
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/estado_acuerdo_views.xml',
         'views/libro_inv_views.xml',
         'views/congreso_views.xml',
         'views/patente_views.xml',
@@ -94,7 +95,6 @@ Descripción del módulo
         'views/seguimiento_alu_int_views.xml',
         'views/tipo_solicitud_views.xml',
         'views/menu.xml'
-
     ],
     # only loaded in demonstration mode
     'demo': [
