@@ -6,92 +6,105 @@ from odoo.exceptions import ValidationError
 class OfertaPractica(models.Model):
     _name = 'uprofe.oferta_practica'
     _description = 'Oferta de práctica en empresa'
-    _rec_name = 'stitulo'
-    _order = 'dfecha_inicio desc'
+    _order = 'dFecha_inicio desc'
 
-    inum_oferta = fields.Integer(string='Nº de oferta', required=True)
-    stitulo = fields.Char(string='Título', required=True)
-    sdescripcion = fields.Text(string='Descripción')
-    iplazas_disp = fields.Integer(string='Plazas disponibles', required=True, default=1)
-    fremuneracion = fields.Float(string='Remuneración (€)', default=0.0)
-    ihoras = fields.Integer(string='Horas', required=True, default=1)
-    dfecha_inicio = fields.Date(string='Fecha de inicio', required=True,
-                                default=fields.Date.context_today)
-    dfecha_fin = fields.Date(string='Fecha de fin', required=True)
-    sestado = fields.Selection([('abierta', 'Abierta'),
+    iNum_oferta = fields.Integer(string='Nº de oferta', required=True)
+    name = fields.Char(string='Título', required=True)
+    sDescripcion = fields.Text(string='Descripción')
+    iPlazas_disp = fields.Integer(string='Plazas disponibles', required=True, default=1)
+    fRemuneracion = fields.Float(string='Remuneración (€)', default=0.0)
+    iHoras = fields.Integer(string='Horas', required=True, default=1)
+    dFecha_inicio = fields.Date(string='Fecha de inicio', required=True)
+    dFecha_fin = fields.Date(string='Fecha de fin', required=True)
+    sEstado = fields.Selection([('abierta', 'Abierta'),
                                 ('cerrada', 'Cerrada'),
                                 ('completa', 'Completa')],
                                string='Estado', required=True, default='abierta')
 
-    empresa_id = fields.Many2one('uprofe.empresa', string='Empresa',
-                                 required=True, ondelete='restrict')
-    convenio_id = fields.Many2one('uprofe.convenio_empresa', string='Convenio',
-                                  required=True, ondelete='restrict')
+    empresa_id = fields.Many2one('uprofe.empresa', string='Empresa', required=True)
+    convenio_id = fields.Many2one('uprofe.convenio_empresa', string='Convenio', required=True)
 
-    # constrains
-    @api.constrains('inum_oferta')
+    @api.constrains('name')
+    def _check_titulo(self):
+        for record in self:
+            if record.name:
+                if record.name.strip() == '':
+                    raise ValidationError(
+                        'El título no puede contener solo espacios.'
+                    )
+                    
+    @api.constrains('iNum_oferta')
     def _check_num_oferta(self):
-        if self.inum_oferta <= 0:
-            raise ValidationError("El número de oferta debe ser mayor que cero.")
-        if self.search_count([('id', '!=', self.id),
-                              ('inum_oferta', '=', self.inum_oferta)]):
-            raise ValidationError("Ya existe una oferta con este número.")
+        for record in self:
+            if record.iNum_oferta <= 0:
+                raise ValidationError("El número de oferta debe ser mayor que cero.")
 
-    @api.constrains('iplazas_disp')
+            if self.search_count([
+                ('id', '!=', record.id),
+                ('iNum_oferta', '=', record.iNum_oferta)
+            ]):
+                raise ValidationError("Ya existe una oferta con este número.")
+
+    @api.constrains('iPlazas_disp')
     def _check_plazas(self):
-        if self.iplazas_disp < 0:
-            raise ValidationError("Las plazas disponibles no pueden ser negativas.")
+        for record in self:
+            if record.iPlazas_disp < 0:
+                raise ValidationError("Las plazas disponibles no pueden ser negativas.")
 
-    @api.constrains('fremuneracion')
+    @api.constrains('fRemuneracion')
     def _check_remuneracion(self):
-        if self.fremuneracion < 0:
-            raise ValidationError("La remuneración no puede ser negativa.")
+        for record in self:
+            if record.fRemuneracion < 0:
+                raise ValidationError("La remuneración no puede ser negativa.")
 
-    @api.constrains('ihoras')
+    @api.constrains('iHoras')
     def _check_horas(self):
-        if self.ihoras < 0:
-            raise ValidationError("Las horas no pueden ser negativas.")
+        for record in self:
+            if record.iHoras <= 0:
+                raise ValidationError("Las horas deben ser mayores que cero.")
 
-    @api.constrains('dfecha_inicio', 'dfecha_fin')
+    @api.constrains('dFecha_inicio', 'dFecha_fin')
     def _check_fechas(self):
-        if self.dfecha_inicio and self.dfecha_fin \
-                and self.dfecha_fin <= self.dfecha_inicio:
-            raise ValidationError("La fecha de fin debe ser posterior a la de inicio.")
+        for record in self:
+            if record.dFecha_inicio and record.dFecha_fin:
+                if record.dFecha_fin <= record.dFecha_inicio:
+                    raise ValidationError("La fecha de fin debe ser posterior a la de inicio.")
 
-    # onchange 
-    @api.onchange('iplazas_disp')
+    @api.onchange('iPlazas_disp')
     def _onchange_plazas(self):
-        if self.iplazas_disp < 0:
+        if self.iPlazas_disp < 0:
             return {
-                'value': {'iplazas_disp': 1},
+                'value': {'iPlazas_disp': 1},
                 'warning': {'title': 'Plazas no válidas',
                             'message': 'Las plazas no pueden ser negativas; se ha puesto 1.'}
             }
 
-    @api.onchange('fremuneracion')
+    @api.onchange('fRemuneracion')
     def _onchange_remuneracion(self):
-        if self.fremuneracion < 0:
+        if self.fRemuneracion < 0:
             return {
-                'value': {'fremuneracion': 0.0},
+                'value': {'fRemuneracion': 0.0},
                 'warning': {'title': 'Remuneración no válida',
                             'message': 'La remuneración no puede ser negativa; se ha puesto 0.'}
             }
 
-    @api.onchange('ihoras')
+    @api.onchange('iHoras')
     def _onchange_horas(self):
-        if self.ihoras < 0:
+        if self.iHoras <= 0:
             return {
-                'value': {'ihoras': 1},
-                'warning': {'title': 'Horas no válidas',
-                            'message': 'Las horas no pueden ser negativas; se ha puesto 1.'}
+                'value': {'iHoras': 1},
+                'warning': {
+                    'title': 'Horas no válidas',
+                    'message': 'Las horas deben ser mayores que cero; se ha puesto 1.'
+                }
             }
 
-    @api.onchange('dfecha_inicio', 'dfecha_fin')
+    @api.onchange('dFecha_inicio', 'dFecha_fin')
     def _onchange_fechas(self):
-        if self.dfecha_inicio and self.dfecha_fin \
-                and self.dfecha_fin <= self.dfecha_inicio:
+        if self.dFecha_inicio and self.dFecha_fin \
+                and self.dFecha_fin <= self.dFecha_inicio:
             return {
-                'value': {'dfecha_fin': False},
+                'value': {'dFecha_fin': False},
                 'warning': {'title': 'Fechas incorrectas',
                             'message': 'La fecha de fin debe ser posterior a la de inicio.'}
             }
