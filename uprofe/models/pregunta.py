@@ -6,73 +6,57 @@ from odoo.exceptions import ValidationError
 class Pregunta(models.Model):
     _name = 'uprofe.pregunta'
     _description = 'Pregunta de encuesta'
-    _order = 'inum_pregunta asc'
+    _order = 'iNum_pregunta asc'
 
-    inum_pregunta = fields.Integer(string='Número de pregunta', required=True, default=1,
-                                  aggregator=False)
+    iNum_pregunta = fields.Integer(string='Número de pregunta', required=True, default=1)
     name = fields.Char(string='Texto de la pregunta', required=True)
-    sopciones = fields.Text(string='Opciones (una por línea)')
+    sOpciones = fields.Text(string='Opciones (una por línea)')
 
-    # TIPO_RESPUESTA del ER: modelo propio, para poder añadir tipos desde la interfaz
-    tipo_respuesta_id = fields.Many2one('uprofe.tipo_respuesta', string='Tipo de respuesta',
-                                        required=True, ondelete='restrict')
-    bconopciones = fields.Boolean(related='tipo_respuesta_id.bconopciones')
+    tipo_respuesta_id = fields.Many2one('uprofe.tipo_respuesta', string='Tipo de respuesta', required=True)
+    encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta', required=True)
 
-    # Descomento cuando uprofe.encuesta esté en main
-    # encuesta_id = fields.Many2one('uprofe.encuesta', string='Encuesta',
-    #                               required=True, ondelete='cascade')
-    # _sql_constraints = [
-    #     ('inum_pregunta_encuesta_uniq', 'unique(encuesta_id, inum_pregunta)',
-    #      'Ya existe una pregunta con ese número en esta encuesta.'),
-    # ]
+    _sql_constraints = [
+        ('iNum_pregunta_encuesta_uniq', 'unique(encuesta_id, "iNum_pregunta")', 'Ya existe una pregunta con ese número en esta encuesta.'),
+    ]
 
-    # constrains
-    @api.constrains('inum_pregunta')
-    def _check_inum_pregunta(self):
+    @api.constrains('iNum_pregunta')
+    def _check_iNum_pregunta(self):
         for record in self:
-            if record.inum_pregunta < 1:
+            if record.iNum_pregunta < 1:
                 raise ValidationError("El número de pregunta debe ser mayor que 0.")
-
-    @api.constrains('tipo_respuesta_id', 'sopciones')
+                    
+    @api.constrains('name')
+    def _check_texto(self):
+        for record in self:
+            if record.name:
+                if record.name.strip() == '':
+                    raise ValidationError('El texto de la pregunta no puede contener solo espacios.' )
+                   
+    @api.constrains('sOpciones', 'tipo_respuesta_id')
     def _check_opciones(self):
         for record in self:
-            lineas = [l for l in (record.sopciones or '').splitlines() if l.strip()]
-            if record.bconopciones and len(lineas) < 2:
-                raise ValidationError("Este tipo de pregunta necesita al menos dos opciones.")
-            if not record.bconopciones and lineas:
-                raise ValidationError("Solo los tipos que requieren opciones las admiten.")
+            if record.tipo_respuesta_id.bCon_opciones:
+                if not record.sOpciones:
+                    raise ValidationError('Este tipo de respuesta requiere indicar opciones.' )
 
-    # onchange
-    @api.onchange('inum_pregunta')
-    def _onchange_inum_pregunta(self):
-        if self.inum_pregunta < 1:
+                if record.sOpciones.strip() == '':
+                    raise ValidationError('Las opciones no pueden contener solo espacios.')
+                
+                opciones = []
+                for linea in record.sOpciones.splitlines():
+                    if linea.strip():
+                        opciones.append(linea.strip())
+
+                if len(opciones) < 2:
+                    raise ValidationError('Debes indicar al menos dos opciones.')
+                
+    @api.onchange('iNum_pregunta')
+    def _onchange_iNum_pregunta(self):
+        if self.iNum_pregunta < 1:
             return {
-                'value': {'inum_pregunta': 1},
+                'value': {'iNum_pregunta': 1},
                 'warning': {
                     'title': 'Valor incorrecto',
                     'message': 'El número de pregunta debe ser mayor que 0.'
                 }
             }
-
-    @api.onchange('tipo_respuesta_id')
-    def _onchange_tipo_respuesta(self):
-        if not self.bconopciones and self.sopciones:
-            return {
-                'value': {'sopciones': False},
-                'warning': {
-                    'title': 'Opciones eliminadas',
-                    'message': 'Solo los tipos que requieren opciones las admiten.'
-                }
-            }
-            
-    # Descomentar (y quitar la versión sin encuesta) cuando uprofe.encuesta esté en main
-    # @api.depends('name', 'inum_pregunta', 'encuesta_id.name') #muesta a que encuesta pertenece cada pregunta
-    # def _compute_display_name(self):
-    #     for record in self:
-    #         record.display_name = "Encuesta: %s, Num Pregunta: %s, Pregunta: %s" % (
-    #             record.encuesta_id.name or '', record.inum_pregunta, record.name or '')
-    @api.depends('name', 'inum_pregunta')
-    def _compute_display_name(self):
-        for record in self:
-            record.display_name = "Num Pregunta: %s, Pregunta: %s" % (
-                record.inum_pregunta, record.name or '')

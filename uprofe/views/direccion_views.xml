@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_direccion_graph" model="ir.ui.view">
+        <field name="name">uprofe.direccion.graph</field>
+        <field name="model">uprofe.direccion</field>
+        <field name="arch" type="xml">
+            <graph string="Direcciones por ciudad" type="bar">
+                <field name="sCiudad"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_direccion_form" model="ir.ui.view">
+        <field name="name">uprofe.direccion.form</field>
+        <field name="model">uprofe.direccion</field>
+        <field name="arch" type="xml">
+            <form string="Dirección">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sCalle"/>
+                            <field name="sNumero"/>
+                        </group>
+                        <group>
+                            <field name="sCod_postal"/>
+                            <field name="sCiudad"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Empresas">
+                            <field name="empresa_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_direccion_list" model="ir.ui.view">
+        <field name="name">uprofe.direccion.list</field>
+        <field name="model">uprofe.direccion</field>
+        <field name="arch" type="xml">
+            <list string="Direcciones">
+                <field name="name"/>
+                <field name="sCalle"/>
+                <field name="sNumero"/>
+                <field name="sCod_postal"/>
+                <field name="sCiudad"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_direccion_search" model="ir.ui.view">
+        <field name="name">uprofe.direccion.search</field>
+        <field name="model">uprofe.direccion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCalle"/>
+                <field name="sCiudad"/>
+                <field name="sCod_postal"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_ciudad" string="Ciudad"
+                            context="{'group_by': 'sCiudad'}"/>
+                    <filter name="group_codigo_postal" string="Código postal"
+                            context="{'group_by': 'sCod_postal'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_direccion" model="ir.actions.act_window">
+        <field name="name">Direcciones</field>
+        <field name="res_model">uprofe.direccion</field>
+        <field name="search_view_id" ref="view_uprofe_direccion_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>
