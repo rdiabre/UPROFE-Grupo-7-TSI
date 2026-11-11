@@ -16,36 +16,32 @@ class ConvenioEmpresa(models.Model):
     oferta_ids = fields.One2many('uprofe.oferta_practica', 'convenio_id', string='Ofertas de práctica')
 
     @api.constrains('name')
-    def _check_num_convenio(self):
-        for record in self:
-            if record.name:
-                if record.name.strip() == '':
-                    raise ValidationError(
-                        'El número de convenio no puede contener solo espacios.'
-                    )
-    
-    @api.constrains('name')
     def _check_num_convenio_unique(self):
         for record in self:
             if record.name:
-                lDominio = [
+                if self.search_count([
                     ('id', '!=', record.id),
-                    ('name', '=ilike', record.name.strip())
-                ]
+                    ('name', '=ilike', record.name)
+                ]):
+                    raise ValidationError( 'Ya existe un convenio con este número.' )
+                    
+    @api.constrains('name')
+    def _check_num_convenio(self):
+        for record in self:
+            numero = (record.name or '').strip()
 
-                if self.search_count(lDominio):
-                    raise ValidationError(
-                        'Ya existe un convenio con este número.'
-                    )
+            if not numero:
+                raise ValidationError('El número de convenio no puede estar vacío.')
+
+            if record.name != numero:
+                raise ValidationError('El número de convenio no puede tener espacios al principio o al final.')
 
     @api.constrains('dFecha_firma', 'dFecha_expiracion')
     def _check_fechas(self):
         for record in self:
             if record.dFecha_firma and record.dFecha_expiracion:
                 if record.dFecha_expiracion <= record.dFecha_firma:
-                    raise ValidationError(
-                        'La fecha de expiración debe ser posterior a la fecha de firma.'
-                    )
+                    raise ValidationError('La fecha de expiración debe ser posterior a la fecha de firma.' )
 
     @api.onchange('dFecha_firma', 'dFecha_expiracion')
     def _onchange_fechas(self):
