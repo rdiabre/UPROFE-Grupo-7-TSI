@@ -97,9 +97,4 @@
     </record>
 
     <!-- MENÚ -->
-    <menuitem id="menu_uprofe_evento" 
-              name="Eventos" 
-              parent="uprofe_menu" 
-              action="action_uprofe_evento" 
-              sequence="40"/>
 </odoo>
