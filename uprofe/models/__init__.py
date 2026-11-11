@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Modelos abstractos que heredan los catálogos: deben cargarse antes que ellos
 from . import catalogo_mixin
+from . import datos_iniciales
 from . import departamento
 from . import titulacion
 from . import grado

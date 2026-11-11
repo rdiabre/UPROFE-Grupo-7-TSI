@@ -26,6 +26,8 @@ Descripción del módulo
         'security/ir.model.access.csv',
         # Datos iniciales (uno por entidad, 10 registros cada uno).
         # El orden importa: cada CSV va después de los catálogos a los que apunta.
+        # Antes de los CSV: recupera el xmlid de registros que ya existen (ver models/datos_iniciales.py)
+        'data/datos_iniciales.xml',
         'data/uprofe.pais.csv',
         'data/uprofe.idioma.csv',
         'data/uprofe.nivel_estudios.csv',
