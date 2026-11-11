@@ -11,6 +11,7 @@ from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
 from . import usuario
+from . import estado_solicitud
 from . import universidad_destino
 from . import ciudad
 from . import movilidad

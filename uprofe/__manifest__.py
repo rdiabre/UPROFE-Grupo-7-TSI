@@ -44,6 +44,7 @@ Descripción del módulo
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/estado_solicitud_views.xml',
         'views/estado_acuerdo_views.xml',
         'views/libro_inv_views.xml',
         'views/congreso_views.xml',
