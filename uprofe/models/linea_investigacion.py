@@ -16,23 +16,23 @@ class linea_investigacion(models.Model):
     @api.constrains('sName')
     def _check_name_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', record.sName.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sName', '=ilike', (record.sName or '').strip())]):
                 raise ValidationError("Ya existe una línea con ese código, debe ser único.")
             
     @api.constrains('sName')
     def _check_name_valido(self):
         for record in self:
-            if len(record.sName.strip() == 0):
+            if len((record.sName or '').strip() == 0):
                 raise ValidationError("El código de la línea de investigación no puede estar vacío.")
     
     @api.constrains('sNombre')
     def _check_nombre_valido(self):
         for record in self:
-            if len(record.sNombre.strip() == 0):
+            if len((record.sNombre or '').strip() == 0):
                 raise ValidationError("El nombre de la línea de investigación no puede estar vacío.")
     
     @api.constrains('sDescripcion')
     def _check_nombre_valido(self):
         for record in self:
-            if len(record.sDescripcion.strip() == 0):
+            if len((record.sDescripcion or '').strip() == 0):
                 raise ValidationError("La descripción de la línea de investigación no puede estar vacía.")
