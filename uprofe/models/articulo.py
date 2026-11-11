@@ -21,19 +21,19 @@ class articulo(models.Model):
     @api.constrains('sRevista')
     def _check_revista_valido(self):
         for record in self:
-            if len(record.sRevista.strip()) == 0:
+            if len((record.sRevista or '').strip()) == 0:
                 raise ValidationError("El nombre del artículo no puede estar vacío.")
             
     @api.constrains('sDoi')
     def _check_doi_unico(self):
         for record in self:
-            if self.search_count([('id', '!=', record.id), ('sDoi', '=ilike', record.sDoi.strip())]):
+            if self.search_count([('id', '!=', record.id), ('sDoi', '=ilike', (record.sDoi or '').strip())]):
                 raise ValidationError("Ya existe un artículo con este doi, debe ser único.")
     
     @api.constrains('sDoi')
     def _check_doi_valido(self):
         for record in self:
-            if len(record.sDoi.strip()) == 0:
+            if len((record.sDoi or '').strip()) == 0:
                 raise ValidationError("El DOI no puede estar vacío.")
 
     @api.constrains('publicacion_id')
