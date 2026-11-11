@@ -21,7 +21,7 @@
                 <sheet>
                     <group>
                         <group string="Datos de la publicación">
-                            <field name="sName"/>
+                            <field name="name"/>
                             <field name="sTitulo"/>
                             <field name="dFecha_publicacion"/>
                         </group>
@@ -51,7 +51,7 @@
         <field name="model">uprofe.patente</field>
         <field name="arch" type="xml">
             <list string="Patentes">
-                <field name="sName"/>
+                <field name="name"/>
                 <field name="sTitulo"/>
                 <field name="dFecha_publicacion"/>
                 <field name="sNumero_patente"/>
