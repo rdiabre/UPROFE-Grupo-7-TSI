@@ -5,10 +5,10 @@
         <field name="model">uprofe.solicitud</field>
         <field name="arch" type="xml">
             <list>
-                <field name="sName"/>
+                <field name="name"/>
                 <field name="dFechaSolicitud"/>
-                <field name="oTipoSolicitud_id"/>
-                <field name="oEstadoSolicitud_id"/>
+                <field name="tipo_solicitud_id"/>
+                <field name="estado_solicitud_id"/>
             </list>
         </field>
     </record>
@@ -22,12 +22,12 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="sName"/>
+                            <field name="name"/>
                             <field name="dFechaSolicitud"/>
                         </group>
                         <group>
-                            <field name="oTipoSolicitud_id"/>
-                            <field name="oEstadoSolicitud_id"/>
+                            <field name="tipo_solicitud_id" widget="many2one"/>
+                            <field name="estado_solicitud_id" widget="many2one"/>
                         </group>
                     </group>
                     <group>
@@ -38,16 +38,16 @@
         </field>
     </record>
 
-    <!-- Vista kanban agrupada por estado (avanzada) -->
+    <!-- Vista kanban agrupada por estado -->
     <record id="view_solicitud_kanban" model="ir.ui.view">
         <field name="name">uprofe.solicitud.kanban</field>
         <field name="model">uprofe.solicitud</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="oEstadoSolicitud_id">
+            <kanban default_group_by="estado_solicitud_id">
                 <templates>
                     <t t-name="card">
-                        <field name="sName" class="fw-bold fs-5"/>
-                        <field name="oTipoSolicitud_id"/>
+                        <field name="name" class="fw-bold fs-5"/>
+                        <field name="tipo_solicitud_id"/>
                         <field name="dFechaSolicitud"/>
                     </t>
                 </templates>
@@ -61,12 +61,12 @@
         <field name="model">uprofe.solicitud</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sName"/>
-                <field name="oTipoSolicitud_id"/>
-                <field name="oEstadoSolicitud_id"/>
+                <field name="name"/>
+                <field name="tipo_solicitud_id"/>
+                <field name="estado_solicitud_id"/>
                 <group expand="0" string="Agrupar por">
-                    <filter name="group_tipo" string="Tipo" context="{'group_by': 'oTipoSolicitud_id'}"/>
-                    <filter name="group_estado" string="Estado" context="{'group_by': 'oEstadoSolicitud_id'}"/>
+                    <filter name="group_tipo" string="Tipo" context="{'group_by': 'tipo_solicitud_id'}"/>
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'estado_solicitud_id'}"/>
                 </group>
             </search>
         </field>
