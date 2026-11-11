@@ -71,4 +71,3 @@ Descripción del módulo
     ],
     'application': True,
 }
-
