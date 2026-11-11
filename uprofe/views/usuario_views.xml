@@ -7,7 +7,7 @@
             <field name="name" string="Nombre de usuario"/>
             <field name="login" string="Correo"/>
             <field name="profesor_id"/>
-            <!-- <field name="alumno_id"/> -->
+            <field name="alumno_id"/>
 
             <filter name="activos" string="Activos" domain="[('active', '=', True)]"/>
             <filter name="archivados" string="Archivados" domain="[('active', '=', False)]"/>
@@ -37,8 +37,8 @@
 
                     <!-- Selectores para cambiar el profesor o alumno asociado -->
                     <group string="Persona asociada">
-                        <!-- <field name="profesor_id" readonly="alumno_id" domain="[('usuario_id', '=', False)]" options="{'no_create': True}"/> -->
-                        <!-- <field name="alumno_id" readonly="profesor_id" domain="[('usuario_id', '=', False)]" options="{'no_create': True}"/> -->
+                        <field name="profesor_id" readonly="alumno_id" domain="[('usuario_id', '=', False)]" options="{'no_create': True}"/>
+                        <field name="alumno_id" readonly="profesor_id" domain="[('usuario_id', '=', False)]" options="{'no_create': True}"/>
                     </group>
 
                 </sheet>
