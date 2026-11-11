@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lista -->
+    <record id="view_uprofe_asignatura_destino_list" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.list</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="cod_asig_destino"/>
+                <field name="sName"/>
+                <field name="universidad_id"/>
+                <field name="idioma_id"/>
+                <field name="sSemestre"/>
+                <field name="fCreditos_ects" sum="Total ECTS"/>
+                <field name="iNum_lineas" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Formulario -->
+    <record id="view_uprofe_asignatura_destino_form" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.form</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="sName"/>
+                        <h1><field name="sName" placeholder="Por ejemplo, Data Science"/></h1>
+                    </div>
+                    <group>
+                        <group string="Datos generales">
+                            <field name="cod_asig_destino" placeholder="AMS-DS-500"/>
+                            <field name="fCreditos_ects"/>
+                            <field name="sSemestre" widget="radio"/>
+                        </group>
+                        <group string="Universidad e idioma">
+                            <field name="universidad_id"/>
+                            <field name="idioma_id"/>
+                        </group>
+                        <group string="Uso en learning agreements">
+                            <field name="iNum_lineas"/>
+                            <field name="fCreditos_reconocidos"/>
+                        </group>
+                    </group>
+                    <field name="sDescripcion" placeholder="Contenidos de la asignatura"/>
+                    <notebook>
+                        <page string="Líneas de acuerdo">
+                            <field name="linea_ids" readonly="1">
+                                <list>
+                                    <field name="learning_agreement_id"/>
+                                    <field name="iNum_linea"/>
+                                    <field name="estado_id"/>
+                                    <field name="fNota"/>
+                                    <field name="fCreditos_reconocidos"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Graph: créditos ECTS ofertados por universidad, separados por idioma -->
+    <record id="view_uprofe_asignatura_destino_graph" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.graph</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <graph string="Créditos ECTS por universidad e idioma" type="bar">
+                <field name="universidad_id"/>
+                <field name="idioma_id"/>
+                <field name="fCreditos_ects" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Kanban (cards): la asignatura no tiene fechas, así que en lugar de Calendar se muestran tarjetas -->
+    <record id="view_uprofe_asignatura_destino_kanban" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.kanban</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="universidad_id">
+                <templates>
+                    <t t-name="card">
+                        <field name="sName" class="fw-bold fs-5"/>
+                        <field name="cod_asig_destino" class="text-muted"/>
+                        <div>Idioma: <field name="idioma_id"/> · <field name="sSemestre"/></div>
+                        <div><field name="fCreditos_ects"/> ECTS · usada en <field name="iNum_lineas"/> líneas</div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Búsqueda y filtros -->
+    <record id="view_uprofe_asignatura_destino_search" model="ir.ui.view">
+        <field name="name">uprofe.asignatura_destino.search</field>
+        <field name="model">uprofe.asignatura_destino</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sName"/>
+                <field name="cod_asig_destino"/>
+                <field name="universidad_id"/>
+                <field name="idioma_id"/>
+                <filter string="Primer semestre" name="semestre_1" domain="[('sSemestre', '=', '1')]"/>
+                <filter string="Segundo semestre" name="semestre_2" domain="[('sSemestre', '=', '2')]"/>
+                <filter string="Anuales" name="anual" domain="[('sSemestre', '=', 'anual')]"/>
+                <separator/>
+                <filter string="Usadas en algún acuerdo" name="usadas" domain="[('iNum_lineas', '&gt;', 0)]"/>
+                <filter string="6 ECTS o más" name="seis_ects" domain="[('fCreditos_ects', '&gt;=', 6)]"/>
+                <group string="Agrupar por">
+                    <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
+                    <filter string="Idioma" name="group_idioma" context="{'group_by': 'idioma_id'}"/>
+                    <filter string="Semestre" name="group_semestre" context="{'group_by': 'sSemestre'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_uprofe_asignatura_destino" model="ir.actions.act_window">
+        <field name="name">Asignaturas de destino</field>
+        <field name="res_model">uprofe.asignatura_destino</field>
+        <field name="view_mode">list,form,graph,kanban</field>
+    </record>
+
+</odoo>
