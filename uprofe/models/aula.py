@@ -6,7 +6,9 @@ class Aula(models.Model):
     _name = 'uprofe.aula'
     _inherit = 'uprofe.espacio'
     _description = 'Aula'
-    _rec_name = 'cod_espacio'
+    _inherits = {'uprofe.espacio': 'espacio_id'}
+
+    espacio_id = fields.Many2one('uprofe.espacio', required=True)
 
     # Atributos propios de Aula
     calendario_academico = fields.Char(
@@ -40,6 +42,11 @@ class Aula(models.Model):
         inverse_name='aula_id',
         string='Convocatorias de Asignatura'
     )
+
+    TIPOS_ESPACIO = [
+        'uprofe.aula',
+        'uprofe.laboratorio',
+    ]
 
     @api.constrains('capacidad')
     def _check_capacidad(self):
