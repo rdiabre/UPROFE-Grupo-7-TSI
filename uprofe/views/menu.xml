@@ -8,8 +8,9 @@
     <menuitem name="Convenios de prácticas" id="menu_uprofe_convenio_empresa" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_convenio_empresa" sequence="50"/>
     <menuitem name="Ofertas de práctica" id="menu_uprofe_oferta_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_oferta_practica" sequence="60"/>
     
-    <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
     
+    <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
+    <menuitem name="Horarios de tutoría" id="menu_uprofe_horario_tutoria" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_horario_tutoria"/>
     <menuitem name="Tipos de sesión" id="tipo_sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="tipo_sesion_list_action"/>
     <menuitem name="Sesiones" id="sesion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="sesion_list_action"/>
     <menuitem name="Proyectos de investigación" id="proyecto_investigacion_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="proyecto_investigacion_list_action"/>

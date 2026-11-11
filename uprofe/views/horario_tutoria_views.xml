@@ -90,9 +90,5 @@
     </record>
 
     <!-- MENÚ -->
-    <menuitem id="menu_uprofe_horario_tutoria" 
-              name="Tutorías" 
-              parent="uprofe_menu" 
-              action="action_uprofe_horario_tutoria" 
-              sequence="50"/>
+    
 </odoo>
