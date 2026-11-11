@@ -44,5 +44,4 @@ from . import estado_acuerdo
 from . import pregunta
 from . import tipo_respuesta
 from . import estado_la_linea
-from . import empresa
 from . import direccion
