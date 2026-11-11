@@ -1,3 +1,4 @@
+
 <odoo>
     <!-- Vista de lista -->
     <record id="view_doc_adjunta_list" model="ir.ui.view">
@@ -5,11 +6,11 @@
         <field name="model">uprofe.doc_adjunta</field>
         <field name="arch" type="xml">
             <list>
-                <field name="sName"/>
+                <field name="name"/>
                 <field name="sNombreFichero"/>
                 <field name="sTipoDocumento"/>
                 <field name="dFechaSubida"/>
-                <field name="oSolicitud_id"/>
+                <field name="solicitud_id"/>
             </list>
         </field>
     </record>
@@ -23,12 +24,12 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="sName"/>
+                            <field name="name"/>
                             <field name="sTipoDocumento"/>
                             <field name="dFechaSubida"/>
                         </group>
                         <group>
-                            <field name="oSolicitud_id"/>
+                            <field name="solicitud_id" widget="many2one"/>
                             <field name="sNombreFichero"/>
                             <field name="binFichero" filename="sNombreFichero"/>
                         </group>
@@ -38,15 +39,15 @@
         </field>
     </record>
 
-    <!-- Vista kanban agrupada por solicitud (avanzada) -->
+    <!-- Vista kanban agrupada por solicitud -->
     <record id="view_doc_adjunta_kanban" model="ir.ui.view">
         <field name="name">uprofe.doc_adjunta.kanban</field>
         <field name="model">uprofe.doc_adjunta</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="oSolicitud_id">
+            <kanban default_group_by="solicitud_id">
                 <templates>
                     <t t-name="card">
-                        <field name="sName" class="fw-bold fs-5"/>
+                        <field name="name" class="fw-bold fs-5"/>
                         <field name="sNombreFichero"/>
                         <field name="sTipoDocumento"/>
                         <field name="dFechaSubida"/>
@@ -62,12 +63,12 @@
         <field name="model">uprofe.doc_adjunta</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sName"/>
+                <field name="name"/>
                 <field name="sNombreFichero"/>
                 <field name="sTipoDocumento"/>
-                <field name="oSolicitud_id"/>
+                <field name="solicitud_id"/>
                 <group expand="0" string="Agrupar por">
-                    <filter name="group_solicitud" string="Solicitud" context="{'group_by': 'oSolicitud_id'}"/>
+                    <filter name="group_solicitud" string="Solicitud" context="{'group_by': 'solicitud_id'}"/>
                     <filter name="group_tipo" string="Tipo de documento" context="{'group_by': 'sTipoDocumento'}"/>
                 </group>
             </search>
