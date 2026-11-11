@@ -10,6 +10,7 @@
                 <field name="learning_agreement_id"/>
                 <field name="iNum_linea"/>
                 <field name="asignatura_destino_id"/>
+                <field name="asignatura_id" optional="show"/>
                 <field name="universidad_id" optional="hide"/>
                 <field name="estado_id"/>
                 <field name="fNota"/>
@@ -34,6 +35,7 @@
                         </group>
                         <group string="Asignatura y resultado">
                             <field name="asignatura_destino_id"/>
+                            <field name="asignatura_id"/>
                             <field name="universidad_id"/>
                             <field name="fCreditos_ects"/>
                             <field name="fNota"/>
@@ -85,6 +87,7 @@
             <search>
                 <field name="learning_agreement_id"/>
                 <field name="asignatura_destino_id"/>
+                <field name="asignatura_id"/>
                 <field name="universidad_id"/>
                 <field name="estado_id"/>
                 <filter string="Con nota" name="con_nota" domain="[('fNota', '!=', 0)]"/>

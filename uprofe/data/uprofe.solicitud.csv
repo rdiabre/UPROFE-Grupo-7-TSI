@@ -1,0 +1,11 @@
+id,sName,dFechaSolicitud,sObservaciones,oTipoSolicitud_id:id,oEstadoSolicitud_id:id
+sol_2025_001,SOL-2025-001,2025-02-10,Origina la movilidad MOV-2025-001,tipo_sol_estudios,estado_sol_aceptada
+sol_2025_002,SOL-2025-002,2025-02-12,Origina la movilidad MOV-2025-002,tipo_sol_estudios,estado_sol_aceptada
+sol_2025_003,SOL-2025-003,2025-02-20,Origina la movilidad MOV-2025-003,tipo_sol_estudios,estado_sol_aceptada
+sol_2026_001,SOL-2026-001,2025-02-25,Origina la movilidad MOV-2026-001,tipo_sol_estudios,estado_sol_aceptada
+sol_2026_002,SOL-2026-002,2026-02-03,Origina la movilidad MOV-2026-002,tipo_sol_estudios,estado_sol_aceptada
+sol_2026_003,SOL-2026-003,2026-02-09,Origina la movilidad MOV-2026-003,tipo_sol_estudios,estado_sol_aceptada
+sol_2026_004,SOL-2026-004,2026-02-16,Origina la movilidad MOV-2026-004,tipo_sol_estudios,estado_sol_aceptada
+sol_2027_001,SOL-2027-001,2026-02-20,Origina la movilidad MOV-2027-001,tipo_sol_estudios,estado_sol_aceptada
+sol_2027_002,SOL-2027-002,2026-11-05,Origina la movilidad MOV-2027-002,tipo_sol_estudios,estado_sol_aceptada
+sol_2027_003,SOL-2027-003,2026-11-09,Origina la movilidad MOV-2027-003,tipo_sol_estudios,estado_sol_aceptada

@@ -1,0 +1,11 @@
+id,name,sCursoAcademico,dtFechaApertura,dtFechaCierre,tipo_convocatoria_id:id,estado_convocatoria_id:id
+conv_est_2425,ERASMUS-EST-2024-25,2024/2025,2024-01-15,2024-02-28,tipo_conv_erasmus_estudios,estado_conv_resuelta
+conv_est_2526,ERASMUS-EST-2025-26,2025/2026,2025-01-15,2025-02-28,tipo_conv_erasmus_estudios,estado_conv_resuelta
+conv_est_2627,ERASMUS-EST-2026-27,2026/2027,2026-01-15,2026-02-28,tipo_conv_erasmus_estudios,estado_conv_resuelta
+conv_est_2728,ERASMUS-EST-2027-28,2027/2028,2026-11-02,2027-02-28,tipo_conv_erasmus_estudios,estado_conv_abierta
+conv_est_2829,ERASMUS-EST-2028-29,2028/2029,2027-11-02,2028-02-28,tipo_conv_erasmus_estudios,estado_conv_borrador
+conv_prac_2526,ERASMUS-PRA-2025-26,2025/2026,2025-03-01,2025-04-15,tipo_conv_erasmus_practicas,estado_conv_resuelta
+conv_prac_2627,ERASMUS-PRA-2026-27,2026/2027,2026-03-01,2026-04-15,tipo_conv_erasmus_practicas,estado_conv_cerrada
+conv_bil_2526,BILATERAL-2025-26,2025/2026,2025-02-01,2025-03-15,tipo_conv_bilateral,estado_conv_resuelta
+conv_bil_2627,BILATERAL-2026-27,2026/2027,2026-02-01,2026-03-15,tipo_conv_bilateral,estado_conv_resuelta
+conv_bil_2728,BILATERAL-2027-28,2027/2028,2026-12-01,2027-03-15,tipo_conv_bilateral,estado_conv_abierta

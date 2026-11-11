@@ -10,7 +10,7 @@
                 <field name="cod_plaza"/>
                 <field name="universidad_id"/>
                 <field name="pais_id" optional="show"/>
-                <!-- <field name="convocatoria_id"/> -->
+                <field name="convocatoria_id"/>
                 <field name="nivel_estudios_id"/>
                 <field name="idioma_id"/>
                 <field name="sNivel_idioma"/>
@@ -38,8 +38,7 @@
                             <field name="iDuracion_meses"/>
                             <field name="iNum_vacantes"/>
                             <field name="iVacantes_libres"/>
-                            <!-- Descomentar cuando exista Convocatoria (modelo de otro compañero) -->
-                            <!-- <field name="convocatoria_id"/> -->
+                            <field name="convocatoria_id"/>
                         </group>
                         <group string="Destino y requisitos">
                             <field name="universidad_id"/>
@@ -93,7 +92,7 @@
                     <t t-name="card">
                         <field name="cod_plaza" class="fw-bold fs-5"/>
                         <div><field name="universidad_id"/></div>
-                        <!-- <div>Convocatoria: <field name="convocatoria_id"/></div> -->
+                        <div>Convocatoria: <field name="convocatoria_id"/></div>
                         <div>Idioma: <field name="idioma_id"/> (<field name="sNivel_idioma"/>)</div>
                         <div><field name="iDuracion_meses"/> meses · <field name="iVacantes_libres"/>/<field name="iNum_vacantes"/> vacantes libres</div>
                     </t>
@@ -111,7 +110,7 @@
                 <field name="cod_plaza"/>
                 <field name="universidad_id"/>
                 <field name="pais_id"/>
-                <!-- <field name="convocatoria_id"/> -->
+                <field name="convocatoria_id"/>
                 <field name="nivel_estudios_id"/>
                 <field name="idioma_id"/>
                 <filter string="Curso completo (9 meses o más)" name="curso_completo" domain="[('iDuracion_meses', '&gt;=', 9)]"/>
@@ -121,7 +120,7 @@
                 <group string="Agrupar por">
                     <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
                     <filter string="País" name="group_pais" context="{'group_by': 'pais_id'}"/>
-                    <!-- <filter string="Convocatoria" name="group_convocatoria" context="{'group_by': 'convocatoria_id'}"/> -->
+                    <filter string="Convocatoria" name="group_convocatoria" context="{'group_by': 'convocatoria_id'}"/>
                     <filter string="Nivel de estudios" name="group_nivel" context="{'group_by': 'nivel_estudios_id'}"/>
                     <filter string="Idioma" name="group_idioma" context="{'group_by': 'idioma_id'}"/>
                     <filter string="Nivel de idioma" name="group_nivel_idioma" context="{'group_by': 'sNivel_idioma'}"/>

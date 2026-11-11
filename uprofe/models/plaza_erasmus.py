@@ -65,13 +65,12 @@ class PlazaErasmus(models.Model):
     fAyuda_total = fields.Float(string="Ayuda total (€)", compute='_compute_ayuda_total', store=True, digits=(8, 2))
     iVacantes_libres = fields.Integer(string="Vacantes libres", compute='_compute_vacantes_libres')
 
-    # Descomentar cuando exista Convocatoria (modelo de otro compañero)
-    # convocatoria_id = fields.Many2one(
-    #     'uprofe.convocatoria',
-    #     string="Convocatoria",
-    #     required=True,
-    #     ondelete='restrict',
-    # )
+    convocatoria_id = fields.Many2one(
+        'uprofe.convocatoria',
+        string="Convocatoria",
+        required=True,
+        ondelete='restrict',
+    )
 
     _sql_constraints = [
         ('cod_plaza_unico', 'UNIQUE(cod_plaza)',
