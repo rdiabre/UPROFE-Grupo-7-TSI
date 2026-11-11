@@ -8,10 +8,14 @@
         <field name="arch" type="xml">
             <list>
                 <field name="sNum_la"/>
-                <!-- <field name="movilidad_id"/> -->
+                <field name="movilidad_id"/>
+                <field name="universidad_id" optional="show"/>
                 <field name="iVersion"/>
                 <field name="estado_id"/>
                 <field name="dFecha_firma"/>
+                <field name="iNum_lineas"/>
+                <field name="fCreditos_totales" sum="Total ECTS"/>
+                <field name="fNota_media" optional="hide"/>
             </list>
         </field>
     </record>
@@ -22,32 +26,50 @@
         <field name="model">uprofe.learning_agreement</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_nueva_version" type="object" string="Nueva versión" class="btn-primary"
+                            invisible="not id"/>
+                    <field name="estado_id" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Firmado" bg_color="text-bg-success" invisible="not bFirmado"/>
+                    <div class="oe_title">
+                        <label for="sNum_la"/>
+                        <h1><field name="sNum_la" placeholder="Se numera solo al guardar"/></h1>
+                    </div>
                     <group>
                         <group string="Datos generales">
-                            <field name="sNum_la"/>
+                            <field name="movilidad_id"/>
+                            <field name="universidad_id"/>
                             <field name="iVersion"/>
                             <field name="dFecha_firma"/>
                         </group>
-                        <group string="Movilidad y estado">
-                            <!-- <field name="movilidad_id"/> -->
-                            <field name="estado_id"/>
+                        <group string="Resumen">
+                            <field name="iNum_lineas"/>
+                            <field name="fCreditos_totales"/>
+                            <field name="fCreditos_reconocidos"/>
+                            <field name="fNota_media"/>
+                            <field name="bFirmado"/>
                         </group>
                     </group>
-                    <!-- Descomentar cuando exista LaLinea -->
-                    <!-- <notebook>
+                    <notebook>
                         <page string="Líneas">
                             <field name="linea_ids">
                                 <list editable="bottom">
                                     <field name="iNum_linea"/>
                                     <field name="asignatura_destino_id"/>
+                                    <field name="fCreditos_ects"/>
                                     <field name="estado_id"/>
                                     <field name="fNota"/>
-                                    <field name="fCreditos_reconocidos"/>
+                                    <field name="sCalificacion"/>
+                                    <field name="fCreditos_reconocidos" sum="Total"/>
                                 </list>
                             </field>
                         </page>
-                    </notebook> -->
+                        <page string="Observaciones">
+                            <field name="sObservaciones" placeholder="Observaciones sobre el acuerdo"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -64,19 +86,20 @@
                       color="estado_id"
                       quick_create="0">
                 <field name="sNum_la"/>
-                <!-- <field name="movilidad_id"/> -->
-                <field name="estado_id"/>
+                <field name="movilidad_id"/>
+                <field name="estado_id" filters="1"/>
             </calendar>
         </field>
     </record>
 
-    <!-- Graph: learning agreements por estado -->
+    <!-- Graph: créditos ECTS de los learning agreements por estado -->
     <record id="view_uprofe_learning_agreement_graph" model="ir.ui.view">
         <field name="name">uprofe.learning_agreement.graph</field>
         <field name="model">uprofe.learning_agreement</field>
         <field name="arch" type="xml">
-            <graph string="Learning agreements por estado" type="bar">
+            <graph string="Créditos por estado" type="bar">
                 <field name="estado_id"/>
+                <field name="fCreditos_totales" type="measure"/>
             </graph>
         </field>
     </record>
@@ -88,10 +111,17 @@
         <field name="arch" type="xml">
             <search>
                 <field name="sNum_la"/>
-                <!-- <field name="movilidad_id"/> -->
+                <field name="movilidad_id"/>
+                <field name="universidad_id"/>
                 <field name="estado_id"/>
+                <filter string="Firmados" name="firmados" domain="[('bFirmado', '=', True)]"/>
+                <filter string="Sin firmar" name="sin_firmar" domain="[('bFirmado', '=', False)]"/>
+                <separator/>
+                <filter string="Con líneas" name="con_lineas" domain="[('iNum_lineas', '&gt;', 0)]"/>
+                <filter string="Versiones posteriores (v2 o más)" name="versiones" domain="[('iVersion', '&gt;', 1)]"/>
                 <group string="Agrupar por">
-                    <!-- <filter string="Movilidad" name="group_movilidad" context="{'group_by': 'movilidad_id'}"/> -->
+                    <filter string="Movilidad" name="group_movilidad" context="{'group_by': 'movilidad_id'}"/>
+                    <filter string="Universidad" name="group_universidad" context="{'group_by': 'universidad_id'}"/>
                     <filter string="Estado" name="group_estado" context="{'group_by': 'estado_id'}"/>
                 </group>
             </search>
@@ -104,12 +134,5 @@
         <field name="res_model">uprofe.learning_agreement</field>
         <field name="view_mode">list,form,calendar,graph</field>
     </record>
-
-    <!-- Menú: cuelga de "Movilidad", definido en catalogos_views.xml -->
-    <menuitem id="menu_uprofe_learning_agreement"
-              name="Learning agreements"
-              parent="menu_uprofe_movilidad"
-              action="action_uprofe_learning_agreement"
-              sequence="50"/>
 
 </odoo>

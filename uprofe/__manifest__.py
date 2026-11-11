@@ -32,21 +32,27 @@ Descripción del módulo
         'data/uprofe.estado_movilidad.csv',
         'data/uprofe.estado_learning_agreement.csv',
         'data/uprofe.estado_la_linea.csv',
+        'data/uprofe.ciudad.csv',
         'data/uprofe.universidad_destino.csv',
-        # Descomentar cada línea cuando su modelo esté en main
-        # (si el modelo no existe, Odoo falla al instalar/actualizar el módulo)
-        # 'data/uprofe.ciudad.csv',
-        # 'data/uprofe.plaza_erasmus.csv',
-        # 'data/uprofe.asignatura_destino.csv',
-        # 'data/uprofe.movilidad.csv',
-        # 'data/uprofe.learning_agreement.csv',
-        # 'data/uprofe.la_linea.csv',
+        'data/uprofe.plaza_erasmus.csv',
+        'data/uprofe.asignatura_destino.csv',
+        'data/uprofe.movilidad.csv',
+        'data/uprofe.learning_agreement.csv',
+        'data/uprofe.la_linea.csv',
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/acuerdo_views.xml',
+        'views/seguimiento_practica_views.xml',
+        'views/tasa_views.xml',
+        'views/tipo_tasa_views.xml',
+        'views/metodo_pago_views.xml',
+        'views/recibo_views.xml',
         'views/empresa_views.xml',
+        'views/direccion_views.xml',
         'views/convenio_empresa_views.xml',
         'views/oferta_practica_views.xml',
+        'views/tutor_externo_views.xml',
         'views/profesor_views.xml',
         'views/tipo_sesion_views.xml',
         'views/sesion_views.xml',
@@ -62,8 +68,10 @@ Descripción del módulo
         'views/plaza_erasmus_views.xml',
         'views/asignatura_destino_views.xml',
         'views/universidad_destino_views.xml',
+        'views/asignatura_views.xml',
+        'views/guia_docente_views.xml',
         'views/menu.xml',
-      
+        'views/libro_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -71,4 +79,3 @@ Descripción del módulo
     ],
     'application': True,
 }
-

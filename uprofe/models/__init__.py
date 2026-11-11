@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Modelos abstractos que heredan los catálogos: deben cargarse antes que ellos
+from . import catalogo_mixin
 from . import linea_investigacion
 from . import grupo_inv
 from . import financiacion
@@ -25,6 +27,13 @@ from . import estado_learning_agreement
 from . import pais
 from . import estado_convocatoria
 from . import estado_convenio
+from . import tutor_externo
+from . import seguimiento_practica
+from . import acuerdo
+from . import tasa
+from . import tipo_tasa
+from . import metodo_pago
+from . import recibo
 from . import empresa
 from . import convenio_empresa
 from . import oferta_practica
@@ -39,3 +48,5 @@ from . import estado_acuerdo
 from . import pregunta
 from . import tipo_respuesta
 from . import estado_la_linea
+from . import direccion
+from . import libro
