@@ -6,7 +6,7 @@ class financiacion(models.Model):
     _description = 'Financiación de los proyectos de investigación'
     
     name = fields.Char(string="Código de la financiación", required=True)
-    fImporte = fields.Float(string="Importe", digits="Account", required=True)
+    fImporte = fields.Float(string="Importe", digits="Account", required=True, default=1000)
     dFecha_concesion = fields.Datetime(string="Fecha de concesión", autodate=True, required=True)
     
     proyecto_investigacion_id = fields.Many2one('uprofe.proyecto_investigacion', string="Proyecto de investigación", required=True)

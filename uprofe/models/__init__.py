@@ -73,6 +73,15 @@ from . import reserva_horario
 from . import prestamo_equipo
 from . import direccion
 from . import libro
+from . import aula
+from . import convocatoria_asignatura
+from . import evento
+from . import evento_inscripcion
+from . import horario_tutoria
+from . import laboratorio
+from . import prestamo
+from . import tipo_evento
+from . import tutoria
 from . import encuesta
 from . import respuesta_alumno
 from . import seguimiento_alu_int
