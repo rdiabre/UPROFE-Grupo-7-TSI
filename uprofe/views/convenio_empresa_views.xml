@@ -53,6 +53,8 @@
             <search>
                 <field name="name"/>
                 <field name="estado_convenio_id"/>
+                <filter name="con_ofertas" string="Con ofertas" domain="[('oferta_ids', '!=', False)]"/>
+                <filter name="sin_ofertas" string="Sin ofertas" domain="[('oferta_ids', '=', False)]"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_estado"
                             string="Estado"

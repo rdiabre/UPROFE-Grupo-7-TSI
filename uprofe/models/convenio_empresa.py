@@ -32,9 +32,10 @@ class ConvenioEmpresa(models.Model):
 
             if not numero:
                 raise ValidationError('El número de convenio no puede estar vacío.')
-
             if record.name != numero:
                 raise ValidationError('El número de convenio no puede tener espacios al principio o al final.')
+            if len(numero) > 50:
+                raise ValidationError('El número de convenio no puede superar los 50 caracteres.')
 
     @api.constrains('dFecha_firma', 'dFecha_expiracion')
     def _check_fechas(self):
