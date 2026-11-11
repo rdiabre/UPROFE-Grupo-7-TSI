@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Autora: Sandra Megolla Fernández -->
+<odoo>
+    <record id="view_uprofe_acuerdo_calendar" model="ir.ui.view">
+        <field name="name">uprofe.acuerdo.calendar</field>
+        <field name="model">uprofe.acuerdo</field>
+        <field name="arch" type="xml">
+            <calendar string="Acuerdos" date_start="dFecha_inicio"  date_stop="dFecha_fin"  color="tutor_interno_id" mode="month">
+                <field name="name"/>
+                <field name="tutor_interno_id"/>
+                <field name="estado_acuerdo_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_uprofe_acuerdo_form" model="ir.ui.view">
+        <field name="name">uprofe.acuerdo.form</field>
+        <field name="model">uprofe.acuerdo</field>
+        <field name="arch" type="xml">
+            <form string="Acuerdo de prácticas">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="alumno_id"/>
+                            <field name="name"/>
+                            <field name="tutor_interno_id"/>
+                            <field name="solicitud_id"/>
+                            <field name="estado_acuerdo_id"/>
+                        </group>
+                        <group>
+                            <field name="dFecha_firma"/>
+                            <field name="dFecha_inicio"/>
+                            <field name="dFecha_fin"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Seguimientos">
+                            <field name="seguimiento_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_acuerdo_list" model="ir.ui.view">
+        <field name="name">uprofe.acuerdo.list</field>
+        <field name="model">uprofe.acuerdo</field>
+        <field name="arch" type="xml">
+            <list string="Acuerdos">
+                <field name="alumno_id"/>
+                <field name="name"/>
+                <field name="tutor_interno_id"/>
+                <field name="solicitud_id"/>
+                <field name="estado_acuerdo_id"/>
+                <field name="dFecha_firma"/>
+                <field name="dFecha_inicio"/>
+                <field name="dFecha_fin"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_acuerdo_search" model="ir.ui.view">
+        <field name="name">uprofe.acuerdo.search</field>
+        <field name="model">uprofe.acuerdo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="alumno_id"/>
+                <field name="name"/>
+                <field name="tutor_interno_id"/>
+                <field name="solicitud_id"/>
+                <field name="estado_acuerdo_id"/>
+                <filter name="con_seguimientos" string="Con seguimientos" domain="[('seguimiento_ids', '!=', False)]"/>
+                <filter name="sin_seguimientos" string="Sin seguimientos" domain="[('seguimiento_ids', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tutor"  string="Tutor interno" context="{'group_by': 'tutor_interno_id'}"/>
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'estado_acuerdo_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_acuerdo" model="ir.actions.act_window">
+        <field name="name">Acuerdos de prácticas</field>
+        <field name="res_model">uprofe.acuerdo</field>
+        <field name="search_view_id" ref="view_uprofe_acuerdo_search"/>
+        <field name="view_mode">list,form,calendar</field>
+    </record>
+</odoo>

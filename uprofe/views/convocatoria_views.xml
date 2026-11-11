@@ -1,0 +1,83 @@
+<odoo>
+    <!-- Vista de lista -->
+    <record id="view_convocatoria_list" model="ir.ui.view">
+        <field name="name">uprofe.convocatoria.list</field>
+        <field name="model">uprofe.convocatoria</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="sCursoAcademico"/>
+                <field name="dtFechaApertura"/>
+                <field name="dtFechaCierre"/>
+                <field name="tipo_convocatoria_id"/>
+                <field name="estado_convocatoria_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+    <record id="view_convocatoria_form" model="ir.ui.view">
+        <field name="name">uprofe.convocatoria.form</field>
+        <field name="model">uprofe.convocatoria</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sCursoAcademico"/>
+                            <field name="tipo_convocatoria_id" widget="many2one"/>
+                            <field name="estado_convocatoria_id" widget="many2one"/>
+                        </group>
+                        <group>
+                            <field name="dtFechaApertura"/>
+                            <field name="dtFechaCierre"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista calendar -->
+    <record id="view_convocatoria_calendar" model="ir.ui.view">
+        <field name="name">uprofe.convocatoria.calendar</field>
+        <field name="model">uprofe.convocatoria</field>
+        <field name="arch" type="xml">
+            <calendar string="Convocatorias" date_start="dtFechaApertura" date_stop="dtFechaCierre" mode="month" color="estado_convocatoria_id">
+                <field name="name"/>
+                <field name="tipo_convocatoria_id"/>
+                <field name="estado_convocatoria_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Búsqueda -->
+    <record id="view_convocatoria_search" model="ir.ui.view">
+        <field name="name">uprofe.convocatoria.search</field>
+        <field name="model">uprofe.convocatoria</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCursoAcademico"/>
+                <field name="tipo_convocatoria_id"/>
+                <field name="estado_convocatoria_id"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_tipo" string="Tipo" context="{'group_by': 'tipo_convocatoria_id'}"/>
+                    <filter name="group_estado" string="Estado" context="{'group_by': 'estado_convocatoria_id'}"/>
+                    <filter name="group_curso" string="Curso académico" context="{'group_by': 'sCursoAcademico'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="convocatoria_list_action" model="ir.actions.act_window">
+        <field name="name">Convocatorias</field>
+        <field name="res_model">uprofe.convocatoria</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea la primera convocatoria</p>
+        </field>
+    </record>
+</odoo>

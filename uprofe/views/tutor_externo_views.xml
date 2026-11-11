@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Autora: Sandra Megolla Fernández -->
+<odoo>
+    <record id="view_uprofe_tutor_externo_kanban" model="ir.ui.view">
+        <field name="name">uprofe.tutor_externo.kanban</field>
+        <field name="model">uprofe.tutor_externo</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong>
+                                <field name="name"/>
+                                <field name="sApellidos"/>
+                            </strong>
+                            <div>DNI: <field name="sDni"/></div>
+                            <div>Correo: <field name="email"/></div>
+                            <div>Teléfono: <field name="phone"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tutor_externo_form" model="ir.ui.view">
+        <field name="name">uprofe.tutor_externo.form</field>
+        <field name="model">uprofe.tutor_externo</field>
+        <field name="arch" type="xml">
+            <form string="Tutor externo">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="persona_id"/>
+                            <field name="name"/>
+                            <field name="sApellidos"/>
+                            <field name="sDni"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Seguimientos">
+                            <field name="seguimiento_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tutor_externo_list" model="ir.ui.view">
+        <field name="name">uprofe.tutor_externo.list</field>
+        <field name="model">uprofe.tutor_externo</field>
+        <field name="arch" type="xml">
+            <list string="Tutores externos">
+                <field name="name"/>
+                <field name="sApellidos"/>
+                <field name="sDni"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tutor_externo_search" model="ir.ui.view">
+        <field name="name">uprofe.tutor_externo.search</field>
+        <field name="model">uprofe.tutor_externo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sApellidos"/>
+                <field name="sDni"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <filter name="con_seguimientos" string="Con seguimientos" domain="[('seguimiento_ids', '!=', False)]"/>
+                <filter name="sin_seguimientos" string="Sin seguimientos" domain="[('seguimiento_ids', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_tutor_externo" model="ir.actions.act_window">
+        <field name="name">Tutores externos</field>
+        <field name="res_model">uprofe.tutor_externo</field>
+        <field name="search_view_id" ref="view_uprofe_tutor_externo_search"/>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

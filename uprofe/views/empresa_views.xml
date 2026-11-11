@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Autora: Sandra Megolla Fernández -->
 <odoo>
     <record id="view_uprofe_empresa_graph" model="ir.ui.view">
         <field name="name">uprofe.empresa.graph</field>
@@ -20,6 +21,7 @@
                         <group>
                             <field name="name"/>
                             <field name="sCif"/>
+                            <field name="direccion_id"/>
                         </group>
                         <group>
                             <field name="sNombre_sector"/>
@@ -48,6 +50,7 @@
                 <field name="sCif"/>
                 <field name="sNombre_sector"/>
                 <field name="sEmail"/>
+                <field name="direccion_id"/>
             </list>
         </field>
     </record>
@@ -60,6 +63,9 @@
                 <field name="name"/>
                 <field name="sCif"/>
                 <field name="sNombre_sector"/>
+                <field name="direccion_id"/>
+                <filter name="con_ofertas" string="Con ofertas" domain="[('oferta_ids', '!=', False)]"/>
+                <filter name="sin_ofertas" string="Sin ofertas" domain="[('oferta_ids', '=', False)]"/>
                 <group expand="0" string="Agrupar por">
                     <filter name="group_sector" string="Sector"
                             context="{'group_by': 'sNombre_sector'}"/>

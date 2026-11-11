@@ -3,14 +3,13 @@
         <field name="name">uprofe.grupo_inv.kanban</field>
         <field name="model">uprofe.grupo_inv</field>
         <field name="arch" type="xml">
-            <!-- Volver a poner default_group_by="departamento_id" cuando exista Departamento -->
-            <kanban string="Grupos de investigación por departamentos">
+            <kanban string="Grupos de investigación por departamentos" default_group_by="departamento_id">
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <strong><field name="sNombre"/></strong>
-                            <div>Código: <field name="sName"/></div>
-                            <!-- <div>Laboratorio: <field name="laboratorio_id"/></div> -->
+                            <div>Código: <field name="name"/></div>
+                            <div>Laboratorio: <field name="laboratorio_id"/></div>
                         </div>
                     </t>
                 </templates>
@@ -25,12 +24,11 @@
             <form string="Grupos de investigación">
                 <sheet layout="auto">
                     <group>
-                        <field name="sName" />
+                        <field name="name" />
                         <field name="sNombre" />
                         <field name="dFecha_creacion" />
-                        <!-- Descomentar cuando existan Departamento y Laboratorio -->
-                        <!-- <field name="departamento_id" widget="many2one" /> -->
-                        <!-- <field name="laboratorio_id" widget="many2one" /> -->
+                        <field name="departamento_id" widget="many2one" />
+                        <field name="laboratorio_id" widget="many2one" />
                         <field name="proyecto_investigacion_ids" widget="one2many" />
                     </group>
                 </sheet>
@@ -43,12 +41,11 @@
         <field name="model">uprofe.grupo_inv</field>
         <field name="arch" type="xml">
             <list string="Lista de grupos de investigación">
-                <field name="sName" />
+                <field name="name" />
                 <field name="sNombre" />
                 <field name="dFecha_creacion" />
-                <!-- Descomentar cuando existan Departamento y Laboratorio -->
-                <!-- <field name="departamento_id" widget="many2one" /> -->
-                <!-- <field name="laboratorio_id" widget="many2one" /> -->
+                <field name="departamento_id" widget="many2one" />
+                <field name="laboratorio_id" widget="many2one" />
             </list>
         </field>
     </record>

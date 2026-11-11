@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Autor: Isabel Cherino
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError, UserError
@@ -58,13 +59,12 @@ class LaLinea(models.Model):
     universidad_id = fields.Many2one(related='asignatura_destino_id.universidad_id', string="Universidad", store=True)
     sCalificacion = fields.Char(string="Calificación", compute='_compute_calificacion', store=True)
 
-    # Descomentar cuando exista Asignatura (modelo de otro compañero)
-    # asignatura_id = fields.Many2one(
-    #     'uprofe.asignatura',
-    #     string="Asignatura propia que se reconoce",
-    #     required=True,
-    #     ondelete='restrict',
-    # )
+    asignatura_id = fields.Many2one(
+        'uprofe.asignatura',
+        string="Asignatura propia que se reconoce",
+        required=True,
+        ondelete='restrict',
+    )
 
     _sql_constraints = [
         ('linea_unica_por_la', 'UNIQUE(learning_agreement_id, "iNum_linea")',

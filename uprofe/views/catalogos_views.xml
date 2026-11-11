@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Autor: Isabel Cherino -->
 <odoo>
     <!-- Catálogos de movilidad: país, ciudad, idioma, nivel de estudios y los 3 estados.
          Todos heredan de uprofe.catalogo_mixin: secuencia (se reordena arrastrando con

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Autora: Sandra Megolla Fernández -->
+<odoo>
+    <record id="view_uprofe_tipo_tasa_kanban" model="ir.ui.view">
+        <field name="name">uprofe.tipo_tasa.kanban</field>
+        <field name="model">uprofe.tipo_tasa</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tipo_tasa_form" model="ir.ui.view">
+        <field name="name">uprofe.tipo_tasa.form</field>
+        <field name="model">uprofe.tipo_tasa</field>
+        <field name="arch" type="xml">
+            <form string="Tipo de tasa">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tipo_tasa_list" model="ir.ui.view">
+        <field name="name">uprofe.tipo_tasa.list</field>
+        <field name="model">uprofe.tipo_tasa</field>
+        <field name="arch" type="xml">
+            <list string="Tipos de tasa">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_tipo_tasa_search" model="ir.ui.view">
+        <field name="name">uprofe.tipo_tasa.search</field>
+        <field name="model">uprofe.tipo_tasa</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="matriculacion" string="Matriculación" domain="[('name', '=', 'matriculacion')]"/>
+                <filter name="expedicion" string="Expedición" domain="[('name', '=', 'expedicion')]"/>
+                <filter name="servicios" string="Servicios" domain="[('name', '=', 'servicios')]"/>
+                <filter name="pruebas" string="Pruebas y exámenes" domain="[('name', '=', 'pruebas')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_tipo_tasa" model="ir.actions.act_window">
+        <field name="name">Tipos de tasa</field>
+        <field name="res_model">uprofe.tipo_tasa</field>
+        <field name="search_view_id" ref="view_uprofe_tipo_tasa_search"/>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

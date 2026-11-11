@@ -1,0 +1,5 @@
+id,name,sDescripcion
+estado_conv_borrador,Borrador,Convocatoria en preparación
+estado_conv_abierta,Abierta,Se pueden presentar solicitudes
+estado_conv_cerrada,Cerrada,Plazo de solicitudes terminado
+estado_conv_resuelta,Resuelta,Plazas adjudicadas
