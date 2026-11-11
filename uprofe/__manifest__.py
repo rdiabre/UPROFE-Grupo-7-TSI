@@ -50,7 +50,7 @@ Descripción del módulo
         'views/articulo_views.xml',
         'views/convenio_views.xml',
         'views/estado_convocatoria_views.xml',
-        'views/doc_adjunta_views.xml'
+        'views/doc_adjunta_views.xml',
         'views/ubicacion_views.xml',
         'views/edificio_views.xml',
         'views/espacio_views.xml',
