@@ -45,7 +45,15 @@ class Pregunta(models.Model):
 
                 if record.sOpciones.strip() == '':
                     raise ValidationError('Las opciones no pueden contener solo espacios.')
-                                    
+                
+                opciones = []
+                for linea in record.sOpciones.splitlines():
+                    if linea.strip():
+                        opciones.append(linea.strip())
+
+                if len(opciones) < 2:
+                    raise ValidationError('Debes indicar al menos dos opciones.')
+                
     @api.onchange('iNum_pregunta')
     def _onchange_iNum_pregunta(self):
         if self.iNum_pregunta < 1:
