@@ -52,9 +52,7 @@ class Tasa(models.Model):
                 raise ValidationError("La tasa debe tener al menos un plazo.")
             for recibo in record.recibo_ids:
                 if recibo.iNumero_plazo > record.iCantidad_plazos:
-                    raise ValidationError(
-                        "No puedes reducir los plazos porque existe un recibo con un número de plazo superior."
-                    )
+                    raise ValidationError( "No puedes reducir los plazos porque existe un recibo con un número de plazo superior." )
 
     @api.onchange('fImporte')
     def _onchange_importe(self):

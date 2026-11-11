@@ -61,3 +61,6 @@ from . import reserva_horario
 from . import prestamo_equipo
 from . import direccion
 from . import libro
+from . import encuesta
+from . import respuesta_alumno
+from . import seguimiento_alu_int

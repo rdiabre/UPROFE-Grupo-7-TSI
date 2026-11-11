@@ -15,7 +15,7 @@
                         <group>
                             <field name="sIsbn"/>
                             <field name="tipo"/>
-                            <field name="prestamo_id"/>
+                            <!--<field name="prestamo_id"/>-->
                         </group>
                     </group>
                 </sheet>

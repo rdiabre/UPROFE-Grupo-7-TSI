@@ -59,3 +59,6 @@ access_reserva_horario_uprofe,reserva.horario.uprofe,model_uprofe_reserva_horari
 access_prestamo_equipo_uprofe,prestamo.equipo.uprofe,model_uprofe_prestamo_equipo,uprofe.group_uprofe_manager,1,1,1,1
 direccion_manager,direccion_manager,model_uprofe_direccion,group_uprofe_manager,1,1,1,1
 access_uprofe_libro,uprofe.libro,model_uprofe_libro,base.group_user,1,1,1,1
+encuesta_manager,encuesta_manager,model_uprofe_encuesta,group_uprofe_manager,1,1,1,1
+respuesta_alumno_manager,respuesta_alumno_manager,model_uprofe_respuesta_alumno,group_uprofe_manager,1,1,1,1
+seguimiento_alu_int_manager,seguimiento_alu_int_manager,model_uprofe_seguimiento_alu_int,group_uprofe_manager,1,1,1,1
