@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VISTA FORM -->
+    <record id="view_libro_form" model="ir.ui.view">
+        <field name="name">uprofe.libro.form</field>
+        <field name="model">uprofe.libro</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sAutor"/>
+                        </group>
+                        <group>
+                            <field name="sIsbn"/>
+                            <field name="tipo"/>
+                            <!--<field name="prestamo_id"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- VISTA TREE -->
+    <record id="view_libro_list" model="ir.ui.view">
+        <field name="name">uprofe.libro.list</field>
+        <field name="model">uprofe.libro</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sIsbn"/>
+                <field name="name"/>
+                <field name="sAutor"/>
+                <field name="tipo"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- VISTA AVANZADA: KANBAN -->
+    <record id="view_libro_kanban" model="ir.ui.view">
+        <field name="name">uprofe.libro.kanban</field>
+        <field name="model">uprofe.libro</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="sAutor"/>
+                <field name="tipo"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div>Autor: <field name="sAutor"/></div>
+                            <div>Tipo: <field name="tipo"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ACCIÓN -->
+    <record id="action_uprofe_libro" model="ir.actions.act_window">
+        <field name="name">Libros</field>
+        <field name="res_model">uprofe.libro</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+</odoo>

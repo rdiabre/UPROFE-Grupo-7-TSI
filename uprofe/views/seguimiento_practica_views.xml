@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_uprofe_seguimiento_practica_graph" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.graph</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <graph string="Seguimientos por acuerdo" type="bar">
+                <field name="acuerdo_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_uprofe_seguimiento_practica_form" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.form</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <form string="Seguimiento de práctica">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="iNum_seguimiento_practica"/>
+                            <field name="name"/>
+                            <field name="acuerdo_id"/>
+                            <field name="tutor_externo_id"/>
+                        </group>
+                        <group>
+                            <field name="dFecha_emision"/>
+                            <field name="fCalificacion_parcial"/>
+                        </group>
+                    </group>
+                    <group string="Comentarios">
+                        <field name="sComentarios" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_uprofe_seguimiento_practica_list" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.list</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <list string="Seguimientos">
+                <field name="iNum_seguimiento_practica"/>
+                <field name="name"/>
+                <field name="acuerdo_id"/>
+                <field name="tutor_externo_id"/>
+                <field name="dFecha_emision"/>
+                <field name="fCalificacion_parcial"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_uprofe_seguimiento_practica_search" model="ir.ui.view">
+        <field name="name">uprofe.seguimiento_practica.search</field>
+        <field name="model">uprofe.seguimiento_practica</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="iNum_seguimiento_practica"/>
+                <field name="name"/>
+                <field name="acuerdo_id"/>
+                <field name="tutor_externo_id"/>
+                <filter name="con_comentarios" string="Con comentarios" domain="[('sComentarios', '!=', False)]"/>
+                <filter name="sin_comentarios" string="Sin comentarios" domain="[('sComentarios', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_acuerdo" string="Acuerdo" context="{'group_by': 'acuerdo_id'}"/>
+                    <filter name="group_tutor" string="Tutor externo" context="{'group_by': 'tutor_externo_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_uprofe_seguimiento_practica" model="ir.actions.act_window">
+        <field name="name">Seguimientos de práctica</field>
+        <field name="res_model">uprofe.seguimiento_practica</field>
+        <field name="search_view_id" ref="view_uprofe_seguimiento_practica_search"/>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+</odoo>
