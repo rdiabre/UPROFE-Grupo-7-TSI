@@ -4,10 +4,20 @@
     <menuitem name="Uprofe" id="uprofe_menu" groups="group_uprofe_manager" parent="main_uprofe_menu"/>
 
     <menuitem name="Personas" id="persona_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="persona_list_action"/>
+    <menuitem name="Tutores externos" id="menu_uprofe_tutor_externo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_tutor_externo" sequence="40"/>
+    <menuitem name="Acuerdos de prácticas" id="menu_uprofe_acuerdo" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_acuerdo" sequence="70"/>
+    <menuitem name="Seguimientos de práctica" id="menu_uprofe_seguimiento_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_seguimiento_practica" sequence="80"/>
+    <menuitem name="Tasas y recibos" id="menu_uprofe_tasas_root" parent="uprofe_menu" groups="group_uprofe_manager" sequence="50"/>
+    <menuitem name="Tasas" id="menu_uprofe_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tasa" sequence="1"/>    
+    <menuitem name="Tipos de tasa" id="menu_uprofe_tipo_tasa" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_tipo_tasa" sequence="3"/>
+    <menuitem name="Métodos de pago" id="menu_uprofe_metodo_pago" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_metodo_pago" sequence="4"/>
+    <menuitem name="Recibos" id="menu_uprofe_recibo" parent="menu_uprofe_tasas_root" groups="group_uprofe_manager" action="action_uprofe_recibo" sequence="2"/>
     <menuitem name="Empresas" id="menu_uprofe_empresa" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_empresa" sequence="40"/>
+    <menuitem name="Direcciones" id="menu_uprofe_direccion" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_direccion" sequence="70"/>
     <menuitem name="Convenios de prácticas" id="menu_uprofe_convenio_empresa" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_convenio_empresa" sequence="50"/>
     <menuitem name="Ofertas de práctica" id="menu_uprofe_oferta_practica" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_oferta_practica" sequence="60"/>
     
+    <menuitem name="Libros" id="menu_uprofe_libro" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_libro"/>
     
     <menuitem name="Profesores" id="profesor_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="profesor_list_action"/>
     <menuitem name="Horarios de tutoría" id="menu_uprofe_horario_tutoria" parent="uprofe_menu" groups="group_uprofe_manager" action="action_uprofe_horario_tutoria"/>

@@ -20,9 +20,17 @@
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
+        'views/acuerdo_views.xml',
+        'views/seguimiento_practica_views.xml',
+        'views/tasa_views.xml',
+        'views/tipo_tasa_views.xml',
+        'views/metodo_pago_views.xml',
+        'views/recibo_views.xml',
         'views/empresa_views.xml',
+        'views/direccion_views.xml',
         'views/convenio_empresa_views.xml',
         'views/oferta_practica_views.xml',
+        'views/tutor_externo_views.xml',
         'views/profesor_views.xml',
         'views/tipo_sesion_views.xml',
         'views/sesion_views.xml',
@@ -40,6 +48,13 @@
         'views/universidad_destino_views.xml',
         'views/asignatura_views.xml',
         'views/guia_docente_views.xml',
-        'views/menu.xml',
         'views/horario_tutoria_views.xml'
+        'views/libro_views.xml'
+        'views/menu.xml'
     ],
+    # only loaded in demonstration mode
+    'demo': [
+
+    ],
+    'application': True,
+}
