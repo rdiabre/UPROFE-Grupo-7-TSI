@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
-
+from odoo.exceptions import ValidationError
 
 class Aula(models.Model):
     _name = 'uprofe.aula'
@@ -50,7 +50,7 @@ class Aula(models.Model):
     @api.constrains('iCapacidad')
     def _check_capacidad(self):
         for record in self:
-            if record.capacidad <= 0:
+            if record.iCapacidad <= 0:
                 raise ValidationError('La capacidad debe ser mayor que 0.')
 
     @api.constrains('sCod_espacio')

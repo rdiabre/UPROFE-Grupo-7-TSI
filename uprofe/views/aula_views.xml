@@ -39,14 +39,12 @@
                         <page string="Sesiones">
                             <field name="sesion_ids">
                             <!--hola, soy paco otra vez, te cambio esto tambien xd-->
-                                <field name="sesion_ids">
-                                    <list>
-                                        <field name="name" optional="show"/>
-                                        <field name="dtInicio" optional="show"/>
-                                        <field name="dtFin" optional="show"/>
-                                        <field name="fDuracion" optional="show"/>
-                                    </list>
-                                </field>
+                                <list>
+                                    <field name="name" optional="show"/>
+                                    <field name="dtInicio" optional="show"/>
+                                    <field name="dtFin" optional="show"/>
+                                    <field name="fDuracion" optional="show"/>
+                                </list>
                             </field>
                         </page>
                         <page string="Convocatorias de Asignatura">
