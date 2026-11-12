@@ -85,3 +85,4 @@ from . import tutoria
 from . import encuesta
 from . import respuesta_alumno
 from . import seguimiento_alu_int
+from . import trabajo_final

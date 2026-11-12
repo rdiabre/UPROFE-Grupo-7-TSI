@@ -82,3 +82,4 @@ access_uprofe_tutoria,uprofe.tutoria,model_uprofe_tutoria,group_uprofe_manager,1
 encuesta_manager,encuesta_manager,model_uprofe_encuesta,group_uprofe_manager,1,1,1,1
 respuesta_alumno_manager,respuesta_alumno_manager,model_uprofe_respuesta_alumno,group_uprofe_manager,1,1,1,1
 seguimiento_alu_int_manager,seguimiento_alu_int_manager,model_uprofe_seguimiento_alu_int,group_uprofe_manager,1,1,1,1
+trabajo_final_manager,trabajo_final_manager,model_uprofe_trabajo_final,group_uprofe_manager,1,1,1,1
