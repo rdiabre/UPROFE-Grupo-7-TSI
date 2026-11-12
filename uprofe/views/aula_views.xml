@@ -27,7 +27,7 @@
                     <notebook>
                         <page string="Horarios de Tutoría">
                             <field name="horario_tutoria_ids">
-                            <!--hola, he cambiado todo esto porque los names no tenían nada que ver mi ciela-->
+                            <!--hola, soy paco he cambiado todo esto porque los names no tenían nada que ver mi ciela-->
                                 <list>
                                     <field name="dFecha" optional="show"/>
                                     <field name="fHoraIni" widget="float_time" optional="show"/>
@@ -38,16 +38,26 @@
                         </page>
                         <page string="Sesiones">
                             <field name="sesion_ids">
-                                <list>
-                                    <field name="name" optional="show"/>
-                                    <field name="fecha" optional="show"/>
-                                </list>
+                            <!--hola, soy paco otra vez, te cambio esto tambien xd-->
+                                <field name="sesion_ids">
+                                    <list>
+                                        <field name="name" optional="show"/>
+                                        <field name="dtInicio" optional="show"/>
+                                        <field name="dtFin" optional="show"/>
+                                        <field name="fDuracion" optional="show"/>
+                                    </list>
+                                </field>
                             </field>
                         </page>
                         <page string="Convocatorias de Asignatura">
+                        <!--soy paco, me gusta estar aquí. te he cambiado esto tb-->
                             <field name="convocatoria_asignatura_ids">
                                 <list>
-                                    <field name="name" optional="show"/>
+                                    <field name="sTipo" optional="show"/>
+                                    <field name="dFecha" optional="show"/>
+                                    <field name="fHora" widget="float_time" optional="show"/>
+                                    <field name="fDuracion" optional="show"/>
+                                    <field name="fPorcentaje" optional="show"/>
                                 </list>
                             </field>
                         </page>
@@ -78,14 +88,14 @@
         <field name="model">uprofe.aula</field>
         <field name="arch" type="xml">
             <search string="Buscar Aula">
-                <field name="cod_espacio"/>
+                <field name="sCod_espacio"/>
                 <field name="calendario_academico"/>
                 <separator/>
                 <filter string="Aulas Docentes" name="filter_docente" domain="[('tipo_aula', '=', 'docente')]"/>
                 <filter string="Laboratorios / Informática" name="filter_lab" domain="[('tipo_aula', 'in', ['laboratorio', 'informatica'])]"/>
                 <group expand="0" string="Agrupar por">
                     <filter string="Tipo de Aula" name="group_by_tipo" context="{'group_by': 'tipo_aula'}"/>
-                    <filter string="Planta" name="group_by_planta" context="{'group_by': 'planta'}"/>
+                    <filter string="Planta" name="group_by_planta" context="{'group_by': 'iPlanta'}"/>
                 </group>
             </search>
         </field>
