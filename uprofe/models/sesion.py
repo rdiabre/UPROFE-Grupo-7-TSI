@@ -19,6 +19,8 @@ class Sesion(models.Model):
     profesor_ids = fields.Many2many('uprofe.profesor', string="Profesores")
 
     # AULA (1,1) y ALUMNO (se matricula, 0,N) se añadirán cuando existan esos modelos
+    #hola, soy paco, añado esto porque se peta 'aula' al querer usar odoo, un beso <3
+    aula_id = fields.Many2one('uprofe.aula', string='Aula')
 
     # iN_sesion es PK, junto con la asignatura
     iN_sesion = fields.Integer(string="Número de sesión", required=True, default=1)

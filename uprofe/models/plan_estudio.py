@@ -35,7 +35,7 @@ class PlanEstudio(models.Model):
     #convocatoria_asignatura_ids = fields.One2many('uprofe.convocatoria_asignatura', 'plan_estudio_id', string="Asignaturas y convocatorias")
 
     #un plan puede tener cero o muchos trabajos finales
-    #trabajo_final_ids = fields.One2many('uprofe.trabajo_final', 'plan_estudio_id', string="Trabajos finales")
+    trabajo_final_ids = fields.One2many('uprofe.trabajo_final', 'plan_estudio_id', string="Trabajos finales")
 
     #Campo calculado que indica si el plan es el del curso académico actual
     bEs_actual = fields.Boolean(string="Curso actual", compute='_compute_es_actual')

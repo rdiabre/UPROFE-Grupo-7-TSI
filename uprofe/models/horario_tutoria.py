@@ -13,7 +13,8 @@ class Horario_Tutoria(models.Model):
     # DEPENDENCIAS BLOQUEADAS
     # tutoria_id = fields.Many2one('uprofe.tutoria', string='Tutoría')
     # profesor_id = fields.Many2one('uprofe.profesor', string='Profesor')
-    # aula_id = fields.Many2one('uprofe.aula', string='Aula')
+    #soy paco, he descomentado esto porque petaba 'aula' y no me iba el odoo <3
+    aula_id = fields.Many2one('uprofe.aula', string='Aula')
 
     @api.constrains('fHoraIni', 'fHoraFin')
     def _check_horas(self):
@@ -21,10 +22,11 @@ class Horario_Tutoria(models.Model):
             if record.fHoraFin <= record.fHoraIni:
                 raise ValidationError("La hora de fin debe ser posterior a la hora de inicio.")
 
-    @api.constrains('hora_inicio', 'hora_fin')
-    def _check_horas(self):
-        for record in self:
-            if record.hora_inicio >= record.hora_fin:
-                raise ValidationError('La hora de inicio debe ser anterior a la hora de fin.')
-            if record.hora_inicio < 0 or record.hora_fin > 24:
-                raise ValidationError('Las horas deben estar comprendidas entre las 0 y las 24.')
+
+    #@api.constrains('hora_inicio', 'hora_fin')
+    #def _check_horas(self):
+        #for record in self:
+            #if record.hora_inicio >= record.hora_fin:
+                #raise ValidationError('La hora de inicio debe ser anterior a la hora de fin.')
+            #if record.hora_inicio < 0 or record.hora_fin > 24:
+                #raise ValidationError('Las horas deben estar comprendidas entre las 0 y las 24.')

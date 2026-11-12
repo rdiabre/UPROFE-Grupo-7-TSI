@@ -12,6 +12,7 @@
     <menuitem name="Estados de acuerdo" id="estado_acuerdo_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="estado_acuerdo_list_action"/>
     <menuitem name="Convenios" id="convenio_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="convenio_list_action"/>
     <menuitem name="Patentes" id="patente_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="patente_list_action"/>
+    <menuitem name="Trabajos finales" id="trabajo_final_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="trabajo_final_list_action"/>
 
     <menuitem name="Libros de investigación" id="libro_inv_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="libro_inv_list_action"/>
     <menuitem name="Aportaciones a congreso" id="congreso_menu" parent="uprofe_menu" groups="group_uprofe_manager" action="congreso_list_action"/>

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
-
+from odoo.exceptions import ValidationError
 
 class Aula(models.Model):
     _name = 'uprofe.aula'
-    _inherit = 'uprofe.espacio'
     _description = 'Aula'
     _inherits = {'uprofe.espacio': 'espacio_id'}
 
@@ -48,14 +47,14 @@ class Aula(models.Model):
         'uprofe.laboratorio',
     ]
 
-    @api.constrains('capacidad')
+    @api.constrains('iCapacidad')
     def _check_capacidad(self):
         for record in self:
-            if record.capacidad <= 0:
+            if record.iCapacidad <= 0:
                 raise ValidationError('La capacidad debe ser mayor que 0.')
 
-    @api.constrains('cod_espacio')
+    @api.constrains('sCod_espacio')
     def _check_cod_espacio(self):
         for record in self:
-            if not record.cod_espacio or not record.cod_espacio.strip():
+            if not record.sCod_espacio or not record.sCod_espacio.strip():
                 raise ValidationError('El código de espacio no puede estar vacío.')

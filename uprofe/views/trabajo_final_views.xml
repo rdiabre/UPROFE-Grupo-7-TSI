@@ -1,0 +1,76 @@
+<odoo>
+    <!-- List -->
+    <record id="view_trabajo_final_list" model="ir.ui.view">
+        <field name="name">uprofe.trabajo_final.list</field>
+        <field name="model">uprofe.trabajo_final</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sNum_tf"/>
+                <field name="sTitulo"/>
+                <field name="alumno_id"/>
+                <field name="profesor_id"/>
+                <field name="titulacion_id"/>
+                <field name="sCurso_academico"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_trabajo_final_form" model="ir.ui.view">
+        <field name="name">uprofe.trabajo_final.form</field>
+        <field name="model">uprofe.trabajo_final</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos del trabajo">
+                            <field name="sNum_tf"/>
+                            <field name="sTitulo"/>
+                            <field name="sCurso_academico"/>
+                        </group>
+                        <group string="Participantes y plan">
+                            <field name="alumno_id"/>
+                            <field name="profesor_id"/>
+                            <field name="plan_estudio_id"/>
+                            <field name="titulacion_id"/>
+                        </group>
+                    </group>
+                    <group string="Resumen">
+                        <field name="sResumen" nolabel="1" placeholder="Resumen del trabajo final..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_trabajo_final_search" model="ir.ui.view">
+        <field name="name">uprofe.trabajo_final.search</field>
+        <field name="model">uprofe.trabajo_final</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sNum_tf"/>
+                <field name="sTitulo"/>
+                <field name="alumno_id"/>
+                <field name="profesor_id"/>
+                <field name="titulacion_id"/>
+                <field name="sCurso_academico"/>
+                <group string="Agrupar por">
+                    <filter name="group_titulacion" string="Titulación" context="{'group_by': 'titulacion_id'}"/>
+                    <filter name="group_tutor" string="Tutor" context="{'group_by': 'profesor_id'}"/>
+                    <filter name="group_curso" string="Curso académico" context="{'group_by': 'sCurso_academico'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="trabajo_final_list_action" model="ir.actions.act_window">
+        <field name="name">Trabajos finales</field>
+        <field name="res_model">uprofe.trabajo_final</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea el primer trabajo final</p>
+        </field>
+    </record>
+</odoo>

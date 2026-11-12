@@ -9,15 +9,15 @@
             <form string="Aula">
                 <sheet>
                     <div class="oe_title">
-                        <label for="cod_espacio"/>
+                        <label for="sCod_espacio"/>
                         <h1>
-                            <field name="cod_espacio" placeholder="Ej. B.01, A.12..."/>
+                            <field name="sCod_espacio" placeholder="Ej. B.01, A.12..."/>
                         </h1>
                     </div>
                     <group>
                         <group string="Datos del Espacio">
-                            <field name="planta"/>
-                            <field name="capacidad"/>
+                            <field name="iPlanta"/>
+                            <field name="iCapacidad"/>
                         </group>
                         <group string="Datos del Aula">
                             <field name="tipo_aula"/>
@@ -27,27 +27,36 @@
                     <notebook>
                         <page string="Horarios de Tutoría">
                             <field name="horario_tutoria_ids">
-                                <tree>
-                                    <field name="dia_semana" optional="show"/>
-                                    <field name="hora_inicio" widget="float_time" optional="show"/>
-                                    <field name="hora_fin" widget="float_time" optional="show"/>
-                                    <field name="profesor_id" optional="show"/>
-                                </tree>
+                            <!--hola, soy paco he cambiado todo esto porque los names no tenían nada que ver mi ciela-->
+                                <list>
+                                    <field name="dFecha" optional="show"/>
+                                    <field name="fHoraIni" widget="float_time" optional="show"/>
+                                    <field name="fHoraFin" widget="float_time" optional="show"/>
+                                    <field name="sUsuProfesor" optional="show"/>
+                                </list>
                             </field>
                         </page>
                         <page string="Sesiones">
                             <field name="sesion_ids">
-                                <tree>
+                            <!--hola, soy paco otra vez, te cambio esto tambien xd-->
+                                <list>
                                     <field name="name" optional="show"/>
-                                    <field name="fecha" optional="show"/>
-                                </tree>
+                                    <field name="dtInicio" optional="show"/>
+                                    <field name="dtFin" optional="show"/>
+                                    <field name="fDuracion" optional="show"/>
+                                </list>
                             </field>
                         </page>
                         <page string="Convocatorias de Asignatura">
+                        <!--soy paco, me gusta estar aquí. te he cambiado esto tb-->
                             <field name="convocatoria_asignatura_ids">
-                                <tree>
-                                    <field name="name" optional="show"/>
-                                </tree>
+                                <list>
+                                    <field name="sTipo" optional="show"/>
+                                    <field name="dFecha" optional="show"/>
+                                    <field name="fHora" widget="float_time" optional="show"/>
+                                    <field name="fDuracion" optional="show"/>
+                                    <field name="fPorcentaje" optional="show"/>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -61,13 +70,13 @@
         <field name="name">uprofe.aula.tree</field>
         <field name="model">uprofe.aula</field>
         <field name="arch" type="xml">
-            <tree string="Aulas">
-                <field name="cod_espacio"/>
-                <field name="planta"/>
-                <field name="capacidad"/>
+            <list string="Aulas">
+                <field name="sCod_espacio"/>
+                <field name="iPlanta"/>
+                <field name="iCapacidad"/>
                 <field name="tipo_aula"/>
                 <field name="calendario_academico"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -77,14 +86,14 @@
         <field name="model">uprofe.aula</field>
         <field name="arch" type="xml">
             <search string="Buscar Aula">
-                <field name="cod_espacio"/>
+                <field name="sCod_espacio"/>
                 <field name="calendario_academico"/>
                 <separator/>
                 <filter string="Aulas Docentes" name="filter_docente" domain="[('tipo_aula', '=', 'docente')]"/>
                 <filter string="Laboratorios / Informática" name="filter_lab" domain="[('tipo_aula', 'in', ['laboratorio', 'informatica'])]"/>
                 <group expand="0" string="Agrupar por">
                     <filter string="Tipo de Aula" name="group_by_tipo" context="{'group_by': 'tipo_aula'}"/>
-                    <filter string="Planta" name="group_by_planta" context="{'group_by': 'planta'}"/>
+                    <filter string="Planta" name="group_by_planta" context="{'group_by': 'iPlanta'}"/>
                 </group>
             </search>
         </field>
@@ -94,7 +103,7 @@
     <record id="action_uprofe_aula" model="ir.actions.act_window">
         <field name="name">Aulas</field>
         <field name="res_model">uprofe.aula</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_uprofe_aula_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

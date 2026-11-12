@@ -13,7 +13,8 @@ class Usuario(models.Model):
     users_id = fields.Many2one('res.users', required=True)
     
     profesor_id = fields.Many2one('uprofe.profesor', string="Profesor")
-    # alumno_id = fields.Many2one('uprofe.alumno', string="Alumno")
+    #soy paco, he descomentado esto porque ya he hecho alumno y daba error
+    alumno_id = fields.Many2one('uprofe.alumno', string="Alumno")
     
     # Validaciones para que tanto users_id, profesor_id y alumno_id solo puedan estar referenciados por una única instancia de uporfe.usuario
     _sql_constraints = [

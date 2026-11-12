@@ -29,9 +29,9 @@
                     <notebook>
                         <page string="Grupos de Investigación">
                             <field name="grupo_inv_ids">
-                                <tree>
+                                <list>
                                     <field name="name" optional="show"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -45,12 +45,12 @@
         <field name="name">uprofe.laboratorio.tree</field>
         <field name="model">uprofe.laboratorio</field>
         <field name="arch" type="xml">
-            <tree string="Laboratorios">
+            <list string="Laboratorios">
                 <field name="cod_espacio"/>
                 <field name="especialidad"/>
                 <field name="planta"/>
                 <field name="capacidad"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -74,7 +74,7 @@
     <record id="action_uprofe_laboratorio" model="ir.actions.act_window">
         <field name="name">Laboratorios</field>
         <field name="res_model">uprofe.laboratorio</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_uprofe_laboratorio_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
