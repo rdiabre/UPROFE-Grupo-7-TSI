@@ -4,7 +4,6 @@ from odoo import models, fields, api
 
 class Aula(models.Model):
     _name = 'uprofe.aula'
-    _inherit = 'uprofe.espacio'
     _description = 'Aula'
     _inherits = {'uprofe.espacio': 'espacio_id'}
 

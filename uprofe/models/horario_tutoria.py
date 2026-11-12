@@ -13,7 +13,8 @@ class Horario_Tutoria(models.Model):
     # DEPENDENCIAS BLOQUEADAS
     # tutoria_id = fields.Many2one('uprofe.tutoria', string='Tutoría')
     # profesor_id = fields.Many2one('uprofe.profesor', string='Profesor')
-    # aula_id = fields.Many2one('uprofe.aula', string='Aula')
+    #soy paco, he descomentado esto porque petaba 'aula' y no me iba el odoo <3
+    aula_id = fields.Many2one('uprofe.aula', string='Aula')
 
     @api.constrains('fHoraIni', 'fHoraFin')
     def _check_horas(self):

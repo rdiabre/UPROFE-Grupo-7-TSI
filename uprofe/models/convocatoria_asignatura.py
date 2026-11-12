@@ -15,7 +15,8 @@ class ConvocatoriaAsignatura(models.Model):
     fDuracion = fields.Float(string='Duración (horas)')
 
     # --- DEPENDENCIAS BLOQUEADAS (Regla 2.6) ---
-    # aula_id = fields.Many2one('uprofe.aula', string='Aula')
+    #soy paco, he descomentado esto porque daba error con 'aula' y no podía usar odoo <3
+    aula_id = fields.Many2one('uprofe.aula', string='Aula')
     # linea_acta_id = fields.Many2one('uprofe.linea_acta', string='Línea de Acta')
     # alumno_id = fields.Many2one('uprofe.alumno', string='Alumno') # o Many2many según cardinalidad exacta
     # asignatura_id = fields.Many2one('uprofe.asignatura', string='Asignatura')
