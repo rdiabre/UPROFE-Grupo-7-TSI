@@ -49,6 +49,7 @@ Descripción del módulo
         'data/uprofe.movilidad.csv',
         'data/uprofe.learning_agreement.csv',
         'data/uprofe.la_linea.csv',
+        'views/titulacion_views.xml',
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',

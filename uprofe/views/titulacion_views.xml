@@ -1,0 +1,85 @@
+<odoo>
+    <!-- List -->
+    <record id="view_titulacion_list" model="ir.ui.view">
+        <field name="name">uprofe.titulacion.list</field>
+        <field name="model">uprofe.titulacion</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sCod_titulacion"/>
+                <field name="name"/>
+                <field name="iCreditos_totales"/>
+                <field name="iDuracion_cursos"/>
+                <field name="fCreditos_por_curso"/>
+                <field name="iNum_convenios"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_titulacion_form" model="ir.ui.view">
+        <field name="name">uprofe.titulacion.form</field>
+        <field name="model">uprofe.titulacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Ej. Grado en Ingeniería Informática"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Datos de la titulación">
+                            <field name="sCod_titulacion" placeholder="Ej. GII"/>
+                            <field name="iCreditos_totales"/>
+                            <field name="iDuracion_cursos"/>
+                            <field name="fCreditos_por_curso"/>
+                        </group>
+                        <group string="Resumen">
+                            <field name="iNum_convenios"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Planes de estudio">
+                            <field name="plan_estudio_ids">
+                                <list>
+                                    <field name="sCurso_academico"/>
+                                    <field name="bEs_actual"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Convenios">
+                            <field name="convenio_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_titulacion_search" model="ir.ui.view">
+        <field name="name">uprofe.titulacion.search</field>
+        <field name="model">uprofe.titulacion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCod_titulacion"/>
+                <group string="Agrupar por">
+                    <filter name="group_duracion" string="Duración (cursos)" context="{'group_by': 'iDuracion_cursos'}"/>
+                    <filter name="group_creditos" string="Créditos" context="{'group_by': 'iCreditos_totales'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="titulacion_list_action" model="ir.actions.act_window">
+        <field name="name">Titulaciones</field>
+        <field name="res_model">uprofe.titulacion</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea la primera titulación</p>
+        </field>
+    </record>
+</odoo>
