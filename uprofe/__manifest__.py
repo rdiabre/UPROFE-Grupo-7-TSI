@@ -49,6 +49,7 @@ Descripción del módulo
         'data/uprofe.movilidad.csv',
         'data/uprofe.learning_agreement.csv',
         'data/uprofe.la_linea.csv',
+        'views/titulacion_views.xml',
         'views/estado_convenio_views.xml',
         'views/pregunta_views.xml',
         'views/persona_views.xml',
@@ -104,6 +105,7 @@ Descripción del módulo
         'views/tutoria_views.xml',
         'views/tipo_evento_views.xml',
         'views/prestamo_views.xml',
+        'views/alumno_views.xml',
         'views/laboratorio_views.xml',
         'views/horario_tutoria_views.xml',
         'views/evento_views.xml',
@@ -115,6 +117,7 @@ Descripción del módulo
         'views/seguimiento_alu_int_views.xml',
         'views/tipo_solicitud_views.xml',
         'views/trabajo_final_views.xml',
+        'views/departamento_views.xml',
         'views/menu.xml'
     ],
     # only loaded in demonstration mode

@@ -62,7 +62,7 @@ class Titulacion(models.Model):
             if record.sCod_titulacion:
                 record.display_name = f"[{record.sCod_titulacion}] {record.name or ''}"
             else:
-                record.diplay_name = record.name
+                record.display_name = record.name
 
     @api.constrains('sCod_titulacion')
     def _check_codigo(self):

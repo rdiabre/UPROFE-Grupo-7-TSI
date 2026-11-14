@@ -1,0 +1,86 @@
+<odoo>
+    <!-- List -->
+    <record id="view_departamento_list" model="ir.ui.view">
+        <field name="name">uprofe.departamento.list</field>
+        <field name="model">uprofe.departamento</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sCod_departamento"/>
+                <field name="name"/>
+                <field name="sArea_conocimiento"/>
+                <field name="iNum_profesores"/>
+                <field name="iNum_grupos"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_departamento_form" model="ir.ui.view">
+        <field name="name">uprofe.departamento.form</field>
+        <field name="model">uprofe.departamento</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Datos del departamento">
+                            <field name="sCod_departamento"/>
+                            <field name="name"/>
+                            <field name="sArea_conocimiento"/>
+                        </group>
+                        <group string="Resumen">
+                            <field name="iNum_profesores"/>
+                            <field name="iNum_grupos"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Profesores">
+                            <field name="profesor_ids" readonly="1">
+                                <list>
+                                    <field name="sDni"/>
+                                    <field name="name" string="Nombre"/>
+                                    <field name="sApellidos"/>
+                                    <field name="email" string="Correo electrónico"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Grupos de investigación">
+                            <field name="grupo_inv_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="sNombre"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_departamento_search" model="ir.ui.view">
+        <field name="name">uprofe.departamento.search</field>
+        <field name="model">uprofe.departamento</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="sCod_departamento"/>
+                <field name="sArea_conocimiento"/>
+                <group string="Agrupar por">
+                    <filter name="group_area_conocimiento" string="Área de conocimiento"
+                            context="{'group_by': 'sArea_conocimiento'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="departamento_list_action" model="ir.actions.act_window">
+        <field name="name">Departamentos</field>
+        <field name="res_model">uprofe.departamento</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea el primer departamento</p>
+        </field>
+    </record>
+</odoo>
