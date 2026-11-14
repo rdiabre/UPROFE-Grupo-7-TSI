@@ -116,6 +116,7 @@ Descripción del módulo
         'views/seguimiento_alu_int_views.xml',
         'views/tipo_solicitud_views.xml',
         'views/trabajo_final_views.xml',
+        'views/departamento_views.xml',
         'views/menu.xml'
     ],
     # only loaded in demonstration mode
