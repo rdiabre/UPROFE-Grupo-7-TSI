@@ -104,6 +104,7 @@ Descripción del módulo
         'views/tutoria_views.xml',
         'views/tipo_evento_views.xml',
         'views/prestamo_views.xml',
+        'views/alumno_views.xml',
         'views/laboratorio_views.xml',
         'views/horario_tutoria_views.xml',
         'views/evento_views.xml',
